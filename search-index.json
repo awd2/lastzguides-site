@@ -1,0 +1,4187 @@
+[
+  {
+    "url": "/",
+    "locale": "en",
+    "source_path": "index.html",
+    "title": "Guides",
+    "category": "Home",
+    "description": "Last Z guides for research order, HQ upgrades, events, heroes, formations, resources, and F2P progression, with fast routes to key pages.",
+    "keywords": [
+      "Last Z guides",
+      "home",
+      "directory",
+      "research",
+      "events"
+    ]
+  },
+  {
+    "url": "/about.html",
+    "locale": "en",
+    "source_path": "about.html",
+    "title": "About Last Z Guides",
+    "category": "Site",
+    "description": "About Last Z Guides: how we verify data, update guides, use sources, and keep content consistent for accurate progression help.",
+    "keywords": [
+      "About",
+      "Last",
+      "Guides",
+      "how",
+      "verify",
+      "data",
+      "update",
+      "use",
+      "sources",
+      "and"
+    ]
+  },
+  {
+    "url": "/alliance-duel-rewards.html",
+    "locale": "en",
+    "source_path": "alliance-duel-rewards.html",
+    "title": "Alliance Duel Rewards",
+    "category": "Events",
+    "description": "Complete Last Z Alliance Duel rewards table: chest thresholds for Days 1–5 and Day 6, daily totals, weekly totals, and the best reward checkpoints to aim for.",
+    "keywords": [
+      "Last",
+      "Alliance",
+      "Duel",
+      "Rewards",
+      "2026",
+      "Chest",
+      "Thresholds",
+      "Daily",
+      "Weekly",
+      "Totals"
+    ]
+  },
+  {
+    "url": "/alliance-duel.html",
+    "locale": "en",
+    "source_path": "alliance-duel.html",
+    "title": "Alliance Duel Guide",
+    "category": "Events",
+    "description": "Last Z Alliance Duel guide: Day 1-6 schedule, VS rotation, matching speed-up days, Full Preparedness timing, saved items, and weekly reward planning.",
+    "keywords": [
+      "Last",
+      "Alliance",
+      "Duel",
+      "Schedule",
+      "2026",
+      "Day",
+      "Guide",
+      "and",
+      "Strategy",
+      "Plan"
+    ]
+  },
+  {
+    "url": "/alliance-recognition-cost.html",
+    "locale": "en",
+    "source_path": "alliance-recognition-cost.html",
+    "title": "Alliance Recognition Costs",
+    "category": "Research",
+    "description": "Total Alliance Recognition badge cost in Last Z: full research path, key checkpoints, and how many badges you need before spending on this tree.",
+    "keywords": [
+      "Last",
+      "Alliance",
+      "Recognition",
+      "Costs",
+      "2026",
+      "Total",
+      "Badge",
+      "Cost",
+      "and",
+      "Research"
+    ]
+  },
+  {
+    "url": "/alliance-shop.html",
+    "locale": "en",
+    "source_path": "alliance-shop.html",
+    "title": "Alliance Shop Guide",
+    "category": "Guides",
+    "description": "Best Last Z Alliance Shop buys: use alliance credits first on 8h and 24h shields when real risk is coming, keep teleports for movement problems, and buy spee...",
+    "keywords": [
+      "Last",
+      "Alliance",
+      "Shop",
+      "Guide",
+      "What",
+      "Buy",
+      "First",
+      "Best",
+      "buys",
+      "when"
+    ]
+  },
+  {
+    "url": "/arena.html",
+    "locale": "en",
+    "source_path": "arena.html",
+    "title": "Arena Guide",
+    "category": "Guides",
+    "description": "Best Last Z arena strategy: use 5 daily attempts, refresh for easier wins, improve daily and weekly rank rewards, earn Valor Medals, and spend them in Merit...",
+    "keywords": [
+      "Last",
+      "Arena",
+      "Guide",
+      "2026",
+      "Best",
+      "Daily",
+      "Wins",
+      "Rank",
+      "Rewards",
+      "and"
+    ]
+  },
+  {
+    "url": "/army-building-cost.html",
+    "locale": "en",
+    "source_path": "army-building-cost.html",
+    "title": "Army Building Costs",
+    "category": "Guides",
+    "description": "Army Building badge costs in Last Z: total branch cost, exact node totals, Peace Shield follow-up path, and the later Recharge Shield checkpoint for deep com...",
+    "keywords": [
+      "Last",
+      "Army",
+      "Building",
+      "Costs",
+      "2026",
+      "Total",
+      "Badge",
+      "Cost",
+      "and",
+      "Peace"
+    ]
+  },
+  {
+    "url": "/base-building-order.html",
+    "locale": "en",
+    "source_path": "base-building-order.html",
+    "title": "Building Upgrade Order",
+    "category": "Progression",
+    "description": "Last Z building upgrade order: prioritize HQ, Laboratory, rotating HQ prerequisites, camps, Alliance Center, City Walls, and avoid overinvesting in resource...",
+    "keywords": [
+      "Last",
+      "Base",
+      "Building",
+      "Order",
+      "2026",
+      "Shelter",
+      "Progression",
+      "Prereqs",
+      "Guide",
+      "prioritize"
+    ]
+  },
+  {
+    "url": "/canyon-clash.html",
+    "locale": "en",
+    "source_path": "canyon-clash.html",
+    "title": "Canyon Clash Guide",
+    "category": "Events",
+    "description": "Last Z Canyon Clash guide: weekly timing, eligibility, battle phases, scoring rules, building control, boss buffs, and alliance prep.",
+    "keywords": [
+      "Last",
+      "Canyon",
+      "Clash",
+      "Guide",
+      "2026",
+      "Schedule",
+      "Rules",
+      "Rewards",
+      "weekly",
+      "timing"
+    ]
+  },
+  {
+    "url": "/codes.html",
+    "locale": "en",
+    "source_path": "codes.html",
+    "title": "Gift Codes",
+    "category": "Economy",
+    "description": "Copy active Last Z gift codes checked daily, redeem them through the official Gift Center, use Avatar > Settings > Copy ID for UID, and check mailbox rewards.",
+    "keywords": [
+      "Last",
+      "Redeem",
+      "Codes",
+      "2026",
+      "Active",
+      "Gift",
+      "Center",
+      "Login",
+      "UID",
+      "and"
+    ]
+  },
+  {
+    "url": "/contact.html",
+    "locale": "en",
+    "source_path": "contact.html",
+    "title": "Contact",
+    "category": "Site",
+    "description": "Contact Last Z Guides for corrections, partnerships, and feedback. We respond to data fixes, sponsorships, and collaboration requests.",
+    "keywords": [
+      "Contact",
+      "Last",
+      "Guides",
+      "for",
+      "corrections",
+      "partnerships",
+      "and",
+      "feedback",
+      "respond",
+      "data"
+    ]
+  },
+  {
+    "url": "/daily.html",
+    "locale": "en",
+    "source_path": "daily.html",
+    "title": "Daily Checklist",
+    "category": "Routine",
+    "description": "Last Z daily checklist: what to do every day for trucks, bounty missions, Full Preparedness, Furylord, radar, arena, mines, and 150 daily task points.",
+    "keywords": [
+      "Last",
+      "Daily",
+      "Checklist",
+      "2026",
+      "Best",
+      "Tasks",
+      "and",
+      "Routine",
+      "trucks",
+      "bounty"
+    ]
+  },
+  {
+    "url": "/diamond-reserve.html",
+    "locale": "en",
+    "source_path": "diamond-reserve.html",
+    "title": "Diamond Reserve Guide",
+    "category": "Guides",
+    "description": "Best Last Z diamond reserve strategy: what to save diamonds for first, how the Friday shield reserve works, when Lucky Discounter is worth it, and which purc...",
+    "keywords": [
+      "Last",
+      "Diamond",
+      "Reserve",
+      "Guide",
+      "2026",
+      "What",
+      "Save",
+      "Diamonds",
+      "For",
+      "First"
+    ]
+  },
+  {
+    "url": "/disclosure.html",
+    "locale": "en",
+    "source_path": "disclosure.html",
+    "title": "Disclosure",
+    "category": "Site",
+    "description": "Disclosure of advertising, affiliate relationships, sponsored content, and how we keep guides independent, transparent, and reader-first.",
+    "keywords": [
+      "Disclosure",
+      "Last",
+      "Guides",
+      "advertising",
+      "affiliate",
+      "relationships",
+      "sponsored",
+      "content",
+      "and",
+      "how"
+    ]
+  },
+  {
+    "url": "/early-game-optimization.html",
+    "locale": "en",
+    "source_path": "early-game-optimization.html",
+    "title": "Early-Game Optimization",
+    "category": "Progression",
+    "description": "Last Z early-game optimization for days 3-7: push shooter stages, plan HQ and Lab requirements, manage resources, build hero synergy, and time Full Preparedn...",
+    "keywords": [
+      "Beginner",
+      "Guide",
+      "Early-Game",
+      "Optimization",
+      "Last",
+      "2026",
+      "for",
+      "shooter",
+      "stages",
+      "HQ/Lab"
+    ]
+  },
+  {
+    "url": "/emergency-hospital-cost.html",
+    "locale": "en",
+    "source_path": "emergency-hospital-cost.html",
+    "title": "Emergency Hospital Costs",
+    "category": "Progression",
+    "description": "Last Z Emergency Hospital cost table: resource costs, capacity gains, power per level, and upgrade timing for PvP or server-war planning.",
+    "keywords": [
+      "Last",
+      "Hospital",
+      "Costs",
+      "2026",
+      "Capacity",
+      "Power",
+      "Table",
+      "Cost",
+      "Emergency",
+      "upgrade"
+    ]
+  },
+  {
+    "url": "/es/",
+    "locale": "es",
+    "source_path": "index.html",
+    "title": "Guías Last Z",
+    "category": "Home",
+    "description": "Guías de Last Z para orden de investigación, mejoras de HQ, eventos, héroes, formaciones, recursos y progresión F2P, con rutas rápidas a las páginas clave.",
+    "keywords": [
+      "Last Z guides",
+      "home",
+      "directory",
+      "research",
+      "events"
+    ]
+  },
+  {
+    "url": "/es/about.html",
+    "locale": "es",
+    "source_path": "about.html",
+    "title": "Acerca de Last Z Guides",
+    "category": "Site",
+    "description": "Acerca de Last Z Guides: cómo verificamos datos, actualizamos guías, usamos fuentes y mantenemos contenido coherente para una progresión precisa.",
+    "keywords": [
+      "Acerca",
+      "Last",
+      "Guides",
+      "verificamos",
+      "datos",
+      "actualizamos",
+      "usamos",
+      "fuentes",
+      "mantenemos",
+      "contenido"
+    ]
+  },
+  {
+    "url": "/es/alliance-duel-rewards.html",
+    "locale": "es",
+    "source_path": "alliance-duel-rewards.html",
+    "title": "Recompensas de Last Z Alliance Duel",
+    "category": "Events",
+    "description": "Tabla completa de recompensas de Last Z Alliance Duel: umbrales de cofres para los Días 1–5 y el Día 6, totales diarios, totales semanales y los mejores punt...",
+    "keywords": [
+      "Recompensas",
+      "Last",
+      "Alliance",
+      "Duel",
+      "2026",
+      "Umbrales",
+      "cofres",
+      "totales",
+      "diarios",
+      "semanales"
+    ]
+  },
+  {
+    "url": "/es/alliance-duel.html",
+    "locale": "es",
+    "source_path": "alliance-duel.html",
+    "title": "Calendario de Last Z Alliance Duel y guía VS",
+    "category": "Events",
+    "description": "Schedule de Last Z Alliance Duel: rotación VS de Días 1-6, días correctos de speed-ups, timing de Full Preparedness, objetos guardados y planificación de rec...",
+    "keywords": [
+      "Last",
+      "Alliance",
+      "Duel",
+      "Calendario",
+      "2026",
+      "estrategia",
+      "los",
+      "Plan",
+      "Usa",
+      "este"
+    ]
+  },
+  {
+    "url": "/es/alliance-recognition-cost.html",
+    "locale": "es",
+    "source_path": "alliance-recognition-cost.html",
+    "title": "Costes de Alliance Recognition",
+    "category": "Research",
+    "description": "Coste total de badges de Alliance Recognition en Last Z: ruta completa de investigación, puntos clave de control y cuántos badges necesitas antes de gastar e...",
+    "keywords": [
+      "Last",
+      "Costes",
+      "Alliance",
+      "Recognition",
+      "2026",
+      "Coste",
+      "total",
+      "badges",
+      "ruta",
+      "investigaci"
+    ]
+  },
+  {
+    "url": "/es/alliance-shop.html",
+    "locale": "es",
+    "source_path": "alliance-shop.html",
+    "title": "Guía de la Alliance Shop de Last Z",
+    "category": "Guides",
+    "description": "Las mejores compras en la Alliance Shop de Last Z: cuándo gastar créditos en shields, teleports y speedups, y cuándo guardarlos en su lugar.",
+    "keywords": [
+      "Alliance",
+      "Shop",
+      "Last",
+      "comprar",
+      "primero",
+      "Las",
+      "mejores",
+      "compras",
+      "ndo",
+      "gastar"
+    ]
+  },
+  {
+    "url": "/es/arena.html",
+    "locale": "es",
+    "source_path": "arena.html",
+    "title": "Guía de Last Z Arena",
+    "category": "Guides",
+    "description": "La mejor estrategia de arena en Last Z: cómo usar tus 5 intentos diarios, cuándo refrescar para encontrar objetivos más débiles, por qué importa el rango sem...",
+    "keywords": [
+      "Last",
+      "Arena",
+      "2026",
+      "Mejores",
+      "victorias",
+      "diarias",
+      "recompensas",
+      "rango",
+      "prioridad",
+      "tienda"
+    ]
+  },
+  {
+    "url": "/es/army-building-cost.html",
+    "locale": "es",
+    "source_path": "army-building-cost.html",
+    "title": "Army Building Costs",
+    "category": "Guides",
+    "description": "Costes de badges de Army Building en Last Z: coste total de la rama, totales exactos por nodo, ruta de seguimiento de Peace Shield y el posterior hito de Rec...",
+    "keywords": [
+      "Last",
+      "Army",
+      "Building",
+      "Costs",
+      "2026",
+      "Coste",
+      "total",
+      "badges",
+      "seguimiento",
+      "Peace"
+    ]
+  },
+  {
+    "url": "/es/base-building-order.html",
+    "locale": "es",
+    "source_path": "base-building-order.html",
+    "title": "Base Building Order",
+    "category": "Progression",
+    "description": "Orden de progresión del refugio: prioriza HQ y Laboratory, sigue los prerrequisitos de HQ, mantén food/wood/electricity y avanza shooter stages para recompen...",
+    "keywords": [
+      "Last",
+      "Base",
+      "Building",
+      "Order",
+      "2026",
+      "Shelter",
+      "Progression",
+      "Prereqs",
+      "Guide",
+      "Orden"
+    ]
+  },
+  {
+    "url": "/es/canyon-clash.html",
+    "locale": "es",
+    "source_path": "canyon-clash.html",
+    "title": "Guía de Last Z Canyon Clash",
+    "category": "Events",
+    "description": "Guía de Last Z Canyon Clash: timing semanal, elegibilidad, fases de batalla, scoring, control de edificios, boss buffs y preparación de alianza.",
+    "keywords": [
+      "Last",
+      "Canyon",
+      "Clash",
+      "2026",
+      "Calendario",
+      "reglas",
+      "recompensas",
+      "Horario",
+      "semanal",
+      "elegibilidad"
+    ]
+  },
+  {
+    "url": "/es/codes.html",
+    "locale": "es",
+    "source_path": "codes.html",
+    "title": "Códigos regalo de Last Z",
+    "category": "Economy",
+    "description": "Copia códigos regalo activos de Last Z revisados a diario, canjéalos en el Gift Center oficial, usa Avatar > Settings > Copy ID para el UID y revisa las reco...",
+    "keywords": [
+      "digos",
+      "canje",
+      "Last",
+      "2026",
+      "activos",
+      "inicio",
+      "sesi",
+      "Gift",
+      "Center",
+      "UID"
+    ]
+  },
+  {
+    "url": "/es/contact.html",
+    "locale": "es",
+    "source_path": "contact.html",
+    "title": "Contacto",
+    "category": "Site",
+    "description": "Contacta con Last Z Guides para correcciones, colaboraciones y comentarios. Revisamos arreglos de datos, patrocinios y solicitudes de colaboración.",
+    "keywords": [
+      "Contacto",
+      "Last",
+      "Guides",
+      "Contacta",
+      "con",
+      "para",
+      "correcciones",
+      "colaboraciones",
+      "comentarios",
+      "Revisamos"
+    ]
+  },
+  {
+    "url": "/es/daily.html",
+    "locale": "es",
+    "source_path": "daily.html",
+    "title": "Daily Checklist",
+    "category": "Routine",
+    "description": "Checklist diario de Last Z: qué hacer cada día con trucks, bounty missions, Full Preparedness, Furylord, radar, arena, mines y 150 puntos diarios.",
+    "keywords": [
+      "Last",
+      "Daily",
+      "Checklist",
+      "2026",
+      "Mejores",
+      "tareas",
+      "diarias",
+      "rutina",
+      "mejor",
+      "diaria"
+    ]
+  },
+  {
+    "url": "/es/diamond-reserve.html",
+    "locale": "es",
+    "source_path": "diamond-reserve.html",
+    "title": "Guía de Reserva de Diamantes de Last Z",
+    "category": "Guides",
+    "description": "La mejor estrategia de reserva de diamantes en Last Z: qué guardar primero, cómo funciona la reserva de escudo del viernes, cuándo merece la pena Lucky Disco...",
+    "keywords": [
+      "Reserva",
+      "Diamantes",
+      "Last",
+      "2026",
+      "Guardar",
+      "Primero",
+      "para",
+      "mejor",
+      "estrategia",
+      "funciona"
+    ]
+  },
+  {
+    "url": "/es/disclosure.html",
+    "locale": "es",
+    "source_path": "disclosure.html",
+    "title": "Divulgación",
+    "category": "Site",
+    "description": "Divulgación sobre publicidad, afiliados, contenido patrocinado y cómo mantenemos las guías independientes, transparentes y centradas en el lector.",
+    "keywords": [
+      "Divulgaci",
+      "Last",
+      "Guides",
+      "sobre",
+      "publicidad",
+      "afiliados",
+      "contenido",
+      "patrocinado",
+      "mantenemos",
+      "las"
+    ]
+  },
+  {
+    "url": "/es/early-game-optimization.html",
+    "locale": "es",
+    "source_path": "early-game-optimization.html",
+    "title": "Early-Game Optimization Guide",
+    "category": "Progression",
+    "description": "Optimización del juego temprano en Last Z: etapas de shooter, requisitos de HQ/Lab, equilibrio de recursos, roles de héroe y sinergia de facción, enfoque de...",
+    "keywords": [
+      "Beginner",
+      "Guide",
+      "Optimizaci",
+      "del",
+      "juego",
+      "temprano",
+      "Last",
+      "2026",
+      "etapas",
+      "shooter"
+    ]
+  },
+  {
+    "url": "/es/emergency-hospital-cost.html",
+    "locale": "es",
+    "source_path": "emergency-hospital-cost.html",
+    "title": "Costes de Emergency Hospital en Last Z",
+    "category": "Progression",
+    "description": "Tabla de costes de Emergency Hospital en Last Z: recursos, ganancia de capacidad, power por nivel y timing de upgrade para planificación de PvP o guerra de s...",
+    "keywords": [
+      "Costes",
+      "del",
+      "Hospital",
+      "Last",
+      "2026",
+      "Tabla",
+      "Capacidad",
+      "Poder",
+      "mejora",
+      "Emergencia"
+    ]
+  },
+  {
+    "url": "/es/events.html",
+    "locale": "es",
+    "source_path": "events.html",
+    "title": "Calendario de eventos de Last Z",
+    "category": "Events",
+    "description": "Calendario de eventos de Last Z: rotación diaria, ventanas de Full Preparedness, enlaces de Alliance Duel/VS, hot events y qué guardar o gastar.",
+    "keywords": [
+      "Calendario",
+      "eventos",
+      "Last",
+      "2026",
+      "Rotaci",
+      "diaria",
+      "Alliance",
+      "Duel",
+      "Full",
+      "Preparedness"
+    ]
+  },
+  {
+    "url": "/es/f2p.html",
+    "locale": "es",
+    "source_path": "f2p.html",
+    "title": "Guía F2P de Last Z",
+    "category": "Economy",
+    "description": "Guía F2P de Last Z: mantén una reserva de 2,000 diamonds para shields, usa primero shields de Alliance Shop cuando haya stock y gasta excedentes en refugees,...",
+    "keywords": [
+      "F2P",
+      "Last",
+      "2026",
+      "Mejor",
+      "gasto",
+      "diamantes",
+      "fuentes",
+      "gratuitas",
+      "comprar",
+      "primero"
+    ]
+  },
+  {
+    "url": "/es/farm-account.html",
+    "locale": "es",
+    "source_path": "farm-account.html",
+    "title": "Guía de farm account de Last Z",
+    "category": "Economy",
+    "description": "Cómo crear un farm account de Last Z en el mismo servidor antes de Season 2, configurar Character Management, reunir recursos y apoyar tu HQ principal.",
+    "keywords": [
+      "cuenta",
+      "granja",
+      "Last",
+      "2026",
+      "crear",
+      "una",
+      "antes",
+      "Temporada",
+      "servidor",
+      "necesitas"
+    ]
+  },
+  {
+    "url": "/es/field-research.html",
+    "locale": "es",
+    "source_path": "field-research.html",
+    "title": "Costes de Field Research en Last Z",
+    "category": "Research",
+    "description": "Costes de badges de Field Research en Last Z: coste total de la rama, ruta de Recharge Shield, totales nodo por nodo y qué se desbloquea cuando Siege to Seiz...",
+    "keywords": [
+      "Costes",
+      "Field",
+      "Research",
+      "Last",
+      "2026",
+      "Ruta",
+      "Recharge",
+      "Shield",
+      "coste",
+      "total"
+    ]
+  },
+  {
+    "url": "/es/formation-power.html",
+    "locale": "es",
+    "source_path": "formation-power.html",
+    "title": "Guía de Last Z Formation Power",
+    "category": "Strategy",
+    "description": "Se explican los principales multiplicadores de poder: Hall of Honor, HP de tropas, capacidad de marcha, bonificaciones de asedio y dónde invertir primero par...",
+    "keywords": [
+      "Last",
+      "Formation",
+      "Power",
+      "2026",
+      "Mayores",
+      "multiplicadores",
+      "hasta",
+      "100M+",
+      "llegar",
+      "poder"
+    ]
+  },
+  {
+    "url": "/es/formations.html",
+    "locale": "es",
+    "source_path": "formations.html",
+    "title": "Mejores Formaciones",
+    "category": "Strategy",
+    "description": "Mejores formaciones y counters: builds meta 3+2, sinergia de facciones, colocación de héroes y consejos de lineup para PvP y PvE con plantillas.",
+    "keywords": [
+      "Last",
+      "Mejores",
+      "Formaciones",
+      "2026",
+      "Meta",
+      "3+2",
+      "Counters",
+      "Lineups",
+      "builds",
+      "sinergia"
+    ]
+  },
+  {
+    "url": "/es/fully-armed-alliance-cost.html",
+    "locale": "es",
+    "source_path": "fully-armed-alliance-cost.html",
+    "title": "Costes de Last Z Fully Armed Alliance",
+    "category": "Guides",
+    "description": "Costes de badges de Fully Armed Alliance en Last Z: coste total de la rama, totales de Annihilation y Move Out, y los costes exactos de cada nodo detrás de u...",
+    "keywords": [
+      "Costes",
+      "Last",
+      "Fully",
+      "Armed",
+      "Alliance",
+      "2026",
+      "Annihilation",
+      "Move",
+      "Out",
+      "coste"
+    ]
+  },
+  {
+    "url": "/es/furylord.html",
+    "locale": "es",
+    "source_path": "furylord.html",
+    "title": "Guía de Last Z Furylord",
+    "category": "Events",
+    "description": "La mejor estrategia para Furylord en Last Z: ventanas de aparición, límites diarios de ataque, puntuación por golpe más alto, timing de War Frenzy y cómo obt...",
+    "keywords": [
+      "Last",
+      "Furylord",
+      "2026",
+      "Horarios",
+      "aparici",
+      "recompensas",
+      "reglas",
+      "mejor",
+      "estrategia",
+      "para"
+    ]
+  },
+  {
+    "url": "/es/gacha-go.html",
+    "locale": "es",
+    "source_path": "gacha-go.html",
+    "title": "Guía de Last Z Gacha Go",
+    "category": "Events",
+    "description": "La mejor estrategia de Gacha Go en Last Z: cómo funcionan las keys, si conviene ahorrar para 300, eficiencia de diamantes y la ruta más rápida hacia Golden W...",
+    "keywords": [
+      "Last",
+      "Gacha",
+      "Guide",
+      "2026",
+      "Estrategia",
+      "Golden",
+      "Wrench",
+      "Keys",
+      "Hercules",
+      "ruta"
+    ]
+  },
+  {
+    "url": "/es/gear.html",
+    "locale": "es",
+    "source_path": "gear.html",
+    "title": "Guía de Gear de Last Z",
+    "category": "Equipment",
+    "description": "Mejor estrategia de gear en Last Z: solo equipo orange, promoción con Power Core, valor del primer hexágono, prioridad de enhancement y cuándo no perseguir m...",
+    "keywords": [
+      "Equipo",
+      "Last",
+      "2026",
+      "Mejor",
+      "prioridad",
+      "mejora",
+      "mejorar",
+      "Mejoras",
+      "paso",
+      "Power"
+    ]
+  },
+  {
+    "url": "/es/gift-center-uid.html",
+    "locale": "es",
+    "source_path": "gift-center-uid.html",
+    "title": "Inicio de sesión del Gift Center de Last Z y configuración de UID",
+    "category": "Guides",
+    "description": "Configuración oficial de inicio de sesión del Gift Center de Last Z: cómo copiar tu UID desde Avatar > Settings > Copy ID, canjear en un navegador y recoger...",
+    "keywords": [
+      "Inicio",
+      "sesi",
+      "del",
+      "Gift",
+      "Center",
+      "Last",
+      "configuraci",
+      "UID",
+      "2026",
+      "gina"
+    ]
+  },
+  {
+    "url": "/es/hero-recruitment.html",
+    "locale": "es",
+    "source_path": "hero-recruitment.html",
+    "title": "Guía de Reclutamiento de Héroes de Last Z",
+    "category": "Guides",
+    "description": "Aprende cuándo se desbloquea el reclutamiento de héroes en Last Z, cuándo gastar Prime Recruitment Tickets y cómo usar fragmentos de héroe sin desperdiciarlos.",
+    "keywords": [
+      "Reclutamiento",
+      "roes",
+      "Last",
+      "Aprende",
+      "ndo",
+      "desbloquea",
+      "gastar",
+      "Prime",
+      "Recruitment",
+      "Tickets"
+    ]
+  },
+  {
+    "url": "/es/hero-training-cost.html",
+    "locale": "es",
+    "source_path": "hero-training-cost.html",
+    "title": "Costes de Hero Training en Last Z",
+    "category": "Guides",
+    "description": "Costes de badges de Hero Training en Last Z: coste total de la rama, ruta a Cockpit, totales nodo por nodo y dónde debería detenerse la mayoría de jugadores...",
+    "keywords": [
+      "Costes",
+      "Hero",
+      "Training",
+      "Last",
+      "2026",
+      "Ruta",
+      "Cockpit",
+      "coste",
+      "total",
+      "badges"
+    ]
+  },
+  {
+    "url": "/es/heroes.html",
+    "locale": "es",
+    "source_path": "heroes.html",
+    "title": "Tier list de héroes de Last Z",
+    "category": "Heroes",
+    "description": "Tier list de héroes de Last Z para Season 4: mejores héroes por facción, Queenie, Yu Chan, Amber, qué facción construir, troop matching y prioridad de upgrades.",
+    "keywords": [
+      "Tier",
+      "list",
+      "mejores",
+      "roes",
+      "Last",
+      "2026",
+      "Clasificaci",
+      "Season",
+      "por",
+      "facci"
+    ]
+  },
+  {
+    "url": "/es/hq-construction-cost.html",
+    "locale": "es",
+    "source_path": "hq-construction-cost.html",
+    "title": "Tabla de costes de HQ en Last Z",
+    "category": "Progression",
+    "description": "Tabla de costes de HQ en Last Z para niveles 1-35: topes de héroe, costes de recursos, edificios prerrequisito, tiempos de construcción y checkpoints de plan...",
+    "keywords": [
+      "Costes",
+      "construcci",
+      "del",
+      "Last",
+      "2026",
+      "Tabla",
+      "niveles",
+      "con",
+      "mites",
+      "roe"
+    ]
+  },
+  {
+    "url": "/es/hq.html",
+    "locale": "es",
+    "source_path": "hq.html",
+    "title": "Requisitos de mejora de HQ en Last Z",
+    "category": "Progression",
+    "description": "Requisitos de mejora de HQ en Last Z para niveles 1-35: edificios requeridos, ruta rápida a HQ30, planificación de steel para HQ31-35, topes de nivel de héro...",
+    "keywords": [
+      "mejora",
+      "Last",
+      "2026",
+      "Requisitos",
+      "ruta",
+      "pida",
+      "30/35",
+      "estrategia",
+      "para",
+      "mejor"
+    ]
+  },
+  {
+    "url": "/es/leveling.html",
+    "locale": "es",
+    "source_path": "leveling.html",
+    "title": "Subir de nivel rápido en Last Z",
+    "category": "Progression",
+    "description": "Guía de leveling de Last Z: usa tareas diarias, progreso de campaña, upgrades de HQ, timing de eventos y recursos protegidos para crecer más rápido sin despe...",
+    "keywords": [
+      "Subir",
+      "nivel",
+      "pido",
+      "Last",
+      "2026",
+      "Consejos",
+      "progresi",
+      "Las",
+      "mejores",
+      "formas"
+    ]
+  },
+  {
+    "url": "/es/lucky-discounter.html",
+    "locale": "es",
+    "source_path": "lucky-discounter.html",
+    "title": "Guía de Lucky Discounter de Last Z",
+    "category": "Events",
+    "description": "Mejor estrategia de Lucky Discounter en Last Z: schedule semanal, intentos garantizados al 90%, tickets que guardar, prioridad de badges y planificación de d...",
+    "keywords": [
+      "Lucky",
+      "Discounter",
+      "Last",
+      "2026",
+      "Estrategia",
+      "descuento",
+      "del",
+      "tickets",
+      "mejores",
+      "compras"
+    ]
+  },
+  {
+    "url": "/es/mastery-hall.html",
+    "locale": "es",
+    "source_path": "mastery-hall.html",
+    "title": "Mastery Hall: prioridad Support vs Combat",
+    "category": "Guides",
+    "description": "Elige habilidades de Mastery Hall en Last Z Season 2 Winter: cuando Support va primero, cuando importa Combat, como funcionan los resets y que revisar antes...",
+    "keywords": [
+      "Last",
+      "Mastery",
+      "Hall",
+      "Support",
+      "Combat",
+      "prioridad",
+      "habilidades",
+      "temporada",
+      "para",
+      "Season"
+    ]
+  },
+  {
+    "url": "/es/military-center.html",
+    "locale": "es",
+    "source_path": "military-center.html",
+    "title": "Guía del Military Center de Last Z",
+    "category": "Guides",
+    "description": "Military Center aumenta la capacidad de unidades en Last Z. Aprende cuándo la siguiente mejora del límite merece la pena en recursos antes de los cuellos de...",
+    "keywords": [
+      "del",
+      "Military",
+      "Center",
+      "Last",
+      "aumenta",
+      "capacidad",
+      "unidades",
+      "Aprende",
+      "ndo",
+      "siguiente"
+    ]
+  },
+  {
+    "url": "/es/military-strategies-cost.html",
+    "locale": "es",
+    "source_path": "military-strategies-cost.html",
+    "title": "Costes de Military Strategies de Last Z",
+    "category": "Guides",
+    "description": "Costes de badges de Military Strategies en Last Z: coste total de la rama, ruta de Recharge Shield, hitos de HP de tropas y los totales de rama que conducen...",
+    "keywords": [
+      "Costes",
+      "Military",
+      "Strategies",
+      "Last",
+      "2026",
+      "Coste",
+      "total",
+      "badges",
+      "ruta",
+      "Recharge"
+    ]
+  },
+  {
+    "url": "/es/peace-shield-cost.html",
+    "locale": "es",
+    "source_path": "peace-shield-cost.html",
+    "title": "Costes de Peace Shield en Last Z",
+    "category": "Guides",
+    "description": "Costes de badges de Peace Shield en Last Z: coste total de la rama, ruta de Urgent Rescue, totales de Recharge Shield y los costes exactos de los nodos detrá...",
+    "keywords": [
+      "Costes",
+      "Peace",
+      "Shield",
+      "Last",
+      "2026",
+      "Urgent",
+      "Rescue",
+      "coste",
+      "total",
+      "badges"
+    ]
+  },
+  {
+    "url": "/es/power-guide.html",
+    "locale": "es",
+    "source_path": "power-guide.html",
+    "title": "Cómo aumentar power rápido en Last Z",
+    "category": "Progression",
+    "description": "Aumenta power rápido en Last Z corrigiendo el cuello de botella correcto: desbloqueos de HQ y Lab, core research, colas de tropas, 5 héroes principales y veh...",
+    "keywords": [
+      "poder",
+      "Last",
+      "2026",
+      "aumentar",
+      "combate",
+      "pido",
+      "los",
+      "tipos",
+      "mejor",
+      "orden"
+    ]
+  },
+  {
+    "url": "/es/privacy.html",
+    "locale": "es",
+    "source_path": "privacy.html",
+    "title": "Política de privacidad",
+    "category": "Site",
+    "description": "Política de privacidad de Last Z Guides, incluido el uso de analítica, cookies, manejo de datos y protección de la información de visitantes.",
+    "keywords": [
+      "Pol",
+      "tica",
+      "privacidad",
+      "Last",
+      "Guides",
+      "incluido",
+      "uso",
+      "anal",
+      "cookies",
+      "manejo"
+    ]
+  },
+  {
+    "url": "/es/pvp.html",
+    "locale": "es",
+    "source_path": "pvp.html",
+    "title": "Guía PvP de Last Z",
+    "category": "PvP",
+    "description": "Guía PvP para scouting, counters de facción, Canyon Clash, timing de SVS y estrategia de hospital para ganar más combates y elegir objetivos más seguros.",
+    "keywords": [
+      "PvP",
+      "Last",
+      "2026",
+      "Counters",
+      "facci",
+      "cticas",
+      "SVS",
+      "eventos",
+      "consejos",
+      "pro"
+    ]
+  },
+  {
+    "url": "/es/queenie.html",
+    "locale": "es",
+    "source_path": "queenie.html",
+    "title": "Guía de Queenie",
+    "category": "Heroes",
+    "description": "Habilidades de Queenie (Wings of Dawn DPS), efectos al máximo, escalera de estrellas, mejor build y sinergia de equipo para Last Z.",
+    "keywords": [
+      "Queenie",
+      "Habilidades",
+      "mejor",
+      "build",
+      "Last",
+      "Wings",
+      "Dawn",
+      "DPS",
+      "efectos",
+      "ximo"
+    ]
+  },
+  {
+    "url": "/es/radar.html",
+    "locale": "es",
+    "source_path": "radar.html",
+    "title": "Guía de eventos Radar de Last Z",
+    "category": "Guides",
+    "description": "La mejor estrategia de eventos radar en Last Z: cuándo reclamar las tareas de radar, con qué frecuencia revisarlas, cómo guardarlas para Alliance Duel y por...",
+    "keywords": [
+      "eventos",
+      "Radar",
+      "Last",
+      "2026",
+      "Mejor",
+      "momento",
+      "reclamaciones",
+      "sincronizaci",
+      "con",
+      "Alliance"
+    ]
+  },
+  {
+    "url": "/es/redeem-code-not-working.html",
+    "locale": "es",
+    "source_path": "redeem-code-not-working.html",
+    "title": "¿El código de Last Z no funciona? Gift Center, UID y soluciones de recompensas",
+    "category": "Guides",
+    "description": "¿El código de Last Z no funciona? Comprueba el login del Gift Center, errores de UID, códigos caducados o ya usados, retrasos en el buzón y las soluciones má...",
+    "keywords": [
+      "digo",
+      "del",
+      "Gift",
+      "Center",
+      "Last",
+      "funciona",
+      "2026",
+      "UID",
+      "Login",
+      "soluciones"
+    ]
+  },
+  {
+    "url": "/es/refugees.html",
+    "locale": "es",
+    "source_path": "refugees.html",
+    "title": "Guía de Refugees de Last Z",
+    "category": "Economy",
+    "description": "Los mejores refugees en Last Z: a quién priorizar primero, cómo funcionan los Diplomats, cuándo usar tickets de 500 frente a 2000/5000 y los mejores roles de...",
+    "keywords": [
+      "Refugees",
+      "Last",
+      "2026",
+      "Prioridad",
+      "Tickets",
+      "mejores",
+      "para",
+      "mejorar",
+      "Los",
+      "qui"
+    ]
+  },
+  {
+    "url": "/es/research-costs.html",
+    "locale": "es",
+    "source_path": "research-costs.html",
+    "title": "Research Costs Atlas",
+    "category": "Guides",
+    "description": "Compara las ramas de research de Last Z por total de insignias, ruta de desbloqueo, rol prioritario y la página exacta del coste de cada nodo antes de gastar...",
+    "keywords": [
+      "Last",
+      "Research",
+      "Costs",
+      "Atlas",
+      "2026",
+      "Comparaci",
+      "ramas",
+      "totales",
+      "insignias",
+      "rutas"
+    ]
+  },
+  {
+    "url": "/es/research-planner.html",
+    "locale": "es",
+    "source_path": "research-planner.html",
+    "title": "Research Planner",
+    "category": "Research",
+    "description": "Usa el Research Planner de Last Z para marcar niveles completados, fijar nodos objetivo, calcular badges restantes por rama, guardar progreso localmente y co...",
+    "keywords": [
+      "Last",
+      "Research",
+      "Planner",
+      "2026",
+      "Calculadora",
+      "insignias",
+      "herramienta",
+      "compartible",
+      "investigaci",
+      "Usa"
+    ]
+  },
+  {
+    "url": "/es/research.html",
+    "locale": "es",
+    "source_path": "research.html",
+    "title": "Guía del árbol de research de Last Z",
+    "category": "Research",
+    "description": "Mejor orden del árbol de research en Last Z: Hero Training hasta Cockpit, Military Strategies, Peace Shield para Urgent Rescue, luego elige UST/T10 o Field R...",
+    "keywords": [
+      "Investigaci",
+      "Last",
+      "2026",
+      "Mejor",
+      "Orden",
+      "Peace",
+      "Shield",
+      "T10",
+      "ruta",
+      "UST/T10"
+    ]
+  },
+  {
+    "url": "/es/resources.html",
+    "locale": "es",
+    "source_path": "resources.html",
+    "title": "Guía de recursos de Last Z",
+    "category": "Economy",
+    "description": "Guía de recursos de Last Z: farmea food, wood, electricity, steel y diamonds con gathering, bounties, chests, eventos y timing de farm account.",
+    "keywords": [
+      "recursos",
+      "Last",
+      "2026",
+      "farmear",
+      "comida",
+      "madera",
+      "acero",
+      "diamantes",
+      "pido",
+      "conseguir"
+    ]
+  },
+  {
+    "url": "/es/season-2-bio-lab.html",
+    "locale": "es",
+    "source_path": "season-2-bio-lab.html",
+    "title": "Guía de Last Z Season 2 Bio Lab",
+    "category": "Guides",
+    "description": "Guía de Last Z Season 2 Bio Lab: cómo Bio Lab, Smart Greenhouse, Ice Blooms, Frost Cores y resistance trabajan juntos, además de cuándo importan Command Post...",
+    "keywords": [
+      "Last",
+      "Season",
+      "Bio",
+      "Lab",
+      "Smart",
+      "Greenhouse",
+      "Ice",
+      "Blooms",
+      "Resistance",
+      "Frost"
+    ]
+  },
+  {
+    "url": "/es/season-2-combat-buildings.html",
+    "locale": "es",
+    "source_path": "season-2-combat-buildings.html",
+    "title": "Guía de edificios de combate de la Temporada 2 de Last Z",
+    "category": "Guides",
+    "description": "Guía de edificios de combate de la Temporada 2 de Last Z: cuándo mejorar Command Post, Icy Arsenal e Icy Fort, qué aporta cada edificio y cuándo Bio Lab debe...",
+    "keywords": [
+      "edificios",
+      "combate",
+      "Temporada",
+      "Last",
+      "Command",
+      "Post",
+      "Icy",
+      "Arsenal",
+      "Fort",
+      "ndo"
+    ]
+  },
+  {
+    "url": "/es/season-2-frost-cores.html",
+    "locale": "es",
+    "source_path": "season-2-frost-cores.html",
+    "title": "Guía de Frost Core de la Temporada 2 de Last Z",
+    "category": "Guides",
+    "description": "Guía de Frost Core de la Temporada 2 de Last Z: cuándo farmear Frostbanes, Snow Leopards y Yetis, cómo afecta la resistencia a la elección del objetivo y cuá...",
+    "keywords": [
+      "Frost",
+      "Core",
+      "Temporada",
+      "Last",
+      "Frostbanes",
+      "Snow",
+      "Leopards",
+      "Yetis",
+      "ndo",
+      "farmear"
+    ]
+  },
+  {
+    "url": "/es/season-2-winter.html",
+    "locale": "es",
+    "source_path": "season-2-winter.html",
+    "title": "Guía de la Temporada 2 de Invierno de Last Z",
+    "category": "Guides",
+    "description": "Guía de la Temporada 2 de Invierno de Last Z: restablecimiento de la ciudad, Smart Greenhouse, Bio Lab, Frost Cores, Ice Blooms, Frostbanes, Snow Leopards, Y...",
+    "keywords": [
+      "Last",
+      "Temporada",
+      "Invierno",
+      "2026",
+      "Bio",
+      "Lab",
+      "Greenhouse",
+      "Frost",
+      "Cores",
+      "restablecimiento"
+    ]
+  },
+  {
+    "url": "/es/second-laboratory.html",
+    "locale": "es",
+    "source_path": "second-laboratory.html",
+    "title": "Guía del Second Laboratory",
+    "category": "Guides",
+    "description": "Guía de Last Z para decidir si comprar el segundo Laboratory, cuándo posponerlo y cómo encaja en la progresión de research.",
+    "keywords": [
+      "del",
+      "Second",
+      "Laboratory",
+      "Last",
+      "Guides",
+      "para",
+      "decidir",
+      "comprar",
+      "segundo",
+      "ndo"
+    ]
+  },
+  {
+    "url": "/es/shield.html",
+    "locale": "es",
+    "source_path": "shield.html",
+    "title": "Estrategia de Shield en Last Z",
+    "category": "Guides",
+    "description": "La mejor estrategia de shield en Last Z: cuándo guardar 2,000 diamantes para el viernes, cuándo usar shields de 8h y 24h de Alliance Shop en lugar de diamant...",
+    "keywords": [
+      "Estrategia",
+      "Shield",
+      "Last",
+      "2026",
+      "Protecci",
+      "semanal",
+      "diamantes",
+      "del",
+      "viernes",
+      "seguridad"
+    ]
+  },
+  {
+    "url": "/es/shooter-stages.html",
+    "locale": "es",
+    "source_path": "shooter-stages.html",
+    "title": "Guía de Shooter Stages de Last Z",
+    "category": "Progression",
+    "description": "Shooter stages explicados: conceptos básicos de dodge & shoot, barriles, puertas, cajas de XP, peligros y por qué las stages importan para la progresión.",
+    "keywords": [
+      "Shooter",
+      "Stages",
+      "Last",
+      "Consejos",
+      "para",
+      "Dodge",
+      "Shoot",
+      "explicados",
+      "conceptos",
+      "sicos"
+    ]
+  },
+  {
+    "url": "/es/siege-to-seize-cost.html",
+    "locale": "es",
+    "source_path": "siege-to-seize-cost.html",
+    "title": "Siege to Seize Costs",
+    "category": "Guides",
+    "description": "Costes de badges de Siege to Seize en Last Z: coste total de la rama, ruta de investigación agresiva, totales finales de Recharge Shield y los costes exactos...",
+    "keywords": [
+      "Costes",
+      "Siege",
+      "Seize",
+      "Last",
+      "2026",
+      "Coste",
+      "total",
+      "badges",
+      "ruta",
+      "agresiva"
+    ]
+  },
+  {
+    "url": "/es/start.html",
+    "locale": "es",
+    "source_path": "start.html",
+    "title": "Guía para principiantes de Last Z",
+    "category": "Progression",
+    "description": "Guía para principiantes de Last Z para tu primera semana: completa el tutorial, sigue main quests, únete a una alliance activa, sube HQ, guarda diamonds y ev...",
+    "keywords": [
+      "para",
+      "principiantes",
+      "Last",
+      "2026",
+      "Mejor",
+      "inicio",
+      "errores",
+      "tempranos",
+      "que",
+      "evitar"
+    ]
+  },
+  {
+    "url": "/es/steel.html",
+    "locale": "es",
+    "source_path": "steel.html",
+    "title": "Guía de Steel de Last Z",
+    "category": "Economy",
+    "description": "Cómo conseguir Steel en Last Z: cuándo se desbloquea Steel, orange bounties, Steel Mine, steel nodes, Hub Shop, Furylord, eventos, HQ31-35 y prioridades de S...",
+    "keywords": [
+      "Steel",
+      "Last",
+      "2026",
+      "conseguir",
+      "HQ31-35",
+      "Nodes",
+      "ndo",
+      "desbloquea",
+      "orange",
+      "bounties"
+    ]
+  },
+  {
+    "url": "/es/svs.html",
+    "locale": "es",
+    "source_path": "svs.html",
+    "title": "Guía SVS de Last Z",
+    "category": "PvP",
+    "description": "Guía completa de SVS de Last Z: fase de preparación de State vs State, estrategia de Capital Clash, cómo convertirte en invader y cómo desbloquear las 9 caja...",
+    "keywords": [
+      "SVS",
+      "Last",
+      "2026",
+      "State",
+      "Capital",
+      "Clash",
+      "Boxes",
+      "Recompensas",
+      "Cajas",
+      "Recompensa"
+    ]
+  },
+  {
+    "url": "/es/tech.html",
+    "locale": "es",
+    "source_path": "tech.html",
+    "title": "Guía de Tech de Last Z",
+    "category": "Research",
+    "description": "Mejor ruta de tech de Last Z para F2P y low spenders: detén Alliance Recognition tras el valor core, lleva Hero Training hasta Cockpit y luego empuja combat...",
+    "keywords": [
+      "Last",
+      "Tecnolog",
+      "2026",
+      "Mejor",
+      "ruta",
+      "investigaci",
+      "para",
+      "F2P",
+      "crecimiento",
+      "poder"
+    ]
+  },
+  {
+    "url": "/es/terms.html",
+    "locale": "es",
+    "source_path": "terms.html",
+    "title": "Términos de uso",
+    "category": "Site",
+    "description": "Términos de uso de Last Z Guides: derechos de contenido, límites de responsabilidad, actualizaciones y reglas para usar nuestros recursos.",
+    "keywords": [
+      "rminos",
+      "uso",
+      "Last",
+      "Guides",
+      "derechos",
+      "contenido",
+      "mites",
+      "responsabilidad",
+      "actualizaciones",
+      "reglas"
+    ]
+  },
+  {
+    "url": "/es/tips.html",
+    "locale": "es",
+    "source_path": "tips.html",
+    "title": "Consejos y trucos de Last Z",
+    "category": "Strategy",
+    "description": "Consejos y trucos prácticos de Last Z para progresar rápido: foco en HQ, alianza activa, un equipo principal de héroes, rutina diaria, timing de recursos gua...",
+    "keywords": [
+      "Consejos",
+      "trucos",
+      "Last",
+      "2026",
+      "Atajos",
+      "para",
+      "avanzar",
+      "pido",
+      "25+",
+      "secretos"
+    ]
+  },
+  {
+    "url": "/es/trap.html",
+    "locale": "es",
+    "source_path": "trap.html",
+    "title": "Guía de cuentas trampa de Last Z",
+    "category": "PvP",
+    "description": "Cómo detectar cuentas trampa, evitar cebos y elegir objetivos PvP más seguros usando pistas de reconocimiento, señales de poder y patrones de actividad.",
+    "keywords": [
+      "cuentas",
+      "trampa",
+      "Last",
+      "2026",
+      "Detecta",
+      "trampas",
+      "evita",
+      "cebo",
+      "Estrategia",
+      "bajo"
+    ]
+  },
+  {
+    "url": "/es/tyrant.html",
+    "locale": "es",
+    "source_path": "tyrant.html",
+    "title": "Tyrant Rally Guide",
+    "category": "Events",
+    "description": "La mejor estrategia de rally para Tyrant en Last Z: tamaño ideal del rally, configuración de máximo daño, Engage Offline, recompensas de Power Core y los err...",
+    "keywords": [
+      "Last",
+      "Tyrant",
+      "Rally",
+      "Guide",
+      "2026",
+      "Best",
+      "Size",
+      "Max",
+      "Damage",
+      "Power"
+    ]
+  },
+  {
+    "url": "/es/unit-special-training-cost.html",
+    "locale": "es",
+    "source_path": "unit-special-training-cost.html",
+    "title": "Costes de Entrenamiento Especial de Unidad en Last Z",
+    "category": "Guides",
+    "description": "Costes en insignias del Entrenamiento Especial de Unidad en Last Z: coste total de la ruta T10, totales de nodos principales, desbloqueo final de Unit Specia...",
+    "keywords": [
+      "Costes",
+      "Entrenamiento",
+      "Especial",
+      "Unidad",
+      "Last",
+      "2026",
+      "Ruta",
+      "T10",
+      "Coste",
+      "Total"
+    ]
+  },
+  {
+    "url": "/es/vehicle-modification-cost.html",
+    "locale": "es",
+    "source_path": "vehicle-modification-cost.html",
+    "title": "Calculadora de wrenches de Last Z",
+    "category": "Equipment",
+    "description": "Calculadora de wrenches y tabla de costes de Vehicle Modification en Last Z: Hercules, Destroyer, Destroyer EX, totales acumulados de wrenches y milestones d...",
+    "keywords": [
+      "Costes",
+      "modificaci",
+      "veh",
+      "culos",
+      "Last",
+      "2026",
+      "Llaves",
+      "Hercules",
+      "Destroyer",
+      "hitos"
+    ]
+  },
+  {
+    "url": "/es/yu-chan.html",
+    "locale": "es",
+    "source_path": "yu-chan.html",
+    "title": "Guía de Yu Chan",
+    "category": "Heroes",
+    "description": "Habilidades de Yu Chan (Blood Rose DPS), efectos máximos, escalera de estrellas, mejor build y sinergia de equipo para Last Z.",
+    "keywords": [
+      "Chan",
+      "Habilidades",
+      "mejor",
+      "build",
+      "Last",
+      "Blood",
+      "Rose",
+      "DPS",
+      "efectos",
+      "ximos"
+    ]
+  },
+  {
+    "url": "/es/zombie-siege.html",
+    "locale": "es",
+    "source_path": "zombie-siege.html",
+    "title": "Guía de Last Z Zombie Siege",
+    "category": "Events",
+    "description": "Guía de Last Z Zombie Siege: reglas de waves, timing del schedule, preparación de alianza, formación de muro, War Frenzy y cómo evitar errores que drenan tro...",
+    "keywords": [
+      "Last",
+      "Zombie",
+      "Siege",
+      "2026",
+      "Oleadas",
+      "Horario",
+      "Recompensas",
+      "Mejores",
+      "Consejos",
+      "reglas"
+    ]
+  },
+  {
+    "url": "/events.html",
+    "locale": "en",
+    "source_path": "events.html",
+    "title": "Event Schedule",
+    "category": "Events",
+    "description": "Last Z event schedule and calendar: daily rotation, Full Preparedness windows, Alliance Duel/VS links, hot events, and what to save or spend.",
+    "keywords": [
+      "Last",
+      "Events",
+      "Schedule",
+      "2026",
+      "Daily",
+      "Rotation",
+      "Alliance",
+      "Duel",
+      "Full",
+      "Preparedness"
+    ]
+  },
+  {
+    "url": "/f2p.html",
+    "locale": "en",
+    "source_path": "f2p.html",
+    "title": "F2P Guide",
+    "category": "Economy",
+    "description": "Last Z F2P guide: keep a 2,000-diamond shield reserve, use Alliance Shop shields first when stocked, and spend surplus on refugees, codes, and strong event d...",
+    "keywords": [
+      "Last",
+      "F2P",
+      "Guide",
+      "2026",
+      "Best",
+      "Diamond",
+      "Spending",
+      "Free",
+      "Sources",
+      "What"
+    ]
+  },
+  {
+    "url": "/farm-account.html",
+    "locale": "en",
+    "source_path": "farm-account.html",
+    "title": "Farm Account Guide",
+    "category": "Economy",
+    "description": "How to create a Last Z farm account on the same server before Season 2, set up Character Management, gather resources, and support your main HQ.",
+    "keywords": [
+      "Last",
+      "Farm",
+      "Account",
+      "Guide",
+      "2026",
+      "How",
+      "Create",
+      "Before",
+      "Season",
+      "your"
+    ]
+  },
+  {
+    "url": "/field-research.html",
+    "locale": "en",
+    "source_path": "field-research.html",
+    "title": "Field Research Costs",
+    "category": "Research",
+    "description": "Field Research badge costs in Last Z: total branch cost, Recharge Shield path, node-by-node totals, and what unlocks after Siege to Seize is fully complete.",
+    "keywords": [
+      "Last",
+      "Field",
+      "Research",
+      "Costs",
+      "2026",
+      "Recharge",
+      "Shield",
+      "Path",
+      "and",
+      "Total"
+    ]
+  },
+  {
+    "url": "/formation-power.html",
+    "locale": "en",
+    "source_path": "formation-power.html",
+    "title": "Formation Power Guide",
+    "category": "Strategy",
+    "description": "Top power multipliers explained: Hall of Honor, troop HP, march capacity, siege bonuses, and where to invest first for PvE and PvP.",
+    "keywords": [
+      "Last",
+      "Formation",
+      "Power",
+      "2026",
+      "Biggest",
+      "Multipliers",
+      "100M+",
+      "Guide",
+      "How",
+      "Reach"
+    ]
+  },
+  {
+    "url": "/formations.html",
+    "locale": "en",
+    "source_path": "formations.html",
+    "title": "Best Formations",
+    "category": "Strategy",
+    "description": "Best formations and counters: 3+2 meta builds, faction synergy, hero placement, and lineup tips for PvP and PvE with templates.",
+    "keywords": [
+      "Last",
+      "Best",
+      "Formations",
+      "2026",
+      "3+2",
+      "Meta",
+      "Counters",
+      "Lineups",
+      "and",
+      "builds"
+    ]
+  },
+  {
+    "url": "/fr/",
+    "locale": "fr",
+    "source_path": "index.html",
+    "title": "Guides Last Z",
+    "category": "Home",
+    "description": "Guides Last Z pour l’ordre de recherche, les améliorations du HQ, les événements, les héros, les formations, les ressources et la progression F2P, avec des a...",
+    "keywords": [
+      "Last Z guides",
+      "home",
+      "directory",
+      "research",
+      "events"
+    ]
+  },
+  {
+    "url": "/fr/about.html",
+    "locale": "fr",
+    "source_path": "about.html",
+    "title": "À propos de Last Z Guides",
+    "category": "Site",
+    "description": "À propos de Last Z Guides : vérification des données, mises à jour, sources et cohérence des guides pour aider les joueurs à décider rapidement.",
+    "keywords": [
+      "propos",
+      "Last",
+      "Guides",
+      "rification",
+      "des",
+      "donn",
+      "mises",
+      "jour",
+      "sources",
+      "coh"
+    ]
+  },
+  {
+    "url": "/fr/alliance-duel-rewards.html",
+    "locale": "fr",
+    "source_path": "alliance-duel-rewards.html",
+    "title": "Récompenses Alliance Duel Last Z",
+    "category": "Events",
+    "description": "Table complète des récompenses Alliance Duel Last Z : seuils des coffres Days 1–5 et Day 6, totaux quotidiens, totaux hebdomadaires et checkpoints utiles.",
+    "keywords": [
+      "compenses",
+      "Alliance",
+      "Duel",
+      "Last",
+      "2026",
+      "seuils",
+      "coffres",
+      "totaux",
+      "quotidiens",
+      "hebdomadaires"
+    ]
+  },
+  {
+    "url": "/fr/alliance-duel.html",
+    "locale": "fr",
+    "source_path": "alliance-duel.html",
+    "title": "Calendrier d’Alliance Duel de Last Z et guide VS",
+    "category": "Events",
+    "description": "Schedule Alliance Duel Last Z : rotation VS jours 1-6, bons jours de speed-ups, timing Full Preparedness, objets gardés et planification des rewards hebdomad...",
+    "keywords": [
+      "Calendrier",
+      "Alliance",
+      "Duel",
+      "Last",
+      "2026",
+      "Guide",
+      "strat",
+      "gie",
+      "des",
+      "jours"
+    ]
+  },
+  {
+    "url": "/fr/alliance-recognition-cost.html",
+    "locale": "fr",
+    "source_path": "alliance-recognition-cost.html",
+    "title": "Coûts Alliance Recognition Last Z",
+    "category": "Research",
+    "description": "Coûts Alliance Recognition dans Last Z : 356,770 badges au total, planner de badges, chemin Research complet et table exacte avant d’investir.",
+    "keywords": [
+      "Alliance",
+      "Recognition",
+      "Last",
+      "2026",
+      "total",
+      "badges",
+      "chemin",
+      "Research",
+      "dans",
+      "356"
+    ]
+  },
+  {
+    "url": "/fr/alliance-shop.html",
+    "locale": "fr",
+    "source_path": "alliance-shop.html",
+    "title": "Guide Alliance Shop Last Z",
+    "category": "Guides",
+    "description": "Meilleurs achats Alliance Shop Last Z : shields, teleports, speedups, stock R4/R5 et quand garder les credits au lieu de les vider.",
+    "keywords": [
+      "Guide",
+      "Alliance",
+      "Shop",
+      "Last",
+      "quoi",
+      "acheter",
+      "premier",
+      "Meilleurs",
+      "achats",
+      "shields"
+    ]
+  },
+  {
+    "url": "/fr/arena.html",
+    "locale": "fr",
+    "source_path": "arena.html",
+    "title": "Guide Arena Last Z",
+    "category": "Guides",
+    "description": "Stratégie Arena Last Z : utiliser les 5 attempts quotidiens, refresh les cibles faibles, protéger la weekly rank value et prioriser l’Arena Shop.",
+    "keywords": [
+      "Guide",
+      "Arena",
+      "Last",
+      "2026",
+      "victoires",
+      "quotidiennes",
+      "rank",
+      "rewards",
+      "Shop",
+      "priorit"
+    ]
+  },
+  {
+    "url": "/fr/army-building-cost.html",
+    "locale": "fr",
+    "source_path": "army-building-cost.html",
+    "title": "Coûts Army Building Last Z",
+    "category": "Guides",
+    "description": "Coûts Army Building dans Last Z : coût total, chemin après 100% Peace Shield, nodes exacts et checkpoint Recharge Shield tardif.",
+    "keywords": [
+      "Army",
+      "Building",
+      "Last",
+      "2026",
+      "total",
+      "suite",
+      "Peace",
+      "Shield",
+      "dans",
+      "chemin"
+    ]
+  },
+  {
+    "url": "/fr/base-building-order.html",
+    "locale": "fr",
+    "source_path": "base-building-order.html",
+    "title": "Ordre de construction Last Z",
+    "category": "Progression",
+    "description": "Ordre de progression Shelter : priorisez HQ et Laboratory, suivez les prérequis HQ, gardez la production food/wood/electricity et poussez les shooter stages...",
+    "keywords": [
+      "Ordre",
+      "construction",
+      "Last",
+      "2026",
+      "Progression",
+      "Shelter",
+      "requis",
+      "Guide",
+      "priorisez",
+      "Laboratory"
+    ]
+  },
+  {
+    "url": "/fr/canyon-clash.html",
+    "locale": "fr",
+    "source_path": "canyon-clash.html",
+    "title": "Guide Canyon Clash Last Z",
+    "category": "Events",
+    "description": "Guide Canyon Clash Last Z : timing hebdomadaire, éligibilité, phases de combat, scoring, contrôle de bâtiments, boss buffs et préparation alliance.",
+    "keywords": [
+      "Guide",
+      "Canyon",
+      "Clash",
+      "Last",
+      "2026",
+      "planning",
+      "gles",
+      "rewards",
+      "timing",
+      "hebdomadaire"
+    ]
+  },
+  {
+    "url": "/fr/codes.html",
+    "locale": "fr",
+    "source_path": "codes.html",
+    "title": "Codes cadeau Last Z",
+    "category": "Economy",
+    "description": "Copiez les codes cadeau Last Z actifs vérifiés chaque jour, utilisez-les via le Gift Center officiel, récupérez votre UID avec Avatar > Settings > Copy ID, p...",
+    "keywords": [
+      "Codes",
+      "Last",
+      "2026",
+      "actifs",
+      "Gift",
+      "Center",
+      "UID",
+      "connexion",
+      "officiel",
+      "comment"
+    ]
+  },
+  {
+    "url": "/fr/contact.html",
+    "locale": "fr",
+    "source_path": "contact.html",
+    "title": "Contact",
+    "category": "Site",
+    "description": "Contactez Last Z Guides pour les corrections, retours, partenariats et demandes de collaboration. Merci d’inclure l’URL de la page concernée.",
+    "keywords": [
+      "Contact",
+      "Last",
+      "Guides",
+      "Contactez",
+      "pour",
+      "les",
+      "corrections",
+      "retours",
+      "partenariats",
+      "demandes"
+    ]
+  },
+  {
+    "url": "/fr/daily.html",
+    "locale": "fr",
+    "source_path": "daily.html",
+    "title": "Checklist quotidienne Last Z",
+    "category": "Routine",
+    "description": "Meilleure routine quotidienne Last Z : trucks, bounty missions, Full Preparedness, Furylord, radar, arena, mines et tâches clés pour une progression régulière.",
+    "keywords": [
+      "Checklist",
+      "quotidienne",
+      "Last",
+      "2026",
+      "meilleures",
+      "ches",
+      "routine",
+      "Meilleure",
+      "trucks",
+      "bounty"
+    ]
+  },
+  {
+    "url": "/fr/diamond-reserve.html",
+    "locale": "fr",
+    "source_path": "diamond-reserve.html",
+    "title": "Guide réserve de diamonds Last Z",
+    "category": "Guides",
+    "description": "Stratégie de réserve diamonds Last Z : garder 2 000 diamonds pour les shields du vendredi, utiliser Lucky Discounter seulement préparé, éviter les achats réa...",
+    "keywords": [
+      "Guide",
+      "serve",
+      "diamonds",
+      "Last",
+      "2026",
+      "quoi",
+      "garder",
+      "priorit",
+      "Strat",
+      "gie"
+    ]
+  },
+  {
+    "url": "/fr/disclosure.html",
+    "locale": "fr",
+    "source_path": "disclosure.html",
+    "title": "Disclosure",
+    "category": "Site",
+    "description": "Disclosure de Last Z Guides : publicité, liens affiliés, contenu sponsorisé éventuel et séparation entre contenu éditorial et annonceurs.",
+    "keywords": [
+      "Disclosure",
+      "Last",
+      "Guides",
+      "publicit",
+      "liens",
+      "affili",
+      "contenu",
+      "sponsoris",
+      "ventuel",
+      "paration"
+    ]
+  },
+  {
+    "url": "/fr/early-game-optimization.html",
+    "locale": "fr",
+    "source_path": "early-game-optimization.html",
+    "title": "Guide d’optimisation early-game Last Z",
+    "category": "Progression",
+    "description": "Optimisation early game pour Last Z : Shooter Stages, prérequis HQ/Laboratory, ressources, rôles de héros, synergie de faction, gacha et Full Preparedness.",
+    "keywords": [
+      "Guide",
+      "butant",
+      "Optimisation",
+      "early",
+      "game",
+      "Last",
+      "2026",
+      "pour",
+      "Shooter",
+      "Stages"
+    ]
+  },
+  {
+    "url": "/fr/emergency-hospital-cost.html",
+    "locale": "fr",
+    "source_path": "emergency-hospital-cost.html",
+    "title": "Coûts Emergency Hospital Last Z",
+    "category": "Progression",
+    "description": "Table des coûts Emergency Hospital Last Z : ressources, gains de capacité, power par niveau et timing d’upgrade pour préparer PvP ou server war.",
+    "keywords": [
+      "Hospital",
+      "Last",
+      "2026",
+      "Capacit",
+      "ressources",
+      "power",
+      "Tableau",
+      "des",
+      "par",
+      "niveau"
+    ]
+  },
+  {
+    "url": "/fr/events.html",
+    "locale": "fr",
+    "source_path": "events.html",
+    "title": "Schedule des événements Last Z",
+    "category": "Events",
+    "description": "Calendrier et schedule des événements Last Z : rotation quotidienne, jours Alliance Duel, fenêtres Full Preparedness, hot events et quoi garder ou dépenser.",
+    "keywords": [
+      "Calendrier",
+      "des",
+      "nements",
+      "Last",
+      "2026",
+      "Rotation",
+      "quotidienne",
+      "Alliance",
+      "Duel",
+      "paration"
+    ]
+  },
+  {
+    "url": "/fr/f2p.html",
+    "locale": "fr",
+    "source_path": "f2p.html",
+    "title": "Guide F2P Last Z",
+    "category": "Economy",
+    "description": "Guide F2P Last Z : gardez 2 000 diamonds pour les boucliers du vendredi, utilisez le surplus pour refugees ou vraies réductions d’événement, et évitez les ac...",
+    "keywords": [
+      "Guide",
+      "F2P",
+      "Last",
+      "2026",
+      "Meilleure",
+      "penser",
+      "les",
+      "diamants",
+      "sources",
+      "gratuites"
+    ]
+  },
+  {
+    "url": "/fr/farm-account.html",
+    "locale": "fr",
+    "source_path": "farm-account.html",
+    "title": "Guide farm account Last Z",
+    "category": "Economy",
+    "description": "Comment créer un farm account Last Z sur le même serveur avant Season 2, configurer Character Management, collecter des ressources et soutenir votre HQ princ...",
+    "keywords": [
+      "Guide",
+      "farm",
+      "account",
+      "Last",
+      "2026",
+      "avant",
+      "Season",
+      "Comment",
+      "sur",
+      "votre"
+    ]
+  },
+  {
+    "url": "/fr/field-research.html",
+    "locale": "fr",
+    "source_path": "field-research.html",
+    "title": "Coûts Field Research Last Z",
+    "category": "Research",
+    "description": "Coûts Field Research dans Last Z : coût total, chemin Recharge Shield, coûts par node et déblocage après 100% Siege to Seize.",
+    "keywords": [
+      "Field",
+      "Research",
+      "Last",
+      "2026",
+      "chemin",
+      "Recharge",
+      "Shield",
+      "badges",
+      "totaux",
+      "total"
+    ]
+  },
+  {
+    "url": "/fr/formation-power.html",
+    "locale": "fr",
+    "source_path": "formation-power.html",
+    "title": "Guide Formation Power Last Z",
+    "category": "Strategy",
+    "description": "Multiplicateurs de power expliqués : Hall of Honor, Troop HP, march capacity, siege bonuses et priorités d'investissement pour PvE et PvP.",
+    "keywords": [
+      "Formation",
+      "Power",
+      "Last",
+      "2026",
+      "plus",
+      "gros",
+      "multiplicateurs",
+      "vers",
+      "100M+",
+      "Guide"
+    ]
+  },
+  {
+    "url": "/fr/formations.html",
+    "locale": "fr",
+    "source_path": "formations.html",
+    "title": "Meilleures formations Last Z",
+    "category": "Strategy",
+    "description": "Meilleures formations et counters Last Z : builds méta 3+2, synergie de faction, placement des héros et conseils de lineup pour PvP et PvE.",
+    "keywords": [
+      "Meilleures",
+      "formations",
+      "Last",
+      "2026",
+      "3+2",
+      "counters",
+      "lineups",
+      "builds",
+      "synergie",
+      "faction"
+    ]
+  },
+  {
+    "url": "/fr/fully-armed-alliance-cost.html",
+    "locale": "fr",
+    "source_path": "fully-armed-alliance-cost.html",
+    "title": "Coûts Fully Armed Alliance Last Z",
+    "category": "Guides",
+    "description": "Coûts Fully Armed Alliance dans Last Z : coût total, Annihilation, Move Out et nodes exacts d’une branche agressive tardive.",
+    "keywords": [
+      "Fully",
+      "Armed",
+      "Alliance",
+      "Last",
+      "2026",
+      "Annihilation",
+      "Move",
+      "Out",
+      "badges",
+      "totaux"
+    ]
+  },
+  {
+    "url": "/fr/furylord.html",
+    "locale": "fr",
+    "source_path": "furylord.html",
+    "title": "Guide Furylord de Last Z",
+    "category": "Events",
+    "description": "Meilleure stratégie Furylord dans Last Z : fenêtres d’apparition, limite d’attaques quotidiennes, score du meilleur coup, timing de War Frenzy et comment obt...",
+    "keywords": [
+      "Guide",
+      "Furylord",
+      "Last",
+      "2026",
+      "Horaires",
+      "apparition",
+      "compenses",
+      "gles",
+      "Meilleure",
+      "strat"
+    ]
+  },
+  {
+    "url": "/fr/gacha-go.html",
+    "locale": "fr",
+    "source_path": "gacha-go.html",
+    "title": "Guide Gacha Go de Last Z",
+    "category": "Events",
+    "description": "Meilleure stratégie Gacha Go dans Last Z : comment fonctionnent les clés, faut-il économiser pour 300, l’efficacité en diamants et la voie la plus rapide ver...",
+    "keywords": [
+      "Guide",
+      "Gacha",
+      "Last",
+      "2026",
+      "strat",
+      "gie",
+      "des",
+      "Golden",
+      "Wrenches",
+      "Hercules"
+    ]
+  },
+  {
+    "url": "/fr/gear.html",
+    "locale": "fr",
+    "source_path": "gear.html",
+    "title": "Guide Gear Last Z",
+    "category": "Equipment",
+    "description": "Meilleure stratégie gear Last Z : équipement orange uniquement, promotion Power Core, valeur du premier hexagone, priorité enhancement et quand éviter la pre...",
+    "keywords": [
+      "Guide",
+      "Gear",
+      "Last",
+      "2026",
+      "meilleur",
+      "equipment",
+      "priorit",
+      "upgrade",
+      "comment",
+      "enhance"
+    ]
+  },
+  {
+    "url": "/fr/gift-center-uid.html",
+    "locale": "fr",
+    "source_path": "gift-center-uid.html",
+    "title": "Connexion Gift Center et configuration UID Last Z",
+    "category": "Guides",
+    "description": "Configuration officielle du Gift Center Last Z : copier votre UID depuis Avatar > Settings > Copy ID, utiliser un code dans un navigateur et récupérer les ré...",
+    "keywords": [
+      "Connexion",
+      "Gift",
+      "Center",
+      "configuration",
+      "UID",
+      "Last",
+      "2026",
+      "page",
+      "officielle",
+      "codes"
+    ]
+  },
+  {
+    "url": "/fr/hero-recruitment.html",
+    "locale": "fr",
+    "source_path": "hero-recruitment.html",
+    "title": "Guide recrutement des héros Last Z",
+    "category": "Guides",
+    "description": "Quand le recrutement des héros se débloque dans Last Z, quand utiliser les Prime Recruitment Tickets et comment dépenser les fragments sans gaspillage.",
+    "keywords": [
+      "Guide",
+      "recrutement",
+      "des",
+      "ros",
+      "Last",
+      "Quand",
+      "bloque",
+      "dans",
+      "utiliser",
+      "les"
+    ]
+  },
+  {
+    "url": "/fr/hero-training-cost.html",
+    "locale": "fr",
+    "source_path": "hero-training-cost.html",
+    "title": "Coûts Hero Training Last Z",
+    "category": "Guides",
+    "description": "Coûts Hero Training dans Last Z : coût total, chemin Cockpit, coûts par node et point d’arrêt avant Military Strategies.",
+    "keywords": [
+      "Hero",
+      "Training",
+      "Last",
+      "2026",
+      "chemin",
+      "Cockpit",
+      "badges",
+      "totaux",
+      "total",
+      "dans"
+    ]
+  },
+  {
+    "url": "/fr/heroes.html",
+    "locale": "fr",
+    "source_path": "heroes.html",
+    "title": "Tier list des meilleurs héros Last Z",
+    "category": "Heroes",
+    "description": "Tier list héros Last Z Season 4 par faction : Queenie, Yu Chan, Amber, meilleur ordre de factions, matching des troupes et quels héros améliorer d’abord.",
+    "keywords": [
+      "Meilleure",
+      "tier",
+      "list",
+      "des",
+      "ros",
+      "Last",
+      "2026",
+      "Classement",
+      "Saison",
+      "par"
+    ]
+  },
+  {
+    "url": "/fr/hq-construction-cost.html",
+    "locale": "fr",
+    "source_path": "hq-construction-cost.html",
+    "title": "Table des coûts HQ Last Z",
+    "category": "Progression",
+    "description": "Table des coûts HQ Last Z pour les niveaux 1-35 : caps héros, coûts ressources, bâtiments prérequis, temps de construction et checkpoints de planification.",
+    "keywords": [
+      "construction",
+      "Last",
+      "2026",
+      "Tableau",
+      "niveaux",
+      "des",
+      "avec",
+      "plafonds",
+      "ros",
+      "ressources"
+    ]
+  },
+  {
+    "url": "/fr/hq.html",
+    "locale": "fr",
+    "source_path": "hq.html",
+    "title": "Guide d'amélioration du QG de Last Z",
+    "category": "Progression",
+    "description": "Guide upgrade HQ Last Z : bâtiments requis, chemin rapide HQ30, plan steel HQ31-35, caps de niveau héros, timers et décisions de coûts de construction.",
+    "keywords": [
+      "Guide",
+      "lioration",
+      "Last",
+      "2026",
+      "requis",
+      "voie",
+      "rapide",
+      "vers",
+      "30/35",
+      "strat"
+    ]
+  },
+  {
+    "url": "/fr/leveling.html",
+    "locale": "fr",
+    "source_path": "leveling.html",
+    "title": "Monter vite en niveau dans Last Z",
+    "category": "Progression",
+    "description": "Guide leveling Last Z : utilisez les tâches quotidiennes, la campagne, les upgrades HQ, le timing d’événements et les ressources protégées pour grandir plus...",
+    "keywords": [
+      "Monter",
+      "vite",
+      "niveau",
+      "dans",
+      "Last",
+      "progression",
+      "Conseils",
+      "Comment",
+      "ches",
+      "quotidiennes"
+    ]
+  },
+  {
+    "url": "/fr/lucky-discounter.html",
+    "locale": "fr",
+    "source_path": "lucky-discounter.html",
+    "title": "Guide du Lucky Discounter de Last Z",
+    "category": "Events",
+    "description": "Meilleure stratégie Lucky Discounter Last Z : schedule hebdomadaire, tentatives garanties à 90%, tickets à garder, priorité badges et planification diamonds.",
+    "keywords": [
+      "Guide",
+      "Lucky",
+      "Discounter",
+      "Last",
+      "2026",
+      "strat",
+      "gie",
+      "duction",
+      "tickets",
+      "meilleurs"
+    ]
+  },
+  {
+    "url": "/fr/mastery-hall.html",
+    "locale": "fr",
+    "source_path": "mastery-hall.html",
+    "title": "Mastery Hall Last Z : priorite Support vs Combat",
+    "category": "Guides",
+    "description": "Choisissez les skills Mastery Hall en Season 2 Winter : quand Support passe d abord, quand Combat compte, comment gerer les resets et quoi verifier avant de...",
+    "keywords": [
+      "Guide",
+      "Mastery",
+      "Hall",
+      "Last",
+      "Support",
+      "Combat",
+      "priorit",
+      "skills",
+      "saisonniers",
+      "Season"
+    ]
+  },
+  {
+    "url": "/fr/military-center.html",
+    "locale": "fr",
+    "source_path": "military-center.html",
+    "title": "Guide Military Center Last Z",
+    "category": "Guides",
+    "description": "Guide Military Center dans Last Z : quand améliorer la capacité d’unités, quand retarder l’upgrade, et comment le comparer à HQ, Laboratory et troop tiers.",
+    "keywords": [
+      "Guide",
+      "Military",
+      "Center",
+      "Last",
+      "Capacit",
+      "unit",
+      "priorit",
+      "dans",
+      "quand",
+      "liorer"
+    ]
+  },
+  {
+    "url": "/fr/military-strategies-cost.html",
+    "locale": "fr",
+    "source_path": "military-strategies-cost.html",
+    "title": "Coûts Military Strategies Last Z",
+    "category": "Guides",
+    "description": "Coûts Military Strategies dans Last Z : coût total, Recharge Shield, jalons HP des troupes et branches qui ouvrent Peace Shield et Siege to Seize.",
+    "keywords": [
+      "Military",
+      "Strategies",
+      "Last",
+      "2026",
+      "badges",
+      "totaux",
+      "chemin",
+      "Recharge",
+      "Shield",
+      "total"
+    ]
+  },
+  {
+    "url": "/fr/peace-shield-cost.html",
+    "locale": "fr",
+    "source_path": "peace-shield-cost.html",
+    "title": "Coûts Peace Shield Last Z",
+    "category": "Guides",
+    "description": "Coûts Peace Shield dans Last Z : coût total, chemin Urgent Rescue, Recharge Shield et valeur PvP défensive.",
+    "keywords": [
+      "Peace",
+      "Shield",
+      "Last",
+      "2026",
+      "Urgent",
+      "Rescue",
+      "badges",
+      "totaux",
+      "total",
+      "dans"
+    ]
+  },
+  {
+    "url": "/fr/power-guide.html",
+    "locale": "fr",
+    "source_path": "power-guide.html",
+    "title": "Guide de puissance Last Z",
+    "category": "Progression",
+    "description": "Comment augmenter power et CP vite dans Last Z : corrigez les blocages HQ/Lab, poussez research, entraînez des troupes, montez vos 5 héros principaux et atte...",
+    "keywords": [
+      "Guide",
+      "puissance",
+      "Last",
+      "2026",
+      "Comment",
+      "augmenter",
+      "rapidement",
+      "combat",
+      "dans",
+      "les"
+    ]
+  },
+  {
+    "url": "/fr/privacy.html",
+    "locale": "fr",
+    "source_path": "privacy.html",
+    "title": "Politique de confidentialité",
+    "category": "Site",
+    "description": "Politique de confidentialité de Last Z Guides : analytics, cookies, traitement des données et contact pour les questions liées à la vie privée.",
+    "keywords": [
+      "Politique",
+      "confidentialit",
+      "Last",
+      "Guides",
+      "analytics",
+      "cookies",
+      "traitement",
+      "des",
+      "donn",
+      "contact"
+    ]
+  },
+  {
+    "url": "/fr/pvp.html",
+    "locale": "fr",
+    "source_path": "pvp.html",
+    "title": "Guide PvP de Last Z",
+    "category": "PvP",
+    "description": "Guide PvP pour la reconnaissance, les contre-choix de faction, Canyon Clash, le timing SVS et la stratégie d’hôpital afin de gagner plus de combats et de cho...",
+    "keywords": [
+      "Guide",
+      "PvP",
+      "Last",
+      "2026",
+      "Contre-choix",
+      "faction",
+      "tactiques",
+      "SVS",
+      "nements",
+      "astuces"
+    ]
+  },
+  {
+    "url": "/fr/queenie.html",
+    "locale": "fr",
+    "source_path": "queenie.html",
+    "title": "Guide Queenie",
+    "category": "Heroes",
+    "description": "Guide Queenie Last Z : skills, effets max, star ladder, meilleur build, priorité gear et synergie Wings of Dawn.",
+    "keywords": [
+      "Guide",
+      "Queenie",
+      "Last",
+      "skills",
+      "meilleur",
+      "build",
+      "effets",
+      "max",
+      "star",
+      "ladder"
+    ]
+  },
+  {
+    "url": "/fr/radar.html",
+    "locale": "fr",
+    "source_path": "radar.html",
+    "title": "Guide radar Last Z",
+    "category": "Guides",
+    "description": "Stratégie radar Last Z : quand claim, rythme 8 heures, sauvegarde dimanche/lundi et jeudi/vendredi pour Alliance Duel, erreurs à éviter.",
+    "keywords": [
+      "Guide",
+      "radar",
+      "Last",
+      "2026",
+      "timing",
+      "claims",
+      "Alliance",
+      "Duel",
+      "sync",
+      "Strat"
+    ]
+  },
+  {
+    "url": "/fr/redeem-code-not-working.html",
+    "locale": "fr",
+    "source_path": "redeem-code-not-working.html",
+    "title": "Code Last Z non fonctionnel ? Corrections Gift Center, UID et récompenses",
+    "category": "Guides",
+    "description": "Code Last Z non fonctionnel ? Vérifiez la connexion au Gift Center, les erreurs d’UID, les codes expirés ou déjà utilisés, les délais de mailbox et les corre...",
+    "keywords": [
+      "Code",
+      "Gift",
+      "Center",
+      "Last",
+      "non",
+      "fonctionnel",
+      "2026",
+      "UID",
+      "connexion",
+      "compenses"
+    ]
+  },
+  {
+    "url": "/fr/refugees.html",
+    "locale": "fr",
+    "source_path": "refugees.html",
+    "title": "Guide refugees Last Z",
+    "category": "Economy",
+    "description": "Meilleurs refugees Last Z : Diplomats en priorité, stratégie tickets 500 vs 2000/5000, rôles utiles et quand dépenser pour Alliance Duel.",
+    "keywords": [
+      "Guide",
+      "refugees",
+      "Last",
+      "2026",
+      "priorit",
+      "tickets",
+      "meilleurs",
+      "upgrades",
+      "Diplomats",
+      "strat"
+    ]
+  },
+  {
+    "url": "/fr/research-costs.html",
+    "locale": "fr",
+    "source_path": "research-costs.html",
+    "title": "Coûts Research Last Z",
+    "category": "Guides",
+    "description": "Atlas des coûts Research Last Z : comparez les totaux de badges, les chemins de déblocage et les pages exactes avant de dépenser vos badges.",
+    "keywords": [
+      "Research",
+      "Last",
+      "2026",
+      "atlas",
+      "des",
+      "branches",
+      "badges",
+      "blocages",
+      "comparaison",
+      "comparez"
+    ]
+  },
+  {
+    "url": "/fr/research-planner.html",
+    "locale": "fr",
+    "source_path": "research-planner.html",
+    "title": "Research Planner Last Z",
+    "category": "Research",
+    "description": "Utilisez le Research Planner Last Z pour suivre les niveaux terminés, fixer des nodes cibles, calculer les badges restants par branche, sauvegarder localemen...",
+    "keywords": [
+      "Research",
+      "Planner",
+      "Last",
+      "2026",
+      "calculateur",
+      "badges",
+      "outil",
+      "partageable",
+      "Utilisez",
+      "pour"
+    ]
+  },
+  {
+    "url": "/fr/research.html",
+    "locale": "fr",
+    "source_path": "research.html",
+    "title": "Guide Research Last Z",
+    "category": "Research",
+    "description": "Meilleur ordre de Research dans Last Z : Hero Training jusqu’à Cockpit, Military Strategies, Peace Shield pour Urgent Rescue, puis choix entre UST/T10 ou Fie...",
+    "keywords": [
+      "Guide",
+      "Research",
+      "Last",
+      "2026",
+      "ordre",
+      "conseill",
+      "Peace",
+      "Shield",
+      "chemin",
+      "UST/T10"
+    ]
+  },
+  {
+    "url": "/fr/resources.html",
+    "locale": "fr",
+    "source_path": "resources.html",
+    "title": "Guide des ressources Last Z",
+    "category": "Economy",
+    "description": "Comment obtenir des ressources vite dans Last Z : meilleure stratégie de gathering, pourquoi les bâtiments de ressources sont faibles, comment farm steel et...",
+    "keywords": [
+      "Guide",
+      "des",
+      "ressources",
+      "Last",
+      "2026",
+      "Comment",
+      "farmer",
+      "vite",
+      "nourriture",
+      "bois"
+    ]
+  },
+  {
+    "url": "/fr/season-2-bio-lab.html",
+    "locale": "fr",
+    "source_path": "season-2-bio-lab.html",
+    "title": "Guide Bio Lab Season 2 Last Z",
+    "category": "Guides",
+    "description": "Guide Bio Lab Season 2 : priorité Smart Greenhouse, Ice Blooms, Frost Cores, resistance, Bio Lab 28 et erreurs de progression Winter.",
+    "keywords": [
+      "Guide",
+      "Bio",
+      "Lab",
+      "Season",
+      "Last",
+      "Smart",
+      "Greenhouse",
+      "Ice",
+      "Blooms",
+      "Resistance"
+    ]
+  },
+  {
+    "url": "/fr/season-2-combat-buildings.html",
+    "locale": "fr",
+    "source_path": "season-2-combat-buildings.html",
+    "title": "Guide Combat Buildings Season 2 Last Z",
+    "category": "Guides",
+    "description": "Guide Season 2 Combat Buildings : Command Post, Icy Arsenal, Icy Fort, Bio Lab 28, Smart Greenhouse 25–26 et priorité F2P.",
+    "keywords": [
+      "Guide",
+      "Combat",
+      "Buildings",
+      "Season",
+      "Last",
+      "Command",
+      "Post",
+      "Icy",
+      "Arsenal",
+      "Fort"
+    ]
+  },
+  {
+    "url": "/fr/season-2-frost-cores.html",
+    "locale": "fr",
+    "source_path": "season-2-frost-cores.html",
+    "title": "Guide Frost Core Season 2 Last Z",
+    "category": "Guides",
+    "description": "Guide Frost Core Season 2 : ordre de farm Frostbanes, Snow Leopards et Yetis, tentatives quotidiennes, fuel et priorité Bio Lab.",
+    "keywords": [
+      "Guide",
+      "Frost",
+      "Core",
+      "Season",
+      "Last",
+      "Frostbanes",
+      "Snow",
+      "Leopards",
+      "Yetis",
+      "ordre"
+    ]
+  },
+  {
+    "url": "/fr/season-2-winter.html",
+    "locale": "fr",
+    "source_path": "season-2-winter.html",
+    "title": "Guide Season 2 Winter Last Z",
+    "category": "Guides",
+    "description": "Guide Season 2 Winter Last Z : city reset, Smart Greenhouse, Bio Lab, Frost Cores, Ice Blooms, Frostbanes, Snow Leopards, Yetis et priorité d’upgrade.",
+    "keywords": [
+      "Guide",
+      "Season",
+      "Winter",
+      "Last",
+      "2026",
+      "Bio",
+      "Lab",
+      "Greenhouse",
+      "Frost",
+      "Cores"
+    ]
+  },
+  {
+    "url": "/fr/second-laboratory.html",
+    "locale": "fr",
+    "source_path": "second-laboratory.html",
+    "title": "Guide Second Laboratory",
+    "category": "Guides",
+    "description": "Guide Second Laboratory Last Z : prérequis HQ18, Research License, erreurs à éviter et quand une deuxième file de Research vaut vraiment le coût.",
+    "keywords": [
+      "Second",
+      "Laboratory",
+      "Last",
+      "quand",
+      "acheter",
+      "attendre",
+      "Guide",
+      "requis",
+      "HQ18",
+      "Research"
+    ]
+  },
+  {
+    "url": "/fr/shield.html",
+    "locale": "fr",
+    "source_path": "shield.html",
+    "title": "Stratégie shield Last Z",
+    "category": "Guides",
+    "description": "Meilleure stratégie shield Last Z : garder 2 000 diamonds vendredi, acheter les shields 8h/24h via Alliance Shop quand disponible, protéger les ressources of...",
+    "keywords": [
+      "Strat",
+      "gie",
+      "shield",
+      "Last",
+      "2026",
+      "protection",
+      "hebdo",
+      "diamonds",
+      "vendredi",
+      "raids"
+    ]
+  },
+  {
+    "url": "/fr/shooter-stages.html",
+    "locale": "fr",
+    "source_path": "shooter-stages.html",
+    "title": "Guide Shooter Stages Last Z",
+    "category": "Progression",
+    "description": "Shooter Stages expliqués : bases Dodge & Shoot, Barrels, gates, XP crates, obstacles et pourquoi les stages comptent pour la progression.",
+    "keywords": [
+      "Guide",
+      "Shooter",
+      "Stages",
+      "Last",
+      "Conseils",
+      "Dodge",
+      "Shoot",
+      "expliqu",
+      "bases",
+      "Barrels"
+    ]
+  },
+  {
+    "url": "/fr/siege-to-seize-cost.html",
+    "locale": "fr",
+    "source_path": "siege-to-seize-cost.html",
+    "title": "Coûts Siege to Seize Last Z",
+    "category": "Guides",
+    "description": "Coûts Siege to Seize dans Last Z : coût total, chemin agressif, Recharge Shield final et prérequis avant Field Research.",
+    "keywords": [
+      "Siege",
+      "Seize",
+      "Last",
+      "2026",
+      "total",
+      "chemin",
+      "agressif",
+      "dans",
+      "Recharge",
+      "Shield"
+    ]
+  },
+  {
+    "url": "/fr/start.html",
+    "locale": "fr",
+    "source_path": "start.html",
+    "title": "Guide débutant Last Z",
+    "category": "Progression",
+    "description": "Meilleur parcours débutant dans Last Z : priorités du début, améliorations clés, timing d’alliance et premières erreurs à éviter pendant vos premiers jours.",
+    "keywords": [
+      "Guide",
+      "butant",
+      "Last",
+      "2026",
+      "Meilleur",
+      "part",
+      "erreurs",
+      "viter",
+      "parcours",
+      "dans"
+    ]
+  },
+  {
+    "url": "/fr/steel.html",
+    "locale": "fr",
+    "source_path": "steel.html",
+    "title": "Guide Steel de Last Z",
+    "category": "Economy",
+    "description": "Comment obtenir du Steel dans Last Z : quand le Steel se débloque, primes orange, Steel Mine, nœuds de Steel, Hub Shop, Furylord, événements, HQ31-35 et prio...",
+    "keywords": [
+      "Guide",
+      "Steel",
+      "Last",
+      "2026",
+      "Comment",
+      "obtenir",
+      "HQ31-35",
+      "uds",
+      "des",
+      "dans"
+    ]
+  },
+  {
+    "url": "/fr/svs.html",
+    "locale": "fr",
+    "source_path": "svs.html",
+    "title": "Guide SVS de Last Z",
+    "category": "PvP",
+    "description": "Guide complet SVS de Last Z : phase de préparation State vs State, stratégie de Capital Clash, comment devenir envahisseur et comment débloquer les 9 coffres...",
+    "keywords": [
+      "Guide",
+      "SVS",
+      "Last",
+      "2026",
+      "State",
+      "Capital",
+      "Clash",
+      "coffres",
+      "compenses",
+      "complet"
+    ]
+  },
+  {
+    "url": "/fr/tech.html",
+    "locale": "fr",
+    "source_path": "tech.html",
+    "title": "Guide Tech Last Z",
+    "category": "Research",
+    "description": "Meilleure route research Last Z pour F2P : valeur core Alliance Recognition, Hero Training jusqu’à Cockpit, Military Strategies, Peace Shield et Siege to Seize.",
+    "keywords": [
+      "Guide",
+      "Tech",
+      "Last",
+      "2026",
+      "meilleur",
+      "chemin",
+      "Research",
+      "pour",
+      "F2P",
+      "low"
+    ]
+  },
+  {
+    "url": "/fr/terms.html",
+    "locale": "fr",
+    "source_path": "terms.html",
+    "title": "Conditions d’utilisation",
+    "category": "Site",
+    "description": "Conditions d’utilisation de Last Z Guides : droits de contenu, limites de responsabilité, mises à jour et règles d’usage des ressources.",
+    "keywords": [
+      "Conditions",
+      "utilisation",
+      "Last",
+      "Guides",
+      "droits",
+      "contenu",
+      "limites",
+      "responsabilit",
+      "mises",
+      "jour"
+    ]
+  },
+  {
+    "url": "/fr/tips.html",
+    "locale": "fr",
+    "source_path": "tips.html",
+    "title": "Astuces Last Z",
+    "category": "Strategy",
+    "description": "Tips et astuces Last Z pour progresser vite : focus HQ, alliance active, une team de héros principale, routine quotidienne, timing des ressources gardées et...",
+    "keywords": [
+      "Astuces",
+      "Last",
+      "2026",
+      "raccourcis",
+      "pour",
+      "progresser",
+      "vite",
+      "25+",
+      "conseils",
+      "pro"
+    ]
+  },
+  {
+    "url": "/fr/trap.html",
+    "locale": "fr",
+    "source_path": "trap.html",
+    "title": "Guide trap account Last Z",
+    "category": "PvP",
+    "description": "Comment repérer les trap account, éviter les baits et choisir des cibles PvP plus sûres avec scouting, signaux de power et patterns d’activité.",
+    "keywords": [
+      "Guide",
+      "des",
+      "trap",
+      "account",
+      "Last",
+      "2026",
+      "rep",
+      "rer",
+      "les",
+      "traps"
+    ]
+  },
+  {
+    "url": "/fr/tyrant.html",
+    "locale": "fr",
+    "source_path": "tyrant.html",
+    "title": "Guide de raid Tyrant de Last Z",
+    "category": "Events",
+    "description": "Meilleure stratégie de raid Tyrant dans Last Z : taille idéale du raid, configuration pour dégâts max, Engage Offline, récompenses Power Core et erreurs clés...",
+    "keywords": [
+      "Guide",
+      "raid",
+      "Tyrant",
+      "Last",
+      "2026",
+      "Meilleure",
+      "taille",
+      "max",
+      "Power",
+      "Cores"
+    ]
+  },
+  {
+    "url": "/fr/unit-special-training-cost.html",
+    "locale": "fr",
+    "source_path": "unit-special-training-cost.html",
+    "title": "Coûts Unit Special Training Last Z",
+    "category": "Guides",
+    "description": "Coûts Unit Special Training dans Last Z : coût total du chemin T10, nodes majeurs, unlock final UST et engagement réel avant T10.",
+    "keywords": [
+      "Unit",
+      "Special",
+      "Training",
+      "Last",
+      "2026",
+      "chemin",
+      "T10",
+      "badges",
+      "totaux",
+      "total"
+    ]
+  },
+  {
+    "url": "/fr/vehicle-modification-cost.html",
+    "locale": "fr",
+    "source_path": "vehicle-modification-cost.html",
+    "title": "Calculateur de wrenches Last Z",
+    "category": "Equipment",
+    "description": "Calculateur de wrenches et table de coûts Vehicle Modification Last Z : Hercules, Destroyer, Destroyer EX, totaux cumulés de wrenches et milestones d’upgrade.",
+    "keywords": [
+      "modification",
+      "hicule",
+      "dans",
+      "Last",
+      "2026",
+      "Hercules",
+      "Destroyer",
+      "jalons",
+      "parcours",
+      "blocage"
+    ]
+  },
+  {
+    "url": "/fr/yu-chan.html",
+    "locale": "fr",
+    "source_path": "yu-chan.html",
+    "title": "Guide Yu Chan",
+    "category": "Heroes",
+    "description": "Guide Yu Chan Last Z : skills, effets max, star ladder, meilleur build, priorité gear et synergie Blood Rose.",
+    "keywords": [
+      "Guide",
+      "Chan",
+      "Last",
+      "skills",
+      "meilleur",
+      "build",
+      "effets",
+      "max",
+      "star",
+      "ladder"
+    ]
+  },
+  {
+    "url": "/fr/zombie-siege.html",
+    "locale": "fr",
+    "source_path": "zombie-siege.html",
+    "title": "Guide Zombie Siege Last Z",
+    "category": "Events",
+    "description": "Guide Zombie Siege Last Z : règles des waves, timing du schedule, préparation alliance, wall formation, War Frenzy et comment éviter les erreurs qui vident l...",
+    "keywords": [
+      "Guide",
+      "Zombie",
+      "Siege",
+      "Last",
+      "2026",
+      "waves",
+      "planning",
+      "rewards",
+      "meilleurs",
+      "tips"
+    ]
+  },
+  {
+    "url": "/fully-armed-alliance-cost.html",
+    "locale": "en",
+    "source_path": "fully-armed-alliance-cost.html",
+    "title": "Fully Armed Alliance Costs",
+    "category": "Guides",
+    "description": "Fully Armed Alliance badge costs in Last Z: total branch cost, Annihilation and Move Out totals, and the exact node costs behind one of the most aggressive l...",
+    "keywords": [
+      "Last",
+      "Fully",
+      "Armed",
+      "Alliance",
+      "Costs",
+      "2026",
+      "Annihilation",
+      "Move",
+      "Out",
+      "and"
+    ]
+  },
+  {
+    "url": "/furylord.html",
+    "locale": "en",
+    "source_path": "furylord.html",
+    "title": "Furylord Guide",
+    "category": "Events",
+    "description": "Best Furylord strategy in Last Z: spawn windows, daily attack limits, highest-hit scoring, War Frenzy timing, and how to get better rewards from every cycle.",
+    "keywords": [
+      "Last",
+      "Furylord",
+      "Guide",
+      "2026",
+      "Spawn",
+      "Times",
+      "Damage",
+      "Rewards",
+      "Rules",
+      "and"
+    ]
+  },
+  {
+    "url": "/gacha-go.html",
+    "locale": "en",
+    "source_path": "gacha-go.html",
+    "title": "Gacha Go Guide",
+    "category": "Events",
+    "description": "Best Gacha Go strategy in Last Z: how keys work, whether to save for 300, diamond efficiency, and the fastest path toward Golden Wrenches and Hercules progress.",
+    "keywords": [
+      "Last",
+      "Gacha",
+      "Guide",
+      "2026",
+      "Golden",
+      "Wrench",
+      "Strategy",
+      "Keys",
+      "Hercules",
+      "and"
+    ]
+  },
+  {
+    "url": "/gear.html",
+    "locale": "en",
+    "source_path": "gear.html",
+    "title": "Gear Guide",
+    "category": "Equipment",
+    "description": "Best Last Z gear and equipment strategy: orange gear only, Power Core promotion, first hexagon value, enhancement order, and when to skip mythic.",
+    "keywords": [
+      "Last",
+      "Gear",
+      "Guide",
+      "2026",
+      "Best",
+      "Equipment",
+      "Upgrade",
+      "Priority",
+      "How",
+      "Enhance"
+    ]
+  },
+  {
+    "url": "/gift-center-uid.html",
+    "locale": "en",
+    "source_path": "gift-center-uid.html",
+    "title": "Gift Center Login and UID Setup",
+    "category": "Guides",
+    "description": "Official Last Z Gift Center login setup: how to copy your UID from Avatar > Settings > Copy ID, redeem in a browser, and collect rewards from your in-game ma...",
+    "keywords": [
+      "Last",
+      "Gift",
+      "Center",
+      "Login",
+      "and",
+      "UID",
+      "Setup",
+      "2026",
+      "Official",
+      "Redeem"
+    ]
+  },
+  {
+    "url": "/hero-recruitment.html",
+    "locale": "en",
+    "source_path": "hero-recruitment.html",
+    "title": "Hero Recruitment Guide",
+    "category": "Guides",
+    "description": "Learn when hero recruitment unlocks in Last Z, when to spend Prime Recruitment Tickets, and how to use hero fragments without wasting them.",
+    "keywords": [
+      "Last",
+      "Hero",
+      "Recruitment",
+      "Guide",
+      "Learn",
+      "when",
+      "unlocks",
+      "spend",
+      "Prime",
+      "Tickets"
+    ]
+  },
+  {
+    "url": "/hero-training-cost.html",
+    "locale": "en",
+    "source_path": "hero-training-cost.html",
+    "title": "Hero Training Costs",
+    "category": "Guides",
+    "description": "Hero Training badge costs in Last Z: total branch cost, Cockpit path, node-by-node totals, and where most players should stop before moving to Military Strat...",
+    "keywords": [
+      "Last",
+      "Hero",
+      "Training",
+      "Costs",
+      "2026",
+      "Cockpit",
+      "Path",
+      "and",
+      "Total",
+      "Badge"
+    ]
+  },
+  {
+    "url": "/heroes.html",
+    "locale": "en",
+    "source_path": "heroes.html",
+    "title": "Hero Tier List",
+    "category": "Heroes",
+    "description": "Last Z hero tier list for Season 4: best heroes by faction, Queenie, Yu Chan, Amber, which faction to build, troop matching, and upgrade priority.",
+    "keywords": [
+      "Last",
+      "Best",
+      "Heroes",
+      "Tier",
+      "List",
+      "2026",
+      "Season",
+      "Rankings",
+      "Faction",
+      "ranked"
+    ]
+  },
+  {
+    "url": "/hq-construction-cost.html",
+    "locale": "en",
+    "source_path": "hq-construction-cost.html",
+    "title": "HQ Construction Cost Table",
+    "category": "Progression",
+    "description": "Last Z HQ construction cost table for levels 1-35: wood, food, zent, steel, hero caps, prerequisite buildings, build times, and total costs.",
+    "keywords": [
+      "Last",
+      "Construction",
+      "Costs",
+      "2026",
+      "Levels",
+      "Table",
+      "Cost",
+      "with",
+      "hero",
+      "caps"
+    ]
+  },
+  {
+    "url": "/hq.html",
+    "locale": "en",
+    "source_path": "hq.html",
+    "title": "HQ Upgrade Requirements",
+    "category": "Progression",
+    "description": "Last Z HQ upgrade requirements for levels 1-35: required buildings, fast HQ30 route, HQ31-35 steel planning, hero level caps, timers, and upgrade decisions.",
+    "keywords": [
+      "Last",
+      "Upgrade",
+      "Guide",
+      "2026",
+      "Requirements",
+      "Fast",
+      "Path",
+      "30/35",
+      "and",
+      "Strategy"
+    ]
+  },
+  {
+    "url": "/leveling.html",
+    "locale": "en",
+    "source_path": "leveling.html",
+    "title": "How to Level Up Fast in Last Z",
+    "category": "Progression",
+    "description": "Level up fast in Last Z with a daily XP route: finish daily tasks, push campaign, keep HQ upgrading, use events and alliance help, and avoid low-value upgrades.",
+    "keywords": [
+      "Leveling",
+      "Fast",
+      "Last",
+      "2026",
+      "Progression",
+      "Tips",
+      "and",
+      "Best",
+      "ways",
+      "level"
+    ]
+  },
+  {
+    "url": "/lucky-discounter.html",
+    "locale": "en",
+    "source_path": "lucky-discounter.html",
+    "title": "Lucky Discounter Guide",
+    "category": "Events",
+    "description": "Best Last Z Lucky Discounter strategy: weekly schedule, guaranteed 90% attempts, tickets to save, badge priority, and diamond planning.",
+    "keywords": [
+      "Last",
+      "Lucky",
+      "Discounter",
+      "Guide",
+      "2026",
+      "Discount",
+      "Strategy",
+      "Tickets",
+      "Best",
+      "Buys"
+    ]
+  },
+  {
+    "url": "/mastery-hall.html",
+    "locale": "en",
+    "source_path": "mastery-hall.html",
+    "title": "Mastery Hall: Support vs Combat Priority",
+    "category": "Guides",
+    "description": "Choose Mastery Hall skills in Last Z Season 2 Winter: when Support comes first, when Combat matters, how resets work, and what to check before spending Maste...",
+    "keywords": [
+      "Last",
+      "Mastery",
+      "Hall",
+      "Guide",
+      "Support",
+      "Combat",
+      "and",
+      "Season",
+      "Skill",
+      "Priority"
+    ]
+  },
+  {
+    "url": "/military-center.html",
+    "locale": "en",
+    "source_path": "military-center.html",
+    "title": "Military Center Guide",
+    "category": "Guides",
+    "description": "Last Z Military Center guide: how unit capacity upgrades work, when the next cap is worth resources, and when HQ, Laboratory, troop tier, or prerequisites sh...",
+    "keywords": [
+      "Last",
+      "Military",
+      "Center",
+      "Guide",
+      "increases",
+      "unit",
+      "capacity",
+      "Learn",
+      "when",
+      "the"
+    ]
+  },
+  {
+    "url": "/military-strategies-cost.html",
+    "locale": "en",
+    "source_path": "military-strategies-cost.html",
+    "title": "Military Strategies Costs",
+    "category": "Guides",
+    "description": "Military Strategies badge costs in Last Z: total branch cost, Recharge Shield path, troop HP milestones, and the branch totals that lead into Peace Shield an...",
+    "keywords": [
+      "Last",
+      "Military",
+      "Strategies",
+      "Costs",
+      "2026",
+      "Total",
+      "Badge",
+      "Cost",
+      "and",
+      "Recharge"
+    ]
+  },
+  {
+    "url": "/peace-shield-cost.html",
+    "locale": "en",
+    "source_path": "peace-shield-cost.html",
+    "title": "Peace Shield Costs",
+    "category": "Guides",
+    "description": "Peace Shield badge costs in Last Z: total branch cost, Urgent Rescue path, Recharge Shield totals, and the exact node costs behind one of the most valuable P...",
+    "keywords": [
+      "Last",
+      "Peace",
+      "Shield",
+      "Costs",
+      "2026",
+      "Urgent",
+      "Rescue",
+      "and",
+      "Total",
+      "Badge"
+    ]
+  },
+  {
+    "url": "/power-guide.html",
+    "locale": "en",
+    "source_path": "power-guide.html",
+    "title": "How to Increase Power Fast in Last Z",
+    "category": "Progression",
+    "description": "Increase Last Z power fast by fixing the right bottleneck: HQ and Lab unlocks, core research, troop queues, main 5 heroes, and vehicle level 100.",
+    "keywords": [
+      "Last",
+      "Power",
+      "Guide",
+      "2026",
+      "How",
+      "Increase",
+      "Combat",
+      "Fast",
+      "the",
+      "types"
+    ]
+  },
+  {
+    "url": "/privacy.html",
+    "locale": "en",
+    "source_path": "privacy.html",
+    "title": "Privacy Policy",
+    "category": "Site",
+    "description": "Privacy policy for Last Z Guides, including analytics usage, cookies, data handling, and how we protect visitor information.",
+    "keywords": [
+      "Privacy",
+      "Policy",
+      "Last",
+      "Guides",
+      "for",
+      "including",
+      "analytics",
+      "usage",
+      "cookies",
+      "data"
+    ]
+  },
+  {
+    "url": "/pvp.html",
+    "locale": "en",
+    "source_path": "pvp.html",
+    "title": "PvP Guide",
+    "category": "PvP",
+    "description": "Last Z PvP guide for faction counters, scouting, SVS timing, Canyon Clash roles, hospital planning, and safer target selection.",
+    "keywords": [
+      "Last",
+      "PvP",
+      "Guide",
+      "2026",
+      "Faction",
+      "Counters",
+      "SVS",
+      "Tactics",
+      "Events",
+      "Pro"
+    ]
+  },
+  {
+    "url": "/queenie.html",
+    "locale": "en",
+    "source_path": "queenie.html",
+    "title": "Queenie Guide",
+    "category": "Heroes",
+    "description": "Queenie (Wings of Dawn DPS) skills, max effects, star ladder, best build, and team synergy for Last Z.",
+    "keywords": [
+      "Queenie",
+      "Guide",
+      "Skills",
+      "Best",
+      "Build",
+      "Last",
+      "Wings",
+      "Dawn",
+      "DPS",
+      "max"
+    ]
+  },
+  {
+    "url": "/radar.html",
+    "locale": "en",
+    "source_path": "radar.html",
+    "title": "Radar Events Guide",
+    "category": "Guides",
+    "description": "Best Last Z radar event strategy: when to claim radar tasks, how often to check them, how to stack them for Alliance Duel, and why radar timing matters for d...",
+    "keywords": [
+      "Last",
+      "Radar",
+      "Events",
+      "Guide",
+      "2026",
+      "Best",
+      "Timing",
+      "Claims",
+      "and",
+      "Alliance"
+    ]
+  },
+  {
+    "url": "/redeem-code-not-working.html",
+    "locale": "en",
+    "source_path": "redeem-code-not-working.html",
+    "title": "Code Not Working? Gift Center, UID, and Reward Fixes",
+    "category": "Guides",
+    "description": "Last Z code not working? Check Gift Center login, UID mistakes, expired or already-used codes, mailbox delays, and the fastest fixes for failed redemption.",
+    "keywords": [
+      "Last",
+      "Gift",
+      "Center",
+      "Code",
+      "Not",
+      "Working",
+      "2026",
+      "UID",
+      "Login",
+      "Reward"
+    ]
+  },
+  {
+    "url": "/refugees.html",
+    "locale": "en",
+    "source_path": "refugees.html",
+    "title": "Refugees Guide",
+    "category": "Economy",
+    "description": "Best refugees in Last Z: who to prioritize first, how Diplomats work, when to use 500 vs 2000/5000 tickets, and the best refugee roles for long-term progress.",
+    "keywords": [
+      "Last",
+      "Refugees",
+      "Guide",
+      "2026",
+      "Priority",
+      "Tickets",
+      "Best",
+      "Upgrade",
+      "and",
+      "who"
+    ]
+  },
+  {
+    "url": "/research-costs.html",
+    "locale": "en",
+    "source_path": "research-costs.html",
+    "title": "Research Costs Atlas",
+    "category": "Guides",
+    "description": "Compare Last Z research branches by badge total, unlock path, priority role, and exact node-cost page before spending badges.",
+    "keywords": [
+      "Last",
+      "Research",
+      "Costs",
+      "Atlas",
+      "2026",
+      "Branch",
+      "Comparison",
+      "Badge",
+      "Totals",
+      "and"
+    ]
+  },
+  {
+    "url": "/research-planner.html",
+    "locale": "en",
+    "source_path": "research-planner.html",
+    "title": "Research Planner",
+    "category": "Research",
+    "description": "Use the Last Z Research Planner to track completed levels, set target nodes, calculate remaining badges by branch, save progress locally, and share a researc...",
+    "keywords": [
+      "Last",
+      "Research",
+      "Planner",
+      "2026",
+      "Badge",
+      "Calculator",
+      "and",
+      "Shareable",
+      "Tool",
+      "Use"
+    ]
+  },
+  {
+    "url": "/research.html",
+    "locale": "en",
+    "source_path": "research.html",
+    "title": "Research Tree Guide",
+    "category": "Research",
+    "description": "Best Last Z research tree order: Hero Training to Cockpit, Military Strategies, Peace Shield for Urgent Rescue, then choose UST/T10 or Field Research.",
+    "keywords": [
+      "Last",
+      "Research",
+      "Guide",
+      "2026",
+      "Best",
+      "Order",
+      "Peace",
+      "Shield",
+      "T10",
+      "and"
+    ]
+  },
+  {
+    "url": "/resources.html",
+    "locale": "en",
+    "source_path": "resources.html",
+    "title": "Resources Guide",
+    "category": "Economy",
+    "description": "Last Z resources guide: farm food, wood, electricity, steel, and diamonds with gathering, bounties, chests, events, and farm account timing.",
+    "keywords": [
+      "Last",
+      "Resources",
+      "Guide",
+      "2026",
+      "How",
+      "Farm",
+      "Food",
+      "Wood",
+      "Steel",
+      "Diamonds"
+    ]
+  },
+  {
+    "url": "/season-2-bio-lab.html",
+    "locale": "en",
+    "source_path": "season-2-bio-lab.html",
+    "title": "Season 2 Bio Lab Guide",
+    "category": "Guides",
+    "description": "Last Z Season 2 Bio Lab guide: how Bio Lab, Smart Greenhouse, Ice Blooms, Frost Cores, and resistance work together, plus when Command Post, Icy Arsenal, and...",
+    "keywords": [
+      "Last",
+      "Season",
+      "Bio",
+      "Lab",
+      "Guide",
+      "Smart",
+      "Greenhouse",
+      "Ice",
+      "Blooms",
+      "Resistance"
+    ]
+  },
+  {
+    "url": "/season-2-combat-buildings.html",
+    "locale": "en",
+    "source_path": "season-2-combat-buildings.html",
+    "title": "Season 2 Combat Buildings Guide",
+    "category": "Guides",
+    "description": "Last Z Season 2 combat buildings guide: when to upgrade Command Post, Icy Arsenal, and Icy Fort, what each building gives, and when Bio Lab should still come...",
+    "keywords": [
+      "Last",
+      "Season",
+      "Combat",
+      "Buildings",
+      "Guide",
+      "Command",
+      "Post",
+      "Icy",
+      "Arsenal",
+      "Fort"
+    ]
+  },
+  {
+    "url": "/season-2-frost-cores.html",
+    "locale": "en",
+    "source_path": "season-2-frost-cores.html",
+    "title": "Season 2 Frost Core Guide",
+    "category": "Guides",
+    "description": "Last Z Season 2 Frost Core guide: when to farm Frostbanes, Snow Leopards, and Yetis, how resistance affects target choice, and when to save cores for Bio Lab.",
+    "keywords": [
+      "Last",
+      "Season",
+      "Frost",
+      "Core",
+      "Guide",
+      "Frostbanes",
+      "Snow",
+      "Leopards",
+      "Yetis",
+      "and"
+    ]
+  },
+  {
+    "url": "/season-2-winter.html",
+    "locale": "en",
+    "source_path": "season-2-winter.html",
+    "title": "Season 2 Winter Guide",
+    "category": "Guides",
+    "description": "Last Z Season 2 Winter guide: city reset, Smart Greenhouse, Bio Lab, Frost Cores, Ice Blooms, Frostbanes, Snow Leopards, Yetis, and what to upgrade first.",
+    "keywords": [
+      "Last",
+      "Season",
+      "Winter",
+      "Guide",
+      "2026",
+      "Bio",
+      "Lab",
+      "Greenhouse",
+      "Frost",
+      "Cores"
+    ]
+  },
+  {
+    "url": "/second-laboratory.html",
+    "locale": "en",
+    "source_path": "second-laboratory.html",
+    "title": "Second Laboratory Guide",
+    "category": "Guides",
+    "description": "Last Z Second Laboratory guide: when it unlocks at HQ18, why it needs a Research License, when to buy it, and when to delay it behind HQ, main Laboratory, ba...",
+    "keywords": [
+      "Second",
+      "Laboratory",
+      "Guide",
+      "Last",
+      "Guides",
+      "decide",
+      "whether",
+      "buy",
+      "the",
+      "when"
+    ]
+  },
+  {
+    "url": "/shield.html",
+    "locale": "en",
+    "source_path": "shield.html",
+    "title": "Shield Strategy",
+    "category": "Guides",
+    "description": "Best Last Z shield strategy: when to save 2,000 diamonds by Friday, when to use Alliance Shop 8h and 24h shields instead of diamonds, and how to protect reso...",
+    "keywords": [
+      "Last",
+      "Shield",
+      "Strategy",
+      "2026",
+      "Weekly",
+      "Protection",
+      "Friday",
+      "Diamonds",
+      "and",
+      "Raid"
+    ]
+  },
+  {
+    "url": "/shooter-stages.html",
+    "locale": "en",
+    "source_path": "shooter-stages.html",
+    "title": "Shooter Stages Guide",
+    "category": "Progression",
+    "description": "Shooter stages explained: dodge & shoot basics, barrels, gates, XP crates, hazards, and why stages matter for progression.",
+    "keywords": [
+      "Last",
+      "Shooter",
+      "Stages",
+      "Guide",
+      "Dodge",
+      "Shoot",
+      "Tips",
+      "explained",
+      "basics",
+      "barrels"
+    ]
+  },
+  {
+    "url": "/siege-to-seize-cost.html",
+    "locale": "en",
+    "source_path": "siege-to-seize-cost.html",
+    "title": "Siege to Seize Costs",
+    "category": "Guides",
+    "description": "Siege to Seize badge costs in Last Z: total branch cost, aggressive research path, final Recharge Shield totals, and the exact node costs before Field Resear...",
+    "keywords": [
+      "Last",
+      "Siege",
+      "Seize",
+      "Costs",
+      "2026",
+      "Total",
+      "Badge",
+      "Cost",
+      "and",
+      "Aggressive"
+    ]
+  },
+  {
+    "url": "/start.html",
+    "locale": "en",
+    "source_path": "start.html",
+    "title": "Beginner Guide",
+    "category": "Progression",
+    "description": "Last Z beginner guide for your first week: complete tutorial, follow main quests, join an active alliance, push HQ, save diamonds, and avoid early waste.",
+    "keywords": [
+      "Last",
+      "Beginner",
+      "Guide",
+      "2026",
+      "Best",
+      "Start",
+      "and",
+      "Early",
+      "Mistakes",
+      "Avoid"
+    ]
+  },
+  {
+    "url": "/steel.html",
+    "locale": "en",
+    "source_path": "steel.html",
+    "title": "Steel Guide",
+    "category": "Economy",
+    "description": "Last Z steel guide: how to get steel after HQ30 for HQ31-35 using orange bounties, Steel Mine, steel nodes, Hub Shop, Furylord, events, and Steel Age priorit...",
+    "keywords": [
+      "Last",
+      "Steel",
+      "Guide",
+      "2026",
+      "How",
+      "Get",
+      "HQ31-35",
+      "Nodes",
+      "and",
+      "when"
+    ]
+  },
+  {
+    "url": "/svs.html",
+    "locale": "en",
+    "source_path": "svs.html",
+    "title": "SVS Guide",
+    "category": "PvP",
+    "description": "Complete Last Z SVS guide: State vs State prep phase, Capital Clash strategy, how to become invader, and how to unlock all 9 boxes for maximum Valor Medals.",
+    "keywords": [
+      "Last",
+      "SVS",
+      "Guide",
+      "2026",
+      "State",
+      "Capital",
+      "Clash",
+      "Boxes",
+      "Rewards",
+      "and"
+    ]
+  },
+  {
+    "url": "/tech.html",
+    "locale": "en",
+    "source_path": "tech.html",
+    "title": "Tech Guide",
+    "category": "Research",
+    "description": "Best Last Z tech path for F2P and low spenders: stop Alliance Recognition after core value, take Hero Training to Cockpit, then push combat research.",
+    "keywords": [
+      "Last",
+      "Tech",
+      "Guide",
+      "2026",
+      "Best",
+      "Research",
+      "Path",
+      "for",
+      "F2P",
+      "and"
+    ]
+  },
+  {
+    "url": "/terms.html",
+    "locale": "en",
+    "source_path": "terms.html",
+    "title": "Terms of Use",
+    "category": "Site",
+    "description": "Terms of use for Last Z Guides: content rights, liability limits, updates, and rules for using and reusing our resources.",
+    "keywords": [
+      "Terms",
+      "Use",
+      "Last",
+      "Guides",
+      "for",
+      "content",
+      "rights",
+      "liability",
+      "limits",
+      "updates"
+    ]
+  },
+  {
+    "url": "/tips.html",
+    "locale": "en",
+    "source_path": "tips.html",
+    "title": "Tips and Tricks",
+    "category": "Strategy",
+    "description": "Last Z tips and tricks for beginners: prioritize HQ, join an active alliance, focus one hero team, do daily tasks, save resources, and avoid low-value upgrades.",
+    "keywords": [
+      "Last",
+      "Tips",
+      "Tricks",
+      "2026",
+      "Fast",
+      "Progress",
+      "Shortcuts",
+      "25+",
+      "Life-Changing",
+      "Pro"
+    ]
+  },
+  {
+    "url": "/trap.html",
+    "locale": "en",
+    "source_path": "trap.html",
+    "title": "Trap Account Guide",
+    "category": "PvP",
+    "description": "How to spot trap accounts, avoid bait, and choose safer PvP targets using scouting clues, power signals, and activity patterns.",
+    "keywords": [
+      "Last",
+      "Trap",
+      "Account",
+      "Guide",
+      "2026",
+      "Spot",
+      "Traps",
+      "Avoid",
+      "Bait",
+      "Low"
+    ]
+  },
+  {
+    "url": "/tyrant.html",
+    "locale": "en",
+    "source_path": "tyrant.html",
+    "title": "Tyrant Rally Guide",
+    "category": "Events",
+    "description": "Best Tyrant rally strategy in Last Z: ideal rally size, max damage setup, Engage Offline, Power Core rewards, and the key mistakes that lower alliance results.",
+    "keywords": [
+      "Last",
+      "Tyrant",
+      "Rally",
+      "Guide",
+      "2026",
+      "Best",
+      "Size",
+      "Max",
+      "Damage",
+      "Power"
+    ]
+  },
+  {
+    "url": "/unit-special-training-cost.html",
+    "locale": "en",
+    "source_path": "unit-special-training-cost.html",
+    "title": "Unit Special Training Costs",
+    "category": "Guides",
+    "description": "Unit Special Training badge costs in Last Z: total T10 path cost, major node totals, final Unit Special Training unlock, and the exact branch commitment befo...",
+    "keywords": [
+      "Last",
+      "Unit",
+      "Special",
+      "Training",
+      "Costs",
+      "2026",
+      "T10",
+      "Path",
+      "and",
+      "Total"
+    ]
+  },
+  {
+    "url": "/vehicle-modification-cost.html",
+    "locale": "en",
+    "source_path": "vehicle-modification-cost.html",
+    "title": "Wrench Calculator",
+    "category": "Equipment",
+    "description": "Last Z wrench calculator and vehicle modification cost table: Hercules, Destroyer, Destroyer EX, cumulative wrench totals, and upgrade milestones.",
+    "keywords": [
+      "Last",
+      "Vehicle",
+      "Modification",
+      "Costs",
+      "2026",
+      "Wrenches",
+      "Hercules",
+      "Destroyer",
+      "Milestones",
+      "and"
+    ]
+  },
+  {
+    "url": "/yu-chan.html",
+    "locale": "en",
+    "source_path": "yu-chan.html",
+    "title": "Yu Chan Guide",
+    "category": "Heroes",
+    "description": "Yu Chan (Blood Rose DPS) skills, max effects, star ladder, best build, and team synergy for Last Z.",
+    "keywords": [
+      "Chan",
+      "Guide",
+      "Skills",
+      "Best",
+      "Build",
+      "Last",
+      "Blood",
+      "Rose",
+      "DPS",
+      "max"
+    ]
+  },
+  {
+    "url": "/zombie-siege.html",
+    "locale": "en",
+    "source_path": "zombie-siege.html",
+    "title": "Zombie Siege Guide",
+    "category": "Events",
+    "description": "Last Z Zombie Siege guide: wave rules, schedule timing, alliance prep, wall formation, War Frenzy, and how to avoid troop-draining mistakes.",
+    "keywords": [
+      "Last",
+      "Zombie",
+      "Siege",
+      "2026",
+      "Waves",
+      "Schedule",
+      "Rewards",
+      "Guide",
+      "Best",
+      "Tips"
+    ]
+  }
+]

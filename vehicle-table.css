@@ -1,0 +1,603 @@
+.data-guide {
+    max-width: 1100px;
+    --data-table-surface: #242424;
+    --data-table-surface-header: rgba(20, 20, 20, 0.6);
+    --data-table-border: rgba(255, 255, 255, 0.08);
+    --data-table-border-soft: rgba(255, 255, 255, 0.06);
+    --data-table-accent: #c44;
+    --data-table-radius: 14px;
+    --data-table-text: #fff;
+    --data-table-text-muted: #8a8a8a;
+    --data-table-link: #e08c8c;
+}
+
+.data-lede {
+    color: #b8b8b8;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-top: 8px;
+}
+
+.data-source {
+    margin-top: 8px;
+    font-size: 0.88rem;
+    color: #8d8d8d;
+}
+
+.data-source a {
+    color: var(--data-table-link, #e08c8c);
+    text-decoration: none;
+}
+
+.data-source a:hover {
+    text-decoration: underline;
+}
+
+.data-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+    content-visibility: auto;
+    contain-intrinsic-size: 1200px;
+}
+
+.data-table-card {
+    background: var(--data-table-surface, #242424);
+    border: 1px solid var(--data-table-border, rgba(255, 255, 255, 0.08));
+    border-left: 4px solid var(--data-table-accent, #c44);
+    border-radius: var(--data-table-radius, 14px);
+    overflow: hidden;
+    width: 100%;
+    content-visibility: auto;
+    contain-intrinsic-size: 800px;
+}
+
+.data-table-card + .info-card {
+    margin-top: 18px;
+}
+
+.info-card + .data-table-card {
+    margin-top: 18px;
+}
+
+.data-table-card + .data-table-card {
+    margin-top: 18px;
+}
+
+.table-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--data-table-border-soft, rgba(255, 255, 255, 0.06));
+    background: var(--data-table-surface-header, rgba(20, 20, 20, 0.6));
+}
+
+.table-icon {
+    width: 28px;
+    height: 28px;
+}
+
+.table-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--data-table-text, #fff);
+}
+
+.table-subtitle {
+    color: var(--data-table-text-muted, #8a8a8a);
+    font-size: 0.85rem;
+}
+
+.table-subnote {
+    padding: 0 18px 12px;
+    color: #9a9a9a;
+    font-size: 0.85rem;
+}
+
+.table-scroll {
+    max-height: 70vh;
+    overflow: auto;
+    position: relative;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    min-width: 820px;
+}
+
+.alliance-table {
+    min-width: 1200px;
+    font-size: 0.85rem;
+}
+
+.table-score {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--data-table-text-muted, #8a8a8a);
+    margin-top: 2px;
+}
+
+.data-table th,
+.data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--data-table-border-soft, rgba(255, 255, 255, 0.06));
+}
+
+.data-table th {
+    white-space: normal;
+    line-height: 1.2;
+}
+
+.data-table td {
+    white-space: nowrap;
+}
+
+.data-table th {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background: #1f1f1f;
+    text-align: left;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #b0b0b0;
+}
+
+.table-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    padding: 10px 18px 4px;
+    font-size: 0.8rem;
+    color: #8a8a8a;
+}
+
+.table-legend strong {
+    color: #c9c9c9;
+    font-weight: 600;
+}
+
+@media (min-width: 981px) {
+    .table-legend {
+        display: none;
+    }
+}
+
+.th-short {
+    display: none;
+}
+
+.data-table td {
+    color: #c9c9c9;
+}
+
+.data-table tr:nth-child(even) td {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.data-table tr.rating-break td {
+    border-top: 2px solid rgba(204, 68, 68, 0.35);
+}
+
+.data-table tr.milestone-row td {
+    background: rgba(204, 68, 68, 0.06);
+}
+
+.data-table tr.milestone-row td:first-child {
+    box-shadow: inset 3px 0 0 rgba(204, 68, 68, 0.7);
+}
+
+.milestone-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    margin-left: 8px;
+    border-radius: 999px;
+    background: rgba(204, 68, 68, 0.18);
+    color: #f1b1b1;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.col-rating {
+    min-width: 170px;
+    color: #d8a2a2;
+    font-weight: 600;
+}
+
+.col-name {
+    min-width: 220px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.col-level,
+.col-num {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.data-cards {
+    display: none;
+}
+
+.data-card {
+    background: #242424;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 14px 16px;
+}
+
+.card-head {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.card-level {
+    color: #c44;
+    font-weight: 700;
+}
+
+.card-name {
+    color: #fff;
+    font-weight: 600;
+}
+
+.card-badge {
+    margin-left: auto;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(204, 68, 68, 0.16);
+    color: #e3a0a0;
+    font-size: 0.78rem;
+}
+
+.card-rating {
+    color: #b8b8b8;
+    margin: 6px 0 10px;
+    font-size: 0.9rem;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 14px;
+}
+
+.card-grid span {
+    color: #8a8a8a;
+    font-size: 0.78rem;
+    display: block;
+}
+
+.card-grid strong {
+    color: #f0f0f0;
+    font-size: 0.95rem;
+}
+
+.data-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    position: static;
+    width: 100%;
+}
+
+.vehicle-panel,
+.info-card {
+    background: #222;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 16px;
+    width: 100%;
+}
+
+.info-card {
+    content-visibility: auto;
+    contain-intrinsic-size: 400px;
+}
+
+.data-guide .info-card > *,
+.research-branch-guide .info-card > *,
+.data-guide .table-followup > *,
+.research-branch-guide .table-followup > * {
+    max-width: 92ch;
+}
+
+.info-card ul,
+.table-followup ul {
+    margin: 12px 0 0;
+    padding-left: 20px;
+}
+
+.info-card li,
+.table-followup li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.table-followup {
+    margin-top: 18px;
+}
+
+.quick-answer--modern + .table-followup,
+.quick-answer--modern + .info-card {
+    margin-top: 0;
+}
+
+.panel-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.vehicle-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.vehicle-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: grid;
+    grid-template-columns: 72px 260px 220px auto;
+    gap: 16px;
+    align-items: center;
+    justify-items: start;
+}
+
+.vehicle-icon {
+    width: 72px;
+    height: 54px;
+    object-fit: contain;
+}
+
+.vehicle-name {
+    color: #fff;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-self: center;
+}
+
+.vehicle-meta {
+    color: #b0b0b0;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    align-self: center;
+    text-align: left;
+    justify-self: start;
+}
+
+.vehicle-cost-block {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+    justify-self: end;
+    text-align: right;
+    align-self: center;
+}
+
+.vehicle-cost-label {
+    color: #cfcfcf;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+.vehicle-cost {
+    color: #f0b0b0;
+    font-size: 1.02rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.info-list {
+    padding-left: 18px;
+    color: #c9c9c9;
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.info-list li + li {
+    margin-top: 10px;
+}
+
+.info-list a {
+    color: #e08c8c;
+    text-decoration: none;
+}
+
+.info-list a:hover {
+    text-decoration: underline;
+}
+
+.info-media {
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.info-figure {
+    margin: 0;
+    display: grid;
+    gap: 8px;
+}
+
+.info-media img {
+    width: 100%;
+    height: 170px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #111;
+}
+
+.info-figure figcaption {
+    color: #9a9a9a;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 980px) {
+    .data-table-card {
+        display: block;
+    }
+
+    .data-cards {
+        display: none;
+    }
+
+    .table-scroll {
+        max-height: 65vh;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        background: #242424;
+        border-radius: 12px;
+    }
+
+    .data-table {
+        display: table;
+        width: max-content;
+        min-width: 720px;
+        table-layout: fixed;
+        border-collapse: separate;
+        border-spacing: 0;
+        font-size: 0.82rem;
+    }
+
+    .data-table thead {
+        display: table-header-group;
+    }
+
+    .data-table tbody {
+        display: table-row-group;
+    }
+
+    .data-table tr {
+        display: table-row;
+    }
+
+    .data-table th,
+    .data-table td {
+        display: table-cell;
+        padding: 8px 10px;
+    }
+
+    .data-table th {
+        position: sticky;
+        top: 0;
+        z-index: 3;
+    }
+
+    .th-long {
+        display: none;
+    }
+
+    .th-short {
+        display: inline;
+    }
+
+    .table-scroll::before,
+    .table-scroll::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 18px;
+        pointer-events: none;
+        z-index: 5;
+    }
+
+    .table-scroll::before {
+        left: 0;
+        box-shadow: inset 10px 0 10px -10px rgba(0, 0, 0, 0.7);
+    }
+
+    .table-scroll::after {
+        right: 0;
+        box-shadow: inset -10px 0 10px -10px rgba(0, 0, 0, 0.7);
+    }
+
+    .vehicle-card {
+        grid-template-columns: 64px 1fr;
+        grid-auto-rows: auto;
+        gap: 8px 12px;
+        padding: 10px 12px;
+        align-items: center;
+        justify-items: start;
+    }
+
+    .vehicle-icon {
+        width: 64px;
+        height: 48px;
+    }
+
+    .vehicle-name {
+        grid-column: 2;
+        font-size: 0.95rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .vehicle-meta {
+        grid-column: 2;
+        font-size: 0.82rem;
+        white-space: nowrap;
+    }
+
+    .vehicle-cost-block {
+        grid-column: 2;
+        justify-self: start;
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        text-align: left;
+    }
+
+    .vehicle-cost-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.06em;
+        white-space: nowrap;
+    }
+
+    .vehicle-cost {
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    .info-media {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .data-guide {
+        padding: 24px 16px;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vehicle-grid {
+        grid-template-columns: 1fr;
+    }
+}
