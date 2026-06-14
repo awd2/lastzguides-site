@@ -1,0 +1,32 @@
+# Last Z Guides
+
+Last Z Guides is an independent static guide site for Last Z.
+
+Preferred URL: https://lastzguides.com/
+Sitemap: https://lastzguides.com/sitemap.xml
+Contact: https://lastzguides.com/contact.html
+About: https://lastzguides.com/about.html
+Disclosure: https://lastzguides.com/disclosure.html
+Privacy: https://lastzguides.com/privacy.html
+
+Primary topics:
+- Last Z research order and badge planning
+- Alliance Duel schedule, rewards, and event timing
+- HQ upgrade requirements and late-game progression
+- Hero priorities, factions, and formations
+- F2P strategy, resources, steel, and account growth
+- Redeem codes and official Gift Center flow
+
+Key guides:
+- https://lastzguides.com/research.html
+- https://lastzguides.com/alliance-duel.html
+- https://lastzguides.com/events.html
+- https://lastzguides.com/hq.html
+- https://lastzguides.com/heroes.html
+- https://lastzguides.com/f2p.html
+- https://lastzguides.com/steel.html
+- https://lastzguides.com/codes.html
+
+Editorial approach:
+- answer-first guide structure with page-specific checks, generated data, or owner validation where noted
+- guides are periodically reviewed and updated when major changes are made

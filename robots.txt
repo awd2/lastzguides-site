@@ -1,0 +1,11 @@
+# Last Z: Survival Shooter Guides
+# https://lastzguides.com/
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://lastzguides.com/sitemap.xml
+
+# Crawl-delay for polite crawling (optional)
+Crawl-delay: 1
