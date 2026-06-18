@@ -1810,6 +1810,26 @@
     ]
   },
   {
+    "url": "/formation-buildings.html",
+    "locale": "en",
+    "source_path": "formation-buildings.html",
+    "title": "Formation Buildings Guide",
+    "category": "Guides",
+    "description": "Formation Buildings in Last Z are four Headquarter-side buildings. Each level gives +1% ATK and +1% DEF to one Troop; prioritize Formation I first.",
+    "keywords": [
+      "Last",
+      "Formation",
+      "Buildings",
+      "Guide",
+      "Troop",
+      "ATK/DEF",
+      "Bonuses",
+      "I-IV",
+      "are",
+      "four"
+    ]
+  },
+  {
     "url": "/formation-power.html",
     "locale": "en",
     "source_path": "formation-power.html",
