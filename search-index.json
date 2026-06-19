@@ -1730,6 +1730,26 @@
     ]
   },
   {
+    "url": "/event-center.html",
+    "locale": "en",
+    "source_path": "event-center.html",
+    "title": "Event Center Guide",
+    "category": "Guides",
+    "description": "Use the Last Z Event Center to check live event times, rewards, rules, registration stages, and event settings before scheduled alliance events.",
+    "keywords": [
+      "Last",
+      "Event",
+      "Center",
+      "Guide",
+      "Times",
+      "Rewards",
+      "and",
+      "Checks",
+      "What",
+      "Check"
+    ]
+  },
+  {
     "url": "/events.html",
     "locale": "en",
     "source_path": "events.html",
