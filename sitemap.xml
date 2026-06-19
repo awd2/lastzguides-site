@@ -91,6 +91,12 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://lastzguides.com/bounty-missions.html</loc>
+        <lastmod>2026-06-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://lastzguides.com/canyon-clash.html</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/canyon-clash.html" />
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/canyon-clash.html" />
