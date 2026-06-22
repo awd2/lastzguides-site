@@ -1339,6 +1339,12 @@ footer a:hover, .site-footer a:hover {
     color: #58d68d;
 }
 
+.status-pill--fresh {
+    border: 1px solid rgba(255, 206, 84, 0.62);
+    background: rgba(255, 206, 84, 0.18);
+    color: #ffce54;
+}
+
 .code-card__code {
     grid-column: 1 / -1;
     grid-row: 1;
