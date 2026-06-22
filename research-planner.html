@@ -57,13 +57,13 @@
     "url": "https://lastzguides.com/research-planner.html",
     "applicationCategory": "GameApplication",
     "operatingSystem": "Any",
-    "description": "A Last Z research badge calculator and planner for completed levels, target levels, branch totals, dependency warnings, local saved progress, and shareable plan URLs.",
+    "description": "A Last Z research badge calculator and planner for completed levels, target levels, branch totals, prerequisite warnings, local saved progress, and shareable plan URLs.",
     "featureList": [
         "Completed research levels",
         "Target research levels",
         "Branch badge totals",
         "Remaining badge calculation",
-        "Dependency warnings",
+        "Prerequisite warnings",
         "Local saved progress",
         "Shareable research plan URL"
     ],
@@ -166,7 +166,7 @@
             <div class="planner-title-block">
                 <h1 id="planner-title">Last Z Research Planner — Badge Calculator</h1>
                 <p class="planner-lede">Track completed levels, set target nodes, calculate remaining badges, and share the exact research plan URL.</p>
-                <p class="planner-data-note">Uses the same research cost tables as the branch pages. Progress saves in your browser unless you share a plan URL.</p>
+                <p class="planner-data-note">Badge totals are maintained from in-game research costs. Your progress stays in this browser unless you share a plan URL.</p>
             </div>
 
             <label class="branch-picker">
@@ -178,24 +178,24 @@
 
             <div class="planner-dashboard" aria-label="Planner totals">
                 <div class="planner-total-card planner-total-card--scope">
-                    <span>Total</span>
+                    <span data-total-label>Total</span>
                     <strong data-total-badges>0</strong>
                     <small>all branches</small>
                 </div>
                 <div class="planner-total-card">
-                    <span>Done</span>
+                    <span data-completed-label>Spent</span>
                     <strong data-completed-badges>0</strong>
                     <small data-completed-levels>0 levels</small>
                 </div>
                 <div class="planner-total-card">
-                    <span>Target</span>
+                    <span data-planned-label>Target</span>
                     <strong data-planned-badges>0</strong>
                     <small data-planned-levels>0 target levels</small>
                 </div>
                 <div class="planner-total-card">
-                    <span>Left</span>
+                    <span data-remaining-label>Remaining</span>
                     <strong data-remaining-badges>0</strong>
-                    <small>after done</small>
+                    <small data-remaining-note>after spent</small>
                 </div>
             </div>
 
@@ -205,7 +205,7 @@
                 <button type="button" class="planner-button planner-button--danger" data-reset-planner>Reset</button>
                 <label class="planner-toggle">
                     <input type="checkbox" data-auto-parents>
-                    <span>Auto-fill parents</span>
+                    <span>Auto-fill prereqs</span>
                 </label>
                 <span class="planner-status" data-share-status aria-live="polite"></span>
             </div>
@@ -217,6 +217,16 @@
                 <p>The Research Planner needs JavaScript for state, share links, and saved progress. The static research cost pages remain available from the <a href="research-costs.html">Research Costs Atlas</a>.</p>
             </section>
         </noscript>
+
+        <section class="branch-overview" aria-labelledby="branch-overview-title">
+            <div class="branch-overview-head">
+                <div>
+                    <h2 id="branch-overview-title">Choose a Research Branch</h2>
+                    <p>Start from the same branch-first mental model as the in-game tree, then open the map to set done and target levels.</p>
+                </div>
+            </div>
+            <div class="branch-overview-grid" data-branch-overview></div>
+        </section>
 
         <section class="planner-layout">
             <aside class="planner-sidebar" aria-label="Research branches">
@@ -232,12 +242,16 @@
                 <div class="planner-toolbar" aria-label="Branch view controls">
                     <div class="planner-tabs" role="tablist" aria-label="Planner view">
                         <button type="button" class="planner-tab" data-view="tree">Tree</button>
-                        <button type="button" class="planner-tab" data-view="table">Table</button>
+                        <button type="button" class="planner-tab planner-tool-button" data-view="table"><span class="tool-icon" aria-hidden="true">☰</span><span>Table</span></button>
                     </div>
-                    <div class="planner-toolbar-actions">
-                        <button type="button" class="icon-button" data-toggle-stats aria-expanded="false">Stats</button>
-                    </div>
+                <div class="planner-toolbar-actions">
+                    <label class="planner-toggle planner-toggle--toolbar">
+                        <input type="checkbox" data-auto-parents>
+                        <span>Prereqs</span>
+                    </label>
+                    <button type="button" class="icon-button planner-tool-button" data-toggle-stats aria-expanded="false"><span class="tool-icon" aria-hidden="true">▥</span><span>Stats</span></button>
                 </div>
+            </div>
                 <div class="warning-panel" data-warning-panel hidden></div>
                 <div class="stat-panel" data-stat-panel hidden></div>
                 <div class="planner-view" data-planner-view></div>
@@ -249,6 +263,14 @@
             <article class="node-drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
                 <button type="button" class="drawer-close" data-close-drawer aria-label="Close node details">x</button>
                 <div data-drawer-content></div>
+            </article>
+        </section>
+
+        <section class="planner-sheet" data-mobile-sheet hidden aria-label="Planner details">
+            <div class="planner-sheet-backdrop" data-close-sheet></div>
+            <article class="planner-sheet-panel" role="dialog" aria-modal="true" aria-labelledby="planner-sheet-title">
+                <button type="button" class="drawer-close planner-sheet-close" data-close-sheet aria-label="Close planner details">x</button>
+                <div data-mobile-sheet-content></div>
             </article>
         </section>
 

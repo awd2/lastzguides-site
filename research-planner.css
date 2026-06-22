@@ -4,7 +4,15 @@ body {
     overflow-x: hidden;
 }
 
+.planner-app,
+.planner-app *,
+.planner-app *::before,
+.planner-app *::after {
+    box-sizing: border-box;
+}
+
 .planner-shell {
+    box-sizing: border-box;
     width: min(1500px, calc(100% - 16px));
     margin: 0 auto 28px;
 }
@@ -26,7 +34,7 @@ body {
     top: 0;
     z-index: 30;
     display: grid;
-    grid-template-columns: minmax(300px, 1fr) minmax(260px, 420px) auto;
+    grid-template-columns: minmax(300px, 1fr) minmax(280px, 420px) auto;
     gap: 16px;
     align-items: end;
     margin: 10px 0 8px;
@@ -112,14 +120,15 @@ body {
 }
 
 .branch-picker-button::after {
-    content: "⌄";
+    content: "";
     position: absolute;
-    right: 13px;
+    right: 16px;
     top: 50%;
-    transform: translateY(-50%);
-    color: #fff;
-    font-size: 1.2rem;
-    line-height: 1;
+    width: 9px;
+    height: 9px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: translateY(-65%) rotate(45deg);
 }
 
 .branch-picker-menu {
@@ -130,8 +139,8 @@ body {
     right: 0;
     display: grid;
     gap: 4px;
-    max-height: min(58vh, 430px);
-    overflow: auto;
+    max-height: none;
+    overflow: visible;
     padding: 8px;
     background: #0f1a2f;
     border: 1px solid #3a5278;
@@ -173,10 +182,14 @@ body {
 }
 
 .planner-dashboard {
-    display: none;
+    display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 8px;
     min-width: 0;
+}
+
+.planner-appbar .planner-dashboard {
+    display: none;
 }
 
 .planner-total-card,
@@ -233,6 +246,10 @@ body {
     min-width: 0;
     align-self: end;
     padding-bottom: 0;
+}
+
+.planner-actions .planner-toggle {
+    display: none;
 }
 
 .planner-button,
@@ -298,6 +315,24 @@ body {
     padding-inline: 10px;
 }
 
+.planner-tool-button,
+.planner-toggle--toolbar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.tool-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1em;
+    color: #d9e6f8;
+    font-weight: 900;
+    line-height: 1;
+}
+
 .mini-button {
     min-height: 28px;
     padding: 5px 8px;
@@ -333,6 +368,136 @@ body {
 .planner-layout {
     display: block;
     align-items: start;
+}
+
+.branch-overview {
+    display: none;
+    gap: 10px;
+    margin: 0 0 8px;
+    padding: 12px;
+    background: #141414;
+    border: 1px solid #303030;
+    border-radius: 8px;
+}
+
+.branch-overview-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: end;
+}
+
+.branch-overview h2 {
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1.2;
+}
+
+.branch-overview p,
+.branch-overview-head span {
+    color: #9d9d9d;
+    font-size: 0.78rem;
+    line-height: 1.35;
+}
+
+.branch-overview-head span {
+    flex: 0 0 auto;
+    color: #a9bad3;
+    font-weight: 800;
+}
+
+.branch-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+}
+
+.branch-card {
+    display: grid;
+    gap: 6px;
+    min-width: 0;
+    padding: 10px;
+    color: inherit;
+    text-align: left;
+    background: #1c1c1c;
+    border: 1px solid #393939;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.branch-card:hover,
+.branch-card.is-active {
+    background: #1f2d43;
+    border-color: #4e79b2;
+}
+
+.branch-card.is-active {
+    box-shadow: inset 0 0 0 1px rgba(11, 174, 237, 0.45);
+}
+
+.branch-card-kicker,
+.branch-card-meta,
+.branch-card-plan {
+    color: #9cacc4;
+    font-size: 0.67rem;
+    line-height: 1.25;
+}
+
+.branch-card-kicker {
+    min-height: 1.25em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.branch-card strong {
+    color: #fff;
+    font-size: 0.88rem;
+    line-height: 1.2;
+}
+
+.branch-card-total {
+    color: #ffc400;
+    font-size: 0.82rem;
+    font-weight: 900;
+    line-height: 1.15;
+}
+
+.branch-card-meta,
+.branch-card-plan {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.branch-card-plan b {
+    color: #fff;
+}
+
+.branch-card-progress {
+    position: relative;
+    display: block;
+    height: 6px;
+    overflow: hidden;
+    background: #0d0d0d;
+    border-radius: 999px;
+}
+
+.branch-card-progress span {
+    position: absolute;
+    inset: 0 auto 0 0;
+    display: block;
+    height: 100%;
+}
+
+.branch-card-target {
+    background: #c6922e;
+}
+
+.branch-card-done {
+    background: #4caf70;
 }
 
 .planner-sidebar {
@@ -432,7 +597,7 @@ body {
 .planner-workspace {
     min-width: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: visible;
     background: #0b1324;
     border-color: #263753;
 }
@@ -448,12 +613,13 @@ body {
 
 .branch-summary-head {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto auto;
-    gap: 10px;
-    align-items: center;
+    grid-template-columns: minmax(0, 1fr) 128px;
+    gap: 10px 14px;
+    align-items: start;
 }
 
 .branch-summary-title {
+    grid-column: 1 / -1;
     min-width: 0;
 }
 
@@ -471,30 +637,123 @@ body {
 }
 
 .branch-summary-metrics {
+    grid-column: 1;
     display: grid;
-    grid-template-columns: repeat(3, minmax(84px, 1fr));
-    gap: 6px;
+    grid-template-columns: 1fr;
+    gap: 3px;
 }
 
-.branch-summary-metrics span {
-    display: block;
-    padding: 7px 8px;
+.branch-summary-metrics > span {
+    display: grid;
+    grid-template-columns: 92px minmax(0, max-content) auto minmax(0, 1fr);
+    align-items: center;
+    justify-content: start;
+    gap: 8px;
+    min-height: 30px;
+    padding: 0;
     color: #b8c7df;
-    background: #14233c;
-    border: 1px solid #3a4d6e;
-    border-radius: 7px;
-    font-size: 0.68rem;
-    line-height: 1.18;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    font-size: 0.9rem;
+    font-weight: 900;
+    line-height: 1.1;
 }
 
-.branch-summary-metrics strong {
+.branch-summary-metrics > span > strong {
     display: block;
+    color: #ffc400;
+    font-size: 1.16rem;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.summary-clear-target {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    min-height: 26px;
+    padding: 0 8px;
+    color: #c5d1e5;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(157, 173, 198, 0.35);
+    border-radius: 6px;
+    font: inherit;
+    font-size: 0.86rem;
+    font-weight: 900;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.summary-clear-target:hover {
     color: #fff;
-    font-size: 1.1rem;
-    line-height: 1.15;
+    background: rgba(211, 91, 79, 0.18);
+    border-color: rgba(211, 91, 79, 0.75);
+}
+
+.branch-summary-controls {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    align-self: start;
+}
+
+.branch-summary-controls .planner-tab,
+.branch-summary-controls .icon-button,
+.branch-summary-controls .planner-toggle--toolbar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    width: 100%;
+    min-width: 0;
+    min-height: 34px;
+    padding: 7px 9px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    line-height: 1;
+}
+
+@media (min-width: 641px) {
+    .branch-summary-head {
+        grid-template-columns: minmax(0, 1fr) 128px;
+        align-items: start;
+    }
+
+    .branch-summary-controls {
+        grid-row: 2;
+        grid-column: 2;
+        gap: 5px;
+        align-self: start;
+    }
+
+    .branch-summary-controls .planner-tab,
+    .branch-summary-controls .icon-button,
+    .branch-summary-controls .planner-toggle--toolbar {
+        min-height: 28px;
+        padding: 5px 8px;
+    }
+
+    .branch-summary-meta,
+    .summary-progress {
+        grid-column: 1 / -1;
+    }
+
+    .branch-picker-menu {
+        max-height: none;
+        overflow: visible;
+    }
+}
+
+.branch-summary-head > .planner-button,
+.planner-workspace > .planner-toolbar {
+    display: none;
 }
 
 .branch-summary-meta {
+    grid-column: 1 / -1;
     color: #95a8c4;
     font-size: 0.76rem;
 }
@@ -566,9 +825,9 @@ body {
 }
 
 .tree-scroll {
-    height: min(76vh, 900px);
-    min-height: 660px;
-    overflow: auto;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
     background:
         radial-gradient(circle at center, rgba(39, 190, 255, 0.18) 1px, transparent 1px),
         linear-gradient(180deg, #07101f 0%, #0a1527 100%);
@@ -663,8 +922,8 @@ body {
     position: absolute;
     z-index: 2;
     top: 8px;
-    width: 18px;
-    height: 18px;
+    min-width: 22px;
+    height: 22px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -672,7 +931,7 @@ body {
     background: rgba(13, 29, 51, 0.85);
     border: 1px solid #5d7596;
     border-radius: 4px;
-    font-size: 0.72rem;
+    font-size: 0.76rem;
     font-family: inherit;
     font-weight: 900;
     cursor: pointer;
@@ -684,7 +943,7 @@ body {
 
 .node-corner--right {
     right: 8px;
-    color: transparent;
+    color: #9eb2cf;
 }
 
 .node-corner:hover {
@@ -964,7 +1223,8 @@ body {
     display: none;
 }
 
-.node-drawer {
+.node-drawer,
+.planner-sheet {
     position: fixed;
     inset: 0;
     z-index: 80;
@@ -972,13 +1232,19 @@ body {
     justify-content: flex-end;
 }
 
-.node-drawer-backdrop {
+.planner-sheet[hidden] {
+    display: none;
+}
+
+.node-drawer-backdrop,
+.planner-sheet-backdrop {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.56);
 }
 
-.node-drawer-panel {
+.node-drawer-panel,
+.planner-sheet-panel {
     position: relative;
     width: min(620px, calc(100% - 24px));
     height: calc(100% - 24px);
@@ -990,7 +1256,8 @@ body {
     box-shadow: -20px 0 44px rgba(0, 0, 0, 0.35);
 }
 
-.node-drawer-panel::before {
+.node-drawer-panel::before,
+.planner-sheet-panel::before {
     content: "";
     display: block;
     width: 72px;
@@ -998,6 +1265,24 @@ body {
     margin: 0 auto 14px;
     background: #536b8d;
     border-radius: 999px;
+}
+
+.planner-sheet-head {
+    margin-bottom: 14px;
+    padding-right: 42px;
+}
+
+.planner-sheet-head h2 {
+    color: #fff;
+    font-size: 1.25rem;
+    line-height: 1.2;
+}
+
+.planner-sheet-head p {
+    color: #aebad0;
+    font-size: 0.84rem;
+    line-height: 1.35;
+    margin-top: 4px;
 }
 
 .drawer-close {
@@ -1203,13 +1488,8 @@ body {
         align-items: end;
     }
 
-    .planner-dashboard,
     .planner-actions {
-        grid-column: 1 / -1;
-    }
-
-    .planner-actions {
-        justify-content: flex-start;
+        justify-content: flex-end;
         align-self: end;
     }
 }
@@ -1217,10 +1497,17 @@ body {
 @media (max-width: 980px) {
     .planner-appbar {
         position: static;
+        grid-template-columns: 1fr;
+        gap: 8px;
     }
 
     .planner-layout {
         grid-template-columns: 1fr;
+    }
+
+    .planner-title-block,
+    .planner-actions {
+        display: none;
     }
 
     .planner-sidebar {
@@ -1228,12 +1515,47 @@ body {
     }
 
     .tree-scroll {
-        height: 68vh;
-        min-height: 460px;
+        height: auto;
+        min-height: 0;
+        overflow: visible;
+    }
+
+    .tree-node {
+        width: 160px;
+        height: 160px;
+        border-radius: 9px;
+    }
+
+    .tree-node-open {
+        grid-template-rows: auto minmax(36px, auto) 1fr auto;
+        gap: 7px;
+        padding: 13px 10px 10px;
+    }
+
+    .node-hex {
+        width: 48px;
+        height: 43px;
+        font-size: 1.02rem;
+    }
+
+    .tree-node-title {
+        max-width: 136px;
+        min-height: 36px;
+        font-size: 0.85rem;
+        line-height: 1.15;
+    }
+
+    .tree-node-grid {
+        gap: 7px;
+        font-size: 0.62rem;
     }
 
     .planner-help-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .branch-overview-grid {
+        grid-template-columns: repeat(3, minmax(180px, 1fr));
     }
 }
 
@@ -1267,27 +1589,35 @@ body {
     }
 
     .planner-shell {
-        width: min(calc(100% - 20px), 1500px);
+        width: 100%;
         margin-top: 8px;
+        padding: 0 10px;
     }
 
     .planner-appbar {
         grid-template-columns: 1fr;
-        gap: 9px;
+        gap: 8px;
         margin-top: 10px;
+        padding: 10px;
     }
 
-    .planner-title-block h1 {
-        font-size: 1.5rem;
-    }
-
+    .planner-title-block,
     .planner-lede,
     .planner-data-note {
         display: none;
     }
 
+    .branch-picker {
+        gap: 5px;
+    }
+
+    .branch-picker-button {
+        min-height: 42px;
+        font-size: 0.92rem;
+    }
+
     .planner-dashboard {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        display: none;
     }
 
     .planner-total-card--scope {
@@ -1295,35 +1625,29 @@ body {
     }
 
     .planner-actions {
-        display: grid;
-        grid-template-columns: 1fr;
-        align-items: stretch;
-    }
-
-    .planner-actions [data-clear-targets],
-    .planner-actions [data-reset-planner] {
         display: none;
-    }
-
-    .planner-actions .planner-button,
-    .planner-toggle {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .planner-toggle {
-        justify-content: flex-start;
-    }
-
-    .planner-toggle,
-    .planner-status {
-        grid-column: 1 / -1;
     }
 
     .planner-actions .planner-button,
     .planner-toggle,
     .branch-picker select {
         min-width: 0;
+    }
+
+    .branch-overview {
+        display: none;
+    }
+
+    .planner-total-card {
+        min-width: 0;
+        padding: 8px;
+        overflow: hidden;
+    }
+
+    .planner-total-card strong {
+        font-size: 0.88rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .branch-picker select {
@@ -1334,33 +1658,141 @@ body {
         display: block;
     }
 
-    .planner-workspace,
-    .node-drawer-panel {
-        padding: 10px;
+    .branch-picker-menu {
+        max-height: min(58vh, 430px);
+        overflow: auto;
     }
 
-    .branch-summary-head {
-        grid-template-columns: 1fr auto;
+    .planner-workspace {
+        padding: 0;
     }
 
-    .branch-summary-metrics {
+    .planner-workspace > .planner-toolbar {
         display: none;
     }
 
+    .branch-summary-head {
+        grid-template-columns: minmax(0, 1fr) 104px;
+        gap: 8px 12px;
+    }
+
+    .branch-summary-head > .planner-button {
+        display: none;
+    }
+
+    .branch-summary {
+        padding: 10px 12px 9px;
+        width: min(370px, calc(100vw - 20px));
+        max-width: 370px;
+    }
+
     .branch-summary h2 {
-        font-size: 1rem;
+        font-size: 1.08rem;
     }
 
     .branch-summary-title p {
         display: none;
     }
 
+    .branch-summary-title {
+        grid-column: 1 / -1;
+    }
+
+    .branch-summary-metrics {
+        grid-column: 1;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2px;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .branch-summary-metrics > .branch-summary-metric {
+        display: grid;
+        grid-template-columns: 76px auto auto minmax(0, 1fr);
+        align-items: center;
+        justify-content: start;
+        gap: 6px;
+        padding: 0;
+        color: #aebcd3;
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        min-height: 23px;
+        font-size: 0.78rem;
+        line-height: 1.1;
+    }
+
+    .branch-summary-metric > span {
+        color: #aebcd3;
+        font-weight: 800;
+    }
+
+    .branch-summary-metrics > .branch-summary-metric > strong {
+        color: #ffc400;
+        font-size: 0.92rem;
+        line-height: 1.1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .summary-clear-target {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 24px;
+        min-height: 22px;
+        padding: 0;
+        color: #c5d1e5;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(157, 173, 198, 0.35);
+        border-radius: 5px;
+        font: inherit;
+        font-size: 0.78rem;
+        font-weight: 900;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+    .branch-summary-controls {
+        grid-column: 2;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 6px;
+        align-self: stretch;
+    }
+
     .branch-summary-meta {
-        font-size: 0.72rem;
+        grid-column: 1 / -1;
+        max-width: none;
+        font-size: 0.78rem;
+        line-height: 1.35;
+    }
+
+    .summary-progress {
+        grid-column: 1 / -1;
+    }
+
+    .branch-summary-controls .planner-tab,
+    .branch-summary-controls .icon-button,
+    .branch-summary-controls .planner-toggle--toolbar {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        min-width: 0;
+        width: 100%;
+        min-height: 0;
+        height: 26px;
+        padding: 5px 7px;
+        border-radius: 5px;
+        font-size: 0.74rem;
+        line-height: 1;
     }
 
     .planner-toolbar {
         align-items: stretch;
+        padding: 0;
     }
 
     .planner-toolbar,
@@ -1370,64 +1802,134 @@ body {
 
     .planner-tabs,
     .planner-toolbar-actions {
+        display: contents;
+    }
+
+    .planner-tabs [data-view="tree"] {
+        display: none;
+    }
+
+    .planner-toolbar {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: 104px;
+        justify-content: start;
+        gap: 6px;
+        width: max-content;
+        max-width: 100%;
+        overflow: hidden;
+        margin: 0;
+        background: transparent;
+        border-bottom: 0;
+    }
+
+    .planner-toolbar-actions {
+        display: contents;
+    }
+
+    .planner-toolbar .planner-tab,
+    .planner-toolbar .icon-button,
+    .planner-toolbar .planner-toggle--toolbar {
+        min-width: 0;
         width: 100%;
     }
 
-    .planner-tabs {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .planner-toolbar .planner-toggle--toolbar {
+        grid-column: auto;
+        min-height: 36px;
+        justify-content: center;
+        padding-inline: 5px;
+        font-size: 0.72rem;
+        order: 2;
     }
 
-    .planner-tab,
-    .icon-button {
-        width: 100%;
+    .planner-toolbar .icon-button[data-toggle-stats] {
+        order: 3;
+    }
+
+    .planner-toolbar .planner-tab,
+    .planner-toolbar .icon-button,
+    .planner-toolbar .planner-toggle--toolbar {
+        min-height: 36px;
+        padding: 6px 7px;
+        border-radius: 5px;
+        font-size: 0.74rem;
+        line-height: 1;
     }
 
     .tree-scroll {
-        height: calc(100vh - 222px);
-        min-height: 430px;
-        overflow-x: hidden;
+        height: auto;
+        min-height: 0;
+        overflow: visible;
+    }
+
+    .tree-stage {
+        margin: 0;
     }
 
     .tree-node {
-        width: 112px;
-        height: 136px;
+        width: 94px;
+        height: 128px;
         border-radius: 8px;
     }
 
     .tree-node-open {
-        grid-template-rows: auto minmax(32px, auto) 1fr auto;
-        padding: 10px 7px 8px;
-        gap: 5px;
+        grid-template-rows: auto minmax(38px, auto) auto;
+        padding: 10px 6px 8px;
+        gap: 4px;
+        align-items: center;
+        text-align: center;
     }
 
     .node-hex {
-        width: 36px;
-        height: 32px;
-        font-size: 0.82rem;
+        width: 34px;
+        height: 30px;
+        font-size: 0.78rem;
     }
 
     .tree-node-title {
-        max-width: 98px;
-        min-height: 32px;
-        font-size: 0.72rem;
-        line-height: 1.15;
+        max-width: 82px;
+        min-height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.64rem;
+        line-height: 1.08;
+        overflow-wrap: anywhere;
     }
 
     .tree-node-grid {
-        gap: 4px;
-        font-size: 0.54rem;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2px;
+        width: 100%;
+        font-size: 0.48rem;
+        text-align: center;
+    }
+
+    .node-progress {
+        display: none;
+    }
+
+    .node-remaining-stat small {
+        display: block;
+        color: #d7e4f6;
+        font-size: 0.4rem;
+        line-height: 1;
+        margin-bottom: 1px;
+    }
+
+    .node-remaining-stat strong {
+        color: #ffc400;
     }
 
     .tree-node-grid strong {
-        font-size: 0.55rem;
+        font-size: 0.5rem;
+        letter-spacing: 0;
     }
 
     .node-corner {
         top: 6px;
-        width: 16px;
-        height: 16px;
+        min-width: 18px;
+        height: 18px;
         font-size: 0.62rem;
     }
 
@@ -1447,26 +1949,24 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .node-drawer {
+    .node-drawer,
+    .planner-sheet {
         align-items: flex-end;
     }
 
-    .node-drawer-panel {
+    .node-drawer-panel,
+    .planner-sheet-panel {
         width: 100%;
-        height: min(67vh, 760px);
+        height: min(78vh, 820px);
         margin: 0;
         padding: 16px 24px 24px;
         border-radius: 16px 16px 0 0;
     }
 
-    .drawer-close {
-        display: none;
-    }
-
     .drawer-head {
         grid-template-columns: 72px minmax(0, 1fr) auto;
         gap: 12px;
-        padding-right: 0;
+        padding-right: 40px;
     }
 
     .drawer-head h2 {
