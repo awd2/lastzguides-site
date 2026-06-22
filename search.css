@@ -187,6 +187,11 @@
     display: none;
 }
 
+.language-switcher__button::before {
+    content: none;
+    display: none;
+}
+
 .language-switcher__button::after {
     content: "";
     display: inline-block;
