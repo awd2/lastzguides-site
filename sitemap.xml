@@ -2101,6 +2101,12 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://lastzguides.com/vault-master.html</loc>
+        <lastmod>2026-06-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://lastzguides.com/vehicle-modification-cost.html</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/vehicle-modification-cost.html" />
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/vehicle-modification-cost.html" />
