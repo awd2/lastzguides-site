@@ -895,7 +895,7 @@
     "source_path": "gear.html",
     "title": "Guía de Gear de Last Z",
     "category": "Equipment",
-    "description": "Mejor estrategia de gear en Last Z: solo equipo orange, promoción con Power Core, valor del primer hexágono, prioridad de enhancement y cuándo no perseguir m...",
+    "description": "La mejor estrategia de gear en Last Z: solo equipo orange, promoción con Power Core, valor del primer hexágono, orden de enhancement y cuándo saltarse mythic.",
     "keywords": [
       "Equipo",
       "Last",
@@ -993,9 +993,9 @@
     "url": "/es/hq-construction-cost.html",
     "locale": "es",
     "source_path": "hq-construction-cost.html",
-    "title": "Tabla de costes de HQ en Last Z",
+    "title": "Tabla de costes de construcción de HQ de Last Z",
     "category": "Progression",
-    "description": "Tabla de costes de HQ en Last Z para niveles 1-35: topes de héroe, costes de recursos, edificios prerrequisito, tiempos de construcción y checkpoints de plan...",
+    "description": "Tabla de costes de construcción de HQ de Last Z para niveles 1-35: madera, comida, zent, acero, límites de héroe, edificios prerrequisito, tiempos de constru...",
     "keywords": [
       "Costes",
       "construcci",
@@ -1635,7 +1635,7 @@
     "source_path": "tips.html",
     "title": "Consejos y trucos de Last Z",
     "category": "Strategy",
-    "description": "Consejos y trucos prácticos de Last Z para progresar rápido: foco en HQ, alianza activa, un equipo principal de héroes, rutina diaria, timing de recursos gua...",
+    "description": "Consejos y trucos prácticos de Last Z para principiantes: prioriza el HQ, únete a una alianza activa, céntrate en un solo equipo de héroes, haz las tareas di...",
     "keywords": [
       "Consejos",
       "trucos",
@@ -2448,9 +2448,9 @@
     "url": "/fr/gear.html",
     "locale": "fr",
     "source_path": "gear.html",
-    "title": "Guide Gear Last Z",
+    "title": "Guide d’équipement Last Z",
     "category": "Equipment",
-    "description": "Meilleure stratégie gear Last Z : équipement orange uniquement, promotion Power Core, valeur du premier hexagone, priorité enhancement et quand éviter la pre...",
+    "description": "Stratégie d’équipement Last Z : équipement orange uniquement, promotion Power Core, valeur du premier hexagone, ordre d’amélioration et quand ignorer le mythic.",
     "keywords": [
       "Guide",
       "Gear",
@@ -2550,7 +2550,7 @@
     "source_path": "hq-construction-cost.html",
     "title": "Table des coûts HQ Last Z",
     "category": "Progression",
-    "description": "Table des coûts HQ Last Z pour les niveaux 1-35 : caps héros, coûts ressources, bâtiments prérequis, temps de construction et checkpoints de planification.",
+    "description": "Table des coûts HQ Last Z pour les niveaux 1-35 : wood, food, zent, steel, caps héros, bâtiments prérequis, temps de construction et coûts totaux.",
     "keywords": [
       "construction",
       "Last",
@@ -3190,7 +3190,7 @@
     "source_path": "tips.html",
     "title": "Astuces Last Z",
     "category": "Strategy",
-    "description": "Tips et astuces Last Z pour progresser vite : focus HQ, alliance active, une team de héros principale, routine quotidienne, timing des ressources gardées et...",
+    "description": "Astuces Last Z pour débuter et progresser vite : priorisez le QG, rejoignez une alliance active, concentrez-vous sur une seule équipe de héros, faites les tâ...",
     "keywords": [
       "Astuces",
       "Last",
