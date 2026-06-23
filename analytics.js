@@ -226,7 +226,7 @@
     }
 
     function attachLdshopPromoTracking() {
-        const promoLinks = document.querySelectorAll('[data-ldshop-placement="top-banner"]');
+        const promoLinks = document.querySelectorAll('[data-ldshop-placement]');
         if (promoLinks.length > 0 && 'IntersectionObserver' in window) {
             const seen = new WeakSet();
             const observer = new IntersectionObserver((entries) => {
@@ -243,7 +243,7 @@
         }
 
         document.addEventListener('click', (event) => {
-            const link = event.target.closest('[data-ldshop-placement="top-banner"]');
+            const link = event.target.closest('[data-ldshop-placement]');
             if (!link) return;
             track('ldshop_promo_click', Object.assign(ldshopPromoParams(link), {
                 destination_url: link.href,
