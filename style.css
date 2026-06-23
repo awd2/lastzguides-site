@@ -377,7 +377,9 @@ body {
 
 /* LDShop promo block */
 .ldshop-promo-wrap {
+    width: 100%;
     max-width: 1000px;
+    min-width: 0;
     margin: 18px auto 28px;
     padding: 0 20px;
 }
@@ -402,6 +404,8 @@ body {
     align-items: center;
     overflow: hidden;
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
     min-height: 118px;
     padding: 18px;
     color: #f5f7f9;
@@ -499,30 +503,40 @@ body {
 .ldshop-promo__copy {
     display: grid;
     gap: 7px;
+    width: 100%;
     min-width: 0;
 }
 
 .ldshop-promo__title {
+    display: block;
+    min-width: 0;
+    max-width: 100%;
     color: #fff;
     font-size: 1.22rem;
     font-weight: 800;
     line-height: 1.22;
     letter-spacing: 0;
+    overflow-wrap: anywhere;
 }
 
 .ldshop-promo__text {
+    display: block;
     min-width: 0;
-    max-width: 640px;
+    max-width: min(640px, 100%);
     color: #d2d5df;
     font-size: 0.92rem;
     line-height: 1.5;
+    white-space: normal;
     overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .ldshop-promo__text strong {
     color: var(--ldshop-gold, #ffe45f);
     font-weight: 800;
+    white-space: normal;
     overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .ldshop-promo__side {
@@ -559,6 +573,7 @@ body {
     font-weight: 850;
     line-height: 1;
     white-space: nowrap;
+    max-width: 100%;
 }
 
    /* GUIDE PAGE STYLES */
@@ -1892,6 +1907,11 @@ details p {
         padding-right: 0;
     }
 
+    .planner-shell > .ldshop-promo-wrap {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
     .ldshop-promo {
         grid-template-columns: minmax(0, 1fr);
         min-height: 0;
@@ -1929,6 +1949,14 @@ details p {
     .ldshop-promo__text {
         font-size: 0.84rem;
         line-height: 1.34;
+    }
+
+    .planner-shell .ldshop-promo__text {
+        max-width: min(300px, calc(100vw - 76px));
+    }
+
+    .ldshop-promo__text strong {
+        word-break: break-all;
     }
 
     .ldshop-promo__side {
