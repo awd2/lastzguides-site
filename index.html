@@ -99,11 +99,6 @@
 <body>
     <script>
         (function() {
-            const path = window.location.pathname;
-            if (path.endsWith('/index.html')) {
-                window.location.replace('/');
-                return;
-            }
             const params = new URLSearchParams(window.location.search);
             if (params.has('q')) {
                 window.location.replace('/');
