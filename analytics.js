@@ -187,9 +187,26 @@
             });
         });
 
+        const nextJobLinks = document.querySelectorAll('a[data-next-job-id][data-from-job-id]');
+        nextJobLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+                track('next_job_click', {
+                    next_job_id: link.getAttribute('data-next-job-id') || '',
+                    from_job_id: link.getAttribute('data-from-job-id') || '',
+                    from_page: slugFromUrl(getPath()),
+                    to_page: slugFromUrl(link.getAttribute('href') || ''),
+                    to_title: link.textContent.trim(),
+                    interaction_source: 'contextual_next_job',
+                    page_type: 'guide',
+                    guide_slug: slugFromUrl(getPath())
+                });
+            });
+        });
+
         const relatedLinks = document.querySelectorAll('.related-grid a, .related-card');
         relatedLinks.forEach((link) => {
             link.addEventListener('click', () => {
+                if (link.hasAttribute('data-next-job-id')) return;
                 track('related_click', {
                     from_page: slugFromUrl(getPath()),
                     to_page: slugFromUrl(link.getAttribute('href') || ''),
