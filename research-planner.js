@@ -1003,7 +1003,7 @@
                 action: "clear_branch",
                 branch_id: branchId,
                 planner_view: state.view,
-                source: "planner_grid",
+                interaction_source: "planner_grid",
                 source_control: "branch_clear"
             });
             return;

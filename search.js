@@ -466,7 +466,7 @@
     function navigateToResult(item) {
         trackSearch('search_result_click', {
             search_term: input.value.trim(),
-            source: 'site_search',
+            interaction_source: 'site_search',
             result_url: item.url,
             result_title: item.title,
             result_index: selectedIndex,
@@ -576,7 +576,7 @@
         const rank = index + 1;
         trackSearch('search_result_click', {
             search_term: term,
-            source: 'site_search',
+            interaction_source: 'site_search',
             result_index: index,
             result_url: el.dataset.url || '',
             result_title: el.dataset.title || '',

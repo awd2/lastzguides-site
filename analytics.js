@@ -12,11 +12,32 @@
         return typeof window.gtag === 'function';
     }
 
+    function isAnalyticsDebug() {
+        try {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('analytics_debug') === '1'
+                || (window.localStorage && window.localStorage.getItem('lastz.analyticsDebug') === '1');
+        } catch (err) {
+            return false;
+        }
+    }
+
+    function recordAnalyticsDebug(eventName, params) {
+        if (!isAnalyticsDebug()) return;
+        window.__lastzAnalyticsEvents = window.__lastzAnalyticsEvents || [];
+        window.__lastzAnalyticsEvents.push({
+            event: eventName,
+            params: Object.assign({}, params || {})
+        });
+    }
+
     function track(eventName, params) {
-        if (!canTrack()) return;
-        window.gtag('event', eventName, Object.assign({
+        const eventParams = Object.assign({
             measurement_id: MEASUREMENT_ID
-        }, params || {}));
+        }, params || {});
+        recordAnalyticsDebug(eventName, eventParams);
+        if (!canTrack()) return;
+        window.gtag('event', eventName, eventParams);
     }
 
     function getPath() {
@@ -203,7 +224,7 @@
             guide_slug: slugFromUrl(path),
             placement_id: sectionName ? 'gc-' + sanitizeClassList(sectionName) : placementId,
             destination_url: destination,
-            source: 'gift_center',
+            interaction_source: 'gift_center',
             gift_center_path: '/giftCenter/#/login',
             source_section: nearestSection ? nearestSection.id || nearestSection.className.split(' ')[0] : ''
         };
