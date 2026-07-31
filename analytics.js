@@ -203,6 +203,18 @@
             });
         });
 
+        const allianceDuelDayLinks = document.querySelectorAll('[data-duel-day]');
+        allianceDuelDayLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+                track('alliance_duel_day_click', {
+                    duel_day: link.getAttribute('data-duel-day') || '',
+                    interaction_source: 'quick_answer',
+                    page_type: 'guide',
+                    guide_slug: slugFromUrl(getPath())
+                });
+            });
+        });
+
         const relatedLinks = document.querySelectorAll('.related-grid a, .related-card');
         relatedLinks.forEach((link) => {
             link.addEventListener('click', () => {
