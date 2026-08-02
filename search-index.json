@@ -195,6 +195,26 @@
     ]
   },
   {
+    "url": "/bullseye-booty.html",
+    "locale": "en",
+    "source_path": "bullseye-booty.html",
+    "title": "Bullseye Booty Guide",
+    "category": "Guides",
+    "description": "Save Bullseye Bullets, complete every free-bullet task, use diamonds only if needed, and stop after the Round 12 Orange Equipment Choice Box.",
+    "keywords": [
+      "Last",
+      "Bullseye",
+      "Booty",
+      "Guide",
+      "Save",
+      "Bullets",
+      "and",
+      "Stop",
+      "Round",
+      "When"
+    ]
+  },
+  {
     "url": "/canyon-clash.html",
     "locale": "en",
     "source_path": "canyon-clash.html",
@@ -260,7 +280,7 @@
     "source_path": "daily.html",
     "title": "Daily Checklist",
     "category": "Routine",
-    "description": "Last Z daily checklist: what to do every day for trucks, bounty missions, Full Preparedness, Furylord, radar, arena, mines, and 150 daily task points.",
+    "description": "Last Z daily checklist: finish expiring attempts before server reset, restart daily systems after reset, and unlock all nine daily Alliance Duel chests.",
     "keywords": [
       "Last",
       "Daily",
@@ -795,7 +815,7 @@
     "source_path": "formation-power.html",
     "title": "Guía de Last Z Formation Power",
     "category": "Strategy",
-    "description": "Se explican los principales multiplicadores de poder: Hall of Honor, HP de tropas, capacidad de marcha, bonificaciones de asedio y dónde invertir primero par...",
+    "description": "Planifica el camino hacia 100M+ de poder de formación en Last Z: compara la misma alineación, elige un único cuello de botella permanente y usa bonificacione...",
     "keywords": [
       "Last",
       "Formation",
@@ -1895,7 +1915,7 @@
     "source_path": "formation-power.html",
     "title": "Formation Power Guide",
     "category": "Strategy",
-    "description": "Build an effective Last Z formation-power plan with faction bonuses, troop HP research, Hall of Honor, capacity, Winter buildings, priorities, and stop points.",
+    "description": "Plan the path to 100M+ formation power in Last Z: compare the same lineup, choose one permanent bottleneck, and use faction bonuses or PvP counters by goal.",
     "keywords": [
       "Last",
       "Formation",
@@ -2350,7 +2370,7 @@
     "source_path": "formation-power.html",
     "title": "Guide Formation Power Last Z",
     "category": "Strategy",
-    "description": "Multiplicateurs de power expliqués : Hall of Honor, Troop HP, march capacity, siege bonuses et priorités d'investissement pour PvE et PvP.",
+    "description": "Planifiez la progression vers 100M+ de formation power dans Last Z : comparez la même composition, choisissez un seul goulot d’étranglement permanent et util...",
     "keywords": [
       "Formation",
       "Power",
@@ -4202,6 +4222,26 @@
       "25+",
       "Life-Changing",
       "Pro"
+    ]
+  },
+  {
+    "url": "/trade-hubs.html",
+    "locale": "en",
+    "source_path": "trade-hubs.html",
+    "title": "Trade Hubs Guide",
+    "category": "Guides",
+    "description": "Season 3 Trade Hub contests: 10- and 15-minute capture rules, individual ownership, Lv.1–3 Hub Shops, 20% alliance discounts, and 10% Diamond tax.",
+    "keywords": [
+      "Last",
+      "Trade",
+      "Hubs",
+      "Guide",
+      "Capture",
+      "Rules",
+      "Shops",
+      "and",
+      "Tax",
+      "Shop"
     ]
   },
   {
