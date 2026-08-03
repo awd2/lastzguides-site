@@ -601,3 +601,133 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Wave 6A pilot + R3C standard-cost rollout. */
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) {
+    --data-table-surface: #20211d;
+    --data-table-surface-header: #1d1e1a;
+    --data-table-border: #4a4b42;
+    --data-table-border-soft: #34352f;
+    --data-table-accent: #d9584c;
+    --data-table-radius: 4px;
+    --data-table-text: #f2eee5;
+    --data-table-text-muted: #b4b1a8;
+    --data-table-link: #ff9d94;
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .data-table-card {
+    border-left-width: 2px;
+    box-shadow: none;
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .table-header {
+    background: var(--data-table-surface-header, #1d1e1a);
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .table-icon {
+    opacity: 0.88;
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .table-title {
+    color: var(--data-table-text, #f2eee5);
+    font-family: var(--lz-type-display, 'Barlow Condensed', 'Arial Narrow', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .table-subtitle,
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .table-legend {
+    color: var(--data-table-text-muted, #b4b1a8);
+    font-family: var(--lz-type-reading, 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .table-legend strong {
+    color: var(--data-table-text, #f2eee5);
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .table-scroll {
+    border-radius: 0;
+    background: var(--data-table-surface, #20211d);
+    scrollbar-color: #696a60 transparent;
+    scrollbar-width: thin;
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .table-scroll::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .table-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .table-scroll::-webkit-scrollbar-thumb {
+    border: 2px solid var(--data-table-surface, #20211d);
+    border-radius: 999px;
+    background: #696a60;
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .data-table {
+    color: var(--data-table-text, #f2eee5);
+    font-family: var(--lz-type-reading, 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+    font-variant-numeric: tabular-nums;
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .data-table th {
+    background: var(--data-table-surface-header, #1d1e1a);
+    color: #d7d3ca;
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .data-table td {
+    color: #d0cdc4;
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .data-table th:nth-child(-n + 6),
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .data-table td:nth-child(-n + 6),
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .data-table th:last-child,
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .data-table td:last-child {
+    text-align: right;
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .data-table td:first-child {
+    color: var(--data-table-text, #f2eee5);
+    font-weight: 650;
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .data-table tr:nth-child(even) td {
+    background: rgba(242, 238, 229, 0.025);
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .data-table tbody tr:hover td {
+    background: rgba(217, 88, 76, 0.07);
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost--has-total .data-guide) .data-table tbody tr:last-child td {
+    border-top: 2px solid var(--data-table-accent, #d9584c);
+    background: rgba(217, 88, 76, 0.09);
+    color: var(--data-table-text, #f2eee5);
+    font-weight: 650;
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .table-scroll::before {
+    box-shadow: inset 10px 0 10px -10px rgba(0, 0, 0, 0.85);
+}
+
+:is(.data-guide.data-table-pilot, body.ui-standard-cost .data-guide) .table-scroll::after {
+    box-shadow: inset -10px 0 10px -10px rgba(0, 0, 0, 0.85);
+}
+
+body.ui-standard-cost .ar-cost-guide .data-table th:first-child,
+body.ui-standard-cost .ar-cost-guide .data-table td:first-child,
+body.ui-standard-cost--two-label-columns .data-guide .data-table th:nth-child(-n + 2),
+body.ui-standard-cost--two-label-columns .data-guide .data-table td:nth-child(-n + 2) {
+    text-align: left;
+}
+
+@media (max-width: 980px) {
+    body.ui-standard-cost .ar-cost-guide .data-table tr:nth-child(even) td,
+    body.ui-standard-cost .ar-cost-guide .data-table tbody tr:hover td {
+        background: transparent;
+    }
+}

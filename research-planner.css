@@ -1991,3 +1991,635 @@ body {
         padding: 9px 6px;
     }
 }
+
+/* Wave 7A exact proposal: Research Planner shell and controls. */
+.planner-app .planner-appbar {
+    background: #20211d;
+    border-color: #3c3d36;
+    border-left: 2px solid #d9584c;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+.planner-app .planner-title-block h1,
+.planner-app .branch-summary h2 {
+    color: #f2eee5;
+    font-family: var(--lz-type-display, 'Barlow Condensed', 'Arial Narrow', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.planner-app .planner-lede,
+.planner-app .branch-picker,
+.planner-app .planner-status {
+    color: #b4b1a8;
+}
+
+.planner-app .planner-data-note {
+    color: #9d9d94;
+}
+
+.planner-app .branch-picker-button {
+    color: #f2eee5;
+    background: #1d1e1a;
+    border-color: #696a60;
+    border-radius: 4px;
+}
+
+.planner-app .branch-picker-button::after {
+    border-color: #f2eee5;
+}
+
+.planner-app .branch-picker-menu {
+    gap: 0;
+    background: #20211d;
+    border-color: #4a4b42;
+    border-radius: 4px;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.38);
+}
+
+.planner-app .branch-picker-option {
+    color: #d7d3ca;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #34352f;
+    border-left: 2px solid transparent;
+    border-radius: 0;
+}
+
+.planner-app .branch-picker-option:last-child {
+    border-bottom: 0;
+}
+
+.planner-app .branch-picker-option:hover,
+.planner-app .branch-picker-option:focus-visible {
+    color: #f2eee5;
+    background: rgba(89, 195, 221, 0.05);
+    border-left-color: #59c3dd;
+}
+
+.planner-app .branch-picker-option.is-active {
+    color: #f2eee5;
+    background: rgba(89, 195, 221, 0.08);
+    border-color: #34352f;
+    border-left-color: #59c3dd;
+}
+
+.planner-app .branch-picker-option.is-active:last-child {
+    border-bottom-color: transparent;
+}
+
+.planner-app .branch-picker-option strong {
+    color: #8bd9eb;
+}
+
+.planner-app .planner-appbar .planner-button,
+.planner-app .branch-summary .planner-button,
+.planner-app .branch-summary .mini-button,
+.planner-app .branch-summary .icon-button,
+.planner-app .branch-summary .planner-tab,
+.planner-app .planner-toolbar .planner-button,
+.planner-app .planner-toolbar .mini-button,
+.planner-app .planner-toolbar .icon-button,
+.planner-app .planner-toolbar .planner-tab {
+    border-radius: 4px;
+}
+
+.planner-app .planner-appbar .planner-button:not(.planner-button--muted):not(.planner-button--danger) {
+    background: var(--lz-color-accent, #c44);
+    border-color: #e17168;
+}
+
+.planner-app .planner-appbar .planner-button:not(.planner-button--muted):not(.planner-button--danger):hover {
+    background: #b93f37;
+}
+
+.planner-app .planner-appbar .planner-button--muted,
+.planner-app .branch-summary .mini-button,
+.planner-app .branch-summary .icon-button,
+.planner-app .branch-summary .planner-tab,
+.planner-app .planner-toolbar .mini-button,
+.planner-app .planner-toolbar .icon-button,
+.planner-app .planner-toolbar .planner-tab {
+    color: #d7d3ca;
+    background: #252821;
+    border-color: #4a4b42;
+}
+
+.planner-app .planner-appbar .planner-button--muted:hover,
+.planner-app .branch-summary .mini-button:hover,
+.planner-app .branch-summary .icon-button:hover,
+.planner-app .branch-summary .planner-tab:hover,
+.planner-app .planner-toolbar .mini-button:hover,
+.planner-app .planner-toolbar .icon-button:hover,
+.planner-app .planner-toolbar .planner-tab:hover {
+    color: #f2eee5;
+    background: #2e3029;
+}
+
+.planner-app .planner-appbar .planner-button--danger {
+    color: #ffaaa2;
+    background: rgba(217, 88, 76, 0.07);
+    border-color: #70413c;
+}
+
+.planner-app .planner-appbar .planner-button--danger:hover {
+    background: rgba(217, 88, 76, 0.14);
+}
+
+.planner-app .branch-summary .planner-tab.is-active,
+.planner-app .branch-summary .icon-button.is-active,
+.planner-app .planner-toolbar .planner-tab.is-active,
+.planner-app .planner-toolbar .icon-button.is-active {
+    color: #f2eee5;
+    background: rgba(89, 195, 221, 0.08);
+    border-color: #477682;
+}
+
+.planner-app .planner-appbar .planner-toggle,
+.planner-app .branch-summary .planner-toggle,
+.planner-app .planner-toolbar .planner-toggle {
+    color: #d7d3ca;
+    background: #1d1e1a;
+    border-color: #4a4b42;
+    border-radius: 4px;
+}
+
+.planner-app .planner-appbar .planner-toggle input,
+.planner-app .branch-summary .planner-toggle input,
+.planner-app .planner-toolbar .planner-toggle input {
+    accent-color: #d9584c;
+}
+
+.planner-app .branch-summary .tool-icon,
+.planner-app .planner-toolbar .tool-icon {
+    color: #b4b1a8;
+}
+
+.planner-app .planner-workspace {
+    background: #181916;
+    border-color: #3c3d36;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+.planner-app .branch-summary {
+    background: #20211d;
+    border-bottom-color: #3c3d36;
+}
+
+.planner-app .branch-summary p,
+.planner-app .branch-summary-meta {
+    color: #9d9d94;
+}
+
+.planner-app .branch-summary-metrics > span,
+.planner-app .branch-summary-metric > span {
+    color: #b4b1a8;
+}
+
+.planner-app .branch-summary-metrics > span > strong {
+    color: #8bd9eb;
+    font-variant-numeric: tabular-nums;
+}
+
+.planner-app .branch-summary-metrics > .branch-summary-goal > strong {
+    color: #f0cc82;
+}
+
+.planner-app .summary-clear-target {
+    color: #b4b1a8;
+    background: transparent;
+    border-color: #4a4b42;
+    border-radius: 4px;
+}
+
+.planner-app .summary-clear-target:hover {
+    color: #ffaaa2;
+    background: rgba(217, 88, 76, 0.07);
+    border-color: #70413c;
+}
+
+.planner-app .summary-progress {
+    background: #11120f;
+}
+
+.planner-app .planner-toolbar {
+    background: #1d1e1a;
+    border-bottom-color: #3c3d36;
+}
+
+.planner-app .planner-appbar :where(button, select, input):focus-visible,
+.planner-app .branch-summary :where(button, select, input):focus-visible,
+.planner-app .planner-toolbar :where(button, select, input):focus-visible {
+    outline: 2px solid #ff9d94;
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .planner-app .planner-appbar :where(button, select, input, .branch-picker-menu),
+    .planner-app .branch-summary :where(button, select, input),
+    .planner-app .planner-toolbar :where(button, select, input) {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Wave 7B exact proposal: Research Planner dense interaction surfaces. */
+.planner-app .warning-panel,
+.planner-app .stat-panel {
+    background: #20211d;
+    border-color: #3c3d36;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+.planner-app .warning-panel {
+    border-left: 3px solid #d3a84e;
+}
+
+.planner-app .warning-panel h3,
+.planner-app .stat-panel h3 {
+    color: #f2eee5;
+}
+
+.planner-app .warning-panel ul,
+.planner-app .stat-panel-head span {
+    color: #b4b1a8;
+}
+
+.planner-app .stat-panel .stat-card {
+    background: #1d1e1a;
+    border-color: #34352f;
+    border-radius: 4px;
+}
+
+.planner-app .stat-panel .stat-card span {
+    color: #9d9d94;
+}
+
+.planner-app .stat-panel .stat-card strong {
+    color: #8bd9eb;
+    font-variant-numeric: tabular-nums;
+}
+
+.planner-app .stat-panel .stat-card small {
+    background: #11120f;
+}
+
+.planner-app .tree-scroll {
+    background:
+        radial-gradient(circle at center, rgba(89, 195, 221, 0.12) 1px, transparent 1px),
+        #141611;
+    background-size: 28px 28px, auto;
+}
+
+.planner-app .tree-edges path {
+    stroke: #59c3dd;
+    stroke-width: 2;
+    filter: none;
+    opacity: 0.78;
+}
+
+.planner-app .tree-node {
+    background: #20211d;
+    border-color: #477682;
+    border-radius: 4px;
+    box-shadow: inset 3px 0 0 #59c3dd;
+}
+
+.planner-app .tree-node.is-partial {
+    background: rgba(211, 168, 78, 0.05);
+    border-color: #75613b;
+    box-shadow: inset 3px 0 0 #d3a84e;
+}
+
+.planner-app .tree-node.is-complete {
+    background: rgba(76, 175, 112, 0.08);
+    border-color: #315d42;
+    box-shadow: inset 3px 0 0 #4caf70;
+}
+
+.planner-app .tree-node.has-target {
+    background: rgba(211, 168, 78, 0.07);
+    border-color: #75613b;
+    box-shadow: inset 3px 0 0 #d3a84e;
+}
+
+.planner-app .tree-node.has-warning {
+    box-shadow: inset 3px 0 0 #d3a84e, inset 0 0 0 1px rgba(211, 168, 78, 0.48);
+}
+
+.planner-app .node-hex {
+    color: #f2eee5;
+    background: #2b6572;
+    border-color: #59c3dd;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.planner-app .tree-node-title {
+    color: #f2eee5;
+}
+
+.planner-app .tree-node-grid,
+.planner-app .tree-node-grid small,
+.planner-app .node-remaining-stat small {
+    color: #b4b1a8;
+}
+
+.planner-app .tree-node-grid strong,
+.planner-app .node-remaining-stat strong {
+    color: #f0cc82;
+    font-variant-numeric: tabular-nums;
+}
+
+.planner-app .node-progress {
+    background: #11120f;
+}
+
+.planner-app .node-corner {
+    color: #b4b1a8;
+    background: #1d1e1a;
+    border-color: #4a4b42;
+    border-radius: 3px;
+}
+
+.planner-app .node-corner:hover {
+    color: #f2eee5;
+    background: #2e3029;
+    border-color: #696a60;
+}
+
+.planner-app .node-corner.is-selected {
+    color: #f0cc82;
+    background: rgba(211, 168, 78, 0.09);
+    border-color: #75613b;
+}
+
+.planner-app .node-corner--right.is-selected {
+    color: #8fd8a8;
+    background: rgba(76, 175, 112, 0.09);
+    border-color: #315d42;
+}
+
+.planner-app .planner-table-wrap,
+.planner-app .level-table-wrap {
+    background: #181916;
+    border-color: #3c3d36;
+}
+
+.planner-app .planner-table,
+.planner-app .level-table {
+    color: #d7d3ca;
+    font-variant-numeric: tabular-nums;
+}
+
+.planner-app .planner-table th,
+.planner-app .planner-table td,
+.planner-app .level-table th,
+.planner-app .level-table td {
+    color: #d0cdc4;
+    border-bottom-color: #34352f;
+}
+
+.planner-app .planner-table th,
+.planner-app .level-table th {
+    color: #b4b1a8;
+    background: #1d1e1a;
+}
+
+.planner-app .planner-table tbody tr:hover td,
+.planner-app .level-table tbody tr:hover td {
+    background: rgba(89, 195, 221, 0.05);
+}
+
+.planner-app .planner-table tr.is-complete td,
+.planner-app .level-table tr.is-done td {
+    background: rgba(76, 175, 112, 0.07);
+}
+
+.planner-app .planner-table tr.has-target td,
+.planner-app .level-table tr.is-target td {
+    box-shadow: inset 0 1px 0 rgba(211, 168, 78, 0.34), inset 0 -1px 0 rgba(211, 168, 78, 0.28);
+}
+
+.planner-app .table-node-name {
+    color: #8bd9eb;
+}
+
+.planner-app .planner-table select,
+.planner-app .node-list select {
+    color: #f2eee5;
+    background: #1d1e1a;
+    border-color: #4a4b42;
+    border-radius: 4px;
+}
+
+.planner-app .planner-table .mini-button,
+.planner-app .node-list .mini-button,
+.planner-app .node-drawer-panel .mini-button,
+.planner-app .planner-sheet-panel .mini-button {
+    color: #d7d3ca;
+    background: #252821;
+    border-color: #4a4b42;
+    border-radius: 4px;
+}
+
+.planner-app .planner-table .mini-button:hover,
+.planner-app .node-list .mini-button:hover,
+.planner-app .node-drawer-panel .mini-button:hover,
+.planner-app .planner-sheet-panel .mini-button:hover {
+    color: #f2eee5;
+    background: #2e3029;
+}
+
+.planner-app .node-list-card {
+    background: #20211d;
+    border-color: #3c3d36;
+    border-radius: 4px;
+    box-shadow: inset 2px 0 0 #59c3dd;
+}
+
+.planner-app .node-list-card.is-complete {
+    background: rgba(76, 175, 112, 0.07);
+    border-color: #315d42;
+    box-shadow: inset 2px 0 0 #4caf70;
+}
+
+.planner-app .node-list-card.has-target {
+    background: rgba(211, 168, 78, 0.07);
+    border-color: #75613b;
+    box-shadow: inset 2px 0 0 #d3a84e;
+}
+
+.planner-app .node-list-title {
+    color: #f2eee5;
+}
+
+.planner-app .node-icon {
+    color: #f2eee5;
+    background: #2b6572;
+    border-radius: 4px;
+}
+
+.planner-app .node-list-title small,
+.planner-app .node-list-controls label,
+.planner-app .node-list-metrics span {
+    color: #b4b1a8;
+}
+
+.planner-app .node-list-metrics span {
+    background: #181916;
+    border-color: #34352f;
+    border-radius: 4px;
+}
+
+.planner-app .node-list-metrics strong {
+    color: #8bd9eb;
+    font-variant-numeric: tabular-nums;
+}
+
+.planner-app .node-drawer-backdrop,
+.planner-app .planner-sheet-backdrop {
+    background: rgba(0, 0, 0, 0.64);
+}
+
+.planner-app .node-drawer-panel,
+.planner-app .planner-sheet-panel {
+    background: #20211d;
+    border-color: #3c3d36;
+    border-radius: 4px;
+    box-shadow: -16px 0 36px rgba(0, 0, 0, 0.38);
+}
+
+.planner-app .node-drawer-panel::before,
+.planner-app .planner-sheet-panel::before {
+    background: #696a60;
+}
+
+.planner-app .planner-sheet-head h2,
+.planner-app .drawer-head h2 {
+    color: #f2eee5;
+}
+
+.planner-app .planner-sheet-head p,
+.planner-app .drawer-head p,
+.planner-app .drawer-head span,
+.planner-app .drawer-remaining span,
+.planner-app .drawer-remaining small {
+    color: #b4b1a8;
+}
+
+.planner-app .drawer-close {
+    color: #d7d3ca;
+    background: #252821;
+    border-color: #4a4b42;
+    border-radius: 4px;
+}
+
+.planner-app .drawer-close:hover {
+    color: #f2eee5;
+    background: #2e3029;
+}
+
+.planner-app .drawer-icon--hex {
+    color: #f2eee5;
+    background: #2b6572;
+    box-shadow: none;
+}
+
+.planner-app .drawer-remaining strong,
+.planner-app .drawer-target-cost {
+    color: #f0cc82;
+    font-variant-numeric: tabular-nums;
+}
+
+.planner-app .drawer-progress {
+    background: #11120f;
+}
+
+.planner-app .drawer-trash {
+    color: #ffaaa2;
+    background: rgba(217, 88, 76, 0.07);
+    border-color: #70413c;
+    border-radius: 4px;
+}
+
+.planner-app .drawer-trash:hover {
+    background: rgba(217, 88, 76, 0.14);
+}
+
+.planner-app .drawer-stepper {
+    background: #181916;
+    border-color: #3c3d36;
+    border-radius: 4px;
+}
+
+.planner-app .drawer-stepper strong {
+    color: #f2eee5;
+    font-variant-numeric: tabular-nums;
+}
+
+.planner-app .drawer-levels {
+    background: #181916;
+    border-top-color: #3c3d36;
+}
+
+.planner-app .drawer-levels .level-table th {
+    background: #1d1e1a;
+}
+
+.planner-app .drawer-levels .level-table td,
+.planner-app .drawer-levels .level-table th {
+    border-bottom-color: #34352f;
+}
+
+.planner-app .drawer-levels .level-table th:nth-child(3),
+.planner-app .drawer-levels .level-table td:nth-child(3) {
+    color: #f0cc82;
+}
+
+.planner-app .drawer-levels input[type="checkbox"] {
+    accent-color: #59c3dd;
+}
+
+.planner-app .flag-button--icon {
+    color: #b4b1a8;
+}
+
+.planner-app .flag-button--icon.is-selected {
+    color: #f0cc82;
+    background: rgba(211, 168, 78, 0.09);
+    border-color: #75613b;
+}
+
+.planner-app .tree-scroll :where(button, select, input):focus-visible,
+.planner-app .planner-table-wrap :where(button, select, input):focus-visible,
+.planner-app .warning-panel :where(button, select, input):focus-visible,
+.planner-app .stat-panel :where(button, select, input):focus-visible,
+.planner-app .node-drawer-panel :where(button, select, input):focus-visible,
+.planner-app .planner-sheet-panel :where(button, select, input):focus-visible {
+    outline: 2px solid #ff9d94;
+    outline-offset: 2px;
+}
+
+.planner-app .tree-node-open:focus-visible {
+    outline-offset: -3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .planner-app .tree-scroll :where(button, select, input, .tree-node, .tree-edges path),
+    .planner-app .planner-table-wrap :where(button, select, input),
+    .planner-app .warning-panel :where(button, select, input),
+    .planner-app .stat-panel :where(button, select, input),
+    .planner-app .node-drawer-panel :where(button, select, input),
+    .planner-app .planner-sheet-panel :where(button, select, input) {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}

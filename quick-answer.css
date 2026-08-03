@@ -62,234 +62,234 @@
     border: 0;
 }
 
-/* Modern Quick Answer container */
+/* Shared field-manual Quick Answer component */
 .quick-answer--modern {
     width: 100%;
-    background: var(--qa-surface, rgba(255, 255, 255, 0.03));
-    border-left: 3px solid var(--qa-accent, #c44);
-    border-radius: 0 var(--qa-radius, 12px) var(--qa-radius, 12px) 0;
-    padding: var(--lz-space-5, 20px);
     margin-bottom: 28px;
+    padding: 22px var(--lz-space-6, 24px);
+    border: 1px solid var(--border-subtle, #3c3d36);
+    border-left: 3px solid var(--qa-accent, #d9584c);
+    border-radius: 0 var(--qa-radius, 4px) var(--qa-radius, 4px) 0;
+    background:
+        linear-gradient(90deg, rgba(217, 88, 76, 0.075), transparent 42%),
+        var(--surface-page-alt, #1d1e1a);
+    color: var(--color-text, #f2eee5);
+    font-family: var(--lz-type-reading, 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
 }
 
-/* Kicker label */
 .quick-answer--modern .qa-kicker {
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
+    margin: 0 0 14px;
+    color: #ff9d94;
+    font-size: 0.76rem;
+    font-weight: 650;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.58);
-    margin: 0 0 16px 0;
 }
 
-/* Body container with max-width for readability */
 .quick-answer--modern .qa-body {
-    width: 100%;
-    max-width: 64ch;
     display: grid;
-    gap: 16px;
+    width: 100%;
+    max-width: none;
+    gap: 18px;
+}
+
+.guide:not(.data-guide) .quick-answer--modern .qa-body,
+.guide:not(.data-guide) .quick-answer--modern .qa-lede,
+.guide:not(.data-guide) .quick-answer--modern .qa-body > p {
+    max-width: 68ch;
 }
 
 .data-guide .quick-answer--modern .qa-body,
-.research-branch-guide .quick-answer--modern .qa-body {
+.data-guide .quick-answer--modern .qa-lede,
+.data-guide .quick-answer--modern .qa-body > p,
+.research-branch-guide .quick-answer--modern .qa-body,
+.research-branch-guide .quick-answer--modern .qa-lede,
+.research-branch-guide .quick-answer--modern .qa-body > p {
     max-width: 92ch;
 }
 
-/* Lead paragraph */
-.quick-answer--modern .qa-lede {
-    font-size: 1.05rem;
-    color: #f0f0f0;
-    margin: 0;
-    line-height: 1.45;
-}
-
-.quick-answer--modern .qa-lede strong {
-    color: var(--color-text-strong, #fff);
-}
-
-/* List reset and grid layout */
-.quick-answer--modern .qa-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: 12px;
-}
-
-/* List items with number + text grid */
-.quick-answer--modern .qa-item {
-    display: grid !important;
-    grid-template-columns: 1.5rem 1fr;
-    column-gap: 12px;
-    align-items: baseline;
-    padding: 0 !important;
-    border: none !important;
-    gap: 0;
-}
-
-/* Circled number glyph */
-.quick-answer--modern .qa-num {
-    font-size: 1rem;
-    line-height: 1.2;
-    color: var(--qa-accent, #c44);
-    font-weight: 500;
-    opacity: 0.75;
-}
-
-/* Line container */
-.quick-answer--modern .qa-line {
-    display: block;
-    min-width: 0;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #d0d0d0;
+.quick-answer--modern .qa-lede,
+.quick-answer--modern .qa-body > p {
+    color: #ddd8ce;
     white-space: normal;
     overflow-wrap: anywhere;
     word-break: normal;
 }
 
-/* Title (emphasized) */
+.quick-answer--modern .qa-lede {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.52;
+}
+
+.quick-answer--modern .qa-lede strong {
+    color: var(--color-text-strong, #f2eee5);
+    font-weight: 650;
+}
+
+.quick-answer--modern .qa-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 24px;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--border-subtle, #3c3d36);
+    list-style: none;
+}
+
+.quick-answer.quick-answer--modern .qa-item {
+    display: grid !important;
+    grid-template-columns: 1.35rem minmax(0, 1fr);
+    align-items: baseline;
+    gap: 0;
+    column-gap: 8px;
+    padding: 10px 0 !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--border-subtle, #3c3d36) !important;
+}
+
+.quick-answer--modern .qa-num {
+    color: var(--focus-ring, #ff9d94);
+    font-size: 0.9rem;
+    font-weight: 650;
+    line-height: 1.2;
+    opacity: 1;
+}
+
+.quick-answer--modern .qa-line {
+    display: block;
+    min-width: 0;
+    color: #c7c3ba;
+    font-size: 0.94rem;
+    line-height: 1.5;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
 .quick-answer--modern .qa-title {
     display: inline;
-    font-weight: 600;
-    color: var(--color-text-strong, #fff);
+    color: var(--color-text-strong, #f2eee5);
+    font-weight: 650;
 }
 
-/* Separator */
 .quick-answer--modern .qa-sep {
     display: inline;
-    color: rgba(255, 255, 255, 0.28);
-    font-weight: 400;
     margin: 0 0.3em;
+    color: #696a60;
+    font-weight: 400;
 }
 
-/* Detail (muted) */
 .quick-answer--modern .qa-detail {
     display: inline;
-    color: #a0a0a0;
-    opacity: 0.82;
+    color: var(--color-muted, #b4b1a8);
     font-weight: 400;
+    opacity: 1;
 }
 
-/* Callouts container */
 .quick-answer--modern .qa-callouts {
-    margin-top: 0;
     display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
+    margin-top: 0;
+    padding-top: 2px;
 }
 
-/* Individual callout */
 .quick-answer--modern .qa-callout {
     display: grid;
-    grid-template-columns: 20px 1fr;
-    gap: 10px;
-    padding: 12px 14px;
-    border-radius: var(--lz-radius-card, 10px);
-    border: 1px solid rgba(var(--lz-color-white-rgb, 255, 255, 255), 0.05);
-    background: rgba(255, 255, 255, 0.04);
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #d0d0d0;
+    grid-template-columns: 18px minmax(0, 1fr);
+    gap: 8px;
     margin: 0;
+    padding: 10px 0 10px 10px;
+    border: 0 solid var(--border-subtle, #3c3d36);
+    border-left: 1px solid #696a60;
+    border-radius: calc(var(--qa-radius, 4px) * 0);
+    background: transparent;
+    color: #c7c3ba;
+    font-size: 0.88rem;
+    line-height: 1.48;
 }
 
-/* Tip variant */
-.quick-answer--modern .qa-callout--tip {
-    background: rgba(204, 68, 68, 0.05);
-}
-
-/* Note variant */
 .quick-answer--modern .qa-callout--note {
-    background: rgba(100, 149, 237, 0.05);
+    border-left-color: #7fa6ba;
 }
 
-/* Callout icon */
+.quick-answer--modern .qa-callout--tip {
+    border-left-color: var(--color-accent, #d9584c);
+}
+
 .quick-answer--modern .qa-icon {
-    font-size: 14px;
-    line-height: 1.4;
     flex-shrink: 0;
+    font-size: 13px;
+    line-height: 1.35;
 }
 
-/* Callout text */
 .quick-answer--modern .qa-callout-text {
-    color: #d0d0d0;
+    color: #c7c3ba;
 }
 
 .quick-answer--modern .qa-callout-text strong {
-    color: var(--color-text-strong, #fff);
-    font-weight: 600;
+    color: var(--color-text-strong, #f2eee5);
+    font-weight: 650;
 }
 
-/* Links in callouts */
-.quick-answer--modern .qa-callout-text a {
-    color: var(--qa-accent, #c44);
+.quick-answer--modern .qa-callout-text a,
+.quick-answer--modern .qa-callout-text a:visited {
+    color: #ff9d94;
     text-decoration: none;
-    border-bottom: 1px solid rgba(204, 68, 68, 0.4);
-    transition: border-color 0.15s ease;
+    border-bottom: 1px solid rgba(255, 157, 148, 0.5);
+    transition: border-color 0.15s ease, color 0.15s ease;
 }
 
 .quick-answer--modern .qa-callout-text a:hover {
-    border-color: var(--qa-accent, #c44);
+    color: #ffd0cb;
+    border-bottom-color: #ffd0cb;
 }
 
-   RESPONSIVE - Desktop (>=900px)
-@media (min-width: 900px) {
-    .quick-answer--modern {
-        padding: var(--lz-space-6, 24px) var(--qa-padding-inline-desktop, 28px);
-        margin-bottom: 32px;
-        border-radius: 0 var(--qa-radius-desktop, 16px) var(--qa-radius-desktop, 16px) 0;
-    }
+.quick-answer--modern .qa-callout-text a:focus-visible {
+    outline: 2px solid #ff9d94;
+    outline-offset: 3px;
+}
 
-    .quick-answer--modern .qa-body {
-        gap: 18px;
-    }
-
-    .quick-answer--modern .qa-kicker {
-        margin-bottom: 18px;
-    }
-
-    .quick-answer--modern .qa-list {
-        gap: 14px;
-    }
-
-    .quick-answer--modern .qa-item {
-        grid-template-columns: 1.6rem 1fr;
-        column-gap: 14px;
-    }
-
-    .quick-answer--modern .qa-callout {
-        padding: var(--qa-callout-padding-block-desktop, 14px) var(--lz-space-4, 16px);
-        border-radius: var(--lz-radius-card, 10px);
+@media (max-width: 760px) {
+    .quick-answer--modern .qa-callouts {
+        grid-template-columns: 1fr;
+        gap: 0;
     }
 }
 
-   RESPONSIVE - Mobile (<600px)
 @media (max-width: 599px) {
     .quick-answer--modern {
-        padding: var(--lz-space-4, 16px);
         margin-bottom: 24px;
-        border-radius: 0 var(--lz-radius-panel, 8px) var(--lz-radius-panel, 8px) 0;
-    }
-
-    .quick-answer--modern .qa-body {
-        gap: 14px;
+        padding: 18px var(--lz-space-4, 16px);
     }
 
     .quick-answer--modern .qa-kicker {
         margin-bottom: 12px;
     }
 
+    .quick-answer--modern .qa-body {
+        gap: 16px;
+    }
+
+    .quick-answer--modern .qa-lede {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
     .quick-answer--modern .qa-list {
-        gap: 10px;
+        grid-template-columns: 1fr;
+        gap: 0;
     }
 
     .quick-answer--modern .qa-item {
-        grid-template-columns: 1.2rem 1fr;
-        column-gap: 4px;
+        grid-template-columns: 1.25rem minmax(0, 1fr);
+        column-gap: 7px;
+        padding: 9px 0 !important;
     }
 
     .quick-answer--modern .qa-line {
-        line-height: 1.5;
+        font-size: 0.93rem;
     }
 
     .quick-answer--modern .qa-sep {
@@ -302,13 +302,22 @@
         font-size: 1rem;
     }
 
-    .quick-answer--modern .qa-callout {
-        padding: 10px 12px;
-        grid-template-columns: 18px 1fr;
-        gap: 8px;
+    .quick-answer--modern .qa-callout,
+    .quick-answer--modern .qa-callout--note,
+    .quick-answer--modern .qa-callout--tip {
+        padding: 10px 0 10px 9px;
+        font-size: 0.88rem;
     }
+}
 
-    .quick-answer--modern .qa-icon {
-        font-size: 13px;
+@media (prefers-reduced-motion: reduce) {
+    .quick-answer--modern,
+    .quick-answer--modern *,
+    .quick-answer--modern *::before,
+    .quick-answer--modern *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
