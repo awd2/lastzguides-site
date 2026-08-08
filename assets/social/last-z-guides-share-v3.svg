@@ -1,0 +1,76 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#241D1A"/>
+      <stop offset="0.48" stop-color="#181916"/>
+      <stop offset="1" stop-color="#101310"/>
+    </linearGradient>
+    <radialGradient id="warmGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 280) rotate(90) scale(370 560)">
+      <stop stop-color="#D9584C" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#D9584C" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="coolGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 455) rotate(90) scale(230 420)">
+      <stop stop-color="#59C3DD" stop-opacity="0.07"/>
+      <stop offset="1" stop-color="#59C3DD" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0V44" stroke="#F2EEE5" stroke-opacity="0.03"/>
+    </pattern>
+    <filter id="shadow" x="258" y="338" width="684" height="206" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#000" flood-opacity="0.34"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#warmGlow)"/>
+  <rect width="1200" height="630" fill="url(#coolGlow)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="8" fill="#D9584C"/>
+
+  <!-- Machine-readable marker for the centered 630 x 630 universal safe zone. -->
+  <rect id="universal-safe-zone" x="285" y="0" width="630" height="630" fill="none"/>
+
+  <!-- All meaningful content fits the centered 630 x 630 universal crop-safe zone. -->
+  <g transform="translate(422 50)">
+    <rect width="52" height="52" rx="12" fill="#181916" stroke="#D9584C" stroke-width="2"/>
+    <path d="M15 15H37L15 37H37" stroke="#D9584C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="70" y="35" fill="#F2EEE5" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" letter-spacing="1.1">LAST Z GUIDES</text>
+  </g>
+
+  <text x="600" y="198" text-anchor="middle" fill="#F2EEE5" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="700">Codes, guides</text>
+  <text x="600" y="270" text-anchor="middle" fill="#F2EEE5" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="700">&amp; planning tools</text>
+  <rect x="552" y="298" width="96" height="5" rx="2.5" fill="#D9584C"/>
+
+  <g filter="url(#shadow)">
+    <rect x="290" y="362" width="190" height="142" rx="16" fill="#2A211F" stroke="#D9584C" stroke-width="2"/>
+    <rect x="505" y="362" width="190" height="142" rx="16" fill="#20211D" stroke="#42433B" stroke-width="2"/>
+    <rect x="720" y="362" width="190" height="142" rx="16" fill="#20211D" stroke="#42433B" stroke-width="2"/>
+  </g>
+
+  <!-- Gift codes: prominent acquisition utility, no freshness claim in the image. -->
+  <g transform="translate(361 382)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0 14H48V48H0V14Z" stroke="#D9584C" stroke-width="3"/>
+    <path d="M24 14V48M0 25H48" stroke="#F2EEE5" stroke-width="3"/>
+    <path d="M24 14C17 14 12 10 12 6C12 2 17 1 20 4L24 9M24 14C31 14 36 10 36 6C36 2 31 1 28 4L24 9" stroke="#D9584C" stroke-width="3"/>
+  </g>
+  <text x="385" y="480" text-anchor="middle" fill="#F2EEE5" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" letter-spacing="0.8">CODES</text>
+
+  <!-- Costs: rows plus a total. -->
+  <g transform="translate(576 382)" stroke-linecap="round" stroke-linejoin="round">
+    <rect width="48" height="48" rx="8" stroke="#59C3DD" stroke-width="3"/>
+    <path d="M10 14H30M10 24H38M10 34H25" stroke="#F2EEE5" stroke-width="3"/>
+    <path d="M35 31V40M31 35.5H39" stroke="#59C3DD" stroke-width="3"/>
+  </g>
+  <text x="600" y="480" text-anchor="middle" fill="#F2EEE5" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" letter-spacing="0.8">COSTS</text>
+
+  <!-- Planner: one clear start-to-target route used only as an icon. -->
+  <g transform="translate(791 386)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 34H25V12H48" stroke="#59C3DD" stroke-width="4"/>
+    <circle cx="5" cy="34" r="6" fill="#20211D" stroke="#D9584C" stroke-width="3"/>
+    <circle cx="25" cy="12" r="6" fill="#20211D" stroke="#59C3DD" stroke-width="3"/>
+    <circle cx="48" cy="12" r="6" fill="#20211D" stroke="#59C3DD" stroke-width="3"/>
+  </g>
+  <text x="815" y="480" text-anchor="middle" fill="#F2EEE5" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" letter-spacing="0.8">PLANNER</text>
+
+  <text x="600" y="568" text-anchor="middle" fill="#F2EEE5" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" letter-spacing="0.4">lastzguides.com</text>
+</svg>
