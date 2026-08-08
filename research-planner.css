@@ -4,6 +4,12 @@ body {
     overflow-x: hidden;
 }
 
+html.planner-modal-open,
+body.planner-modal-open {
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
 .planner-app,
 .planner-app *,
 .planner-app *::before,
@@ -1227,7 +1233,7 @@ body {
 .planner-sheet {
     position: fixed;
     inset: 0;
-    z-index: 80;
+    z-index: 140;
     display: flex;
     justify-content: flex-end;
 }
@@ -1251,6 +1257,8 @@ body {
     margin: 12px;
     padding: 18px 24px 24px;
     overflow: auto;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
     background: #0f1a2f;
     border-color: #30496f;
     box-shadow: -20px 0 44px rgba(0, 0, 0, 0.35);
@@ -1412,20 +1420,38 @@ body {
     font-size: 1.05rem;
 }
 
+.drawer-target-control {
+    display: inline-grid;
+    gap: 3px;
+    align-items: center;
+    min-width: 0;
+}
+
+.drawer-target-control .mini-button {
+    width: 100%;
+}
+
 .drawer-target-cost {
     color: #ffc400;
-    font-size: 0.82rem;
+    font-size: 0.68rem;
     font-weight: 900;
+    line-height: 1.1;
+    text-align: center;
+    white-space: nowrap;
 }
 
 .drawer-levels {
     max-height: none;
+    overflow: visible;
     border-width: 0;
     border-top: 1px solid #30496f;
     background: #0b1324;
 }
 
 .drawer-levels .level-table th {
+    position: static;
+    top: auto;
+    z-index: auto;
     background: #0f1a2f;
 }
 
@@ -1958,9 +1984,15 @@ body {
     .planner-sheet-panel {
         width: 100%;
         height: min(78vh, 820px);
+        height: min(78dvh, 820px);
         margin: 0;
-        padding: 16px 24px 24px;
+        padding: 16px 24px calc(24px + env(safe-area-inset-bottom));
         border-radius: 16px 16px 0 0;
+    }
+
+    .drawer-close {
+        width: 44px;
+        height: 44px;
     }
 
     .drawer-head {
@@ -1982,13 +2014,25 @@ body {
         margin-bottom: 14px;
     }
 
-    .drawer-target-cost {
-        width: 100%;
-    }
-
     .drawer-levels .level-table th,
     .drawer-levels .level-table td {
         padding: 9px 6px;
+    }
+}
+
+@media (max-width: 370px) {
+    .drawer-target-control {
+        display: inline-flex;
+        flex: 1 0 100%;
+        gap: 8px;
+    }
+
+    .drawer-target-control .mini-button {
+        width: auto;
+    }
+
+    .drawer-target-cost {
+        text-align: left;
     }
 }
 

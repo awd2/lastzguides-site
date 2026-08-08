@@ -9,6 +9,7 @@
     var analyticsQueue = [];
     var analyticsFlushTimer = null;
     var plannerReadyTracked = false;
+    var plannerModalReturnFocus = null;
     var data = window.LastZResearchPlannerData;
     var plannerLocale = detectPlannerLocale();
     if (!data || !Array.isArray(data.branches)) {
@@ -272,6 +273,7 @@
             refs.mobileSheetContent.addEventListener("click", handlePlannerClick);
             refs.mobileSheetContent.addEventListener("change", handlePlannerChange);
         }
+        document.addEventListener("keydown", handlePlannerModalKeydown);
     }
 
     function trackPlannerUse(payload) {
@@ -842,6 +844,7 @@
         if (!state.selectedKey || !nodeByKey.has(state.selectedKey)) {
             refs.drawer.hidden = true;
             refs.drawerContent.innerHTML = "";
+            syncPlannerModalState();
             return;
         }
         var item = nodeByKey.get(state.selectedKey);
@@ -871,12 +874,14 @@
             '<strong>', done, "</strong>",
             miniButton("inc", state.selectedKey, "+"),
             "</div>",
-            '<button type="button" class="mini-button" data-action="complete-parents" data-key="', escapeAttr(state.selectedKey), '">Fill prereqs</button>',
+            '<div class="drawer-target-control">',
             '<button type="button" class="mini-button" data-action="plan-max" data-key="', escapeAttr(state.selectedKey), '">Target max</button>',
-            planned > 0 ? '<span class="drawer-target-cost">Target ★ ' + formatNumber(planned) + "</span>" : "",
+            planned > 0 ? '<span class="drawer-target-cost">Target Lv ' + target + ' · ★' + formatNumber(planned) + "</span>" : "",
+            "</div>",
             "</div>",
             renderLevelTable(node, state.selectedKey, done, target)
         ].join("");
+        syncPlannerModalState();
     }
 
     function renderLevelTable(node, key, done, target) {
@@ -904,13 +909,21 @@
     }
 
     function openMobileSheet(type) {
+        var wasOpen = isPlannerModalOpen();
+        if (!wasOpen) {
+            plannerModalReturnFocus = document.activeElement;
+        }
         state.mobileSheet = type;
         renderMobileSheet();
+        if (!wasOpen) {
+            focusPlannerModal(refs.mobileSheet);
+        }
     }
 
     function closeMobileSheet() {
         state.mobileSheet = null;
         renderMobileSheet();
+        restorePlannerModalFocus();
     }
 
     function renderMobileSheet() {
@@ -920,12 +933,14 @@
         if (!state.mobileSheet || !isSmallScreen()) {
             refs.mobileSheet.hidden = true;
             refs.mobileSheetContent.innerHTML = "";
+            syncPlannerModalState();
             return;
         }
         var branch = branchById.get(state.activeBranchId);
         if (!branch) {
             refs.mobileSheet.hidden = true;
             refs.mobileSheetContent.innerHTML = "";
+            syncPlannerModalState();
             return;
         }
         refs.mobileSheet.hidden = false;
@@ -946,6 +961,7 @@
                 renderStatsMarkup(aggregateStats(branch))
             ].join("");
         }
+        syncPlannerModalState();
     }
 
     function handlePlannerClick(event) {
@@ -970,8 +986,15 @@
         var applied = false;
 
         if (action === "open-node" && key) {
+            var wasDrawerOpen = !refs.drawer.hidden;
+            if (!isPlannerModalOpen()) {
+                plannerModalReturnFocus = actionEl;
+            }
             state.selectedKey = key;
             renderDrawer();
+            if (!wasDrawerOpen) {
+                focusPlannerModal(refs.drawer);
+            }
             trackPlannerUse({
                 action: "open_node",
                 branch_id: state.activeBranchId,
@@ -1640,9 +1663,88 @@
     }
 
     function closeDrawer() {
+        var closingKey = state.selectedKey;
         state.selectedKey = null;
         refs.drawer.hidden = true;
         refs.drawerContent.innerHTML = "";
+        syncPlannerModalState();
+        restorePlannerModalFocus(closingKey);
+    }
+
+    function isPlannerModalOpen() {
+        return !refs.drawer.hidden || (refs.mobileSheet && !refs.mobileSheet.hidden);
+    }
+
+    function syncPlannerModalState() {
+        var isOpen = isPlannerModalOpen();
+        document.documentElement.classList.toggle("planner-modal-open", isOpen);
+        document.body.classList.toggle("planner-modal-open", isOpen);
+    }
+
+    function focusPlannerModal(container) {
+        var panel = container && container.querySelector("[role=dialog]");
+        var closeButton = container && container.querySelector("[data-close-drawer], [data-close-sheet]");
+        if (panel) {
+            panel.scrollTop = 0;
+        }
+        if (closeButton) {
+            closeButton.focus({ preventScroll: true });
+        }
+    }
+
+    function restorePlannerModalFocus(nodeKeyToRestore) {
+        if (isPlannerModalOpen()) {
+            return;
+        }
+        var target = plannerModalReturnFocus;
+        plannerModalReturnFocus = null;
+        if ((!target || !target.isConnected) && nodeKeyToRestore) {
+            target = Array.prototype.slice.call(document.querySelectorAll('[data-action="open-node"]')).find(function (element) {
+                return element.getAttribute("data-key") === nodeKeyToRestore;
+            });
+        }
+        if (target && target.isConnected && typeof target.focus === "function") {
+            target.focus({ preventScroll: true });
+        }
+    }
+
+    function handlePlannerModalKeydown(event) {
+        var activeModal = !refs.drawer.hidden ? refs.drawer : refs.mobileSheet && !refs.mobileSheet.hidden ? refs.mobileSheet : null;
+        if (!activeModal) {
+            return;
+        }
+        if (event.key === "Escape") {
+            event.preventDefault();
+            if (activeModal === refs.drawer) {
+                closeDrawer();
+            } else {
+                closeMobileSheet();
+            }
+            return;
+        }
+        if (event.key !== "Tab") {
+            return;
+        }
+        var focusable = Array.prototype.slice.call(activeModal.querySelectorAll(
+            'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )).filter(function (element) {
+            return element.offsetParent !== null;
+        });
+        if (!focusable.length) {
+            return;
+        }
+        var first = focusable[0];
+        var last = focusable[focusable.length - 1];
+        if (!activeModal.contains(document.activeElement)) {
+            event.preventDefault();
+            (event.shiftKey ? last : first).focus();
+        } else if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
     }
 
     function readJsonStorage(key) {
