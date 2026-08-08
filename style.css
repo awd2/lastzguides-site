@@ -1718,6 +1718,19 @@ body.ui-standard-cost .breadcrumb {
     margin-left: 20px;
 }
 
+body.ui-foundation .faq-item {
+    margin-bottom: 0;
+    padding: 14px 0;
+}
+
+body.ui-foundation .faq-item h3 {
+    margin: 0 0 var(--lz-space-2, 8px);
+}
+
+body.ui-foundation .faq-item p {
+    margin-bottom: 0;
+}
+
 /* Info media (shared with data pages) */
 .info-media {
     margin-top: 12px;
@@ -2009,7 +2022,7 @@ footer a:hover, .site-footer a:hover {
         max-width: none;
         margin-right: 16px;
         margin-left: 16px;
-        padding: 24px 0 calc(88px + env(safe-area-inset-bottom));
+        padding: 24px 0;
     }
 
     .planner-shell ~ .site-footer {
@@ -4440,11 +4453,20 @@ body.ui-foundation .atlas-route {
     border-bottom: 1px solid var(--border-subtle, #3c3d36);
 }
 
+body.ui-foundation .guide .atlas-route {
+    margin-bottom: 12px;
+    padding-left: 0;
+}
+
 body.ui-foundation .atlas-route li {
     color: #d7d3ca;
     font-family: var(--lz-type-reading, 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
     font-size: 0.88rem;
     font-weight: 650;
+}
+
+body.ui-foundation .guide .atlas-route li {
+    margin-bottom: 0;
 }
 
 body.ui-foundation .atlas-route li + li::before {
@@ -4523,6 +4545,18 @@ body.ui-foundation .atlas-link {
 
     body.ui-foundation .atlas-route {
         gap: 7px 0;
+    }
+
+    body.ui-foundation .guide .atlas-route li:nth-child(n + 4) {
+        display: grid;
+        grid-template-columns: 20px minmax(0, 1fr);
+        align-items: start;
+        flex: 1 0 100%;
+        gap: var(--lz-space-2, 8px);
+    }
+
+    body.ui-foundation .guide .atlas-route li:nth-child(n + 4)::before {
+        margin: 0;
     }
 }
 
