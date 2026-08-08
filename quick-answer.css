@@ -187,6 +187,11 @@
     opacity: 1;
 }
 
+.quick-answer--modern .qa-detail a[href*="last-z.com/giftCenter"] {
+    white-space: nowrap;
+    overflow-wrap: normal;
+}
+
 .quick-answer--modern .qa-callouts {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
