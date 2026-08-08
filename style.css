@@ -1723,11 +1723,13 @@ body.ui-foundation .faq-item {
     padding: 14px 0;
 }
 
-body.ui-foundation .faq-item h3 {
+body.ui-foundation .faq-section .faq-item h3,
+body.ui-foundation.ui-guide-utilities > article.guide-content .faq-item h3 {
     margin: 0 0 var(--lz-space-2, 8px);
 }
 
-body.ui-foundation .faq-item p {
+body.ui-foundation .faq-section .faq-item p,
+body.ui-foundation.ui-guide-utilities > article.guide-content .faq-item p {
     margin-bottom: 0;
 }
 
