@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+  <title id="title">Research planning route diagram</title>
+  <desc id="desc">A compact field-manual diagram of connected research checkpoints.</desc>
+  <rect width="640" height="480" fill="#1d1e1a"/>
+  <g stroke="#34362f" stroke-width="1" opacity=".75">
+    <path d="M0 80H640M0 160H640M0 240H640M0 320H640M0 400H640"/>
+    <path d="M80 0V480M160 0V480M240 0V480M320 0V480M400 0V480M480 0V480M560 0V480"/>
+  </g>
+  <g fill="none" stroke="#77786e" stroke-width="3">
+    <path d="M80 240 190 130 320 240 460 120 560 230"/>
+    <path d="M190 130 210 350 320 240 450 360 560 230"/>
+  </g>
+  <g fill="#20211d" stroke="#c2bfb4" stroke-width="3">
+    <circle cx="80" cy="240" r="26"/>
+    <circle cx="190" cy="130" r="22"/>
+    <circle cx="210" cy="350" r="22"/>
+    <circle cx="320" cy="240" r="31"/>
+    <circle cx="460" cy="120" r="22"/>
+    <circle cx="450" cy="360" r="22"/>
+    <circle cx="560" cy="230" r="27"/>
+  </g>
+  <g fill="#d9584c">
+    <circle cx="80" cy="240" r="8"/>
+    <circle cx="320" cy="240" r="10"/>
+    <circle cx="560" cy="230" r="9"/>
+  </g>
+  <g fill="#9fe3f3">
+    <path d="m183 130 7-12 7 12-7 12z"/>
+    <path d="m203 350 7-12 7 12-7 12z"/>
+    <path d="m453 120 7-12 7 12-7 12z"/>
+    <path d="m443 360 7-12 7 12-7 12z"/>
+  </g>
+</svg>
