@@ -55,6 +55,7 @@
         branchOverview: document.querySelector("[data-branch-overview]"),
         warningPanel: document.querySelector("[data-warning-panel]"),
         statPanel: document.querySelector("[data-stat-panel]"),
+        workspace: document.querySelector(".planner-workspace"),
         plannerView: document.querySelector("[data-planner-view]"),
         branchSelect: document.querySelector("[data-branch-select]"),
         branchMenuButton: document.querySelector("[data-branch-menu-button]"),
@@ -589,6 +590,7 @@
         if (!branch) {
             refs.branchSummary.innerHTML = "";
             refs.plannerView.innerHTML = "";
+            refs.workspace.classList.add("is-rendered");
             return;
         }
 
@@ -633,6 +635,7 @@
         } else {
             renderTree(branch);
         }
+        refs.workspace.classList.add("is-rendered");
     }
 
     function renderWarnings(branch) {

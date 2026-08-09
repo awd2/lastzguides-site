@@ -518,17 +518,16 @@
         document.addEventListener('click', (event) => {
             const link = event.target.closest('[data-ldshop-placement]');
             if (!link) return;
-            let context = contexts.get(link) || { state: null, viewed: false, experimentPlacement: false };
-            if (context.experimentPlacement) {
-                context = recordView(link);
-            }
+            const context = contexts.get(link) || { state: null, viewed: false, experimentPlacement: false };
             track('ldshop_promo_click', Object.assign(ldshopPromoParams(link), {
                 destination_url: link.href,
                 ldshop_clicker_id: getOrCreateClickerId()
             }));
             if (!context.state) return;
 
-            const exposureNumber = context.state.qualified_exposures;
+            const exposureNumber = context.presentation
+                ? context.presentation.exposureNumber
+                : context.state.qualified_exposures;
             if (exposureNumber === 1) {
                 context.state.clicked_on_first_exposure = true;
                 writeLdshopExperimentState(context.state);
