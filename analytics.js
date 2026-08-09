@@ -320,13 +320,13 @@
         return values;
     }
 
-    function createLdshopExperimentState() {
+    function createLdshopExperimentState(clickedOnFirstExposure) {
         const state = {
             experiment_id: LDSHOP_EXPERIMENT.id,
             group: Math.random() < 0.5 ? 'control' : 'rotation',
             rotation_order: shuffledLdshopCreativeIds(),
             qualified_exposures: 0,
-            clicked_on_first_exposure: false,
+            clicked_on_first_exposure: clickedOnFirstExposure === true,
             eligibility_recorded: false,
             first_click_recorded: false,
             expires_at: Date.now() + LDSHOP_EXPERIMENT.durationMs
@@ -463,7 +463,7 @@
                 ? readLdshopExperimentState()
                 : null;
             const presentation = experimentPlacement
-                ? applyLdshopPresentation(link, state)
+                ? applyLdshopPresentation(link, state && state.qualified_exposures > 0 ? state : null)
                 : null;
             contexts.set(link, { state, presentation, viewed: false, experimentPlacement });
         });
@@ -523,15 +523,19 @@
                 destination_url: link.href,
                 ldshop_clicker_id: getOrCreateClickerId()
             }));
+            if (!context.state && context.experimentPlacement && isEnglishPage()) {
+                context.state = createLdshopExperimentState(true);
+            }
             if (!context.state) return;
 
             const exposureNumber = context.presentation
                 ? context.presentation.exposureNumber
                 : context.state.qualified_exposures;
             if (exposureNumber === 1) {
-                context.state.clicked_on_first_exposure = true;
-                writeLdshopExperimentState(context.state);
-                applyLdshopPresentation(link, context.state, context.presentation);
+                if (!context.state.clicked_on_first_exposure) {
+                    context.state.clicked_on_first_exposure = true;
+                    writeLdshopExperimentState(context.state);
+                }
                 return;
             }
             if (context.state.eligibility_recorded && !context.state.first_click_recorded) {
