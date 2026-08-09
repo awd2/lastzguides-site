@@ -137,6 +137,14 @@
     </nav>
 
     <header class="hero">
+        <picture class="hero-art" aria-hidden="true">
+            <source media="(max-width: 600px)" type="image/avif" srcset="/assets/home/hero/hq-hero-mobile-390.avif 390w, /assets/home/hero/hq-hero-mobile-780.avif 780w" sizes="100vw">
+            <source media="(max-width: 600px)" type="image/webp" srcset="/assets/home/hero/hq-hero-mobile-390.webp 390w, /assets/home/hero/hq-hero-mobile-780.webp 780w" sizes="100vw">
+            <source media="(max-width: 600px)" type="image/jpeg" srcset="/assets/home/hero/hq-hero-mobile-390.jpg 390w, /assets/home/hero/hq-hero-mobile-780.jpg 780w" sizes="100vw">
+            <source type="image/avif" srcset="/assets/home/hero/hq-hero-desktop-585.avif 585w, /assets/home/hero/hq-hero-desktop-1170.avif 1170w" sizes="(max-width: 1000px) 52vw, 585px">
+            <source type="image/webp" srcset="/assets/home/hero/hq-hero-desktop-585.webp 585w, /assets/home/hero/hq-hero-desktop-1170.webp 1170w" sizes="(max-width: 1000px) 52vw, 585px">
+            <img src="/assets/home/hero/hq-hero-desktop-1170.jpg" srcset="/assets/home/hero/hq-hero-desktop-585.jpg 585w, /assets/home/hero/hq-hero-desktop-1170.jpg 1170w" sizes="(max-width: 1000px) 52vw, 585px" alt="" width="1170" height="658" loading="eager" decoding="async" fetchpriority="high">
+        </picture>
         <h1>Last Z Guides — Research, Events, HQ, Heroes, and F2P Strategy</h1>
         <img src="/assets/brand/last-z-survival-shooter-logo.webp"
              alt="Last Z: Survival Shooter"
@@ -185,27 +193,48 @@
                 <p>Start with the page that matches your current goal, then open the strongest guide for that path.</p>
             </div>
             <div class="sections featured-grid">
-                <a href="research.html" class="card featured-card">
+                <a href="research.html" class="card featured-card featured-card--visual featured-card--research">
+                    <picture class="featured-card__media" aria-hidden="true">
+                        <source type="image/avif" srcset="/assets/home/featured/research-techs-320.avif 320w, /assets/home/featured/research-techs-640.avif 640w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 1000px) calc(66vw - 30px), 640px">
+                        <source type="image/webp" srcset="/assets/home/featured/research-techs-320.webp 320w, /assets/home/featured/research-techs-640.webp 640w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 1000px) calc(66vw - 30px), 640px">
+                        <img src="/assets/home/featured/research-techs-640.jpg" srcset="/assets/home/featured/research-techs-320.jpg 320w, /assets/home/featured/research-techs-640.jpg 640w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 1000px) calc(66vw - 30px), 640px" alt="" width="640" height="480" loading="lazy" decoding="async" fetchpriority="low">
+                    </picture>
                     <span class="card-badge">Core Guide</span>
                     <h2>Research Priority</h2>
                     <p>Best research order, Peace Shield / Urgent Rescue, and when to choose UST/T10 or late Field Research.</p>
                 </a>
-                <a href="research-planner.html" class="card featured-card featured-card--tool">
+                <a href="research-planner.html" class="card featured-card featured-card--tool featured-card--visual featured-card--planner">
+                    <img class="featured-card__media" src="/assets/home/featured/planner-paths.svg" alt="" width="640" height="480" loading="lazy" decoding="async">
                     <span class="card-badge">Interactive Tool</span>
                     <h2>Research Planner</h2>
                     <p>Mark completed and target research nodes, see remaining badges by branch, save progress locally, and share the exact plan URL.</p>
                 </a>
-                <a href="alliance-duel.html" class="card featured-card">
+                <a href="alliance-duel.html" class="card featured-card featured-card--visual featured-card--alliance-duel">
+                    <picture class="featured-card__media" aria-hidden="true">
+                        <source type="image/avif" srcset="/assets/home/featured/alliance-duel-vs-320.avif 320w, /assets/home/featured/alliance-duel-vs-640.avif 640w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 760px) calc(50vw - 28px), (max-width: 1000px) calc(33vw - 24px), 320px">
+                        <source type="image/webp" srcset="/assets/home/featured/alliance-duel-vs-320.webp 320w, /assets/home/featured/alliance-duel-vs-640.webp 640w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 760px) calc(50vw - 28px), (max-width: 1000px) calc(33vw - 24px), 320px">
+                        <img src="/assets/home/featured/alliance-duel-vs-640.jpg" srcset="/assets/home/featured/alliance-duel-vs-320.jpg 320w, /assets/home/featured/alliance-duel-vs-640.jpg 640w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 760px) calc(50vw - 28px), (max-width: 1000px) calc(33vw - 24px), 320px" alt="" width="640" height="480" loading="lazy" decoding="async" fetchpriority="low">
+                    </picture>
                     <span class="card-badge">Best for Weekly Play</span>
                     <h2>Alliance Duel</h2>
                     <p>Day 1-6 schedule, Full Preparedness sync, and Alliance Recognition priority.</p>
                 </a>
-                <a href="hq.html" class="card featured-card">
+                <a href="hq.html" class="card featured-card featured-card--visual featured-card--hq">
+                    <picture class="featured-card__media" aria-hidden="true">
+                        <source type="image/avif" srcset="/assets/home/featured/hq-upgrade-320.avif 320w, /assets/home/featured/hq-upgrade-640.avif 640w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 760px) calc(50vw - 28px), (max-width: 1000px) calc(33vw - 24px), 320px">
+                        <source type="image/webp" srcset="/assets/home/featured/hq-upgrade-320.webp 320w, /assets/home/featured/hq-upgrade-640.webp 640w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 760px) calc(50vw - 28px), (max-width: 1000px) calc(33vw - 24px), 320px">
+                        <img src="/assets/home/featured/hq-upgrade-640.jpg" srcset="/assets/home/featured/hq-upgrade-320.jpg 320w, /assets/home/featured/hq-upgrade-640.jpg 640w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 760px) calc(50vw - 28px), (max-width: 1000px) calc(33vw - 24px), 320px" alt="" width="640" height="480" loading="lazy" decoding="async" fetchpriority="low">
+                    </picture>
                     <span class="card-badge">Start Here</span>
                     <h2>HQ Upgrade Guide</h2>
                     <p>Requirements, HQ30/HQ35 path, steel phase, and hero level cap.</p>
                 </a>
-                <a href="heroes.html" class="card featured-card">
+                <a href="heroes.html" class="card featured-card featured-card--visual featured-card--heroes">
+                    <picture class="featured-card__media" aria-hidden="true">
+                        <source type="image/avif" srcset="/assets/home/featured/heroes-roster-320.avif 320w, /assets/home/featured/heroes-roster-640.avif 640w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 760px) calc(50vw - 28px), (max-width: 1000px) calc(33vw - 24px), 320px">
+                        <source type="image/webp" srcset="/assets/home/featured/heroes-roster-320.webp 320w, /assets/home/featured/heroes-roster-640.webp 640w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 760px) calc(50vw - 28px), (max-width: 1000px) calc(33vw - 24px), 320px">
+                        <img src="/assets/home/featured/heroes-roster-640.jpg" srcset="/assets/home/featured/heroes-roster-320.jpg 320w, /assets/home/featured/heroes-roster-640.jpg 640w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 760px) calc(50vw - 28px), (max-width: 1000px) calc(33vw - 24px), 320px" alt="" width="640" height="480" loading="lazy" decoding="async" fetchpriority="low">
+                    </picture>
                     <span class="card-badge">PvP Core</span>
                     <h2>Heroes Tier List</h2>
                     <p>Best Season 4 heroes by faction, strongest picks, and who to upgrade first.</p>
