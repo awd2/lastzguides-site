@@ -602,11 +602,14 @@ body.planner-modal-open {
 
 .planner-workspace {
     min-width: 0;
-    min-height: calc(100vh - 180px);
     padding: 0;
     overflow: visible;
     background: #0b1324;
     border-color: #263753;
+}
+
+.planner-workspace:not(.is-rendered) {
+    min-height: calc(100vh - 180px);
 }
 
 .branch-summary {
