@@ -299,7 +299,7 @@ body.ui-foundation .hero + .home-nav::-webkit-scrollbar {
 body.ui-foundation .hero + .home-nav a {
     flex: 0 0 auto;
     padding: 12px 14px 10px;
-    color: var(--color-muted, #b4b1a8);
+    color: var(--nav-text, #c7c7c7);
     border: 0;
     border-bottom: 2px solid transparent;
     border-radius: 0;
@@ -3333,6 +3333,11 @@ details p {
 
     .ldshop-promo__logo {
         width: 52px;
+        aspect-ratio: 1;
+    }
+
+    .ldshop-promo__logo img {
+        height: 100%;
     }
 
     .ldshop-promo__cta {
