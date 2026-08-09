@@ -6,10 +6,52 @@
     'use strict';
 
     const MEASUREMENT_ID = 'G-PYBSRQ1QFP';
+    const LDSHOP_EXPERIMENT = {
+        id: 'ldshop_argument_rotation_v1',
+        storageKey: 'lastz_ldshop_argument_rotation_v1',
+        durationMs: 28 * 24 * 60 * 60 * 1000,
+        currentCreativeId: 'current_bundle',
+        rotationCreativeIds: ['base_saving_21', 'new_user_15', 'lastzguides_5'],
+        creatives: {
+            base_saving_21: {
+                dealSmall: 'Up to',
+                dealBig: '21%',
+                dealLabel: 'Off',
+                title: 'Top up Last Z for less',
+                textParts: [
+                    'Get the same Last Z packs for ',
+                    { strong: 'up to 21% less' },
+                    ' than in-game.'
+                ]
+            },
+            new_user_15: {
+                dealSmall: 'New user',
+                dealBig: '15%',
+                dealLabel: 'Coupon',
+                title: 'New to LDShop? Get a 15% coupon',
+                textParts: [
+                    'Take an ',
+                    { strong: 'additional 15% off' },
+                    ' your first eligible Last Z top-up.'
+                ]
+            },
+            lastzguides_5: {
+                dealSmall: 'Exclusive',
+                dealBig: '5%',
+                dealLabel: 'Coupon',
+                title: 'Get the exclusive LastZGuides 5% coupon',
+                textParts: [
+                    { strong: 'No code to enter' },
+                    ' — the coupon is added to your new LDShop account automatically.'
+                ]
+            }
+        }
+    };
     const tableDepthMarks = new Map();
 
     function canTrack() {
-        return typeof window.gtag === 'function';
+        return typeof window.gtag === 'function'
+            && !['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname);
     }
 
     function isAnalyticsDebug() {
@@ -230,15 +272,152 @@
         });
     }
 
+    function isEnglishPage() {
+        return (document.documentElement.lang || '').toLowerCase().split('-', 1)[0] === 'en';
+    }
+
+    function validLdshopExperimentState(state) {
+        if (!state || state.experiment_id !== LDSHOP_EXPERIMENT.id) return false;
+        if (state.group !== 'control' && state.group !== 'rotation') return false;
+        if (!Number.isInteger(state.qualified_exposures) || state.qualified_exposures < 0) return false;
+        if (!Number.isFinite(state.expires_at) || state.expires_at <= Date.now()) return false;
+        if (!Array.isArray(state.rotation_order)
+            || state.rotation_order.length !== LDSHOP_EXPERIMENT.rotationCreativeIds.length) {
+            return false;
+        }
+        const expected = LDSHOP_EXPERIMENT.rotationCreativeIds.slice().sort().join('|');
+        return state.rotation_order.slice().sort().join('|') === expected;
+    }
+
+    function readLdshopExperimentState() {
+        try {
+            if (!window.localStorage) return null;
+            const state = JSON.parse(window.localStorage.getItem(LDSHOP_EXPERIMENT.storageKey) || 'null');
+            if (validLdshopExperimentState(state)) return state;
+            window.localStorage.removeItem(LDSHOP_EXPERIMENT.storageKey);
+        } catch (err) {
+            // Storage failures leave the current banner in place and outside the experiment.
+        }
+        return null;
+    }
+
+    function writeLdshopExperimentState(state) {
+        try {
+            if (!window.localStorage) return false;
+            window.localStorage.setItem(LDSHOP_EXPERIMENT.storageKey, JSON.stringify(state));
+            return true;
+        } catch (err) {
+            return false;
+        }
+    }
+
+    function shuffledLdshopCreativeIds() {
+        const values = LDSHOP_EXPERIMENT.rotationCreativeIds.slice();
+        for (let index = values.length - 1; index > 0; index -= 1) {
+            const swapIndex = Math.floor(Math.random() * (index + 1));
+            [values[index], values[swapIndex]] = [values[swapIndex], values[index]];
+        }
+        return values;
+    }
+
+    function createLdshopExperimentState() {
+        const state = {
+            experiment_id: LDSHOP_EXPERIMENT.id,
+            group: Math.random() < 0.5 ? 'control' : 'rotation',
+            rotation_order: shuffledLdshopCreativeIds(),
+            qualified_exposures: 0,
+            clicked_on_first_exposure: false,
+            eligibility_recorded: false,
+            first_click_recorded: false,
+            expires_at: Date.now() + LDSHOP_EXPERIMENT.durationMs
+        };
+        return writeLdshopExperimentState(state) ? state : null;
+    }
+
+    function ldshopExposureBucket(exposureNumber) {
+        return exposureNumber >= 4 ? '4_plus' : String(exposureNumber);
+    }
+
+    function ldshopPresentation(state) {
+        const exposureNumber = state ? state.qualified_exposures + 1 : 1;
+        if (!state || state.group === 'control') {
+            return {
+                creativeId: LDSHOP_EXPERIMENT.currentCreativeId,
+                exposureNumber,
+                sequencePosition: 1
+            };
+        }
+
+        const sequencePosition = ((exposureNumber - 1) % 4) + 1;
+        return {
+            creativeId: sequencePosition === 1
+                ? LDSHOP_EXPERIMENT.currentCreativeId
+                : state.rotation_order[sequencePosition - 2],
+            exposureNumber,
+            sequencePosition
+        };
+    }
+
+    function replaceLdshopText(element, parts) {
+        if (!element) return;
+        const nodes = parts.map((part) => {
+            if (typeof part === 'string') return document.createTextNode(part);
+            const strong = document.createElement('strong');
+            strong.textContent = part.strong;
+            return strong;
+        });
+        element.replaceChildren(...nodes);
+    }
+
+    function applyLdshopPresentation(link, state, selectedPresentation) {
+        const presentation = selectedPresentation || ldshopPresentation(state);
+        const creative = LDSHOP_EXPERIMENT.creatives[presentation.creativeId];
+        if (creative) {
+            const deal = link.querySelector('.ldshop-promo__deal');
+            const dealSmall = deal ? deal.querySelector('.ldshop-promo__deal-small') : null;
+            const dealBig = deal ? deal.querySelector('.ldshop-promo__deal-big') : null;
+            const dealLabel = deal ? deal.querySelector('.ldshop-promo__deal-label') : null;
+            const title = link.querySelector('.ldshop-promo__title');
+            if (dealSmall) dealSmall.textContent = creative.dealSmall;
+            if (dealBig) dealBig.textContent = creative.dealBig;
+            if (dealLabel) dealLabel.textContent = creative.dealLabel;
+            if (title) title.textContent = creative.title;
+            replaceLdshopText(link.querySelector('.ldshop-promo__text'), creative.textParts);
+        }
+
+        link.dataset.ldshopExperimentId = state ? LDSHOP_EXPERIMENT.id : '';
+        link.dataset.ldshopExperimentGroup = state ? state.group : '';
+        link.dataset.ldshopCreativeId = presentation.creativeId;
+        link.dataset.ldshopExposureNumber = String(presentation.exposureNumber);
+        link.dataset.ldshopSequencePosition = String(presentation.sequencePosition);
+        link.dataset.ldshopExperimentEligible = state && state.eligibility_recorded ? 'true' : 'false';
+        return presentation;
+    }
+
+    function ldshopExperimentParams(link) {
+        const experimentId = link.dataset.ldshopExperimentId || '';
+        if (!experimentId) return {};
+        const exposureNumber = Number.parseInt(link.dataset.ldshopExposureNumber || '1', 10);
+        return {
+            experiment_id: experimentId,
+            experiment_group: link.dataset.ldshopExperimentGroup || '',
+            creative_id: link.dataset.ldshopCreativeId || LDSHOP_EXPERIMENT.currentCreativeId,
+            exposure_number: exposureNumber,
+            exposure_bucket: ldshopExposureBucket(exposureNumber),
+            sequence_position: link.dataset.ldshopSequencePosition || '1',
+            experiment_eligible: link.dataset.ldshopExperimentEligible === 'true'
+        };
+    }
+
     function ldshopPromoParams(link) {
         const path = getPath();
-        return {
+        return Object.assign({
             partner: 'ldshop',
             placement_id: link.getAttribute('data-placement-id') || 'ldshop-promo',
             page_path: window.location.pathname || '/',
             page_type: path === 'index.html' ? 'home' : 'guide',
             guide_slug: slugFromUrl(path)
-        };
+        }, ldshopExperimentParams(link));
     }
 
     function giftCenterTrackingParams(link) {
@@ -277,15 +456,59 @@
 
     function attachLdshopPromoTracking() {
         const promoLinks = document.querySelectorAll('[data-ldshop-placement]');
+        const contexts = new WeakMap();
+        promoLinks.forEach((link) => {
+            const experimentPlacement = link.matches('.ldshop-promo');
+            const state = experimentPlacement && isEnglishPage()
+                ? readLdshopExperimentState()
+                : null;
+            const presentation = experimentPlacement
+                ? applyLdshopPresentation(link, state)
+                : null;
+            contexts.set(link, { state, presentation, viewed: false, experimentPlacement });
+        });
+
+        function recordView(link) {
+            const context = contexts.get(link) || { state: null, viewed: false };
+            if (context.viewed) return context;
+            context.viewed = true;
+
+            if (context.experimentPlacement && isEnglishPage()) {
+                context.state = context.state || createLdshopExperimentState();
+                if (context.state) {
+                    const presentation = context.presentation || ldshopPresentation(context.state);
+                    context.state.qualified_exposures = presentation.exposureNumber;
+                    const becameEligible = presentation.exposureNumber >= 2
+                        && !context.state.clicked_on_first_exposure
+                        && !context.state.eligibility_recorded;
+                    if (becameEligible) {
+                        context.state.eligibility_recorded = true;
+                    }
+                    writeLdshopExperimentState(context.state);
+                    applyLdshopPresentation(link, context.state, presentation);
+                    context.presentation = presentation;
+                    contexts.set(link, context);
+                    track('ldshop_promo_view', ldshopPromoParams(link));
+                    if (becameEligible) {
+                        track('ldshop_experiment_eligible', ldshopPromoParams(link));
+                    }
+                    return context;
+                }
+            }
+
+            contexts.set(link, context);
+            track('ldshop_promo_view', ldshopPromoParams(link));
+            return context;
+        }
+
         if (promoLinks.length > 0 && 'IntersectionObserver' in window) {
-            const seen = new WeakSet();
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
-                    if (!entry.isIntersecting || entry.intersectionRatio < 0.5 || seen.has(entry.target)) {
+                    const context = contexts.get(entry.target);
+                    if (!entry.isIntersecting || entry.intersectionRatio < 0.5 || (context && context.viewed)) {
                         return;
                     }
-                    seen.add(entry.target);
-                    track('ldshop_promo_view', ldshopPromoParams(entry.target));
+                    recordView(entry.target);
                     observer.unobserve(entry.target);
                 });
             }, { threshold: 0.5 });
@@ -295,10 +518,30 @@
         document.addEventListener('click', (event) => {
             const link = event.target.closest('[data-ldshop-placement]');
             if (!link) return;
+            let context = contexts.get(link) || { state: null, viewed: false, experimentPlacement: false };
+            if (context.experimentPlacement) {
+                context = recordView(link);
+            }
             track('ldshop_promo_click', Object.assign(ldshopPromoParams(link), {
                 destination_url: link.href,
                 ldshop_clicker_id: getOrCreateClickerId()
             }));
+            if (!context.state) return;
+
+            const exposureNumber = context.state.qualified_exposures;
+            if (exposureNumber === 1) {
+                context.state.clicked_on_first_exposure = true;
+                writeLdshopExperimentState(context.state);
+                applyLdshopPresentation(link, context.state, context.presentation);
+                return;
+            }
+            if (context.state.eligibility_recorded && !context.state.first_click_recorded) {
+                context.state.first_click_recorded = true;
+                writeLdshopExperimentState(context.state);
+                track('ldshop_experiment_first_click', Object.assign(ldshopPromoParams(link), {
+                    destination_url: link.href
+                }));
+            }
         });
     }
 
