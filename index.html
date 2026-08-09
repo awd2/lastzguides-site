@@ -6,6 +6,9 @@
     <meta name="p:domain_verify" content="d04f5c749e4b4ba0c8f8e48449566156">
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <link rel="preload" href="/assets/fonts/source-sans-3/source-sans-3-latin-400-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/barlow-condensed/barlow-condensed-latin-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/barlow-condensed/barlow-condensed-latin-700.woff2" as="font" type="font/woff2" crossorigin>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYBSRQ1QFP"></script>
     <script>
@@ -23,8 +26,9 @@
     <link rel="alternate" href="https://lastzguides.com/fr/" hreflang="fr">
     <link rel="alternate" href="https://lastzguides.com/es/" hreflang="es">
     <link rel="alternate" href="https://lastzguides.com/" hreflang="x-default">
-<link rel="stylesheet" href="style.css?v=20260608-ldshop">
-    <link rel="stylesheet" href="search.css">
+<link rel="stylesheet" href="style.css?v=20260809-home-perf">
+    <link rel="preload" as="style" href="search.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="search.css"></noscript>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="icon" href="favicon.ico" sizes="any">
@@ -122,7 +126,7 @@
             <kbd><span>⌘</span>K</kbd>
         </button>
         <details class="language-switcher">
-            <summary class="language-switcher__button" aria-label="Language">EN</summary>
+            <summary class="language-switcher__button" aria-label="Language: EN">EN</summary>
             <div class="language-switcher__menu" role="list">
                 <a href="/" hreflang="en" lang="en" aria-current="page">English</a>
                 <a href="/fr/" hreflang="fr" lang="fr">Français</a>
@@ -138,15 +142,17 @@
 
     <header class="hero">
         <picture class="hero-art" aria-hidden="true">
-            <source media="(max-width: 600px)" type="image/avif" srcset="/assets/home/hero/hq-hero-mobile-390.avif 390w, /assets/home/hero/hq-hero-mobile-780.avif 780w" sizes="100vw">
-            <source media="(max-width: 600px)" type="image/webp" srcset="/assets/home/hero/hq-hero-mobile-390.webp 390w, /assets/home/hero/hq-hero-mobile-780.webp 780w" sizes="100vw">
-            <source media="(max-width: 600px)" type="image/jpeg" srcset="/assets/home/hero/hq-hero-mobile-390.jpg 390w, /assets/home/hero/hq-hero-mobile-780.jpg 780w" sizes="100vw">
+            <source media="(max-width: 600px)" type="image/avif" srcset="/assets/home/hero/hq-hero-mobile-390.avif 390w, /assets/home/hero/hq-hero-mobile-780.avif 780w" sizes="50vw">
+            <source media="(max-width: 600px)" type="image/webp" srcset="/assets/home/hero/hq-hero-mobile-390.webp 390w, /assets/home/hero/hq-hero-mobile-780.webp 780w" sizes="50vw">
+            <source media="(max-width: 600px)" type="image/jpeg" srcset="/assets/home/hero/hq-hero-mobile-390.jpg 390w, /assets/home/hero/hq-hero-mobile-780.jpg 780w" sizes="50vw">
             <source type="image/avif" srcset="/assets/home/hero/hq-hero-desktop-585.avif 585w, /assets/home/hero/hq-hero-desktop-1170.avif 1170w" sizes="(max-width: 1000px) 52vw, 585px">
             <source type="image/webp" srcset="/assets/home/hero/hq-hero-desktop-585.webp 585w, /assets/home/hero/hq-hero-desktop-1170.webp 1170w" sizes="(max-width: 1000px) 52vw, 585px">
-            <img src="/assets/home/hero/hq-hero-desktop-1170.jpg" srcset="/assets/home/hero/hq-hero-desktop-585.jpg 585w, /assets/home/hero/hq-hero-desktop-1170.jpg 1170w" sizes="(max-width: 1000px) 52vw, 585px" alt="" width="1170" height="658" loading="eager" decoding="async" fetchpriority="high">
+            <img src="/assets/home/hero/hq-hero-desktop-1170.jpg" srcset="/assets/home/hero/hq-hero-desktop-585.jpg 585w, /assets/home/hero/hq-hero-desktop-1170.jpg 1170w" sizes="(max-width: 1000px) 52vw, 585px" alt="" width="1170" height="658" loading="eager" decoding="async">
         </picture>
         <h1>Last Z Guides — Research, Events, HQ, Heroes, and F2P Strategy</h1>
-        <img src="/assets/brand/last-z-survival-shooter-logo.webp"
+        <img src="/assets/brand/last-z-survival-shooter-logo-250.webp"
+             srcset="/assets/brand/last-z-survival-shooter-logo-150.webp 150w, /assets/brand/last-z-survival-shooter-logo-250.webp 250w, /assets/brand/last-z-survival-shooter-logo.webp 500w"
+             sizes="(max-width: 600px) 72px, 118px"
              alt="Last Z: Survival Shooter"
              class="logo"
              width="500"
@@ -197,7 +203,7 @@
                     <picture class="featured-card__media" aria-hidden="true">
                         <source type="image/avif" srcset="/assets/home/featured/research-techs-320.avif 320w, /assets/home/featured/research-techs-640.avif 640w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 1000px) calc(66vw - 30px), 640px">
                         <source type="image/webp" srcset="/assets/home/featured/research-techs-320.webp 320w, /assets/home/featured/research-techs-640.webp 640w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 1000px) calc(66vw - 30px), 640px">
-                        <img src="/assets/home/featured/research-techs-640.jpg" srcset="/assets/home/featured/research-techs-320.jpg 320w, /assets/home/featured/research-techs-640.jpg 640w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 1000px) calc(66vw - 30px), 640px" alt="" width="640" height="480" loading="lazy" decoding="async" fetchpriority="low">
+                        <img src="/assets/home/featured/research-techs-640.jpg" srcset="/assets/home/featured/research-techs-320.jpg 320w, /assets/home/featured/research-techs-640.jpg 640w" sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 1000px) calc(66vw - 30px), 640px" alt="" width="640" height="480" loading="eager" decoding="async" fetchpriority="high">
                     </picture>
                     <span class="card-badge">Core Guide</span>
                     <h2>Research Priority</h2>
