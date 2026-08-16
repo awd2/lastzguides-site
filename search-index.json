@@ -1570,6 +1570,26 @@
     ]
   },
   {
+    "url": "/es/state-migration.html",
+    "locale": "es",
+    "source_path": "state-migration.html",
+    "title": "Guía de State Migration de Last Z",
+    "category": "Guides",
+    "description": "Guía de State Migration de Last Z: cuándo se abre, cómo funcionan Migration Score y tiers, costes de pases, cupos, invitaciones, requisitos y checklist.",
+    "keywords": [
+      "State",
+      "Migration",
+      "Last",
+      "Score",
+      "tiers",
+      "pases",
+      "requisitos",
+      "ndo",
+      "abre",
+      "funcionan"
+    ]
+  },
+  {
     "url": "/es/steel.html",
     "locale": "es",
     "source_path": "steel.html",
@@ -3122,6 +3142,26 @@
       "viter",
       "parcours",
       "dans"
+    ]
+  },
+  {
+    "url": "/fr/state-migration.html",
+    "locale": "fr",
+    "source_path": "state-migration.html",
+    "title": "Guide State Migration de Last Z",
+    "category": "Guides",
+    "description": "Guide State Migration de Last Z : ouverture, Migration Score et tiers, coût des pass, quotas, invitations, conditions et checklist avant le transfert.",
+    "keywords": [
+      "Guide",
+      "State",
+      "Migration",
+      "Last",
+      "Score",
+      "tiers",
+      "pass",
+      "conditions",
+      "ouverture",
+      "des"
     ]
   },
   {

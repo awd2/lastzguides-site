@@ -779,6 +779,16 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://lastzguides.com/es/state-migration.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/state-migration.html" />
+        <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/state-migration.html" />
+        <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/state-migration.html" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/state-migration.html" />
+        <lastmod>2026-08-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://lastzguides.com/es/steel.html</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/steel.html" />
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/steel.html" />
@@ -1551,6 +1561,16 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://lastzguides.com/fr/state-migration.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/state-migration.html" />
+        <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/state-migration.html" />
+        <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/state-migration.html" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/state-migration.html" />
+        <lastmod>2026-08-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://lastzguides.com/fr/steel.html</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/steel.html" />
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/steel.html" />
@@ -2040,6 +2060,10 @@
     </url>
     <url>
         <loc>https://lastzguides.com/state-migration.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/state-migration.html" />
+        <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/state-migration.html" />
+        <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/state-migration.html" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/state-migration.html" />
         <lastmod>2026-08-16</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
