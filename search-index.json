@@ -4125,6 +4125,26 @@
     ]
   },
   {
+    "url": "/state-migration.html",
+    "locale": "en",
+    "source_path": "state-migration.html",
+    "title": "State Migration Guide",
+    "category": "Guides",
+    "description": "Last Z State Migration guide: when migration opens, how scores and tiers work, pass costs, destination quotas, invitation phases, requirements, and move chec...",
+    "keywords": [
+      "Last",
+      "State",
+      "Migration",
+      "Guide",
+      "Score",
+      "Tiers",
+      "Passes",
+      "Requirements",
+      "and",
+      "when"
+    ]
+  },
+  {
     "url": "/steel.html",
     "locale": "en",
     "source_path": "steel.html",
