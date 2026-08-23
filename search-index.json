@@ -4165,6 +4165,26 @@
     ]
   },
   {
+    "url": "/state-migration-planner.html",
+    "locale": "en",
+    "source_path": "state-migration-planner.html",
+    "title": "State Migration Planner",
+    "category": "Guides",
+    "description": "Use the Last Z State Migration Planner to track applicants, tier quotas, reserved slots, alliances, follow-up status, and local JSON or CSV exports.",
+    "keywords": [
+      "Last",
+      "State",
+      "Migration",
+      "Planner",
+      "Applicant",
+      "Slot",
+      "Tracker",
+      "Use",
+      "the",
+      "track"
+    ]
+  },
+  {
     "url": "/state-migration.html",
     "locale": "en",
     "source_path": "state-migration.html",
