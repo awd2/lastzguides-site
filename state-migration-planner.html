@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYBSRQ1QFP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PYBSRQ1QFP');
+    </script>
+    <title>Last Z State Migration Planner — Applicant &amp; Slot Tracker</title>
+    <meta name="description" content="Use the Last Z State Migration Planner to track applicants, tier quotas, reserved slots, alliances, follow-up status, and local JSON or CSV exports.">
+    <link rel="canonical" href="https://lastzguides.com/state-migration-planner.html">
+
+    <link rel="alternate" href="https://lastzguides.com/state-migration-planner.html" hreflang="en">
+    <link rel="alternate" href="https://lastzguides.com/state-migration-planner.html" hreflang="x-default">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="state-migration-planner.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="favicon-48.png" sizes="48x48">
+    <link rel="icon" type="image/png" href="favicon-192.png" sizes="192x192">
+
+    <meta property="og:title" content="Last Z State Migration Planner — Applicant &amp; Slot Tracker">
+    <meta property="og:description" content="Track migration applicants, tier quotas, reserved slots, alliance assignments, and follow-up status in one local board.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lastzguides.com/state-migration-planner.html">
+    <meta property="og:image" content="https://lastzguides.com/assets/social/last-z-guides-share-v3.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="Last Z Guides social preview highlighting gift codes, practical guides, exact research costs, and the Research Planner.">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Last Z Guides">
+    <!-- lastz:freshness-update reason="major_rewrite" date="2026-08-23" -->
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Last Z State Migration Planner — Applicant &amp; Slot Tracker">
+    <meta name="twitter:description" content="Track migration applicants, tier quotas, reserved slots, alliance assignments, and follow-up status in one local board.">
+    <meta name="twitter:image" content="https://lastzguides.com/assets/social/last-z-guides-share-v3.png">
+    <meta name="twitter:image:alt" content="Last Z Guides social preview highlighting gift codes, practical guides, exact research costs, and the Research Planner.">
+    <meta name="robots" content="max-image-preview:large">
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Last Z State Migration Planner",
+    "url": "https://lastzguides.com/state-migration-planner.html",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Any",
+    "description": "A local Last Z State Migration applicant and slot tracker for standard destination state tier quotas, alliance assignments, follow-up status, and JSON or CSV exports.",
+    "featureList": [
+        "Standard destination state tier quotas",
+        "Applicant status tracking",
+        "Alliance assignments",
+        "Occupied and remaining slot counters",
+        "Local browser persistence",
+        "JSON import and export",
+        "CSV export",
+        "Discord summary"
+    ],
+    "publisher": {
+        "@type": "Organization",
+        "name": "Last Z Guides"
+    }
+}
+    </script>
+    <script type="application/ld+json">
+{
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://lastzguides.com/"},
+            {"@type": "ListItem", "position": 2, "name": "State Migration Guide", "item": "https://lastzguides.com/state-migration.html"},
+            {"@type": "ListItem", "position": 3, "name": "Migration Planner", "item": "https://lastzguides.com/state-migration-planner.html"}
+        ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Last Z Guides",
+        "url": "https://lastzguides.com/",
+        "logo": "https://lastzguides.com/favicon-192.png",
+        "email": "lastzguides@gmail.com",
+        "description": "Independent Last Z guides focused on research, events, heroes, HQ progression, and F2P strategy.",
+        "contactPoint": [{"@type": "ContactPoint", "contactType": "editorial support", "email": "lastzguides@gmail.com", "url": "https://lastzguides.com/contact.html"}]
+}
+    </script>
+    <!-- Schema.org: Organization -->
+    <script type="application/ld+json">
+{
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Last Z Guides",
+        "url": "https://lastzguides.com/",
+        "logo": "https://lastzguides.com/favicon-192.png",
+        "email": "lastzguides@gmail.com",
+        "description": "Independent Last Z guides focused on research, events, heroes, HQ progression, and F2P strategy.",
+        "contactPoint": [
+            {
+                "@type": "ContactPoint",
+                "contactType": "editorial support",
+                "email": "lastzguides@gmail.com",
+                "url": "https://lastzguides.com/contact.html"
+            }
+        ]
+    }
+    </script>
+
+</head>
+<body class="migration-planner-page">
+    <header class="site-header site-header--has-language">
+        <a href="/" class="logo-link">
+            <img decoding="async" class="site-logo" src="favicon-32.png" alt="Last Z Guides" width="18" height="18">
+            <span>Last Z Guides</span>
+        </a>
+        <nav class="site-primary-nav" aria-label="Primary navigation">
+            <a href="/research-planner.html">Research Planner</a>
+            <a href="/state-migration-planner.html" class="is-active">Migration Planner</a>
+            <a href="/codes.html">Gift Codes</a>
+        </nav>
+        <button class="search-trigger" aria-label="Search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            <span>Search...</span>
+            <kbd><span>⌘</span>K</kbd>
+        </button>
+        <details class="language-switcher">
+            <summary class="language-switcher__button" aria-label="Language: EN">EN</summary>
+            <div class="language-switcher__menu" role="list">
+                <a href="/state-migration-planner.html" hreflang="en" lang="en" aria-current="page">English</a>
+                <a href="/fr/state-migration.html" hreflang="fr" lang="fr">Guide en français</a>
+                <a href="/es/state-migration.html" hreflang="es" lang="es">Guía en español</a>
+            </div>
+        </details>
+    </header>
+    <nav class="mobile-bottom-nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/research-planner.html">Planner</a>
+        <a href="/state-migration-planner.html" class="is-active">Migration</a>
+        <a href="/codes.html">Codes</a>
+    </nav>
+
+    <nav class="breadcrumb">
+        <a href="/">Home</a>
+        <span>›</span>
+        <a href="state-migration.html">State Migration Guide</a>
+        <span>›</span>
+        <span>Migration Planner</span>
+    </nav>
+
+    <main class="migration-planner planner-shell" id="migration-planner">
+        <section class="migration-hero" aria-labelledby="migration-planner-title">
+            <div>
+                <p class="migration-kicker">Local coordination tool</p>
+                <h1 id="migration-planner-title">Last Z State Migration Planner — Applicant &amp; Slot Tracker</h1>
+                <p class="planner-lede">Build one migration board for your state. Add candidates, track the standard tier quotas, reserve slots, assign alliances, and export the list before invitations open.</p>
+            </div>
+            <aside class="migration-warning" aria-label="Planner limits">
+                <strong>Use the current in-game assessment</strong>
+                <p>This planner does not calculate Migration Score or Identity Tier. Copy those values from the current in-game Migration Assessment. Your board stays in this browser unless you export it.</p>
+            </aside>
+        </section>
+
+        <noscript>
+            <section class="migration-panel">
+                <h2>JavaScript Required</h2>
+                <p>The Migration Planner needs JavaScript to save and filter applicants. Migration mechanics and checklists remain available in the <a href="state-migration.html">State Migration Guide</a>.</p>
+            </section>
+        </noscript>
+
+        <section class="migration-panel migration-setup" aria-labelledby="board-setup-title">
+            <div class="migration-panel-heading">
+                <div>
+                    <p class="migration-step">Step 1</p>
+                    <h2 id="board-setup-title">Set up this migration board</h2>
+                </div>
+                <span class="migration-save-state" data-save-state aria-live="polite">Saved locally</span>
+            </div>
+            <div class="migration-form-grid migration-form-grid--setup">
+                <label>
+                    <span>Board name</span>
+                    <input type="text" data-board-name maxlength="80" placeholder="State 412 intake">
+                </label>
+                <label>
+                    <span>Destination state</span>
+                    <input type="text" data-destination-state maxlength="40" placeholder="412">
+                </label>
+            </div>
+        </section>
+
+        <section class="migration-slot-section" aria-labelledby="slot-summary-title">
+            <div class="migration-section-heading">
+                <div>
+                    <h2 id="slot-summary-title">Reserved slots</h2>
+                </div>
+                <p>Counts include Slot Reserved, Invited, Application Sent, Accepted, and Migrated.</p>
+            </div>
+            <div class="migration-slot-grid" data-slot-summary></div>
+            <div class="migration-alerts" data-board-alerts aria-live="polite" hidden></div>
+        </section>
+
+        <section class="migration-panel" aria-labelledby="candidate-form-title">
+            <div class="migration-panel-heading">
+                <div>
+                    <p class="migration-step">Step 2</p>
+                    <h2 id="candidate-form-title" data-form-title>Add an applicant</h2>
+                </div>
+                <button type="button" class="migration-button migration-button--quiet" data-cancel-edit hidden>Cancel edit</button>
+            </div>
+            <form data-candidate-form novalidate>
+                <div class="migration-form-grid">
+                    <label class="migration-field-required">
+                        <span>Player name</span>
+                        <input type="text" name="playerName" maxlength="80" required autocomplete="off">
+                    </label>
+                    <label>
+                        <span>Current state</span>
+                        <input type="text" name="currentState" maxlength="40" inputmode="numeric">
+                    </label>
+                    <label>
+                        <span>Identity Tier</span>
+                        <select name="tier">
+                            <option value="Unknown">Unknown</option>
+                            <option value="Regular">Regular</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Advanced">Advanced</option>
+                            <option value="Elite">Elite</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span>Migration Score <small>optional</small></span>
+                        <input type="number" name="migrationScore" min="0" step="1" inputmode="numeric">
+                    </label>
+                    <label>
+                        <span>Target Alliance <small>optional</small></span>
+                        <input type="text" name="targetAlliance" maxlength="80">
+                    </label>
+                    <label>
+                        <span>Group / Move Together <small>optional</small></span>
+                        <input type="text" name="groupName" maxlength="80">
+                    </label>
+                    <label>
+                        <span>Language / Time Zone <small>optional</small></span>
+                        <input type="text" name="languageTimeZone" maxlength="80" placeholder="EN / UTC+2">
+                    </label>
+                    <label>
+                        <span>Coordinator <small>optional</small></span>
+                        <input type="text" name="coordinator" maxlength="80">
+                    </label>
+                    <label>
+                        <span>Status</span>
+                        <select name="status">
+                            <option>New</option>
+                            <option>Contacted</option>
+                            <option>Waiting for Score</option>
+                            <option>Tier Confirmed</option>
+                            <option>Slot Reserved</option>
+                            <option>Invited</option>
+                            <option>Application Sent</option>
+                            <option>Accepted</option>
+                            <option>Backup</option>
+                            <option>Rejected</option>
+                            <option>Migrated</option>
+                        </select>
+                    </label>
+                    <div class="migration-check-wrap">
+                        <label class="migration-check-field">
+                            <input type="checkbox" name="passesReady">
+                            <span>Migration Passes confirmed</span>
+                        </label>
+                        <details class="migration-field-help">
+                            <summary aria-label="What does Migration Passes confirmed mean?">i</summary>
+                            <p>Check this when the applicant has enough Migration Passes for the cost of their confirmed Identity Tier.</p>
+                        </details>
+                    </div>
+                    <label class="migration-field-wide">
+                        <span>Notes</span>
+                        <textarea name="notes" maxlength="600" rows="3"></textarea>
+                    </label>
+                </div>
+                <div class="migration-form-actions">
+                    <button type="submit" class="migration-button migration-button--primary" data-submit-candidate>Add applicant</button>
+                    <span data-form-message aria-live="polite"></span>
+                </div>
+            </form>
+        </section>
+
+        <section class="migration-panel migration-board" aria-labelledby="applicant-board-title">
+            <div class="migration-panel-heading migration-board-heading">
+                <div>
+                    <p class="migration-step">Step 3</p>
+                    <h2 id="applicant-board-title">Applicant board <span data-applicant-count>(0)</span></h2>
+                </div>
+            </div>
+
+            <div class="migration-board-tools">
+                <details class="migration-action-menu" name="migration-board-tools">
+                    <summary class="migration-button">Board actions</summary>
+                    <div class="migration-action-group" aria-label="Board export controls">
+                        <button type="button" class="migration-button" data-copy-summary>Copy Discord summary</button>
+                        <button type="button" class="migration-button" data-export-csv>Export CSV</button>
+                        <button type="button" class="migration-button" data-export-json>Export JSON</button>
+                        <label class="migration-button migration-button--file">
+                            Import JSON
+                            <input type="file" data-import-json accept="application/json,.json">
+                        </label>
+                        <button type="button" class="migration-button migration-button--danger" data-clear-board>Clear board</button>
+                    </div>
+                </details>
+                <details class="migration-filter-panel" name="migration-board-tools">
+                    <summary class="migration-button">Filters</summary>
+                    <div class="migration-filters" aria-label="Applicant filters">
+                        <label>
+                            <span>Search</span>
+                            <input type="search" data-filter-search placeholder="Player, state, alliance…">
+                        </label>
+                        <label>
+                            <span>Tier</span>
+                            <select data-filter-tier>
+                                <option value="">All tiers</option>
+                                <option>Unknown</option>
+                                <option>Regular</option>
+                                <option>Medium</option>
+                                <option>Advanced</option>
+                                <option>Elite</option>
+                            </select>
+                        </label>
+                        <label>
+                            <span>Status</span>
+                            <select data-filter-status>
+                                <option value="">All statuses</option>
+                                <option>New</option>
+                                <option>Contacted</option>
+                                <option>Waiting for Score</option>
+                                <option>Tier Confirmed</option>
+                                <option>Slot Reserved</option>
+                                <option>Invited</option>
+                                <option>Application Sent</option>
+                                <option>Accepted</option>
+                                <option>Backup</option>
+                                <option>Rejected</option>
+                                <option>Migrated</option>
+                            </select>
+                        </label>
+                        <label>
+                            <span>Alliance</span>
+                            <select data-filter-alliance><option value="">All alliances</option></select>
+                        </label>
+                    </div>
+                </details>
+            </div>
+
+            <div class="migration-table-wrap">
+                <table class="migration-table">
+                    <thead>
+                        <tr>
+                            <th>Player</th>
+                            <th>Tier / Score</th>
+                            <th>Alliance / Group</th>
+                            <th>Status</th>
+                            <th>Coordinator</th>
+                            <th>Readiness</th>
+                            <th aria-label="Actions"></th>
+                        </tr>
+                    </thead>
+                    <tbody data-applicant-rows></tbody>
+                </table>
+                <div class="migration-empty" data-empty-state>
+                    <strong>No applicants yet</strong>
+                    <p>Add the first candidate above, or import an existing JSON board.</p>
+                </div>
+            </div>
+            <p class="migration-board-status" data-board-status aria-live="polite"></p>
+        </section>
+
+        <section class="migration-panel migration-privacy" aria-labelledby="privacy-title">
+            <h2 id="privacy-title">Keep applicant details private</h2>
+            <p>This board stays on your device. Share exports only with the people coordinating the migration.</p>
+        </section>
+
+        <section class="migration-panel migration-related planner-related" aria-labelledby="migration-next-links">
+            <h2 id="migration-next-links">Migration planning links</h2>
+            <div class="related-grid">
+                <a href="state-migration.html" class="related-card">State Migration Guide</a>
+                <a href="season-2-winter.html" class="related-card">Season 2 Winter Guide</a>
+                <a href="svs.html" class="related-card">State vs State Guide</a>
+                <a href="alliance-duel.html" class="related-card">Alliance Duel Schedule</a>
+            </div>
+        </section>
+    </main>
+
+    <nav class="home-nav site-nav" aria-label="Guide categories">
+        <a href="/#progression">Progression</a>
+        <a href="/#research-tech">Research</a>
+        <a href="research-planner.html">Planner</a>
+        <a href="/#heroes-gear">Heroes</a>
+        <a href="/#pvp-formations">PvP</a>
+        <a href="/#events-competitive" class="is-active">Events</a>
+        <a href="/#economy-f2p">Economy</a>
+    </nav>
+
+    <footer class="site-footer">
+        <a href="/">All Guides</a>
+        <div class="footer-links">
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="disclosure.html">Disclosure</a>
+        </div>
+    </footer>
+    <script src="state-migration-planner.js" defer></script>
+    <script src="analytics.js" defer></script>
+    <script src="search-loader.js" defer></script>
+</body>
+</html>
