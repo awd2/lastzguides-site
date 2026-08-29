@@ -2343,6 +2343,12 @@ footer a:hover, .site-footer a:hover {
     color: #ffce54;
 }
 
+.status-pill--expired {
+    border: 1px solid rgba(174, 184, 196, 0.32);
+    background: rgba(174, 184, 196, 0.1);
+    color: #aeb8c4;
+}
+
 .code-card__code {
     grid-column: 1 / -1;
     grid-row: 1;
@@ -2378,6 +2384,14 @@ footer a:hover, .site-footer a:hover {
     border-color: rgba(88, 214, 141, 0.72);
     background: rgba(88, 214, 141, 0.16);
     color: #77e6a7;
+}
+
+.recently-expired-codes .code-card-grid {
+    margin-top: 14px;
+}
+
+.code-card--expired {
+    grid-template-columns: minmax(0, 1fr);
 }
 
 .code-archive {
