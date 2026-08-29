@@ -626,6 +626,7 @@
         var setCopied = function() {
           button.textContent = copiedLabel;
           button.classList.add('is-copied');
+          button.dispatchEvent(new CustomEvent('lastz:code-copied', { bubbles: true }));
           window.setTimeout(function() {
             button.textContent = originalLabel;
             button.classList.remove('is-copied');
@@ -642,9 +643,13 @@
         input.style.left = '-9999px';
         document.body.appendChild(input);
         input.select();
-        document.execCommand('copy');
-        document.body.removeChild(input);
-        setCopied();
+        var copied = false;
+        try {
+          copied = document.execCommand('copy');
+        } finally {
+          document.body.removeChild(input);
+        }
+        if (copied) setCopied();
       });
     </script>
 </body>
