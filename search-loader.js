@@ -4,6 +4,80 @@
     var loaded = false;
     var loading = false;
     var pendingOpen = false;
+    var freshCodesSeenKey = 'lastz.freshCodesSeen';
+
+    function isCodesPath(pathname) {
+        return /\/(?:fr\/|es\/)?codes\.html$/.test(pathname);
+    }
+
+    function freshCodeLabel(count) {
+        var language = (document.documentElement.lang || 'en').toLowerCase().split('-', 1)[0];
+        if (language === 'fr') {
+            return count === 1 ? '1 nouveau code disponible' : count + ' nouveaux codes disponibles';
+        }
+        if (language === 'es') {
+            return count === 1 ? '1 código nuevo disponible' : count + ' códigos nuevos disponibles';
+        }
+        return count === 1 ? '1 new code available' : count + ' new codes available';
+    }
+
+    function readSeenFreshCodes() {
+        try {
+            return window.localStorage ? window.localStorage.getItem(freshCodesSeenKey) : null;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function rememberFreshCodes(freshId) {
+        try {
+            if (window.localStorage) window.localStorage.setItem(freshCodesSeenKey, freshId);
+        } catch (error) {
+            // Storage is optional; the navigation remains usable without it.
+        }
+    }
+
+    function isFreshStatus(status) {
+        if (!status || status.fresh !== true || !status.fresh_id || !status.fresh_until) return false;
+        if (!Number.isInteger(status.fresh_count) || status.fresh_count < 1) return false;
+        var freshUntil = Date.parse(status.fresh_until);
+        return Number.isFinite(freshUntil) && freshUntil > Date.now();
+    }
+
+    function enhanceFreshCodeNavigation() {
+        if (!window.fetch) return;
+        window.fetch('/codes-status.json', { cache: 'no-cache', credentials: 'same-origin' })
+            .then(function(response) {
+                if (!response.ok) throw new Error('Fresh code status unavailable');
+                return response.json();
+            })
+            .then(function(status) {
+                if (!isFreshStatus(status)) return;
+                if (isCodesPath(window.location.pathname)) {
+                    rememberFreshCodes(status.fresh_id);
+                    return;
+                }
+                if (readSeenFreshCodes() === status.fresh_id) return;
+
+                var label = freshCodeLabel(status.fresh_count);
+                var links = document.querySelectorAll('.site-primary-nav a, .mobile-bottom-nav a');
+                Array.prototype.forEach.call(links, function(link) {
+                    var target = new URL(link.href, window.location.href);
+                    if (!isCodesPath(target.pathname)) return;
+                    var linkLabel = link.textContent.trim();
+                    var badge = document.createElement('span');
+                    badge.className = 'fresh-code-nav-badge';
+                    badge.setAttribute('aria-hidden', 'true');
+                    badge.textContent = '+' + status.fresh_count;
+                    link.classList.add('has-fresh-code');
+                    link.appendChild(badge);
+                    link.setAttribute('aria-label', linkLabel + ' — ' + label);
+                });
+            })
+            .catch(function() {
+                // A missing status must never block navigation or search.
+            });
+    }
 
     function buildTOC() {
         if (document.querySelector('.toc')) return;
@@ -181,10 +255,12 @@
             buildTOC();
             enhanceComparisonTables();
             centerActiveClusterNavItem();
+            enhanceFreshCodeNavigation();
         });
     } else {
         buildTOC();
         enhanceComparisonTables();
         centerActiveClusterNavItem();
+        enhanceFreshCodeNavigation();
     }
 })();

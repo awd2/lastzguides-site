@@ -560,6 +560,34 @@
         });
     }
 
+    function attachCodeTracking() {
+        document.addEventListener('lastz:code-copied', (event) => {
+            const copyButton = event.target.closest('[data-copy-code]');
+            if (!copyButton) return;
+            const card = copyButton.closest('.code-card');
+            const isFresh = Boolean(card && card.querySelector('.status-pill--fresh'));
+            track('code_copy', {
+                code_status: isFresh ? 'fresh' : 'active',
+                interaction_source: 'active_codes',
+                page_type: 'guide',
+                guide_slug: slugFromUrl(getPath())
+            });
+        });
+
+        document.addEventListener('click', (event) => {
+            const freshCodeLink = event.target.closest('a.has-fresh-code');
+            if (!freshCodeLink) return;
+            track('fresh_code_nav_click', {
+                interaction_source: freshCodeLink.closest('.mobile-bottom-nav')
+                    ? 'mobile_bottom_nav'
+                    : 'primary_nav',
+                from_page: slugFromUrl(getPath()),
+                page_type: getPath() === 'index.html' ? 'home' : 'guide',
+                guide_slug: slugFromUrl(getPath())
+            });
+        });
+    }
+
     function tableIdFor(el) {
         const explicit = el.getAttribute('data-table-id');
         if (explicit) return explicit;
@@ -647,6 +675,7 @@
         attachGuideTracking();
         attachLdshopPromoTracking();
         attachGiftCenterTracking();
+        attachCodeTracking();
         attachTableTracking();
     }
 
