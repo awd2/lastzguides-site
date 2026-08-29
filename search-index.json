@@ -4245,6 +4245,26 @@
     ]
   },
   {
+    "url": "/tank-planner.html",
+    "locale": "en",
+    "source_path": "tank-planner.html",
+    "title": "Tank Planner",
+    "category": "Guides",
+    "description": "Track vehicle modification sub-levels, calculate spent and remaining Golden Wrenches, save progress, and plan Cheetah, Hercules, Destroyer, and Destroyer EX.",
+    "keywords": [
+      "Last",
+      "Tank",
+      "Planner",
+      "2026",
+      "Wrench",
+      "Calculator",
+      "and",
+      "Vehicle",
+      "Milestones",
+      "Track"
+    ]
+  },
+  {
     "url": "/tech.html",
     "locale": "en",
     "source_path": "tech.html",
