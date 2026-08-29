@@ -874,7 +874,7 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/vehicle-modification-cost.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/vehicle-modification-cost.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/vehicle-modification-cost.html" />
-        <lastmod>2026-05-31</lastmod>
+        <lastmod>2026-08-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -1656,7 +1656,7 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/vehicle-modification-cost.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/vehicle-modification-cost.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/vehicle-modification-cost.html" />
-        <lastmod>2026-05-24</lastmod>
+        <lastmod>2026-08-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -2095,6 +2095,12 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://lastzguides.com/tank-planner.html</loc>
+        <lastmod>2026-08-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://lastzguides.com/tech.html</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/tech.html" />
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/tech.html" />
@@ -2172,7 +2178,7 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/vehicle-modification-cost.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/vehicle-modification-cost.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/vehicle-modification-cost.html" />
-        <lastmod>2026-03-13</lastmod>
+        <lastmod>2026-08-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>

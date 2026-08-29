@@ -711,8 +711,8 @@
         bottom: 0;
         z-index: 120;
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 8px;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 4px;
         padding: 10px 8px calc(10px + env(safe-area-inset-bottom));
         border-top: 1px solid rgba(255, 255, 255, 0.08);
         background: rgba(26, 26, 26, 0.96);
@@ -726,8 +726,8 @@
         width: 100%;
         height: auto;
         min-height: 44px;
-        padding: 8px 6px;
-        font-size: 0.8rem;
+        padding: 8px 2px;
+        font-size: clamp(0.7rem, 3.35vw, 0.82rem);
         overflow-wrap: anywhere;
         white-space: normal;
     }
@@ -935,8 +935,8 @@
     }
 
     .site-primary-nav a {
-        padding-left: 8px;
-        padding-right: 8px;
+        padding-left: 6px;
+        padding-right: 6px;
     }
 }
 
