@@ -1,0 +1,158 @@
+.lucky-rose-guide {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 760px;
+    min-width: 0;
+    margin: 0 auto;
+}
+
+.lucky-rose-live {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 20px 0 28px;
+    padding: 24px;
+    border: 1px solid rgba(244, 196, 48, 0.48);
+    border-left: 4px solid #f4c430;
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(244, 196, 48, 0.11), rgba(255, 255, 255, 0.025));
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+}
+
+.lucky-rose-live__heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.lucky-rose-live__icon {
+    width: 54px;
+    height: 54px;
+    flex: 0 0 auto;
+    object-fit: contain;
+}
+
+.lucky-rose-live__kicker {
+    margin: 0 0 3px;
+    color: #ffe27a;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.lucky-rose-live__value {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 0;
+}
+
+.lucky-rose-live__number {
+    color: #fff1a8;
+    font-size: clamp(2.6rem, 10vw, 4.3rem);
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    line-height: 0.95;
+}
+
+.lucky-rose-live__unit {
+    color: #f2eee5;
+    font-size: clamp(1rem, 3vw, 1.35rem);
+    font-weight: 750;
+}
+
+.lucky-rose-live__buff {
+    margin: 20px 0 4px;
+    color: #fff;
+    font-size: 1.22rem;
+    font-weight: 750;
+}
+
+.lucky-rose-live__window {
+    margin: 0;
+    color: #bdb9ae;
+    font-size: 0.86rem;
+}
+
+.lucky-rose-live .qa-lede {
+    margin: 20px 0 0;
+    padding-top: 16px;
+    border-top: 1px solid rgba(244, 196, 48, 0.24);
+    color: #e5e1d7;
+    overflow-wrap: anywhere;
+}
+
+.lucky-rose-copy-button {
+    min-height: 40px;
+    margin-top: 16px;
+    padding: 9px 15px;
+    border: 1px solid rgba(244, 196, 48, 0.58);
+    border-radius: 7px;
+    background: rgba(244, 196, 48, 0.12);
+    color: #ffe27a;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 750;
+    cursor: pointer;
+    transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
+}
+
+.lucky-rose-copy-button:hover {
+    border-color: #f4c430;
+    background: rgba(244, 196, 48, 0.2);
+    color: #fff1a8;
+}
+
+.lucky-rose-copy-button:focus-visible {
+    outline: 2px solid #ffe27a;
+    outline-offset: 3px;
+}
+
+.lucky-rose-copy-button.is-copied {
+    border-color: rgba(122, 214, 152, 0.72);
+    background: rgba(122, 214, 152, 0.14);
+    color: #baf0cb;
+}
+
+.lucky-rose-guide > .qa-lede {
+    overflow-wrap: anywhere;
+}
+
+.lucky-rose-live.is-pending .lucky-rose-live__number,
+.lucky-rose-live.is-pending .lucky-rose-live__unit,
+.lucky-rose-live.is-pending .lucky-rose-live__buff,
+.lucky-rose-live.is-pending .lucky-rose-live__window,
+.lucky-rose-live.is-pending .lucky-rose-copy-button {
+    display: none;
+}
+
+.lucky-rose-trust-note {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #bdb9ae;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+    .lucky-rose-live {
+        margin-top: 14px;
+        padding: 19px 17px;
+    }
+
+    .lucky-rose-live__heading {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .lucky-rose-live__icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .lucky-rose-copy-button {
+        width: 100%;
+    }
+}

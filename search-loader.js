@@ -5,6 +5,95 @@
     var loading = false;
     var pendingOpen = false;
     var freshCodesSeenKey = 'lastz.freshCodesSeen';
+    var luckyRoseStatusUrl = 'https://lastz-lucky-rose.o-smolerov.workers.dev/lucky-rose-status.json';
+    var luckyRoseStatusPromise = null;
+    var luckyRoseExpiryTimer = null;
+    var luckyRoseCurrentStatus = null;
+    var luckyRoseLink = null;
+
+    function luckyRoseIcon() {
+        return '<img class="lucky-rose-nav__icon" src="/assets/items/yellow-rose.png" alt="" aria-hidden="true">';
+    }
+
+    function isConfirmedLuckyRoseStatus(status) {
+        if (!status || status.status !== 'confirmed') return false;
+        if (!Number.isInteger(status.number) || status.number < 1 || status.number > 10) return false;
+        if (!status.buff || !status.buff.label || !status.buff.duration || !status.valid_until) return false;
+        var validUntil = Date.parse(status.valid_until);
+        return Number.isFinite(validUntil) && validUntil > Date.now();
+    }
+
+    function getLuckyRoseStatus() {
+        if (luckyRoseStatusPromise) return luckyRoseStatusPromise;
+        if (!window.fetch) return Promise.resolve(null);
+        luckyRoseStatusPromise = window.fetch(luckyRoseStatusUrl, { credentials: 'omit' })
+            .then(function(response) {
+                if (!response.ok) throw new Error('Lucky Rose status unavailable');
+                return response.json();
+            })
+            .catch(function() { return null; });
+        window.lastzLuckyRoseStatusPromise = luckyRoseStatusPromise;
+        window.lastzLuckyRoseStatusUrl = luckyRoseStatusUrl;
+        return luckyRoseStatusPromise;
+    }
+
+    function renderLuckyRosePending() {
+        if (!luckyRoseLink) return;
+        if (luckyRoseExpiryTimer) window.clearTimeout(luckyRoseExpiryTimer);
+        luckyRoseExpiryTimer = null;
+        luckyRoseCurrentStatus = null;
+        luckyRoseLink.querySelector('.lucky-rose-nav__number').textContent = '?';
+        luckyRoseLink.querySelector('.lucky-rose-nav__label').textContent = '';
+        luckyRoseLink.setAttribute('aria-label', 'Lucky Rose this week: checking');
+    }
+
+    function scheduleLuckyRoseExpiry(status) {
+        if (luckyRoseExpiryTimer) window.clearTimeout(luckyRoseExpiryTimer);
+        var delay = Date.parse(status.valid_until) - Date.now();
+        if (delay <= 0) {
+            renderLuckyRosePending();
+            return;
+        }
+        luckyRoseExpiryTimer = window.setTimeout(renderLuckyRosePending, delay);
+    }
+
+    function enhanceLuckyRoseNavigation() {
+        var language = (document.documentElement.lang || 'en').toLowerCase().split('-', 1)[0];
+        if (language !== 'en') return;
+        var header = document.querySelector('.site-header');
+        var search = header && header.querySelector('.search-trigger');
+        if (!header || !search || header.querySelector('.lucky-rose-nav')) return;
+
+        var link = document.createElement('a');
+        link.className = 'lucky-rose-nav';
+        link.href = '/lucky-rose.html';
+        link.setAttribute('aria-label', 'Lucky Rose this week: checking');
+        link.innerHTML = luckyRoseIcon() +
+            '<span class="lucky-rose-nav__number">?</span>' +
+            '<span class="lucky-rose-nav__label"></span>';
+        if (/\/lucky-rose\.html$/.test(window.location.pathname)) link.classList.add('is-active');
+        header.classList.add('site-header--has-lucky-rose');
+        header.insertBefore(link, search);
+        luckyRoseLink = link;
+
+        getLuckyRoseStatus().then(function(status) {
+            if (!isConfirmedLuckyRoseStatus(status)) {
+                renderLuckyRosePending();
+                return;
+            }
+            luckyRoseCurrentStatus = status;
+            link.querySelector('.lucky-rose-nav__number').textContent = status.number;
+            link.querySelector('.lucky-rose-nav__label').textContent = 'Roses';
+            link.setAttribute('aria-label', 'Lucky Rose this week: ' + status.number + ' Yellow Roses');
+            scheduleLuckyRoseExpiry(status);
+        });
+    }
+
+    document.addEventListener('visibilitychange', function() {
+        if (!document.hidden && luckyRoseCurrentStatus && !isConfirmedLuckyRoseStatus(luckyRoseCurrentStatus)) {
+            renderLuckyRosePending();
+        }
+    });
 
     function isCodesPath(pathname) {
         return /\/(?:fr\/|es\/)?codes\.html$/.test(pathname);
@@ -256,11 +345,13 @@
             enhanceComparisonTables();
             centerActiveClusterNavItem();
             enhanceFreshCodeNavigation();
+            enhanceLuckyRoseNavigation();
         });
     } else {
         buildTOC();
         enhanceComparisonTables();
         centerActiveClusterNavItem();
         enhanceFreshCodeNavigation();
+        enhanceLuckyRoseNavigation();
     }
 })();
