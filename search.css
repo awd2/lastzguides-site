@@ -199,6 +199,53 @@
     display: none;
 }
 
+/* Compact weekly Lucky Rose link. */
+.lucky-rose-nav {
+    grid-area: rose;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    height: var(--header-control-height, 40px);
+    min-height: var(--header-control-height, 40px);
+    gap: 5px;
+    padding: 0 10px;
+    border: 1px solid rgba(244, 196, 48, 0.55);
+    border-radius: 4px;
+    background: rgba(244, 196, 48, 0.08);
+    color: var(--color-text-strong, #f2eee5);
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.lucky-rose-nav:hover,
+.lucky-rose-nav:focus-visible,
+.lucky-rose-nav.is-active {
+    border-color: rgba(255, 222, 105, 0.82);
+    background: rgba(244, 196, 48, 0.14);
+    color: #fff;
+}
+
+.lucky-rose-nav:focus-visible {
+    outline: 2px solid #ffe27a;
+    outline-offset: 3px;
+}
+
+.lucky-rose-nav__icon {
+    width: 22px;
+    height: 22px;
+    flex: 0 0 auto;
+}
+
+.lucky-rose-nav__number {
+    min-width: 1ch;
+    color: #ffe27a;
+    font-variant-numeric: tabular-nums;
+}
+
 .language-switcher {
     grid-area: language;
     position: relative;
@@ -961,6 +1008,20 @@
     }
 }
 
+@media (min-width: 768px) and (max-width: 1100px) {
+    .site-header--has-lucky-rose .search-trigger {
+        width: 40px;
+        min-width: 40px;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .site-header--has-lucky-rose .search-trigger > span,
+    .site-header--has-lucky-rose .search-trigger > kbd {
+        display: none;
+    }
+}
+
 @media (min-width: 601px) and (max-width: 900px) {
     .site-header,
     .site-header--home {
@@ -989,6 +1050,55 @@
     .site-primary-nav a {
         padding-left: 6px;
         padding-right: 6px;
+    }
+}
+
+@media (min-width: 901px) and (max-width: 1100px) {
+    .site-header--has-lucky-rose,
+    .site-header--has-language.site-header--has-lucky-rose,
+    .site-header--home.site-header--has-language.site-header--has-lucky-rose {
+        grid-template-columns: 38px minmax(0, 1fr) 48px 40px auto;
+        grid-template-areas: "logo primary rose search language";
+        gap: 8px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .site-header--has-lucky-rose .logo-link {
+        width: 38px;
+        min-width: 38px;
+        gap: 0;
+        padding-left: 8px;
+    }
+
+    .site-header--has-lucky-rose .logo-link span {
+        display: none;
+    }
+
+    .site-header--has-lucky-rose .site-primary-nav a {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 700px) {
+    .site-header--has-lucky-rose,
+    .site-header--has-language.site-header--has-lucky-rose,
+    .site-header--home.site-header--has-language.site-header--has-lucky-rose {
+        gap: 4px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .site-header--has-lucky-rose .site-primary-nav {
+        gap: 2px;
+    }
+
+    .site-header--has-lucky-rose .site-primary-nav a {
+        padding-left: 3px;
+        padding-right: 3px;
+        font-size: 0.68rem;
+        letter-spacing: 0;
     }
 }
 
@@ -1261,5 +1371,80 @@ body.ui-foundation .search-cancel:hover {
     .mobile-bottom-nav a:focus-visible {
         outline: 2px solid #ff9d94;
         outline-offset: -4px;
+    }
+}
+
+@media (min-width: 1101px) {
+    .site-header--has-lucky-rose {
+        grid-template-columns: minmax(140px, 1fr) auto auto auto;
+        grid-template-areas: "logo primary rose search";
+    }
+
+    .site-header--has-language.site-header--has-lucky-rose,
+    .site-header--home.site-header--has-language.site-header--has-lucky-rose {
+        grid-template-columns: minmax(140px, 1fr) auto auto auto auto;
+        grid-template-areas: "logo primary rose search language";
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1100px) {
+    .site-header--has-lucky-rose {
+        grid-template-columns: 38px minmax(0, 1fr) 48px auto;
+        grid-template-areas: "logo primary rose search";
+    }
+
+    .site-header--has-language.site-header--has-lucky-rose,
+    .site-header--home.site-header--has-language.site-header--has-lucky-rose {
+        grid-template-columns: 38px minmax(0, 1fr) 48px auto auto;
+        grid-template-areas: "logo primary rose search language";
+    }
+
+    .lucky-rose-nav {
+        width: 48px;
+        padding: 0 4px;
+        gap: 2px;
+    }
+
+    .lucky-rose-nav__label {
+        display: none;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 700px) {
+    .lucky-rose-nav {
+        width: 44px;
+    }
+}
+
+@media (max-width: 600px) {
+    .site-header--has-lucky-rose,
+    .site-header--home.site-header--has-lucky-rose {
+        grid-template-columns: minmax(0, 1fr) 48px 36px;
+        grid-template-areas: "logo rose search";
+        gap: 6px;
+    }
+
+    .site-header--has-language.site-header--has-lucky-rose,
+    .site-header--home.site-header--has-language.site-header--has-lucky-rose {
+        grid-template-columns: minmax(0, 1fr) 48px 36px 58px;
+        grid-template-areas: "logo rose search language";
+        gap: 6px;
+    }
+
+    .lucky-rose-nav {
+        width: 48px;
+        height: 36px;
+        min-height: 36px;
+        padding: 0 4px;
+        gap: 2px;
+    }
+
+    .lucky-rose-nav__icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .lucky-rose-nav__label {
+        display: none;
     }
 }
