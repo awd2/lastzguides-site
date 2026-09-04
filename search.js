@@ -12,7 +12,8 @@
     let selectedIndex = 0;
     let results = [];
     let isOpen = false;
-    let lastTrackedQuery = '';
+    let noResultsTracked = false;
+    let successfulResultClick = false;
 
     // DOM Elements (will be created)
     let overlay, modal, input, resultsContainer, clearBtn, closeBtn, cancelBtn;
@@ -203,6 +204,10 @@
         input.addEventListener('input', handleInput);
         input.addEventListener('keydown', handleKeyNavigation);
         input.addEventListener('input', toggleClearButton);
+        resultsContainer.addEventListener('click', (e) => {
+            const result = e.target.closest('.search-result');
+            if (result) trackSearchResultClick(result);
+        });
 
         // Clear and close buttons
         clearBtn.addEventListener('click', () => {
@@ -239,6 +244,8 @@
      */
     function openSearch() {
         isOpen = true;
+        noResultsTracked = false;
+        successfulResultClick = false;
         lastFocused = document.activeElement;
         overlay.classList.add('active');
         modal.classList.add('active');
@@ -255,6 +262,7 @@
      * Close search modal
      */
     function closeSearch() {
+        trackTerminalNoResults();
         isOpen = false;
         overlay.classList.remove('active');
         modal.classList.remove('active');
@@ -271,7 +279,6 @@
         const query = e.target.value.trim();
 
         if (!query) {
-            lastTrackedQuery = '';
             showTopResults();
             return;
         }
@@ -287,13 +294,17 @@
             renderResults();
         }
 
-        trackSearchQuery(query, results.length);
     }
 
     /**
      * Handle keyboard navigation
      */
     function handleKeyNavigation(e) {
+        if (e.key === 'Enter' && results.length === 0) {
+            e.preventDefault();
+            trackTerminalNoResults();
+            return;
+        }
         if (results.length === 0) return;
 
         switch (e.key) {
@@ -368,9 +379,6 @@
         `;
 
         resultsContainer.querySelectorAll('.search-result').forEach(el => {
-            el.addEventListener('click', () => {
-                trackSearchResultClick(el);
-            });
             el.addEventListener('mouseenter', () => {
                 selectedIndex = parseInt(el.dataset.index, 10);
                 updateSelection();
@@ -389,9 +397,6 @@
                 <p>No results for "${escapeHtml(query)}"</p>
             </div>
         `;
-        trackSearch('search_empty', {
-            search_term: query
-        });
     }
 
     /**
@@ -425,12 +430,8 @@
             `;
         }).join('');
 
-        // Add click handlers to results
+        // Add pointer-selection handlers to results.
         resultsContainer.querySelectorAll('.search-result').forEach(el => {
-            el.addEventListener('click', (e) => {
-                trackSearchResultClick(el);
-            });
-
             el.addEventListener('mouseenter', (e) => {
                 selectedIndex = parseInt(el.dataset.index);
                 updateSelection();
@@ -464,15 +465,17 @@
      * Navigate to selected result
      */
     function navigateToResult(item) {
-        trackSearch('search_result_click', {
-            search_term: input.value.trim(),
+        successfulResultClick = true;
+        const payload = {
             interaction_source: 'site_search',
             result_url: item.url,
             result_title: item.title,
             result_index: selectedIndex,
             result_rank: selectedIndex + 1,
             results_count: results.length
-        });
+        };
+        addSafeSearchTerm(payload);
+        trackSearch('search_result_click', payload);
         closeSearch();
         window.location.href = item.url;
     }
@@ -561,28 +564,44 @@
         window.analytics.trackSearch(type, payload);
     }
 
-    function trackSearchQuery(query, count) {
-        if (!query || query === lastTrackedQuery) return;
-        lastTrackedQuery = query;
-        trackSearch('search_query', {
-            search_term: query,
-            results_count: count
-        });
+    function safeSearchTerm() {
+        const term = input.value.trim().slice(0, 80);
+        const digitCount = (term.match(/\d/g) || []).length;
+        if (!term || /[^\s@]+@[^\s@]+\.[^\s@]+/.test(term) || digitCount >= 7) {
+            return '';
+        }
+        return term;
+    }
+
+    function addSafeSearchTerm(payload) {
+        const term = safeSearchTerm();
+        if (term) payload.search_term = term;
+    }
+
+    function trackTerminalNoResults() {
+        if (!isOpen || noResultsTracked || successfulResultClick || !input.value.trim() || results.length !== 0) {
+            return;
+        }
+        noResultsTracked = true;
+        const payload = { interaction_source: 'site_search' };
+        addSafeSearchTerm(payload);
+        trackSearch('search_no_results', payload);
     }
 
     function trackSearchResultClick(el) {
-        const term = input.value.trim();
         const index = parseInt(el.dataset.index || '0', 10);
         const rank = index + 1;
-        trackSearch('search_result_click', {
-            search_term: term,
+        successfulResultClick = true;
+        const payload = {
             interaction_source: 'site_search',
             result_index: index,
             result_url: el.dataset.url || '',
             result_title: el.dataset.title || '',
             result_rank: rank,
             results_count: results.length
-        });
+        };
+        addSafeSearchTerm(payload);
+        trackSearch('search_result_click', payload);
     }
 
     function buildTOC() {

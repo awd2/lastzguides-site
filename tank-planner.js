@@ -17,6 +17,8 @@
     var expandedIndex = -1;
     var lastTrigger = null;
     var loadedFromShare = false;
+    var entryMode = "new";
+    var meaningfulUseTracked = false;
     var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
 
     var elements = {
@@ -118,6 +120,7 @@
                 goalSublevel = sharedGoal.sublevel;
             }
             loadedFromShare = true;
+            entryMode = "shared";
             saveState();
             return;
         }
@@ -129,6 +132,7 @@
                     goalIndex = Number(saved.goalIndex);
                     goalSublevel = Math.round(clamp(saved.goalSublevel, 1, data.modifications[goalIndex].sublevels));
                 }
+                if (hasUsefulState()) entryMode = "saved";
                 saveState();
             }
         } catch (error) {
@@ -141,8 +145,10 @@
     function saveState() {
         try {
             window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: 2, progress: progress, goalIndex: goalIndex, goalSublevel: goalSublevel }));
+            return true;
         } catch (error) {
             setStatus("Progress could not be saved in this browser.");
+            return false;
         }
     }
 
@@ -156,10 +162,23 @@
         }, 5000);
     }
 
-    function track(action, details) {
-        if (typeof window.gtag === "function") {
-            window.gtag("event", "planner_use", Object.assign({ planner_id: "tank-planner", planner_action: action }, details || {}));
-        }
+    function track(action) {
+        if (!window.analytics || typeof window.analytics.trackEvent !== "function") return;
+        window.analytics.trackEvent("planner_use", {
+            planner_id: "tank-planner",
+            action: action,
+            entry_mode: entryMode
+        });
+    }
+
+    function hasUsefulState() {
+        return goalIndex >= 0 || progress.some(function (value) { return value > 0; });
+    }
+
+    function trackMeaningfulUse(persisted) {
+        if (!persisted || meaningfulUseTracked || !hasUsefulState()) return;
+        meaningfulUseTracked = true;
+        track("meaningful_use");
     }
 
     function costThrough(index, sublevel) {
@@ -315,16 +334,16 @@
     function updateProgress(index, value, action, focus) {
         setProgress(index, value);
         expandedIndex = index;
-        saveState();
+        var persisted = saveState();
         render(focus || null);
-        track(action, { modification_level: data.modifications[index] ? data.modifications[index].level : -1, sublevel: data.modifications[index] ? progress[index] : 0 });
+        trackMeaningfulUse(persisted);
     }
 
     function updateGoal(index, sublevel, action, focus) {
         setGoal(index, sublevel);
-        saveState();
+        var persisted = saveState();
         render(focus || null);
-        track(action, { goal_level: data.modifications[index] ? data.modifications[index].level : -1, goal_sublevel: goalSublevel });
+        trackMeaningfulUse(persisted);
     }
 
     function scrollToNode(index, instant) {
@@ -355,23 +374,22 @@
             var previousIndex = index - 1;
             setProgress(wasComplete ? previousIndex : index, wasComplete && previousIndex >= 0 ? data.modifications[previousIndex].sublevels : modification.sublevels);
             expandedIndex = -1;
-            saveState();
+            var persisted = saveState();
             render({ action: action, index: index });
-            track(wasComplete ? "uncomplete_from" : "complete_through", { modification_level: modification.level, sublevel: progress[index] });
+            trackMeaningfulUse(persisted);
         } else if (action === "toggle-goal") {
             updateGoal(index === goalIndex ? -1 : index, modification.sublevels, index === goalIndex ? "clear_goal" : "set_goal", { action: action, index: index });
         } else if (action === "toggle-node" || action === "toggle-table") {
             expandedIndex = expandedIndex === index ? -1 : index;
             render({ selector: '[data-action="' + action + '"][data-index="' + index + '"]' });
-            track("toggle_modification", { modification_level: modification.level });
         } else if (action === "milestone") {
             setGoal(index, modification.sublevels);
             expandedIndex = index;
             view = "path";
-            saveState();
+            var milestonePersisted = saveState();
             render({ selector: '.tank-milestone-list [data-action="milestone"][data-index="' + index + '"]' });
             scrollToNode(index);
-            track("set_milestone_goal", { goal_level: modification.level });
+            trackMeaningfulUse(milestonePersisted);
         }
     }
 
@@ -383,7 +401,6 @@
                 progress = data.modifications.map(function () { return 0; });
                 saveState();
                 render({ selector: "[data-current-modification]" });
-                track("clear_progress");
             } else {
                 updateProgress(current, data.modifications[current].sublevels, "set_current_position", { selector: "[data-current-sublevel]" });
             }
@@ -427,11 +444,11 @@
             navigator.clipboard.writeText(url.toString()).then(function () {
                 window.history.replaceState(null, "", url);
                 setStatus("Plan link copied.");
+                if (hasUsefulState()) track("share_success");
             }).catch(fallback);
         } else {
             fallback();
         }
-        track("share_plan");
     }
 
     function resetPlanner() {
@@ -445,7 +462,6 @@
         closeDialog(resetDialog);
         render();
         setStatus("Tank Planner reset.");
-        track("reset_plan");
     }
 
     function setView(nextView, shouldTrack) {
@@ -457,9 +473,6 @@
             button.classList.toggle("is-active", active);
             button.setAttribute("aria-pressed", String(active));
         });
-        if (shouldTrack !== false) {
-            track("change_view", { planner_view: view });
-        }
     }
 
     function openDialog(dialog, trigger) {

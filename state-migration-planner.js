@@ -56,15 +56,13 @@
     };
 
     var state = loadState();
+    var entryMode = hasUsefulBoardState() ? "saved" : "new";
+    var entryModeLocked = false;
+    var usefulStateOriginEstablished = hasUsefulBoardState();
+    var meaningfulUseTracked = false;
     syncSetupInputs();
     bindEvents();
     render();
-
-    if (state.applicants.length) {
-        track("resume");
-    } else {
-        track("planner_ready");
-    }
 
     function defaultState() {
         return {
@@ -226,7 +224,6 @@
             state.applicants = state.applicants.map(function (existing) {
                 return existing.id === EDITING_ID ? applicant : existing;
             });
-            track("edit_applicant");
             resetForm();
             setBoardStatus("Applicant updated.");
         } else {
@@ -235,10 +232,10 @@
             refs.form.elements.tier.value = "Unknown";
             refs.form.elements.status.value = "New";
             setFormMessage("Applicant added.", false);
-            track("add_applicant");
         }
-        saveState();
+        var persisted = saveState();
         render();
+        trackMeaningfulUse(persisted);
     }
 
     function handleRowAction(event) {
@@ -270,7 +267,6 @@
             saveState();
             render();
             setBoardStatus("Applicant deleted.");
-            track("delete_applicant");
         }
     }
 
@@ -515,7 +511,7 @@
     function exportJson() {
         downloadFile(fileStem() + ".json", JSON.stringify(state, null, 2), "application/json;charset=utf-8");
         setBoardStatus("JSON board exported.");
-        track("export_json");
+        if (hasUsefulBoardState()) track("export_json_success");
     }
 
     function exportCsv() {
@@ -541,7 +537,7 @@
         });
         downloadFile(fileStem() + ".csv", "\ufeff" + lines.join("\r\n"), "text/csv;charset=utf-8");
         setBoardStatus("CSV exported.");
-        track("export_csv");
+        if (hasUsefulBoardState()) track("export_csv_success");
     }
 
     function csvCell(value) {
@@ -586,10 +582,13 @@
                 state = imported;
                 resetForm();
                 syncSetupInputs();
-                saveState("Imported and saved locally");
+                var persisted = saveState("Imported and saved locally");
                 render();
                 setBoardStatus("JSON board imported.");
-                track("import_json");
+                if (persisted && hasUsefulBoardState() && !usefulStateOriginEstablished && !entryModeLocked) {
+                    entryMode = "shared";
+                }
+                trackMeaningfulUse(persisted);
             } catch (error) {
                 setBoardStatus("Import failed: use a Migration Planner JSON export.", true);
             }
@@ -623,7 +622,7 @@
         }
         copyText(lines.join("\n"), function () {
             setBoardStatus("Discord summary copied.");
-            track("copy_discord_summary");
+            if (hasUsefulBoardState()) track("copy_summary_success");
         });
     }
 
@@ -675,7 +674,6 @@
         }
         render();
         setBoardStatus("Board cleared.");
-        track("clear_board");
     }
 
     function fileStem() {
@@ -701,17 +699,26 @@
         return "applicant-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10);
     }
 
+    function hasUsefulBoardState() {
+        return state.applicants.length > 0;
+    }
+
+    function trackMeaningfulUse(persisted) {
+        if (!persisted || meaningfulUseTracked || !hasUsefulBoardState()) return;
+        usefulStateOriginEstablished = true;
+        meaningfulUseTracked = true;
+        track("meaningful_use");
+    }
+
     function track(action) {
         var params = {
             action: action,
-            interaction_source: "migration_planner"
+            planner_id: "state-migration-planner",
+            entry_mode: entryMode
         };
         if (window.analytics && typeof window.analytics.trackEvent === "function") {
             window.analytics.trackEvent("migration_planner_use", params);
-            return;
-        }
-        if (typeof window.gtag === "function") {
-            window.gtag("event", "migration_planner_use", params);
+            entryModeLocked = true;
         }
     }
 }());
