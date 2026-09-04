@@ -2349,6 +2349,17 @@ footer a:hover, .site-footer a:hover {
     color: #aeb8c4;
 }
 
+.status-pill--copied {
+    border-color: rgba(127, 191, 232, 0.5);
+    background: rgba(127, 191, 232, 0.14);
+    color: #9ad9ff;
+}
+
+.code-card.is-copied {
+    border-color: rgba(127, 191, 232, 0.24);
+    background: rgba(127, 191, 232, 0.045);
+}
+
 .code-card__code {
     grid-column: 1 / -1;
     grid-row: 1;

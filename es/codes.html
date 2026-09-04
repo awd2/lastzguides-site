@@ -671,7 +671,41 @@
     </footer>
     <script src="/analytics.js" defer></script>
     <script src="/search-loader.js?v=20260523-toc2" defer></script>
-    <script>
+    <script data-code-copy>
+      var copiedCodesStorageKey = 'lastz.codes.copied.v1';
+      var readCopiedCodes = function() {
+        try {
+          var stored = window.localStorage && window.localStorage.getItem(copiedCodesStorageKey);
+          var values = stored ? JSON.parse(stored) : [];
+          return Array.isArray(values) ? values.filter(function(value) {
+            return typeof value === 'string';
+          }) : [];
+        } catch (error) {
+          return [];
+        }
+      };
+      var copiedCodes = new Set(readCopiedCodes());
+      var renderCopiedCode = function(button) {
+        var card = button.closest('.code-card');
+        var status = card && card.querySelector('.status-pill');
+        if (!card || !status) return;
+        card.classList.add('is-copied');
+        status.classList.add('status-pill--copied');
+        status.textContent = button.getAttribute('data-copied-label') || 'Copied';
+      };
+      var rememberCopiedCode = function(code) {
+        copiedCodes.add(code);
+        try {
+          if (window.localStorage) {
+            window.localStorage.setItem(copiedCodesStorageKey, JSON.stringify(Array.from(copiedCodes)));
+          }
+        } catch (error) {
+          // Storage is optional; copying still works without persistence.
+        }
+      };
+      Array.prototype.forEach.call(document.querySelectorAll('[data-copy-code]'), function(button) {
+        if (copiedCodes.has(button.getAttribute('data-copy-code'))) renderCopiedCode(button);
+      });
       document.addEventListener('click', function(event) {
         var button = event.target.closest('[data-copy-code]');
         if (!button) return;
@@ -681,6 +715,8 @@
         var setCopied = function() {
           button.textContent = copiedLabel;
           button.classList.add('is-copied');
+          rememberCopiedCode(code);
+          renderCopiedCode(button);
           button.dispatchEvent(new CustomEvent('lastz:code-copied', { bubbles: true }));
           window.setTimeout(function() {
             button.textContent = originalLabel;
