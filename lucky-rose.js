@@ -123,6 +123,13 @@
             : copyFallback(text);
 
         copyPromise.then(function() {
+            if (window.analytics && typeof window.analytics.trackEvent === 'function') {
+                window.analytics.trackEvent('lucky_rose_copy', {
+                    interaction_source: 'lucky_rose',
+                    guide_slug: 'lucky-rose',
+                    page_type: 'guide'
+                });
+            }
             if (copyResetTimer) window.clearTimeout(copyResetTimer);
             button.textContent = 'Copied';
             button.classList.add('is-copied');

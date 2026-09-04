@@ -47,8 +47,6 @@
             }
         }
     };
-    const tableDepthMarks = new Map();
-
     function canTrack() {
         return typeof window.gtag === 'function'
             && !['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname);
@@ -214,21 +212,49 @@
         }
     }
 
-    function attachGuideTracking() {
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach((item, index) => {
-            const question = item.querySelector('h3');
-            if (!question) return;
-            question.addEventListener('click', () => {
-                track('faq_expand', {
-                    faq_question: question.textContent.trim(),
-                    faq_index: index + 1,
-                    page_type: 'guide',
-                    guide_slug: slugFromUrl(getPath())
-                });
+    function normalizedPageFromUrl(value) {
+        try {
+            const url = new URL(value, window.location.href);
+            let path = url.pathname.replace(/^\/+|\/+$/g, '').replace(/\.html$/, '');
+            return path || 'index';
+        } catch (err) {
+            return '';
+        }
+    }
+
+    function attachNavigationTracking() {
+        document.addEventListener('click', (event) => {
+            const link = event.target.closest('.site-primary-nav a, .mobile-bottom-nav a');
+            if (!link) return;
+
+            let destination;
+            try {
+                destination = new URL(link.getAttribute('href') || '', window.location.href);
+            } catch (err) {
+                return;
+            }
+            if (destination.origin !== window.location.origin) return;
+            if (destination.hash
+                && normalizedPageFromUrl(destination.href) === normalizedPageFromUrl(window.location.href)) {
+                return;
+            }
+
+            const toPage = normalizedPageFromUrl(destination.href);
+            if (!toPage) return;
+            const path = getPath();
+            track('nav_click', {
+                interaction_source: link.closest('.mobile-bottom-nav')
+                    ? 'mobile_bottom_nav'
+                    : 'primary_nav',
+                from_page: normalizedPageFromUrl(window.location.href),
+                to_page: toPage,
+                guide_slug: slugFromUrl(path),
+                page_type: path === 'index.html' ? 'home' : 'guide'
             });
         });
+    }
 
+    function attachGuideTracking() {
         const nextJobLinks = document.querySelectorAll('a[data-next-job-id][data-from-job-id]');
         nextJobLinks.forEach((link) => {
             link.addEventListener('click', () => {
@@ -574,89 +600,36 @@
             });
         });
 
-        document.addEventListener('click', (event) => {
-            const freshCodeLink = event.target.closest('a.has-fresh-code');
-            if (!freshCodeLink) return;
-            track('fresh_code_nav_click', {
-                interaction_source: freshCodeLink.closest('.mobile-bottom-nav')
-                    ? 'mobile_bottom_nav'
-                    : 'primary_nav',
-                from_page: slugFromUrl(getPath()),
-                page_type: getPath() === 'index.html' ? 'home' : 'guide',
-                guide_slug: slugFromUrl(getPath())
+    }
+
+    function attachCalculatorTracking() {
+        const calculators = {
+            'vehicle-planner': {
+                resultId: 'vehicle-planner-results',
+                calculatorId: 'vehicle-modification'
+            },
+            'ar-planner': {
+                resultId: 'ar-planner-results',
+                calculatorId: 'alliance-recognition'
+            }
+        };
+        document.addEventListener('submit', (event) => {
+            const contract = calculators[event.target && event.target.id];
+            if (!contract) return;
+            const result = document.getElementById(contract.resultId);
+            const input = event.target.querySelector('input[type="number"]');
+            const inputValue = input ? input.value.trim() : '';
+            const numericValue = Number(inputValue);
+            if (!result || result.hidden || !inputValue
+                || !Number.isFinite(numericValue) || numericValue < 0
+                || !input.validity.valid) return;
+            const path = getPath();
+            track('calculator_result', {
+                calculator_id: contract.calculatorId,
+                guide_slug: slugFromUrl(path),
+                page_type: 'guide'
             });
         });
-    }
-
-    function tableIdFor(el) {
-        const explicit = el.getAttribute('data-table-id');
-        if (explicit) return explicit;
-        const path = getPath();
-        if (path.includes('vehicle-modification-cost')) return 'vehicle-cost';
-        if (path.includes('hq-construction-cost')) return 'hq-cost';
-        return slugFromUrl(path) || 'table';
-    }
-
-    function attachTableTracking() {
-        const scrollAreas = document.querySelectorAll('.table-scroll');
-        scrollAreas.forEach((area) => {
-            const tableId = tableIdFor(area);
-            let interacted = false;
-
-            function markInteraction(type) {
-                if (interacted) return;
-                interacted = true;
-                track('table_interaction', {
-                    table_id: tableId,
-                    interaction_type: type,
-                    guide_slug: slugFromUrl(getPath()),
-                    page_type: 'table'
-                });
-            }
-
-            area.addEventListener('scroll', () => {
-                markInteraction('scroll');
-                trackTableDepth(area, tableId);
-            }, { passive: true });
-            area.addEventListener('wheel', () => markInteraction('wheel'), { passive: true });
-            area.addEventListener('touchstart', () => markInteraction('touch'), { passive: true });
-
-            const legend = area.closest('.data-table-card')?.querySelector('.table-legend');
-            if (legend && 'IntersectionObserver' in window) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            track('table_legend_view', {
-                                table_id: tableId,
-                                guide_slug: slugFromUrl(getPath()),
-                                page_type: 'table'
-                            });
-                            observer.disconnect();
-                        }
-                    });
-                }, { rootMargin: '0px 0px -40% 0px' });
-                observer.observe(legend);
-            }
-        });
-    }
-
-    function trackTableDepth(area, tableId) {
-        const maxScroll = area.scrollHeight - area.clientHeight;
-        if (maxScroll <= 0) return;
-        const pct = Math.min(100, Math.round((area.scrollTop / maxScroll) * 100));
-        const marks = tableDepthMarks.get(area) || new Set();
-        [25, 50, 75, 100].forEach((mark) => {
-            if (pct >= mark && !marks.has(mark)) {
-                marks.add(mark);
-                track('table_scroll_depth', {
-                    table_id: tableId,
-                    depth_pct: mark,
-                    guide_slug: slugFromUrl(getPath()),
-                    page_type: 'table'
-                });
-            }
-        });
-        tableDepthMarks.set(area, marks);
     }
 
     // Expose a small API for search.js to call.
@@ -671,12 +644,13 @@
 
     function init() {
         trackLLMReferralSession();
+        attachNavigationTracking();
         attachHomeTracking();
         attachGuideTracking();
         attachLdshopPromoTracking();
         attachGiftCenterTracking();
         attachCodeTracking();
-        attachTableTracking();
+        attachCalculatorTracking();
     }
 
     if (document.readyState === 'loading') {

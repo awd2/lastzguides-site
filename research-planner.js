@@ -4,11 +4,9 @@
     var STORAGE_KEY = "lastz.researchPlanner.v3";
     var LEGACY_STORAGE_KEY = "lastz.researchPlanner.v2";
     var LEGACY_NODE_STORAGE_KEY = "lastz.researchPlanner.v1";
-    var MEASUREMENT_ID = "G-PYBSRQ1QFP";
     var PLANNER_EVENT_NAME = "planner_use";
-    var analyticsQueue = [];
-    var analyticsFlushTimer = null;
-    var plannerReadyTracked = false;
+    var entryMode = "new";
+    var meaningfulUseTracked = false;
     var plannerModalReturnFocus = null;
     var data = window.LastZResearchPlannerData;
     var plannerLocale = detectPlannerLocale();
@@ -81,54 +79,30 @@
     init();
 
     function init() {
-        loadState();
-        importShareState();
+        var hadSavedProgress = loadState();
+        var loadedSharedPlan = importShareState();
+        entryMode = loadedSharedPlan ? "shared" : (hadSavedProgress ? "saved" : "new");
         bindActions();
         render();
-        trackPlannerReady();
     }
 
     function bindActions() {
         refs.copyShare.addEventListener("click", function () {
-            trackPlannerUse({
-                action: "copy_share",
-                branch_id: state.activeBranchId,
-                planner_view: state.view,
-                source_control: "share"
-            });
             copyShareLink();
         });
         refs.clearTargets.addEventListener("click", function () {
-            var before = Object.keys(state.targets).length;
             state.targets = {};
             saveState();
             render();
-            trackPlannerUse({
-                action: "clear_targets",
-                branch_id: state.activeBranchId,
-                planner_view: state.view,
-                source_control: "target_controls",
-                cleared_target_count: before
-            });
             setStatus("Targets cleared.");
         });
         refs.resetPlanner.addEventListener("click", function () {
-            var beforeLevels = Object.keys(state.levels).length;
-            var beforeTargets = Object.keys(state.targets).length;
             state.levels = {};
             state.targets = {};
             state.selectedKey = null;
             saveState();
             render();
             closeDrawer();
-            trackPlannerUse({
-                action: "planner_reset",
-                branch_id: state.activeBranchId,
-                planner_view: state.view,
-                source_control: "reset",
-                cleared_levels: beforeLevels,
-                cleared_targets: beforeTargets
-            });
             setStatus("Planner reset.");
         });
         refs.autoParentControls.forEach(function (control) {
@@ -137,38 +111,22 @@
             });
         });
         refs.branchSelect.addEventListener("change", function () {
-            var previous = state.activeBranchId;
             state.activeBranchId = refs.branchSelect.value;
             state.selectedKey = null;
             saveState();
             closeDrawer();
             render();
-            trackPlannerUse({
-                action: "select_branch",
-                branch_id: state.activeBranchId,
-                planner_view: state.view,
-                source_control: "branch_select",
-                previous_branch_id: previous
-            });
         });
         refs.branchMenuButton.addEventListener("click", function () {
             var open = refs.branchMenu.hidden;
             refs.branchMenu.hidden = !open;
             refs.branchMenuButton.setAttribute("aria-expanded", String(open));
-            if (open) {
-                trackPlannerUse({
-                    action: "branch_picker_open",
-                    branch_id: state.activeBranchId,
-                    source_control: "branch_picker"
-                });
-            }
         });
         refs.branchMenu.addEventListener("click", function (event) {
             var button = event.target.closest("[data-branch-choice]");
             if (!button) {
                 return;
             }
-            var previous = state.activeBranchId;
             state.activeBranchId = button.getAttribute("data-branch-choice");
             state.selectedKey = null;
             refs.branchMenu.hidden = true;
@@ -176,13 +134,6 @@
             saveState();
             closeDrawer();
             render();
-            trackPlannerUse({
-                action: "select_branch_from_menu",
-                branch_id: state.activeBranchId,
-                planner_view: state.view,
-                source_control: "branch_picker",
-                previous_branch_id: previous
-            });
         });
         document.addEventListener("click", function (event) {
             if (refs.branchMenu.hidden || event.target.closest(".branch-picker")) {
@@ -206,21 +157,11 @@
             if (!button) {
                 return;
             }
-            var previous = state.activeBranchId;
             state.activeBranchId = button.getAttribute("data-branch-id");
             state.selectedKey = null;
             saveState();
             closeDrawer();
             render();
-            if (previous !== state.activeBranchId) {
-                trackPlannerUse({
-                    action: "select_branch_list",
-                    branch_id: state.activeBranchId,
-                    planner_view: state.view,
-                    source_control: "branch_sidebar",
-                    previous_branch_id: previous
-                });
-            }
         });
         if (refs.branchOverview) {
             refs.branchOverview.addEventListener("click", function (event) {
@@ -238,13 +179,6 @@
                 if (workspace && previous !== state.activeBranchId) {
                     workspace.scrollIntoView({ behavior: "smooth", block: "start" });
                 }
-                trackPlannerUse({
-                    action: "select_branch_overview",
-                    branch_id: state.activeBranchId,
-                    planner_view: state.view,
-                    source_control: "branch_overview",
-                    previous_branch_id: previous
-                });
             });
         }
         refs.branchSummary.addEventListener("click", handlePlannerClick);
@@ -277,41 +211,20 @@
         document.addEventListener("keydown", handlePlannerModalKeydown);
     }
 
-    function trackPlannerUse(payload) {
-        var data = payload || {};
+    function trackPlannerUse(action, sourceControl) {
         var eventData = {
             planner_id: "research-planner",
-            page_path: window.location.pathname || "/",
-            planner_view: data.planner_view || state.view,
-            device_mode: getDeviceMode(),
-            branch_id: data.branch_id || state.activeBranchId || "",
-            action: data.action || "",
-            source_control: data.source_control || "planner",
-            auto_prereqs: state.autoParents ? "1" : "0",
-            stats_open: state.statsOpen ? "1" : "0",
-            has_saved_progress: hasPlannerProgress() ? "1" : "0"
+            action: action,
+            entry_mode: entryMode
         };
-        Object.keys(data).forEach(function (key) {
-            if (key !== "action" && key !== "branch_id" && key !== "planner_view" && key !== "source_control") {
-                eventData[key] = data[key];
-            }
-        });
+        if (sourceControl) eventData.source_control = sourceControl;
         sendPlannerAnalytics(eventData);
     }
 
-    function trackPlannerReady() {
-        if (plannerReadyTracked) {
-            return;
-        }
-        plannerReadyTracked = true;
-        trackPlannerUse({
-            action: "planner_ready",
-            branch_id: state.activeBranchId,
-            planner_view: state.view,
-            source_control: "page",
-            branch_count: branches.length,
-            has_share_plan: new URLSearchParams(window.location.search).has("p") ? "1" : "0"
-        });
+    function trackMeaningfulUse(sourceControl) {
+        if (meaningfulUseTracked || !hasPlannerProgress()) return;
+        meaningfulUseTracked = true;
+        trackPlannerUse("meaningful_use", sourceControl);
     }
 
     function sendPlannerAnalytics(eventData) {
@@ -320,45 +233,6 @@
             recordPlannerAnalyticsDebug("analytics", eventData);
             return;
         }
-        if (typeof window.gtag === "function") {
-            window.gtag("event", PLANNER_EVENT_NAME, Object.assign({
-                measurement_id: MEASUREMENT_ID
-            }, eventData));
-            recordPlannerAnalyticsDebug("gtag", eventData);
-            return;
-        }
-        analyticsQueue.push(eventData);
-        recordPlannerAnalyticsDebug("queued", eventData);
-        scheduleAnalyticsFlush();
-    }
-
-    function scheduleAnalyticsFlush() {
-        if (analyticsFlushTimer) {
-            return;
-        }
-        analyticsFlushTimer = window.setTimeout(function flush() {
-            analyticsFlushTimer = null;
-            if (!analyticsQueue.length) {
-                return;
-            }
-            if (window.analytics && typeof window.analytics.trackEvent === "function") {
-                analyticsQueue.splice(0).forEach(function (eventData) {
-                    window.analytics.trackEvent(PLANNER_EVENT_NAME, eventData);
-                    recordPlannerAnalyticsDebug("analytics_queue", eventData);
-                });
-                return;
-            }
-            if (typeof window.gtag === "function") {
-                analyticsQueue.splice(0).forEach(function (eventData) {
-                    window.gtag("event", PLANNER_EVENT_NAME, Object.assign({
-                        measurement_id: MEASUREMENT_ID
-                    }, eventData));
-                    recordPlannerAnalyticsDebug("gtag_queue", eventData);
-                });
-                return;
-            }
-            scheduleAnalyticsFlush();
-        }, 250);
     }
 
     function recordPlannerAnalyticsDebug(transport, eventData) {
@@ -374,18 +248,9 @@
     }
 
     function setAutoParents(enabled) {
-        var previous = state.autoParents;
         state.autoParents = !!enabled;
         saveState();
         render();
-        trackPlannerUse({
-            action: "toggle_auto_parents",
-            branch_id: state.activeBranchId,
-            planner_view: state.view,
-            source_control: "prereqs_toggle",
-            enabled: state.autoParents ? "1" : "0",
-            changed: previous === state.autoParents ? "0" : "1"
-        });
     }
 
     function loadState() {
@@ -397,7 +262,7 @@
             state.statsOpen = false;
             state.levels = cleanLevelMap(saved.levels);
             state.targets = cleanLevelMap(saved.targets);
-            return;
+            return hasPlannerProgress();
         }
 
         var legacy = readJsonStorage(LEGACY_STORAGE_KEY);
@@ -406,7 +271,7 @@
             state.levels = cleanLevelMap(legacy.levels);
             state.targets = cleanLevelMap(legacy.targets);
             state.autoParents = legacy.autoParents !== false;
-            return;
+            return hasPlannerProgress();
         }
 
         legacy = readJsonStorage(LEGACY_NODE_STORAGE_KEY);
@@ -415,13 +280,14 @@
             migrateLegacyMap(legacy.completed, "levels");
             migrateLegacyMap(legacy.planned, "targets");
         }
+        return hasPlannerProgress();
     }
 
     function importShareState() {
         var params = new URLSearchParams(window.location.search);
         var payload = params.get("p");
         if (!payload) {
-            return;
+            return false;
         }
         try {
             var decoded = JSON.parse(base64UrlDecode(payload));
@@ -434,6 +300,7 @@
                 state.targets = arrayToLevelMap(decoded.t);
                 saveState();
                 setStatus("Shared plan loaded.");
+                return true;
             } else if (decoded.v === 1) {
                 state.activeBranchId = branchById.has(decoded.b) ? decoded.b : state.activeBranchId;
                 state.levels = {};
@@ -442,23 +309,30 @@
                 migrateLegacyMap(arrayToBooleanMap(decoded.p), "targets");
                 saveState();
                 setStatus("Shared plan loaded.");
+                return true;
             }
         } catch (error) {
             setStatus("Could not load shared plan.");
         }
+        return false;
     }
 
     function saveState() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify({
-            v: 3,
-            activeBranchId: state.activeBranchId,
-            view: state.view,
-            viewport: isSmallScreen() ? "mobile" : "desktop",
-            autoParents: state.autoParents,
-            statsOpen: state.statsOpen,
-            levels: state.levels,
-            targets: state.targets
-        }));
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                v: 3,
+                activeBranchId: state.activeBranchId,
+                view: state.view,
+                viewport: isSmallScreen() ? "mobile" : "desktop",
+                autoParents: state.autoParents,
+                statsOpen: state.statsOpen,
+                levels: state.levels,
+                targets: state.targets
+            }));
+            return true;
+        } catch (error) {
+            return false;
+        }
     }
 
     function render() {
@@ -998,40 +872,18 @@
             if (!wasDrawerOpen) {
                 focusPlannerModal(refs.drawer);
             }
-            trackPlannerUse({
-                action: "open_node",
-                branch_id: state.activeBranchId,
-                source_control: state.view === "table" ? "table_node" : "tree_node",
-                key: key,
-                node_id: key.split(":")[1] || key,
-                level: level,
-                planner_view: state.view
-            });
             return;
         }
         if (action === "clear-branch-targets" && branchId) {
             clearBranchTargets(branchId);
             saveState();
             render();
-            trackPlannerUse({
-                action: "clear_branch_targets",
-                branch_id: branchId,
-                planner_view: state.view,
-                source_control: "summary_goal"
-            });
             return;
         }
         if (action === "clear-branch" && branchId) {
             clearBranch(branchId);
             saveState();
             render();
-            trackPlannerUse({
-                action: "clear_branch",
-                branch_id: branchId,
-                planner_view: state.view,
-                interaction_source: "planner_grid",
-                source_control: "branch_clear"
-            });
             return;
         }
         if (key && nodeByKey.has(key)) {
@@ -1039,70 +891,31 @@
             if (!applied) {
                 return;
             }
-            saveState();
+            var persisted = saveState();
             render();
             actionEl.blur();
-            trackPlannerUse({
-                action: "node_action",
-                branch_id: key.split(":")[0],
-                source_control: state.view === "table" ? "table_node" : "tree_node",
-                key: key,
-                node_id: key.split(":")[1] || key,
-                node_action: action,
-                level: level,
-                planner_view: state.view,
-                action_applied: applied ? "1" : "0"
-            });
+            if (persisted) trackMeaningfulUse(state.view === "table" ? "table_node" : "tree_node");
         }
     }
 
     function openStatsControl() {
         if (isSmallScreen()) {
             openMobileSheet("stats");
-            trackPlannerUse({
-                action: "open_mobile_stats",
-                branch_id: state.activeBranchId,
-                planner_view: "tree",
-                source_control: "summary_controls"
-            });
             return;
         }
         state.statsOpen = !state.statsOpen;
         saveState();
         render();
-        trackPlannerUse({
-            action: "toggle_stats",
-            branch_id: state.activeBranchId,
-            planner_view: state.view,
-            source_control: "summary_controls",
-            state: state.statsOpen ? "open" : "closed"
-        });
     }
 
     function openViewControl(button) {
         if (isSmallScreen() && button.getAttribute("data-view") === "table") {
             openMobileSheet("table");
-            trackPlannerUse({
-                action: "open_mobile_table",
-                branch_id: state.activeBranchId,
-                planner_view: "tree",
-                source_control: "summary_controls"
-            });
             return;
         }
-        var previous = state.view;
         state.view = button.getAttribute("data-view") === "table" ? "table" : "tree";
         saveState();
         render();
-        if (previous !== state.view) {
-            trackPlannerUse({
-                action: "switch_view",
-                branch_id: state.activeBranchId,
-                planner_view: state.view,
-                source_control: "summary_controls",
-                previous_view: previous
-            });
-        }
     }
 
     function handlePlannerChange(event) {
@@ -1116,7 +929,6 @@
         if (!key || !nodeByKey.has(key)) {
             return;
         }
-        var previous = mode === "completed" ? getLevel(key) : getTarget(key);
         var changed = false;
         if (mode === "completed") {
             changed = setCompletedLevel(key, level);
@@ -1126,18 +938,9 @@
         if (!changed) {
             return;
         }
-        saveState();
+        var persisted = saveState();
         render();
-        trackPlannerUse({
-            action: "change_level",
-            branch_id: key.split(":")[0],
-            source_control: mode === "completed" ? "level_select" : "target_select",
-            key: key,
-            node_id: key.split(":")[1] || key,
-            mode: mode,
-            previous: previous,
-            level: level
-        });
+        if (persisted) trackMeaningfulUse(mode === "completed" ? "level_select" : "target_select");
     }
 
     function getTreeScrollPosition() {
@@ -1652,6 +1455,7 @@
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(link).then(function () {
                 setStatus("Share link copied.");
+                if (hasPlannerProgress()) trackPlannerUse("share_success", "share");
             }).catch(function () {
                 fallbackCopy(link);
             });
@@ -1661,6 +1465,25 @@
     }
 
     function fallbackCopy(link) {
+        var field = document.createElement("textarea");
+        field.value = link;
+        field.setAttribute("readonly", "");
+        field.style.position = "fixed";
+        field.style.opacity = "0";
+        document.body.appendChild(field);
+        field.select();
+        var copied = false;
+        try {
+            copied = document.execCommand("copy");
+        } catch (error) {
+            copied = false;
+        }
+        field.remove();
+        if (copied) {
+            setStatus("Share link copied.");
+            if (hasPlannerProgress()) trackPlannerUse("share_success", "share");
+            return;
+        }
         window.prompt("Copy share link:", link);
         setStatus("Share link ready.");
     }
