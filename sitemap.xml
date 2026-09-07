@@ -108,7 +108,7 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/canyon-clash.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/canyon-clash.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/canyon-clash.html" />
-        <lastmod>2026-02-01</lastmod>
+        <lastmod>2026-09-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -274,7 +274,7 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/canyon-clash.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/canyon-clash.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/canyon-clash.html" />
-        <lastmod>2026-05-31</lastmod>
+        <lastmod>2026-09-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -424,7 +424,7 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/furylord.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/furylord.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/furylord.html" />
-        <lastmod>2026-05-31</lastmod>
+        <lastmod>2026-09-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -794,7 +794,7 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/steel.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/steel.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/steel.html" />
-        <lastmod>2026-05-31</lastmod>
+        <lastmod>2026-09-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -854,7 +854,7 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/tyrant.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/tyrant.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/tyrant.html" />
-        <lastmod>2026-05-31</lastmod>
+        <lastmod>2026-09-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -1056,7 +1056,7 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/canyon-clash.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/canyon-clash.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/canyon-clash.html" />
-        <lastmod>2026-05-30</lastmod>
+        <lastmod>2026-09-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -1206,7 +1206,7 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/furylord.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/furylord.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/furylord.html" />
-        <lastmod>2026-05-24</lastmod>
+        <lastmod>2026-09-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -1576,7 +1576,7 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/steel.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/steel.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/steel.html" />
-        <lastmod>2026-05-24</lastmod>
+        <lastmod>2026-09-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -1636,7 +1636,7 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/tyrant.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/tyrant.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/tyrant.html" />
-        <lastmod>2026-05-24</lastmod>
+        <lastmod>2026-09-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -1696,7 +1696,7 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/furylord.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/furylord.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/furylord.html" />
-        <lastmod>2026-02-01</lastmod>
+        <lastmod>2026-09-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -1733,6 +1733,12 @@
     <url>
         <loc>https://lastzguides.com/glory-war.html</loc>
         <lastmod>2026-08-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://lastzguides.com/hero-battlefield.html</loc>
+        <lastmod>2026-09-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -2086,7 +2092,13 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/steel.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/steel.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/steel.html" />
-        <lastmod>2026-02-01</lastmod>
+        <lastmod>2026-09-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://lastzguides.com/survival-saga.html</loc>
+        <lastmod>2026-09-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -2158,7 +2170,7 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/tyrant.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/tyrant.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/tyrant.html" />
-        <lastmod>2026-02-01</lastmod>
+        <lastmod>2026-09-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -2185,6 +2197,12 @@
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/vehicle-modification-cost.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/vehicle-modification-cost.html" />
         <lastmod>2026-08-23</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://lastzguides.com/volcano-war.html</loc>
+        <lastmod>2026-09-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>

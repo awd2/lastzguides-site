@@ -3505,6 +3505,26 @@
     ]
   },
   {
+    "url": "/hero-battlefield.html",
+    "locale": "en",
+    "source_path": "hero-battlefield.html",
+    "title": "Hero Battlefield",
+    "category": "Guides",
+    "description": "Plan all three Hero Battlefields, understand Tuesday/Thursday/Sunday resets and chapter limits, unlock Quick Fight, and spend Glory Badges.",
+    "keywords": [
+      "Last",
+      "Hero",
+      "Battlefield",
+      "Guide",
+      "Resets",
+      "Replays",
+      "Quick",
+      "Fight",
+      "and",
+      "Plan"
+    ]
+  },
+  {
     "url": "/hero-recruitment.html",
     "locale": "en",
     "source_path": "hero-recruitment.html",
@@ -4245,6 +4265,26 @@
     ]
   },
   {
+    "url": "/survival-saga.html",
+    "locale": "en",
+    "source_path": "survival-saga.html",
+    "title": "Survival Saga",
+    "category": "Guides",
+    "description": "Choose a Survival Saga difficulty, understand the next-round unlock, compare Normal and Advanced rewards, and complete Saga Zombie milestones.",
+    "keywords": [
+      "Last",
+      "Survival",
+      "Saga",
+      "Guide",
+      "Difficulty",
+      "Rewards",
+      "Progression",
+      "and",
+      "Choose",
+      "understand"
+    ]
+  },
+  {
     "url": "/svs.html",
     "locale": "en",
     "source_path": "svs.html",
@@ -4462,6 +4502,26 @@
       "Destroyer",
       "Milestones",
       "and"
+    ]
+  },
+  {
+    "url": "/volcano-war.html",
+    "locale": "en",
+    "source_path": "volcano-war.html",
+    "title": "Volcano War",
+    "category": "Guides",
+    "description": "Prepare for Last Z Volcano War: the 10-day schedule, Hard Mode, building points, HQ entry rules, troop losses, and reward distribution.",
+    "keywords": [
+      "Last",
+      "Volcano",
+      "War",
+      "Guide",
+      "Schedule",
+      "Camps",
+      "Battle",
+      "Plan",
+      "and",
+      "Prepare"
     ]
   },
   {
