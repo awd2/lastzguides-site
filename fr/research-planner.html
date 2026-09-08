@@ -13,8 +13,8 @@
       gtag('js', new Date());
       gtag('config', 'G-PYBSRQ1QFP');
     </script>
-    <title>Research Planner Last Z (2026) — calculateur de badges et plan partageable</title>
-    <meta name="description" content="Utilisez le Research Planner Last Z pour suivre les niveaux terminés, fixer des nodes cibles, calculer les badges restants par branche, sauvegarder localement et partager une URL de plan.">
+    <title>Calculateur de badges Last Z — planificateur de recherche</title>
+    <meta name="description" content="Calculez les badges nécessaires à vos objectifs de recherche dans Last Z. Renseignez vos niveaux actuels et cibles, sauvegardez votre progression et partagez votre plan.">
     <meta name="keywords" content="Last Z research planner, Last Z badge calculator, Last Z badge planner, Last Z research calculator, Last Z research costs planner, Last Z research tool">
     <link rel="canonical" href="https://lastzguides.com/fr/research-planner.html">
 
@@ -32,8 +32,8 @@
     <link rel="icon" type="image/png" href="/favicon-48.png" sizes="48x48">
     <link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
 
-    <meta property="og:title" content="Research Planner Last Z (2026) — calculateur de badges et plan partageable">
-    <meta property="og:description" content="Utilisez le Research Planner Last Z pour suivre les niveaux terminés, fixer des nodes cibles, calculer les badges restants par branche, sauvegarder localement et partager une URL de plan.">
+    <meta property="og:title" content="Calculateur de badges Last Z — planificateur de recherche">
+    <meta property="og:description" content="Calculez les badges nécessaires à vos objectifs de recherche dans Last Z. Renseignez vos niveaux actuels et cibles, sauvegardez votre progression et partagez votre plan.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://lastzguides.com/fr/research-planner.html">
     <meta property="og:image" content="https://lastzguides.com/assets/social/last-z-guides-share-v3.png">
@@ -44,8 +44,8 @@
     <meta property="og:site_name" content="Last Z Guides">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Research Planner Last Z (2026) — calculateur de badges et plan partageable">
-    <meta name="twitter:description" content="Utilisez le Research Planner Last Z pour suivre les niveaux terminés, fixer des nodes cibles, calculer les badges restants par branche, sauvegarder localement et partager une URL de plan.">
+    <meta name="twitter:title" content="Calculateur de badges Last Z — planificateur de recherche">
+    <meta name="twitter:description" content="Calculez les badges nécessaires à vos objectifs de recherche dans Last Z. Renseignez vos niveaux actuels et cibles, sauvegardez votre progression et partagez votre plan.">
     <meta name="twitter:image" content="https://lastzguides.com/assets/social/last-z-guides-share-v3.png">
     <meta name="twitter:image:alt" content="Last Z Guides social preview highlighting gift codes, practical guides, exact research costs, and the Research Planner.">
     <meta name="robots" content="max-image-preview:large">
@@ -54,24 +54,25 @@
 {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Last Z Research Planner",
-    "url": "https://lastzguides.com/research-planner.html",
+    "name": "Calculateur de badges Last Z",
+    "url": "https://lastzguides.com/fr/research-planner.html",
     "applicationCategory": "GameApplication",
     "operatingSystem": "Any",
-    "description": "Utilisez le Research Planner Last Z pour suivre les niveaux terminés, fixer des nodes cibles, calculer les badges restants par branche, sauvegarder localement et partager une URL de plan.",
+    "description": "Calculez les badges nécessaires à vos objectifs de recherche dans Last Z. Renseignez vos niveaux actuels et cibles, sauvegardez votre progression et partagez votre plan.",
     "featureList": [
-        "Completed research levels",
-        "Cible research levels",
-        "Branche badge totals",
-        "Remaining badge calculation",
-        "Dependency warnings",
-        "Local saved progress",
-        "Partagerable research plan URL"
+        "Niveaux de recherche terminés",
+        "Niveaux de recherche visés",
+        "Totaux de badges par branche",
+        "Coût en badges des objectifs",
+        "Avertissements sur les prérequis",
+        "Sauvegarde locale de la progression",
+        "Partage du plan par URL"
     ],
     "publisher": {
         "@type": "Organization",
         "name": "Last Z Guides"
-    }
+    },
+    "inLanguage": "fr"
 }
     </script>
     <script type="application/ld+json">
@@ -171,9 +172,9 @@
     <main class="planner-shell planner-app" id="planner-app">
         <section class="planner-appbar" aria-labelledby="planner-title">
             <div class="planner-title-block">
-                <h1 id="planner-title">Research Planner Last Z</h1>
-                <p class="planner-lede">Suivez les niveaux terminés, définissez des cibles, calculez les badges restants et partagez l’URL exacte du plan Research.</p>
-                <p class="planner-data-note">Données de planner par niveau issues des coûts Research extraits.</p>
+                <h1 id="planner-title">Calculateur de badges Last Z</h1>
+                <p class="planner-lede">Indiquez vos niveaux actuels et vos objectifs pour calculer les badges à prévoir.</p>
+                <p class="planner-data-note">Votre progression est sauvegardée dans ce navigateur. Un lien de partage permet de transmettre votre plan.</p>
             </div>
 
             <label class="branch-picker">
@@ -185,24 +186,24 @@
 
             <div class="planner-dashboard" aria-label="Totaux du planner">
                 <div class="planner-total-card planner-total-card--scope">
-                    <span>Total</span>
+                    <span data-total-label>Total</span>
                     <strong data-total-badges>0</strong>
                     <small>toutes branches</small>
                 </div>
                 <div class="planner-total-card">
-                    <span>Terminé</span>
+                    <span data-completed-label>Terminé</span>
                     <strong data-completed-badges>0</strong>
                     <small data-completed-levels>0 niveaux</small>
                 </div>
                 <div class="planner-total-card">
-                    <span>Cible</span>
+                    <span data-planned-label>Cible</span>
                     <strong data-planned-badges>0</strong>
                     <small data-planned-levels>0 niveaux ciblés</small>
                 </div>
                 <div class="planner-total-card">
-                    <span>Restant</span>
+                    <span data-remaining-label>Restant</span>
                     <strong data-remaining-badges>0</strong>
-                    <small>après terminé</small>
+                    <small data-remaining-note>après terminé</small>
                 </div>
             </div>
 
@@ -225,10 +226,20 @@
             </section>
         </noscript>
 
+        <section class="branch-overview" aria-labelledby="branch-overview-title">
+            <div class="branch-overview-head">
+                <div>
+                    <h2 id="branch-overview-title">Choisir une branche de recherche</h2>
+                    <p>Choisissez une branche comme dans l’arbre du jeu, puis ouvrez sa carte pour définir les niveaux terminés et les objectifs.</p>
+                </div>
+            </div>
+            <div class="branch-overview-grid" data-branch-overview></div>
+        </section>
+
         <section class="planner-layout">
             <aside class="planner-sidebar" aria-label="Branches Research">
                 <div class="planner-sidebar-head">
-                    <h2>Branchees</h2>
+                    <h2>Branches</h2>
                     <p>Choisissez une branche pour mettre à jour les niveaux et les cibles.</p>
                 </div>
                 <div class="branch-list" data-branch-list></div>
@@ -236,13 +247,17 @@
 
             <section class="planner-workspace" aria-live="polite">
                 <div class="branch-summary" data-branch-summary></div>
-                <div class="planner-toolbar" aria-label="Branche view controls">
+                <div class="planner-toolbar" aria-label="Affichage de la branche">
                     <div class="planner-tabs" role="tablist" aria-label="Vue du planner">
                         <button type="button" class="planner-tab" data-view="tree">Arbre</button>
-                        <button type="button" class="planner-tab" data-view="table">Tableau</button>
+                        <button type="button" class="planner-tab planner-tool-button" data-view="table"><span class="tool-icon" aria-hidden="true">☰</span><span>Tableau</span></button>
                     </div>
                     <div class="planner-toolbar-actions">
-                        <button type="button" class="icon-button" data-toggle-stats aria-expanded="false">Stats</button>
+                        <label class="planner-toggle planner-toggle--toolbar">
+                            <input type="checkbox" data-auto-parents>
+                            <span>Prérequis</span>
+                        </label>
+                        <button type="button" class="icon-button planner-tool-button" data-toggle-stats aria-expanded="false"><span class="tool-icon" aria-hidden="true">▥</span><span>Stats</span></button>
                     </div>
                 </div>
                 <div class="warning-panel" data-warning-panel hidden></div>
@@ -259,9 +274,17 @@
             </article>
         </section>
 
+        <section class="planner-sheet" data-mobile-sheet hidden aria-label="Détails du planificateur">
+            <div class="planner-sheet-backdrop" data-close-sheet></div>
+            <article class="planner-sheet-panel" role="dialog" aria-modal="true" aria-labelledby="planner-sheet-title">
+                <button type="button" class="drawer-close planner-sheet-close" data-close-sheet aria-label="Fermer les détails du planificateur">x</button>
+                <div data-mobile-sheet-content></div>
+            </article>
+        </section>
+
         <section class="planner-panel planner-related" aria-labelledby="planner-next-links">
             <h2 id="planner-next-links">Liens de planification Research</h2>
-            <p>Utilisez le planner pour sauvegarder la progression et partager une URL. Utilisez le guide et l’atlas pour les conseils de route ou les pages statiques.</p>
+            <p>Choisissez une branche, puis ouvrez une technologie pour renseigner le niveau atteint et le niveau visé. Le coût de l’objectif couvre les niveaux supplémentaires sélectionnés ; le total restant de la branche correspond aux niveaux non terminés jusqu’au maximum. Pour choisir votre priorité de recherche ou consulter les coûts sans utiliser le calculateur, ouvrez les guides ci-dessous.</p>
             <div class="related-grid">
                 <a href="/fr/research.html" class="related-card">Guide de priorité Research</a>
                 <a href="/fr/research-costs.html" class="related-card">Atlas des coûts Research</a>

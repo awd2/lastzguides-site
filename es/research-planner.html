@@ -55,23 +55,24 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Last Z Research Planner",
-    "url": "https://lastzguides.com/research-planner.html",
+    "url": "https://lastzguides.com/es/research-planner.html",
     "applicationCategory": "GameApplication",
     "operatingSystem": "Any",
     "description": "Usa el Research Planner de Last Z para marcar niveles completados, fijar nodos objetivo, calcular badges restantes por rama, guardar progreso localmente y compartir una URL de plan.",
     "featureList": [
-        "Completed research levels",
-        "Target research levels",
-        "Branch badge totals",
-        "Remaining badge calculation",
-        "Dependency warnings",
-        "Local saved progress",
-        "Shareable research plan URL"
+        "Niveles de investigación completados",
+        "Niveles de investigación objetivo",
+        "Totales de insignias por rama",
+        "Coste en insignias de los objetivos",
+        "Avisos de requisitos previos",
+        "Progreso guardado en el navegador",
+        "Plan compartible mediante URL"
     ],
     "publisher": {
         "@type": "Organization",
         "name": "Last Z Guides"
-    }
+    },
+    "inLanguage": "es"
 }
     </script>
     <script type="application/ld+json">
@@ -173,7 +174,7 @@
             <div class="planner-title-block">
                 <h1 id="planner-title">Last Z Research Planner</h1>
                 <p class="planner-lede">Sigue los niveles completados, establece nodos objetivo, calcula las insignias restantes y comparte la URL exacta del plan de investigación.</p>
-                <p class="planner-data-note">Datos del planificador sensibles al nivel, extraídos de los costes del árbol de investigación.</p>
+                <p class="planner-data-note">Tu progreso se guarda en este navegador. Puedes compartir el plan mediante un enlace.</p>
             </div>
 
             <label class="branch-picker">
@@ -185,24 +186,24 @@
 
             <div class="planner-dashboard" aria-label="Totales del planificador">
                 <div class="planner-total-card planner-total-card--scope">
-                    <span>Total</span>
+                    <span data-total-label>Total</span>
                     <strong data-total-badges>0</strong>
                     <small>todas las ramas</small>
                 </div>
                 <div class="planner-total-card">
-                    <span>Hecho</span>
+                    <span data-completed-label>Hecho</span>
                     <strong data-completed-badges>0</strong>
                     <small data-completed-levels>0 niveles</small>
                 </div>
                 <div class="planner-total-card">
-                    <span>Objetivo</span>
+                    <span data-planned-label>Objetivo</span>
                     <strong data-planned-badges>0</strong>
                     <small data-planned-levels>0 niveles objetivo</small>
                 </div>
                 <div class="planner-total-card">
-                    <span>Restante</span>
+                    <span data-remaining-label>Restante</span>
                     <strong data-remaining-badges>0</strong>
-                    <small>después de hecho</small>
+                    <small data-remaining-note>después de hecho</small>
                 </div>
             </div>
 
@@ -212,7 +213,7 @@
                 <button type="button" class="planner-button planner-button--danger" data-reset-planner>Restablecer</button>
                 <label class="planner-toggle">
                     <input type="checkbox" data-auto-parents>
-                    <span>Rellenar padres automáticamente</span>
+                    <span>Completar requisitos previos</span>
                 </label>
                 <span class="planner-status" data-share-status aria-live="polite"></span>
             </div>
@@ -220,29 +221,43 @@
 
         <noscript>
             <section class="planner-panel">
-                <h2>JavaScript Required</h2>
-                <p>The Research Planner needs JavaScript for state, share links, and saved progress. The static research cost pages remain available from the <a href="/es/research-costs.html">Research Costs Atlas</a>.</p>
+                <h2>JavaScript necesario</h2>
+                <p>El planificador necesita JavaScript para guardar el progreso y compartir planes. Puedes consultar los costes estáticos en el <a href="/es/research-costs.html">atlas de costes de investigación</a>.</p>
             </section>
         </noscript>
 
+        <section class="branch-overview" aria-labelledby="branch-overview-title">
+            <div class="branch-overview-head">
+                <div>
+                    <h2 id="branch-overview-title">Elige una rama de investigación</h2>
+                    <p>Elige una rama como en el árbol del juego y abre su mapa para indicar los niveles completados y los objetivos.</p>
+                </div>
+            </div>
+            <div class="branch-overview-grid" data-branch-overview></div>
+        </section>
+
         <section class="planner-layout">
-            <aside class="planner-sidebar" aria-label="Research branches">
+            <aside class="planner-sidebar" aria-label="Ramas de investigación">
                 <div class="planner-sidebar-head">
-                    <h2>Branches</h2>
-                    <p>Select a branch to update levels and targets.</p>
+                    <h2>Ramas</h2>
+                    <p>Elige una rama para actualizar los niveles y los objetivos.</p>
                 </div>
                 <div class="branch-list" data-branch-list></div>
             </aside>
 
             <section class="planner-workspace" aria-live="polite">
                 <div class="branch-summary" data-branch-summary></div>
-                <div class="planner-toolbar" aria-label="Branch view controls">
-                    <div class="planner-tabs" role="tablist" aria-label="Planner view">
-                        <button type="button" class="planner-tab" data-view="tree">Tree</button>
-                        <button type="button" class="planner-tab" data-view="table">Table</button>
+                <div class="planner-toolbar" aria-label="Vista de la rama">
+                    <div class="planner-tabs" role="tablist" aria-label="Vista del planificador">
+                        <button type="button" class="planner-tab" data-view="tree">Árbol</button>
+                        <button type="button" class="planner-tab planner-tool-button" data-view="table"><span class="tool-icon" aria-hidden="true">☰</span><span>Tabla</span></button>
                     </div>
                     <div class="planner-toolbar-actions">
-                        <button type="button" class="icon-button" data-toggle-stats aria-expanded="false">Stats</button>
+                        <label class="planner-toggle planner-toggle--toolbar">
+                            <input type="checkbox" data-auto-parents>
+                            <span>Requisitos</span>
+                        </label>
+                        <button type="button" class="icon-button planner-tool-button" data-toggle-stats aria-expanded="false"><span class="tool-icon" aria-hidden="true">▥</span><span>Stats</span></button>
                     </div>
                 </div>
                 <div class="warning-panel" data-warning-panel hidden></div>
@@ -251,11 +266,19 @@
             </section>
         </section>
 
-        <section class="node-drawer" data-node-drawer hidden aria-label="Research node details">
+        <section class="node-drawer" data-node-drawer hidden aria-label="Detalles de la tecnología">
             <div class="node-drawer-backdrop" data-close-drawer></div>
             <article class="node-drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
                 <button type="button" class="drawer-close" data-close-drawer aria-label="Cerrar detalles del nodo">x</button>
                 <div data-drawer-content></div>
+            </article>
+        </section>
+
+        <section class="planner-sheet" data-mobile-sheet hidden aria-label="Detalles del planificador">
+            <div class="planner-sheet-backdrop" data-close-sheet></div>
+            <article class="planner-sheet-panel" role="dialog" aria-modal="true" aria-labelledby="planner-sheet-title">
+                <button type="button" class="drawer-close planner-sheet-close" data-close-sheet aria-label="Cerrar detalles del planificador">x</button>
+                <div data-mobile-sheet-content></div>
             </article>
         </section>
 
