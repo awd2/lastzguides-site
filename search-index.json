@@ -550,6 +550,26 @@
     ]
   },
   {
+    "url": "/es/arctic-fishing.html",
+    "locale": "es",
+    "source_path": "arctic-fishing.html",
+    "title": "Arctic Fishing",
+    "category": "Guides",
+    "description": "Elige Ice Pits, activa el Fish Index, intercambia duplicados y prepara las disputas de Arctic Fishing en la temporada 2 Winter de Last Z.",
+    "keywords": [
+      "Last",
+      "Arctic",
+      "Fishing",
+      "Ice",
+      "Pits",
+      "Fish",
+      "Index",
+      "Elige",
+      "activa",
+      "intercambia"
+    ]
+  },
+  {
     "url": "/es/arena.html",
     "locale": "es",
     "source_path": "arena.html",
@@ -607,6 +627,26 @@
       "Prereqs",
       "Guide",
       "Orden"
+    ]
+  },
+  {
+    "url": "/es/bio-institute-shop.html",
+    "locale": "es",
+    "source_path": "bio-institute-shop.html",
+    "title": "Bio Institute Shop",
+    "category": "Guides",
+    "description": "Planifica tus Ancient Dino Eggs en Last Z: tienda del fin de semana, coste de renovaciones, compras útiles e hitos del Fossil Album.",
+    "keywords": [
+      "Last",
+      "Bio",
+      "Institute",
+      "Shop",
+      "Huevos",
+      "renovaciones",
+      "siles",
+      "gastar",
+      "Ancient",
+      "Dino"
     ]
   },
   {
@@ -1510,6 +1550,26 @@
     ]
   },
   {
+    "url": "/es/season-3-dinosaur-origin.html",
+    "locale": "es",
+    "source_path": "season-3-dinosaur-origin.html",
+    "title": "temporada 3: Dinosaur Origin",
+    "category": "Guides",
+    "description": "Prepara la temporada 3 Dinosaur Origin de Last Z: recursos, compañero, Ancient Dino Eggs, tienda del fin de semana y eventos de temporada.",
+    "keywords": [
+      "Last",
+      "temporada",
+      "Dinosaur",
+      "Origin",
+      "Recursos",
+      "prioridades",
+      "Prepara",
+      "compa",
+      "ero",
+      "Ancient"
+    ]
+  },
+  {
     "url": "/es/second-laboratory.html",
     "locale": "es",
     "source_path": "second-laboratory.html",
@@ -2125,6 +2185,26 @@
     ]
   },
   {
+    "url": "/fr/arctic-fishing.html",
+    "locale": "fr",
+    "source_path": "arctic-fishing.html",
+    "title": "Arctic Fishing",
+    "category": "Guides",
+    "description": "Choisissez vos Ice Pits, activez le Fish Index, échangez les doublons et préparez les combats d’Arctic Fishing en saison 2 Winter de Last Z.",
+    "keywords": [
+      "Last",
+      "Arctic",
+      "Fishing",
+      "Ice",
+      "Pits",
+      "Fish",
+      "Index",
+      "Choisissez",
+      "vos",
+      "activez"
+    ]
+  },
+  {
     "url": "/fr/arena.html",
     "locale": "fr",
     "source_path": "arena.html",
@@ -2182,6 +2262,26 @@
       "Guide",
       "priorisez",
       "Laboratory"
+    ]
+  },
+  {
+    "url": "/fr/bio-institute-shop.html",
+    "locale": "fr",
+    "source_path": "bio-institute-shop.html",
+    "title": "Bio Institute Shop",
+    "category": "Guides",
+    "description": "Planifiez vos Ancient Dino Eggs dans Last Z : boutique du week-end, coût des renouvellements, achats utiles et paliers du Fossil Album.",
+    "keywords": [
+      "Last",
+      "Bio",
+      "Institute",
+      "Shop",
+      "ufs",
+      "renouvellements",
+      "fossiles",
+      "penser",
+      "les",
+      "Ancient"
     ]
   },
   {
@@ -3082,6 +3182,26 @@
       "Greenhouse",
       "Frost",
       "Cores"
+    ]
+  },
+  {
+    "url": "/fr/season-3-dinosaur-origin.html",
+    "locale": "fr",
+    "source_path": "season-3-dinosaur-origin.html",
+    "title": "saison 3 : Dinosaur Origin",
+    "category": "Guides",
+    "description": "Préparez la saison 3 Dinosaur Origin de Last Z : ressources, compagnon, Ancient Dino Eggs, boutique du week-end et événements saisonniers.",
+    "keywords": [
+      "Last",
+      "saison",
+      "Dinosaur",
+      "Origin",
+      "Ressources",
+      "priorit",
+      "parez",
+      "compagnon",
+      "Ancient",
+      "Dino"
     ]
   },
   {

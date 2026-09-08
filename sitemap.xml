@@ -62,6 +62,10 @@
     </url>
     <url>
         <loc>https://lastzguides.com/arctic-fishing.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/arctic-fishing.html" />
+        <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/arctic-fishing.html" />
+        <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/arctic-fishing.html" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/arctic-fishing.html" />
         <lastmod>2026-09-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -98,6 +102,10 @@
     </url>
     <url>
         <loc>https://lastzguides.com/bio-institute-shop.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/bio-institute-shop.html" />
+        <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/bio-institute-shop.html" />
+        <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/bio-institute-shop.html" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/bio-institute-shop.html" />
         <lastmod>2026-09-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -251,6 +259,16 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://lastzguides.com/es/arctic-fishing.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/arctic-fishing.html" />
+        <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/arctic-fishing.html" />
+        <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/arctic-fishing.html" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/arctic-fishing.html" />
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://lastzguides.com/es/arena.html</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/arena.html" />
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/arena.html" />
@@ -277,6 +295,16 @@
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/base-building-order.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/base-building-order.html" />
         <lastmod>2026-05-31</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://lastzguides.com/es/bio-institute-shop.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/bio-institute-shop.html" />
+        <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/bio-institute-shop.html" />
+        <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/bio-institute-shop.html" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/bio-institute-shop.html" />
+        <lastmod>2026-09-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -366,7 +394,7 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/events.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/events.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/events.html" />
-        <lastmod>2026-05-31</lastmod>
+        <lastmod>2026-09-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -726,7 +754,7 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/season-2-frost-cores.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/season-2-frost-cores.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/season-2-frost-cores.html" />
-        <lastmod>2026-05-31</lastmod>
+        <lastmod>2026-09-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -736,7 +764,17 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/season-2-winter.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/season-2-winter.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/season-2-winter.html" />
-        <lastmod>2026-08-01</lastmod>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://lastzguides.com/es/season-3-dinosaur-origin.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/season-3-dinosaur-origin.html" />
+        <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/season-3-dinosaur-origin.html" />
+        <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/season-3-dinosaur-origin.html" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/season-3-dinosaur-origin.html" />
+        <lastmod>2026-09-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -1033,6 +1071,16 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://lastzguides.com/fr/arctic-fishing.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/arctic-fishing.html" />
+        <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/arctic-fishing.html" />
+        <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/arctic-fishing.html" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/arctic-fishing.html" />
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://lastzguides.com/fr/arena.html</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/arena.html" />
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/arena.html" />
@@ -1059,6 +1107,16 @@
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/base-building-order.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/base-building-order.html" />
         <lastmod>2026-05-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://lastzguides.com/fr/bio-institute-shop.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/bio-institute-shop.html" />
+        <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/bio-institute-shop.html" />
+        <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/bio-institute-shop.html" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/bio-institute-shop.html" />
+        <lastmod>2026-09-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -1148,7 +1206,7 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/events.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/events.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/events.html" />
-        <lastmod>2026-05-24</lastmod>
+        <lastmod>2026-09-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -1508,7 +1566,7 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/season-2-frost-cores.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/season-2-frost-cores.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/season-2-frost-cores.html" />
-        <lastmod>2026-05-30</lastmod>
+        <lastmod>2026-09-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -1518,7 +1576,17 @@
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/season-2-winter.html" />
         <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/season-2-winter.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/season-2-winter.html" />
-        <lastmod>2026-08-01</lastmod>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://lastzguides.com/fr/season-3-dinosaur-origin.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/season-3-dinosaur-origin.html" />
+        <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/season-3-dinosaur-origin.html" />
+        <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/season-3-dinosaur-origin.html" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/season-3-dinosaur-origin.html" />
+        <lastmod>2026-09-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -2034,6 +2102,10 @@
     </url>
     <url>
         <loc>https://lastzguides.com/season-3-dinosaur-origin.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/season-3-dinosaur-origin.html" />
+        <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/season-3-dinosaur-origin.html" />
+        <xhtml:link rel="alternate" hreflang="es" href="https://lastzguides.com/es/season-3-dinosaur-origin.html" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://lastzguides.com/season-3-dinosaur-origin.html" />
         <lastmod>2026-09-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
