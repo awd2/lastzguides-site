@@ -179,41 +179,41 @@
 
             <label class="branch-picker">
                 <span>Branche</span>
-                <select data-branch-select aria-label="Choisir une branche Research"></select>
+                <select data-branch-select aria-label="Choisir une branche de recherche"></select>
                 <button type="button" class="branch-picker-button" data-branch-menu-button aria-expanded="false"></button>
                 <div class="branch-picker-menu" data-branch-menu hidden></div>
             </label>
 
-            <div class="planner-dashboard" aria-label="Totaux du planner">
+            <div class="planner-dashboard" aria-label="Totaux du planificateur">
                 <div class="planner-total-card planner-total-card--scope">
                     <span data-total-label>Total</span>
                     <strong data-total-badges>0</strong>
                     <small>toutes branches</small>
                 </div>
                 <div class="planner-total-card">
-                    <span data-completed-label>Terminé</span>
+                    <span data-completed-label>Dépensé</span>
                     <strong data-completed-badges>0</strong>
-                    <small data-completed-levels>0 niveaux</small>
+                    <small data-completed-levels>Niveaux terminés : 0</small>
                 </div>
                 <div class="planner-total-card">
                     <span data-planned-label>Cible</span>
                     <strong data-planned-badges>0</strong>
-                    <small data-planned-levels>0 niveaux ciblés</small>
+                    <small data-planned-levels>Niveaux supplémentaires visés : 0</small>
                 </div>
                 <div class="planner-total-card">
                     <span data-remaining-label>Restant</span>
                     <strong data-remaining-badges>0</strong>
-                    <small data-remaining-note>après terminé</small>
+                    <small data-remaining-note>après déduction des badges dépensés</small>
                 </div>
             </div>
 
-            <div class="planner-actions" aria-label="Contrôles du planner">
+            <div class="planner-actions" aria-label="Commandes du planificateur">
                 <button type="button" class="planner-button" data-copy-share>Partager</button>
                 <button type="button" class="planner-button planner-button--muted" data-clear-targets>Effacer les cibles</button>
                 <button type="button" class="planner-button planner-button--danger" data-reset-planner>Réinitialiser</button>
                 <label class="planner-toggle">
                     <input type="checkbox" data-auto-parents>
-                    <span>Remplir les prérequis</span>
+                    <span>Compléter les prérequis</span>
                 </label>
                 <span class="planner-status" data-share-status aria-live="polite"></span>
             </div>
@@ -222,7 +222,7 @@
         <noscript>
             <section class="planner-panel">
                 <h2>JavaScript requis</h2>
-                <p>Le Research Planner nécessite JavaScript pour l’état, les liens de partage et la sauvegarde. Les pages statiques restent disponibles dans l’<a href="/fr/research-costs.html">atlas des coûts Research</a>.</p>
+                <p>Le planificateur nécessite JavaScript pour sauvegarder la progression et partager des plans. Les coûts restent consultables dans l’<a href="/fr/research-costs.html">atlas des coûts de recherche</a>.</p>
             </section>
         </noscript>
 
@@ -237,7 +237,7 @@
         </section>
 
         <section class="planner-layout">
-            <aside class="planner-sidebar" aria-label="Branches Research">
+            <aside class="planner-sidebar" aria-label="Branches de recherche">
                 <div class="planner-sidebar-head">
                     <h2>Branches</h2>
                     <p>Choisissez une branche pour mettre à jour les niveaux et les cibles.</p>
@@ -248,7 +248,7 @@
             <section class="planner-workspace" aria-live="polite">
                 <div class="branch-summary" data-branch-summary></div>
                 <div class="planner-toolbar" aria-label="Affichage de la branche">
-                    <div class="planner-tabs" role="tablist" aria-label="Vue du planner">
+                    <div class="planner-tabs" role="tablist" aria-label="Vue du planificateur">
                         <button type="button" class="planner-tab" data-view="tree">Arbre</button>
                         <button type="button" class="planner-tab planner-tool-button" data-view="table"><span class="tool-icon" aria-hidden="true">☰</span><span>Tableau</span></button>
                     </div>
@@ -257,7 +257,7 @@
                             <input type="checkbox" data-auto-parents>
                             <span>Prérequis</span>
                         </label>
-                        <button type="button" class="icon-button planner-tool-button" data-toggle-stats aria-expanded="false"><span class="tool-icon" aria-hidden="true">▥</span><span>Stats</span></button>
+                        <button type="button" class="icon-button planner-tool-button" data-toggle-stats aria-expanded="false"><span class="tool-icon" aria-hidden="true">▥</span><span>Statistiques</span></button>
                     </div>
                 </div>
                 <div class="warning-panel" data-warning-panel hidden></div>
@@ -266,7 +266,7 @@
             </section>
         </section>
 
-        <section class="node-drawer" data-node-drawer hidden aria-label="Détails du node Research">
+        <section class="node-drawer" data-node-drawer hidden aria-label="Détails de la technologie">
             <div class="node-drawer-backdrop" data-close-drawer></div>
             <article class="node-drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
                 <button type="button" class="drawer-close" data-close-drawer aria-label="Fermer les détails">x</button>
@@ -283,11 +283,11 @@
         </section>
 
         <section class="planner-panel planner-related" aria-labelledby="planner-next-links">
-            <h2 id="planner-next-links">Liens de planification Research</h2>
+            <h2 id="planner-next-links">Liens pour planifier vos recherches</h2>
             <p>Choisissez une branche, puis ouvrez une technologie pour renseigner le niveau atteint et le niveau visé. Le coût de l’objectif couvre les niveaux supplémentaires sélectionnés ; le total restant de la branche correspond aux niveaux non terminés jusqu’au maximum. Pour choisir votre priorité de recherche ou consulter les coûts sans utiliser le calculateur, ouvrez les guides ci-dessous.</p>
             <div class="related-grid">
-                <a href="/fr/research.html" class="related-card">Guide de priorité Research</a>
-                <a href="/fr/research-costs.html" class="related-card">Atlas des coûts Research</a>
+                <a href="/fr/research.html" class="related-card">Guide des priorités de recherche</a>
+                <a href="/fr/research-costs.html" class="related-card">Atlas des coûts de recherche</a>
                 <a href="/fr/unit-special-training-cost.html" class="related-card">Coûts UST / T10</a>
                 <a href="/fr/peace-shield-cost.html" class="related-card">Coûts Peace Shield</a>
                 <a href="/fr/field-research.html" class="related-card">Coûts Field Research</a>
