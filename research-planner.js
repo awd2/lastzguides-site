@@ -1509,7 +1509,7 @@
 
     function focusPlannerModal(container) {
         var panel = container && container.querySelector("[role=dialog]");
-        var closeButton = container && container.querySelector("[data-close-drawer], [data-close-sheet]");
+        var closeButton = container && container.querySelector("button[data-close-drawer], button[data-close-sheet]");
         if (panel) {
             panel.scrollTop = 0;
         }
