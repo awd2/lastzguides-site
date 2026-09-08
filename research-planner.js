@@ -10,6 +10,346 @@
     var plannerModalReturnFocus = null;
     var data = window.LastZResearchPlannerData;
     var plannerLocale = detectPlannerLocale();
+    var plannerStrings = {
+        "en": {
+            "level": "Level",
+            "levelShort": "Lv.",
+            "remaining": "Remaining",
+            "spent": "Spent",
+            "done": "Done",
+            "target": "Target",
+            "goal": "Goal",
+            "targetCost": "Target cost",
+            "map": "Map",
+            "table": "Table",
+            "stats": "Stats",
+            "prereqs": "Prereqs",
+            "node": "Node",
+            "actions": "Actions",
+            "badges": "Badges",
+            "max": "Max",
+            "clear": "Clear",
+            "fillPrereqs": "Fill prereqs",
+            "targetMax": "Target max",
+            "clearTarget": "Clear target",
+            "setTarget": "Set target",
+            "clearDone": "Clear done",
+            "markDone": "Mark done",
+            "branchTotal": "Branch total",
+            "total": "Total",
+            "selectedBranchNote": "in selected branch",
+            "afterSpent": "after spent",
+            "selectBranch": "Select branch",
+            "openBranch": "Open branch",
+            "branchControls": "Branch view controls",
+            "clearGoal": "Clear target goal",
+            "branchStats": "Branch stats",
+            "statScale": "current / target / max",
+            "prerequisiteWarnings": "Prerequisite warnings",
+            "completedControls": "Completed level controls",
+            "targetsCleared": "Targets cleared.",
+            "plannerReset": "Planner reset.",
+            "sharedLoaded": "Shared plan loaded.",
+            "sharedLoadFailed": "Could not load shared plan.",
+            "shareCopied": "Share link copied.",
+            "sharePrompt": "Copy share link:",
+            "shareReady": "Share link ready.",
+            "tableDescription": "Node levels, targets, badge spend, and remaining cost.",
+            "statsDescription": "Current / target / max bonuses for this branch.",
+            "completedLevels": "{done} of {total} levels",
+            "targetLevels": "{count} target levels",
+            "levelProgress": "{done}/{total} levels",
+            "nodeCount": "{count} nodes",
+            "branchSummary": "{nodes} nodes / {levels} levels",
+            "spentAmount": "{amount} spent",
+            "targetAmount": "{amount} target",
+            "leftAmount": "{amount} left",
+            "doneAmount": "{amount} done",
+            "unlockRequirement": "Unlock: {requirements}",
+            "labLevel": "Lab Level {level}",
+            "clearNodeTarget": "Clear target for {node}",
+            "setNodeMaxTarget": "Set max target for {node}",
+            "clearNodeDone": "Clear completed levels for {node}",
+            "completeNode": "Complete {node}",
+            "openNodeTarget": "Open {node} details, {amount} target badges",
+            "openNodeRemaining": "Open {node} details, {amount} badges left",
+            "nodeLevel": "Lv. {done}/{max}",
+            "nodeTarget": "target {level}",
+            "clearNode": "Clear {node}",
+            "targetLevelCost": "Target Lv {level} · ★{amount}",
+            "setTargetLevel": "Set target level {level}",
+            "branchTableTitle": "{branch} Table",
+            "branchStatsTitle": "{branch} Stats",
+            "missingPrerequisites": "{node} has completed levels but missing prerequisites: {requirements}.",
+            "levelTableShort": "Lv"
+        },
+        "es": {
+            "level": "Nivel",
+            "levelShort": "Niv.",
+            "remaining": "Restante",
+            "spent": "Gastado",
+            "done": "Completado",
+            "target": "Objetivo",
+            "goal": "Objetivo",
+            "targetCost": "Coste del objetivo",
+            "map": "Árbol",
+            "table": "Tabla",
+            "stats": "Estadísticas",
+            "prereqs": "Requisitos",
+            "node": "Tecnología",
+            "actions": "Acciones",
+            "badges": "Insignias",
+            "max": "Máx.",
+            "clear": "Borrar",
+            "fillPrereqs": "Completar requisitos",
+            "targetMax": "Objetivo máximo",
+            "clearTarget": "Borrar objetivo",
+            "setTarget": "Fijar objetivo",
+            "clearDone": "Borrar progreso",
+            "markDone": "Marcar como completado",
+            "branchTotal": "Total de la rama",
+            "total": "Total",
+            "selectedBranchNote": "en la rama seleccionada",
+            "afterSpent": "tras descontar lo gastado",
+            "selectBranch": "Seleccionar rama",
+            "openBranch": "Rama sin requisitos de desbloqueo",
+            "branchControls": "Vista de la rama",
+            "clearGoal": "Borrar los objetivos de esta rama",
+            "branchStats": "Estadísticas de la rama",
+            "statScale": "actual / objetivo / máximo",
+            "prerequisiteWarnings": "Avisos de requisitos",
+            "completedControls": "Controles del nivel completado",
+            "targetsCleared": "Objetivos borrados.",
+            "plannerReset": "Planificador restablecido.",
+            "sharedLoaded": "Plan compartido cargado.",
+            "sharedLoadFailed": "No se ha podido cargar el plan compartido.",
+            "shareCopied": "Enlace para compartir copiado.",
+            "sharePrompt": "Copia el enlace para compartir:",
+            "shareReady": "Enlace para compartir listo.",
+            "tableDescription": "Niveles de las tecnologías, objetivos, insignias gastadas y coste restante.",
+            "statsDescription": "Bonificaciones actuales, objetivo y máximas de esta rama.",
+            "completedLevels": "Niveles completados: {done}/{total}",
+            "targetLevels": "Niveles adicionales previstos: {count}",
+            "levelProgress": "Niveles: {done}/{total}",
+            "nodeCount": "Tecnologías: {count}",
+            "branchSummary": "Tecnologías: {nodes} / niveles: {levels}",
+            "spentAmount": "Gastado: {amount}",
+            "targetAmount": "Objetivo: {amount}",
+            "leftAmount": "Restante: {amount}",
+            "doneAmount": "Completado: {amount}",
+            "unlockRequirement": "Desbloqueo: {requirements}",
+            "labLevel": "Laboratorio de nivel {level}",
+            "clearNodeTarget": "Borrar el objetivo de {node}",
+            "setNodeMaxTarget": "Fijar el nivel máximo como objetivo de {node}",
+            "clearNodeDone": "Borrar los niveles completados de {node}",
+            "completeNode": "Completar {node}",
+            "openNodeTarget": "Abrir los detalles de {node}, coste del objetivo: {amount} insignias",
+            "openNodeRemaining": "Abrir los detalles de {node}, coste restante: {amount} insignias",
+            "nodeLevel": "Niv. {done}/{max}",
+            "nodeTarget": "objetivo {level}",
+            "clearNode": "Borrar el progreso de {node}",
+            "targetLevelCost": "Objetivo niv. {level} · ★{amount}",
+            "setTargetLevel": "Fijar el nivel {level} como objetivo",
+            "branchTableTitle": "Tabla — {branch}",
+            "branchStatsTitle": "Estadísticas — {branch}",
+            "missingPrerequisites": "{node} tiene niveles completados, pero faltan requisitos: {requirements}.",
+            "levelTableShort": "Niv."
+        },
+        "fr": {
+            "level": "Niveau",
+            "levelShort": "Niv.",
+            "remaining": "Restant",
+            "spent": "Dépensé",
+            "done": "Terminé",
+            "target": "Cible",
+            "goal": "Objectif",
+            "targetCost": "Coût de la cible",
+            "map": "Arbre",
+            "table": "Tableau",
+            "stats": "Statistiques",
+            "prereqs": "Prérequis",
+            "node": "Technologie",
+            "actions": "Actions",
+            "badges": "Badges",
+            "max": "Max.",
+            "clear": "Effacer",
+            "fillPrereqs": "Compléter les prérequis",
+            "targetMax": "Cible maximale",
+            "clearTarget": "Effacer la cible",
+            "setTarget": "Définir la cible",
+            "clearDone": "Effacer la progression",
+            "markDone": "Marquer comme terminé",
+            "branchTotal": "Total de la branche",
+            "total": "Total",
+            "selectedBranchNote": "dans la branche sélectionnée",
+            "afterSpent": "après déduction des badges dépensés",
+            "selectBranch": "Choisir une branche",
+            "openBranch": "Branche sans prérequis de déblocage",
+            "branchControls": "Affichage de la branche",
+            "clearGoal": "Effacer les cibles de cette branche",
+            "branchStats": "Statistiques de la branche",
+            "statScale": "actuel / cible / maximum",
+            "prerequisiteWarnings": "Avertissements sur les prérequis",
+            "completedControls": "Réglage du niveau terminé",
+            "targetsCleared": "Cibles effacées.",
+            "plannerReset": "Planificateur réinitialisé.",
+            "sharedLoaded": "Plan partagé chargé.",
+            "sharedLoadFailed": "Impossible de charger le plan partagé.",
+            "shareCopied": "Lien de partage copié.",
+            "sharePrompt": "Copiez le lien de partage :",
+            "shareReady": "Lien de partage prêt.",
+            "tableDescription": "Niveaux des technologies, cibles, badges dépensés et coût restant.",
+            "statsDescription": "Bonus actuels, visés et maximaux de cette branche.",
+            "completedLevels": "Niveaux terminés : {done}/{total}",
+            "targetLevels": "Niveaux supplémentaires visés : {count}",
+            "levelProgress": "Niveaux : {done}/{total}",
+            "nodeCount": "Technologies : {count}",
+            "branchSummary": "Technologies : {nodes} / niveaux : {levels}",
+            "spentAmount": "Dépensé : {amount}",
+            "targetAmount": "Cible : {amount}",
+            "leftAmount": "Restant : {amount}",
+            "doneAmount": "Terminé : {amount}",
+            "unlockRequirement": "Déblocage : {requirements}",
+            "labLevel": "Laboratoire de niveau {level}",
+            "clearNodeTarget": "Effacer la cible de {node}",
+            "setNodeMaxTarget": "Définir le niveau maximal comme cible pour {node}",
+            "clearNodeDone": "Effacer les niveaux terminés de {node}",
+            "completeNode": "Terminer {node}",
+            "openNodeTarget": "Ouvrir les détails de {node}, coût de la cible : {amount} badges",
+            "openNodeRemaining": "Ouvrir les détails de {node}, coût restant : {amount} badges",
+            "nodeLevel": "Niv. {done}/{max}",
+            "nodeTarget": "cible {level}",
+            "clearNode": "Effacer la progression de {node}",
+            "targetLevelCost": "Cible niv. {level} · ★{amount}",
+            "setTargetLevel": "Définir le niveau {level} comme cible",
+            "branchTableTitle": "Tableau — {branch}",
+            "branchStatsTitle": "Statistiques — {branch}",
+            "missingPrerequisites": "Des niveaux de {node} sont terminés, mais il manque des prérequis : {requirements}.",
+            "levelTableShort": "Niv."
+        }
+    };
+    var plannerStatStrings = {
+        "es": {
+            "troop-atk": "Ataque de las tropas",
+            "troop-def": "Defensa de las tropas",
+            "troop-training-speed": "Velocidad de entrenamiento de tropas",
+            "rider-atk": "Ataque de los Riders",
+            "assaulter-atk": "Ataque de los Assaulters",
+            "shooter-atk": "Ataque de los Shooters",
+            "rider-def": "Defensa de los Riders",
+            "assaulter-def": "Defensa de los Assaulters",
+            "shooter-def": "Defensa de los Shooters",
+            "march-speed": "Velocidad de marcha",
+            "destruction-value": "Valor de destrucción",
+            "troop-hp": "Vida de las tropas",
+            "unlock": "Desbloqueo",
+            "city-wall-durability-recovery-rate": "Velocidad de recuperación de la durabilidad de la muralla",
+            "troop-atk-in-siege-defenses": "Ataque de las tropas al defender un asedio",
+            "troop-def-in-siege-defenses": "Defensa de las tropas al defender un asedio",
+            "shooter-training-speed": "Velocidad de entrenamiento de Shooters",
+            "assaulter-training-speed": "Velocidad de entrenamiento de Assaulters",
+            "rider-training-speed": "Velocidad de entrenamiento de Riders",
+            "perished-to-seriously-injured-ratio": "Proporción de bajas mortales convertidas en heridos graves",
+            "troop-atk-in-siege-assaults": "Ataque de las tropas al atacar en un asedio",
+            "troop-def-in-siege-assaults": "Defensa de las tropas al atacar en un asedio",
+            "troop-load": "Capacidad de carga de las tropas",
+            "in-field-troop-atk": "Ataque de las tropas en campo abierto",
+            "in-field-troop-def": "Defensa de las tropas en campo abierto",
+            "rider-hp": "Vida de los Riders",
+            "assaulter-hp": "Vida de los Assaulters",
+            "shooter-hp": "Vida de los Shooters",
+            "hospitals-capacity": "Capacidad del hospital",
+            "fatality": "Letalidad",
+            "healing-speed": "Velocidad de curación",
+            "troop-size": "Tamaño de las tropas",
+            "food-gathering-speed": "Velocidad de recolección de comida",
+            "wood-gathering-speed": "Velocidad de recolección de madera",
+            "zent-gathering-speed": "Velocidad de recolección de Zent",
+            "electricity-gathering-speed": "Velocidad de recolección de electricidad",
+            "all-points": "Todos los puntos",
+            "unit-training-volume": "Cantidad de unidades por entrenamiento",
+            "resource-gathering-driven-points": "Puntos por recolectar recursos",
+            "modification-blueprint-usage-points": "Puntos por usar Modification Blueprints",
+            "golden-wrench-usage-points": "Puntos por usar Golden Wrenches",
+            "structure-power-driven-points": "Puntos por poder de edificios",
+            "tech-power-driven-points": "Puntos por poder de investigación",
+            "power-core-usage-points": "Puntos por usar Power Cores",
+            "creep-kill-driven-points": "Puntos por eliminar enemigos del mapa",
+            "training-driven-points": "Puntos por entrenamiento",
+            "hero-recruiting-driven-points": "Puntos por reclutar héroes",
+            "enemy-kill-driven-points": "Puntos por eliminar enemigos",
+            "all-heroes-atk": "Ataque de todos los héroes",
+            "all-heroes-def": "Defensa de todos los héroes",
+            "blood-rose-heroes-atk": "Ataque de los héroes de Blood Rose",
+            "wings-of-dawn-heroes-atk": "Ataque de los héroes de Wings of Dawn",
+            "guard-of-order-heroes-atk": "Ataque de los héroes de Guard of Order",
+            "exploration-idle-exp-gains": "EXP obtenida de la exploración inactiva",
+            "blood-rose-heroes-def": "Defensa de los héroes de Blood Rose",
+            "wings-of-dawn-heroes-def": "Defensa de los héroes de Wings of Dawn",
+            "guard-of-order-heroes-def": "Defensa de los héroes de Guard of Order",
+            "units-led-per-hero": "Unidades dirigidas por héroe"
+        },
+        "fr": {
+            "troop-atk": "Attaque des troupes",
+            "troop-def": "Défense des troupes",
+            "troop-training-speed": "Vitesse d’entraînement des troupes",
+            "rider-atk": "Attaque des Riders",
+            "assaulter-atk": "Attaque des Assaulters",
+            "shooter-atk": "Attaque des Shooters",
+            "rider-def": "Défense des Riders",
+            "assaulter-def": "Défense des Assaulters",
+            "shooter-def": "Défense des Shooters",
+            "march-speed": "Vitesse de marche",
+            "destruction-value": "Valeur de destruction",
+            "troop-hp": "Points de vie des troupes",
+            "unlock": "Déblocage",
+            "city-wall-durability-recovery-rate": "Vitesse de récupération de la durabilité de la muraille",
+            "troop-atk-in-siege-defenses": "Attaque des troupes en défense de siège",
+            "troop-def-in-siege-defenses": "Défense des troupes en défense de siège",
+            "shooter-training-speed": "Vitesse d’entraînement des Shooters",
+            "assaulter-training-speed": "Vitesse d’entraînement des Assaulters",
+            "rider-training-speed": "Vitesse d’entraînement des Riders",
+            "perished-to-seriously-injured-ratio": "Proportion de morts convertis en blessés graves",
+            "troop-atk-in-siege-assaults": "Attaque des troupes à l’assaut d’un siège",
+            "troop-def-in-siege-assaults": "Défense des troupes à l’assaut d’un siège",
+            "troop-load": "Capacité de charge des troupes",
+            "in-field-troop-atk": "Attaque des troupes en rase campagne",
+            "in-field-troop-def": "Défense des troupes en rase campagne",
+            "rider-hp": "Points de vie des Riders",
+            "assaulter-hp": "Points de vie des Assaulters",
+            "shooter-hp": "Points de vie des Shooters",
+            "hospitals-capacity": "Capacité de l’hôpital",
+            "fatality": "Létalité",
+            "healing-speed": "Vitesse de soin",
+            "troop-size": "Effectif des troupes",
+            "food-gathering-speed": "Vitesse de récolte de nourriture",
+            "wood-gathering-speed": "Vitesse de récolte de bois",
+            "zent-gathering-speed": "Vitesse de récolte de Zent",
+            "electricity-gathering-speed": "Vitesse de collecte d’électricité",
+            "all-points": "Tous les points",
+            "unit-training-volume": "Nombre d’unités par entraînement",
+            "resource-gathering-driven-points": "Points de récolte de ressources",
+            "modification-blueprint-usage-points": "Points d’utilisation de Modification Blueprints",
+            "golden-wrench-usage-points": "Points d’utilisation de Golden Wrenches",
+            "structure-power-driven-points": "Points de puissance des bâtiments",
+            "tech-power-driven-points": "Points de puissance de recherche",
+            "power-core-usage-points": "Points d’utilisation de Power Cores",
+            "creep-kill-driven-points": "Points d’élimination d’ennemis sur la carte",
+            "training-driven-points": "Points d’entraînement",
+            "hero-recruiting-driven-points": "Points de recrutement de héros",
+            "enemy-kill-driven-points": "Points d’élimination d’ennemis",
+            "all-heroes-atk": "Attaque de tous les héros",
+            "all-heroes-def": "Défense de tous les héros",
+            "blood-rose-heroes-atk": "Attaque des héros de Blood Rose",
+            "wings-of-dawn-heroes-atk": "Attaque des héros de Wings of Dawn",
+            "guard-of-order-heroes-atk": "Attaque des héros de Guard of Order",
+            "exploration-idle-exp-gains": "EXP gagnée en exploration inactive",
+            "blood-rose-heroes-def": "Défense des héros de Blood Rose",
+            "wings-of-dawn-heroes-def": "Défense des héros de Wings of Dawn",
+            "guard-of-order-heroes-def": "Défense des héros de Guard of Order",
+            "units-led-per-hero": "Unités commandées par héros"
+        }
+    };
     if (!data || !Array.isArray(data.branches)) {
         return;
     }
@@ -94,7 +434,7 @@
             state.targets = {};
             saveState();
             render();
-            setStatus("Targets cleared.");
+            setStatus(plannerText("targetsCleared"));
         });
         refs.resetPlanner.addEventListener("click", function () {
             state.levels = {};
@@ -103,7 +443,7 @@
             saveState();
             render();
             closeDrawer();
-            setStatus("Planner reset.");
+            setStatus(plannerText("plannerReset"));
         });
         refs.autoParentControls.forEach(function (control) {
             control.addEventListener("change", function () {
@@ -299,7 +639,7 @@
                 state.levels = arrayToLevelMap(decoded.l);
                 state.targets = arrayToLevelMap(decoded.t);
                 saveState();
-                setStatus("Shared plan loaded.");
+                setStatus(plannerText("sharedLoaded"));
                 return true;
             } else if (decoded.v === 1) {
                 state.activeBranchId = branchById.has(decoded.b) ? decoded.b : state.activeBranchId;
@@ -308,11 +648,11 @@
                 migrateLegacyMap(arrayToBooleanMap(decoded.c), "levels");
                 migrateLegacyMap(arrayToBooleanMap(decoded.p), "targets");
                 saveState();
-                setStatus("Shared plan loaded.");
+                setStatus(plannerText("sharedLoaded"));
                 return true;
             }
         } catch (error) {
-            setStatus("Could not load shared plan.");
+            setStatus(plannerText("sharedLoadFailed"));
         }
         return false;
     }
@@ -366,15 +706,15 @@
         var scopeTotal = branchScoped ? activeBranch.totalBadges : data.totalBadges;
         refs.totalBadges.textContent = formatNumber(scopeTotal);
         refs.completedBadges.textContent = formatNumber(totals.completedBadges);
-        refs.completedLevels.textContent = totals.completedLevels + " of " + totals.totalLevels + " levels";
+        refs.completedLevels.textContent = plannerText("completedLevels", { done: totals.completedLevels, total: totals.totalLevels });
         refs.plannedBadges.textContent = formatNumber(totals.plannedBadges);
-        refs.plannedLevels.textContent = totals.targetLevels + " target levels";
+        refs.plannedLevels.textContent = plannerText("targetLevels", { count: totals.targetLevels });
         refs.remainingBadges.textContent = formatNumber(scopeTotal - totals.completedBadges);
         if (refs.totalLabel) {
-            refs.totalLabel.textContent = branchScoped ? "Branch total" : "Total";
+            refs.totalLabel.textContent = plannerText(branchScoped ? "branchTotal" : "total");
         }
         if (refs.remainingNote) {
-            refs.remainingNote.textContent = branchScoped ? "in selected branch" : "after spent";
+            refs.remainingNote.textContent = plannerText(branchScoped ? "selectedBranchNote" : "afterSpent");
         }
     }
 
@@ -384,7 +724,7 @@
         }).join("");
         refs.branchSelect.value = state.activeBranchId;
         var activeBranch = branchById.get(state.activeBranchId);
-        refs.branchMenuButton.textContent = activeBranch ? activeBranch.name : "Select branch";
+        refs.branchMenuButton.textContent = activeBranch ? activeBranch.name : plannerText("selectBranch");
         refs.branchMenu.innerHTML = branches.map(function (branch) {
             return [
                 '<button type="button" class="branch-picker-option',
@@ -417,9 +757,9 @@
                 branch.totalBadges ? Math.round(summary.completedBadges / branch.totalBadges * 100) : 0,
                 '%"></span></span>',
                 '<span class="branch-button-meta">',
-                '<span><strong>', formatNumber(summary.completedBadges), "</strong> spent</span>",
-                '<span><strong>', formatNumber(summary.plannedBadges), "</strong> target</span>",
-                '<span><strong>', formatNumber(summary.remainingBadges), "</strong> left</span>",
+                badgeMetric("strong", "spentAmount", summary.completedBadges),
+                badgeMetric("strong", "targetAmount", summary.plannedBadges),
+                badgeMetric("strong", "leftAmount", summary.remainingBadges),
                 "</span>"
             ].join("");
             refs.branchList.appendChild(button);
@@ -439,20 +779,20 @@
                 '<button type="button" class="branch-card',
                 branch.id === state.activeBranchId ? " is-active" : "",
                 '" data-branch-card="', escapeAttr(branch.id), '">',
-                '<span class="branch-card-kicker">', escapeHtml(branch.unlockRequirements && branch.unlockRequirements.length ? branch.unlockRequirements.join(" + ") : "Open branch"), "</span>",
+                '<span class="branch-card-kicker">', escapeHtml(branch.unlockRequirements && branch.unlockRequirements.length ? branch.unlockRequirements.map(localizeUnlock).join(" + ") : plannerText("openBranch")), "</span>",
                 '<strong>', escapeHtml(branch.name), "</strong>",
                 '<span class="branch-card-total">★ ', formatNumber(branch.totalBadges), "</span>",
                 '<span class="branch-card-meta">',
-                '<span>', summary.completedLevels, "/", summary.totalLevels, " levels</span>",
-                '<span>', branch.nodes.length, " nodes</span>",
+                '<span>', escapeHtml(plannerText("levelProgress", { done: summary.completedLevels, total: summary.totalLevels })), "</span>",
+                '<span>', escapeHtml(plannerText("nodeCount", { count: branch.nodes.length })), "</span>",
                 "</span>",
                 '<span class="branch-card-progress" aria-hidden="true">',
                 '<span class="branch-card-target" style="width:', targetPct, '%"></span>',
                 '<span class="branch-card-done" style="width:', donePct, '%"></span>',
                 "</span>",
                 '<span class="branch-card-plan">',
-                '<span><b>', formatNumber(summary.completedBadges), "</b> done</span>",
-                '<span><b>', formatNumber(targetBadges), "</b> target</span>",
+                badgeMetric("b", "doneAmount", summary.completedBadges),
+                badgeMetric("b", "targetAmount", targetBadges),
                 "</span>",
                 "</button>"
             ].join("");
@@ -472,14 +812,14 @@
         var pct = branch.totalBadges ? Math.round(summary.completedBadges / branch.totalBadges * 100) : 0;
         var targetActive = summary.plannedBadges > 0;
         var viewButtonTarget = !isSmallScreen() && state.view === "table" ? "tree" : "table";
-        var viewButtonLabel = viewButtonTarget === "tree" ? "Map" : "Table";
+        var viewButtonLabel = plannerText(viewButtonTarget === "tree" ? "map" : "table");
         var viewButtonIcon = viewButtonTarget === "tree" ? "↔" : "☰";
         var statsClass = state.statsOpen && !isSmallScreen() ? " is-active" : "";
         var mobileControls = [
-            '<div class="branch-summary-controls" aria-label="Branch view controls">',
+            '<div class="branch-summary-controls" aria-label="' + escapeAttr(plannerText("branchControls")) + '">',
             '<button type="button" class="planner-tab planner-tool-button" data-view="', viewButtonTarget, '"><span class="tool-icon" aria-hidden="true">', viewButtonIcon, '</span><span>', viewButtonLabel, '</span></button>',
-            '<label class="planner-toggle planner-toggle--toolbar"><input type="checkbox" data-auto-parents', state.autoParents ? " checked" : "", '><span>Prereqs</span></label>',
-            '<button type="button" class="icon-button planner-tool-button', statsClass, '" data-toggle-stats aria-expanded="', state.statsOpen && !isSmallScreen() ? "true" : "false", '"><span class="tool-icon" aria-hidden="true">▥</span><span>Stats</span></button>',
+            '<label class="planner-toggle planner-toggle--toolbar"><input type="checkbox" data-auto-parents', state.autoParents ? " checked" : "", '><span>' + escapeHtml(plannerText("prereqs")) + '</span></label>',
+            '<button type="button" class="icon-button planner-tool-button', statsClass, '" data-toggle-stats aria-expanded="', state.statsOpen && !isSmallScreen() ? "true" : "false", '"><span class="tool-icon" aria-hidden="true">▥</span><span>' + escapeHtml(plannerText("stats")) + '</span></button>',
             "</div>"
         ].join("");
         refs.branchSummary.innerHTML = [
@@ -488,17 +828,17 @@
             "<h2>", escapeHtml(branch.name), "</h2>",
             "</div>",
             '<div class="branch-summary-metrics">',
-            '<span class="branch-summary-metric"><span>Spent</span><strong>', formatNumber(summary.completedBadges), '</strong></span>',
-            '<span class="branch-summary-metric"><span>Remaining</span><strong>', formatNumber(summary.remainingBadges), '</strong></span>',
-            targetActive ? '<span class="branch-summary-metric branch-summary-goal"><span>Goal</span><strong>' + formatNumber(summary.plannedBadges) + '</strong><button type="button" class="summary-clear-target" data-action="clear-branch-targets" data-branch-id="' + escapeAttr(branch.id) + '" aria-label="Clear target goal">x</button></span>' : "",
+            '<span class="branch-summary-metric"><span>' + escapeHtml(plannerText("spent")) + '</span><strong>', formatNumber(summary.completedBadges), '</strong></span>',
+            '<span class="branch-summary-metric"><span>' + escapeHtml(plannerText("remaining")) + '</span><strong>', formatNumber(summary.remainingBadges), '</strong></span>',
+            targetActive ? '<span class="branch-summary-metric branch-summary-goal"><span>' + escapeHtml(plannerText("goal")) + '</span><strong>' + formatNumber(summary.plannedBadges) + '</strong><button type="button" class="summary-clear-target" data-action="clear-branch-targets" data-branch-id="' + escapeAttr(branch.id) + '" aria-label="' + escapeAttr(plannerText("clearGoal")) + '">x</button></span>' : "",
             "</div>",
             mobileControls,
-            '<button type="button" class="planner-button planner-button--muted" data-action="clear-branch" data-branch-id="', escapeAttr(branch.id), '">Clear</button>',
+            '<button type="button" class="planner-button planner-button--muted" data-action="clear-branch" data-branch-id="', escapeAttr(branch.id), '">' + escapeHtml(plannerText("clear")) + '</button>',
             "</div>",
             '<div class="summary-progress"><span style="width:', pct, '%"></span></div>',
             '<p class="branch-summary-meta">',
-            branch.nodes.length, " nodes / ", summary.totalLevels, " levels",
-            branch.unlockRequirements.length ? " · Unlock: " + escapeHtml(branch.unlockRequirements.join(" + ")) : "",
+            escapeHtml(plannerText("branchSummary", { nodes: branch.nodes.length, levels: summary.totalLevels })),
+            branch.unlockRequirements.length ? " · " + escapeHtml(plannerText("unlockRequirement", { requirements: branch.unlockRequirements.map(localizeUnlock).join(" + ") })) : "",
             "</p>"
         ].join("");
 
@@ -521,7 +861,7 @@
         }
         refs.warningPanel.hidden = false;
         refs.warningPanel.innerHTML = [
-            "<h3>Prerequisite warnings</h3>",
+            "<h3>" + escapeHtml(plannerText("prerequisiteWarnings")) + "</h3>",
             "<ul>",
             warnings.messages.map(function (warning) {
                 return "<li>" + escapeHtml(warning) + "</li>";
@@ -543,13 +883,13 @@
 
     function renderStatsMarkup(stats) {
         return [
-            '<div class="stat-panel-head"><h3>Branch stats</h3><span>current / target / max</span></div>',
+            '<div class="stat-panel-head"><h3>' + escapeHtml(plannerText("branchStats")) + '</h3><span>' + escapeHtml(plannerText("statScale")) + '</span></div>',
             '<div class="stat-grid">',
             stats.map(function (stat) {
                 var pct = stat.total ? Math.min(100, Math.round(stat.target / stat.total * 100)) : 0;
                 return [
                     '<div class="stat-card">',
-                    '<span>', escapeHtml(stat.label), "</span>",
+                    '<span>', escapeHtml((plannerStatStrings[plannerLocale.code] || {})[stat.key] || stat.label), "</span>",
                     "<strong>", escapeHtml(formatStat(stat.earned, stat.format)), " / ", escapeHtml(formatStat(stat.target, stat.format)), " / ", escapeHtml(formatStat(stat.total, stat.format)), "</strong>",
                     '<small><span style="width:', pct, '%"></span></small>',
                     "</div>"
@@ -619,14 +959,14 @@
         ].filter(Boolean).join(" ");
         return [
             '<article class="', classes, '" style="left:', point.x, 'px;top:', point.y, 'px;">',
-            '<button type="button" class="node-corner node-corner--left', target > done ? " is-selected" : "", '" data-action="', target > done ? "clear-target" : "plan-max", '" data-key="', escapeAttr(key), '" aria-label="', target > done ? "Clear target for " : "Set max target for ", escapeAttr(node.name), '" title="', target > done ? "Clear target" : "Set target", '">⚑</button>',
-            '<button type="button" class="node-corner node-corner--right', done >= node.maxLevel ? " is-selected" : "", '" data-action="', done >= node.maxLevel ? "clear" : "max", '" data-key="', escapeAttr(key), '" aria-label="', done >= node.maxLevel ? "Clear completed levels for " : "Complete ", escapeAttr(node.name), '" title="', done >= node.maxLevel ? "Clear done" : "Mark done", '">✓</button>',
-            '<button type="button" class="tree-node-open" data-action="open-node" data-key="', escapeAttr(key), '" aria-label="Open ', escapeAttr(node.name), ' details, ', escapeAttr(planned ? formatNumber(planned) + " target badges" : formatNumber(remaining) + " badges left"), '">',
+            '<button type="button" class="node-corner node-corner--left', target > done ? " is-selected" : "", '" data-action="', target > done ? "clear-target" : "plan-max", '" data-key="', escapeAttr(key), '" aria-label="', escapeAttr(plannerText(target > done ? "clearNodeTarget" : "setNodeMaxTarget", { node: node.name })), '" title="', escapeAttr(plannerText(target > done ? "clearTarget" : "setTarget")), '">⚑</button>',
+            '<button type="button" class="node-corner node-corner--right', done >= node.maxLevel ? " is-selected" : "", '" data-action="', done >= node.maxLevel ? "clear" : "max", '" data-key="', escapeAttr(key), '" aria-label="', escapeAttr(plannerText(done >= node.maxLevel ? "clearNodeDone" : "completeNode", { node: node.name })), '" title="', escapeAttr(plannerText(done >= node.maxLevel ? "clearDone" : "markDone")), '">✓</button>',
+            '<button type="button" class="tree-node-open" data-action="open-node" data-key="', escapeAttr(key), '" aria-label="', escapeAttr(plannerText(planned ? "openNodeTarget" : "openNodeRemaining", { node: node.name, amount: formatNumber(planned || remaining) })), '">',
             '<span class="node-hex">', escapeHtml(initials(node.name)), "</span>",
             '<span class="tree-node-title">', escapeHtml(node.name), "</span>",
             '<span class="tree-node-grid">',
-            '<span class="node-level-stat"><small>Level</small><strong>', done, "/", node.maxLevel, "</strong></span>",
-            '<span class="node-remaining-stat"><small>Remaining</small><strong>★ ', formatNumber(remaining), "</strong></span>",
+            '<span class="node-level-stat"><small>' + escapeHtml(plannerText("level")) + '</small><strong>', done, "/", node.maxLevel, "</strong></span>",
+            '<span class="node-remaining-stat"><small>' + escapeHtml(plannerText("remaining")) + '</small><strong>★ ', formatNumber(remaining), "</strong></span>",
             "</span>",
             '<span class="node-progress"><span style="width:', progress, '%"></span></span>',
             "</button>",
@@ -642,7 +982,7 @@
         refs.plannerView.innerHTML = [
             '<div class="planner-table-wrap">',
             '<table class="planner-table">',
-            "<thead><tr><th>Node</th><th>Done</th><th>Target</th><th>Spent</th><th>Target cost</th><th>Remaining</th><th>Prereqs</th><th>Actions</th></tr></thead>",
+            "<thead><tr><th>" + escapeHtml(plannerText("node")) + "</th><th>" + escapeHtml(plannerText("done")) + "</th><th>" + escapeHtml(plannerText("target")) + "</th><th>" + escapeHtml(plannerText("spent")) + "</th><th>" + escapeHtml(plannerText("targetCost")) + "</th><th>" + escapeHtml(plannerText("remaining")) + "</th><th>" + escapeHtml(plannerText("prereqs")) + "</th><th>" + escapeHtml(plannerText("actions")) + "</th></tr></thead>",
             "<tbody>",
             branch.nodes.map(function (node) {
                 var key = nodeKey(branch.id, node.id);
@@ -663,9 +1003,9 @@
                     "<td>", formatNumber(node.totalBadges - spent), "</td>",
                     "<td>", escapeHtml(parents), "</td>",
                     '<td><div class="row-actions">',
-                    miniButton("complete-parents", key, "Fill prereqs"),
-                    miniButton("max", key, "Max"),
-                    miniButton("clear", key, "Clear"),
+                    miniButton("complete-parents", key, plannerText("fillPrereqs")),
+                    miniButton("max", key, plannerText("max")),
+                    miniButton("clear", key, plannerText("clear")),
                     "</div></td>",
                     "</tr>"
                 ].join("");
@@ -694,21 +1034,21 @@
                     '<article class="node-list-card', done >= node.maxLevel ? " is-complete" : "", target > done ? " has-target" : "", '">',
                     '<button type="button" class="node-list-title" data-action="open-node" data-key="', escapeAttr(key), '">',
                     '<span class="node-icon">', escapeHtml(initials(node.name)), "</span>",
-                    '<span><strong>', escapeHtml(node.name), '</strong><small>Lv. ', done, "/", node.maxLevel, target > done ? " -> " + target : "", "</small></span>",
+                    '<span><strong>', escapeHtml(node.name), '</strong><small>', escapeHtml(plannerText("nodeLevel", { done: done, max: node.maxLevel })), target > done ? " -> " + target : "", "</small></span>",
                     "</button>",
                     '<div class="node-list-controls">',
-                    '<label>Done ', levelSelect("completed", key, done, node.maxLevel), "</label>",
-                    '<label>Target ', levelSelect("target", key, target, node.maxLevel), "</label>",
+                    '<label>', escapeHtml(plannerText("done")), ' ', levelSelect("completed", key, done, node.maxLevel), "</label>",
+                    '<label>', escapeHtml(plannerText("target")), ' ', levelSelect("target", key, target, node.maxLevel), "</label>",
                     "</div>",
                     '<div class="node-list-metrics">',
-                    '<span><strong>', formatNumber(spent), '</strong> spent</span>',
-                    '<span><strong>', formatNumber(planned), '</strong> target</span>',
-                    '<span><strong>', formatNumber(remaining), '</strong> left</span>',
+                    badgeMetric("strong", "spentAmount", spent),
+                    badgeMetric("strong", "targetAmount", planned),
+                    badgeMetric("strong", "leftAmount", remaining),
                     "</div>",
                     '<div class="row-actions">',
-                    miniButton("complete-parents", key, "Fill prereqs"),
-                    miniButton("max", key, "Max"),
-                    miniButton("clear", key, "Clear"),
+                    miniButton("complete-parents", key, plannerText("fillPrereqs")),
+                    miniButton("max", key, plannerText("max")),
+                    miniButton("clear", key, plannerText("clear")),
                     "</div>",
                     "</article>"
                 ].join("");
@@ -739,21 +1079,21 @@
             '<span class="drawer-icon drawer-icon--hex">', escapeHtml(initials(node.name)), "</span>",
             '<div class="drawer-title">',
             "<p>", escapeHtml(branch.name), "</p><h2 id=\"drawer-title\">", escapeHtml(node.name), "</h2>",
-            '<span>Lv. ', done, "/", node.maxLevel, target > done ? " · target " + target : "", "</span>",
+            '<span>', escapeHtml(plannerText("nodeLevel", { done: done, max: node.maxLevel })), target > done ? " · " + escapeHtml(plannerText("nodeTarget", { level: target })) : "", "</span>",
             "</div>",
-            '<div class="drawer-remaining"><span>Remaining</span><strong>★ ', formatNumber(remaining), "</strong><small>", done, "/", node.maxLevel, "</small></div>",
+            '<div class="drawer-remaining"><span>' + escapeHtml(plannerText("remaining")) + '</span><strong>★ ', formatNumber(remaining), "</strong><small>", done, "/", node.maxLevel, "</small></div>",
             "</div>",
             '<div class="drawer-progress"><span style="width:', pct, '%"></span></div>',
             '<div class="drawer-quick">',
-            '<button type="button" class="drawer-trash" data-action="clear" data-key="', escapeAttr(state.selectedKey), '" aria-label="Clear ', escapeAttr(node.name), '">⌫</button>',
-            '<div class="drawer-stepper" aria-label="Completed level controls">',
+            '<button type="button" class="drawer-trash" data-action="clear" data-key="', escapeAttr(state.selectedKey), '" aria-label="', escapeAttr(plannerText("clearNode", { node: node.name })), '">⌫</button>',
+            '<div class="drawer-stepper" aria-label="' + escapeAttr(plannerText("completedControls")) + '">',
             miniButton("dec", state.selectedKey, "-"),
             '<strong>', done, "</strong>",
             miniButton("inc", state.selectedKey, "+"),
             "</div>",
             '<div class="drawer-target-control">',
-            '<button type="button" class="mini-button" data-action="plan-max" data-key="', escapeAttr(state.selectedKey), '">Target max</button>',
-            planned > 0 ? '<span class="drawer-target-cost">Target Lv ' + target + ' · ★' + formatNumber(planned) + "</span>" : "",
+            '<button type="button" class="mini-button" data-action="plan-max" data-key="', escapeAttr(state.selectedKey), '">' + escapeHtml(plannerText("targetMax")) + '</button>',
+            planned > 0 ? '<span class="drawer-target-cost">' + escapeHtml(plannerText("targetLevelCost", { level: target, amount: formatNumber(planned) })) + "</span>" : "",
             "</div>",
             "</div>",
             renderLevelTable(node, state.selectedKey, done, target)
@@ -769,14 +1109,14 @@
                 '<td><input type="checkbox" data-action="toggle-level" data-key="', escapeAttr(key), '" data-level="', level, '" ', level <= done ? "checked" : "", "></td>",
                 "<td>", level, "</td>",
                 "<td>★ ", formatNumber(cost), "</td>",
-                '<td><button type="button" class="flag-button flag-button--icon', level === target && target > done ? " is-selected" : "", '" data-action="target-level" data-key="', escapeAttr(key), '" data-level="', level, '" aria-label="Set target level ', level, '">⚑</button></td>',
+                '<td><button type="button" class="flag-button flag-button--icon', level === target && target > done ? " is-selected" : "", '" data-action="target-level" data-key="', escapeAttr(key), '" data-level="', level, '" aria-label="', escapeAttr(plannerText("setTargetLevel", { level: level })), '">⚑</button></td>',
                 "</tr>"
             ].join("");
         }).join("");
         return [
             '<div class="level-table-wrap drawer-levels">',
             '<table class="level-table">',
-            "<thead><tr><th></th><th>Lv</th><th>Badges</th><th></th></tr></thead>",
+            "<thead><tr><th></th><th>" + escapeHtml(plannerText("levelTableShort")) + "</th><th>" + escapeHtml(plannerText("badges")) + "</th><th></th></tr></thead>",
             "<tbody>",
             rows,
             "</tbody>",
@@ -824,16 +1164,16 @@
         if (state.mobileSheet === "table") {
             refs.mobileSheetContent.innerHTML = [
                 '<div class="planner-sheet-head">',
-                '<h2 id="planner-sheet-title">', escapeHtml(branch.name), " Table</h2>",
-                '<p>Node levels, targets, badge spend, and remaining cost.</p>',
+                '<h2 id="planner-sheet-title">', escapeHtml(plannerText("branchTableTitle", { branch: branch.name })), "</h2>",
+                '<p>' + escapeHtml(plannerText("tableDescription")) + '</p>',
                 "</div>",
                 renderMobileListMarkup(branch)
             ].join("");
         } else {
             refs.mobileSheetContent.innerHTML = [
                 '<div class="planner-sheet-head">',
-                '<h2 id="planner-sheet-title">', escapeHtml(branch.name), " Stats</h2>",
-                '<p>Current / target / max bonuses for this branch.</p>',
+                '<h2 id="planner-sheet-title">', escapeHtml(plannerText("branchStatsTitle", { branch: branch.name })), "</h2>",
+                '<p>' + escapeHtml(plannerText("statsDescription")) + '</p>',
                 "</div>",
                 renderStatsMarkup(aggregateStats(branch))
             ].join("");
@@ -1204,7 +1544,7 @@
             });
             if (missingCompleted.length) {
                 keys.add(key);
-                messages.push(node.name + " has completed levels but missing prerequisites: " + missingCompleted.join(", ") + ".");
+                messages.push(plannerText("missingPrerequisites", { node: node.name, requirements: missingCompleted.join(", ") }));
             }
         });
         return { messages: messages, keys: keys };
@@ -1220,6 +1560,7 @@
                 }
                 if (!statsByKey.has(stat.key)) {
                     statsByKey.set(stat.key, {
+                        key: stat.key,
                         label: stat.label || stat.key,
                         format: stat.format || "number",
                         earned: 0,
@@ -1454,7 +1795,7 @@
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(link).then(function () {
-                setStatus("Share link copied.");
+                setStatus(plannerText("shareCopied"));
                 if (hasPlannerProgress()) trackPlannerUse("share_success", "share");
             }).catch(function () {
                 fallbackCopy(link);
@@ -1480,12 +1821,12 @@
         }
         field.remove();
         if (copied) {
-            setStatus("Share link copied.");
+            setStatus(plannerText("shareCopied"));
             if (hasPlannerProgress()) trackPlannerUse("share_success", "share");
             return;
         }
-        window.prompt("Copy share link:", link);
-        setStatus("Share link ready.");
+        window.prompt(plannerText("sharePrompt"), link);
+        setStatus(plannerText("shareReady"));
     }
 
     function closeDrawer() {
@@ -1698,6 +2039,25 @@
         } catch (error) {
             return false;
         }
+    }
+
+    function plannerText(key, values) {
+        var messages = plannerStrings[plannerLocale.code] || plannerStrings.en;
+        var text = messages[key] || plannerStrings.en[key];
+        return text.replace(/\{(\w+)\}/g, function (match, name) {
+            return values && Object.prototype.hasOwnProperty.call(values, name) ? String(values[name]) : match;
+        });
+    }
+
+    function localizeUnlock(requirement) {
+        var lab = /^Lab Level (\d+)$/.exec(requirement);
+        return lab ? plannerText("labLevel", { level: lab[1] }) : requirement;
+    }
+
+    function badgeMetric(tag, key, amount) {
+        var marker = "{amount}";
+        var parts = plannerText(key, { amount: marker }).split(marker);
+        return "<span>" + escapeHtml(parts[0]) + "<" + tag + ">" + formatNumber(amount) + "</" + tag + ">" + escapeHtml(parts[1]) + "</span>";
     }
 
     function formatNumber(value) {
