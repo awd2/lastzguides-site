@@ -115,6 +115,26 @@
     ]
   },
   {
+    "url": "/arctic-fishing.html",
+    "locale": "en",
+    "source_path": "arctic-fishing.html",
+    "title": "Arctic Fishing",
+    "category": "Guides",
+    "description": "Choose Ice Pits for missing fish, activate Fish Index rewards, trade duplicates, and prepare for Arctic Fishing contests in Last Z Season 2 Winter.",
+    "keywords": [
+      "Last",
+      "Arctic",
+      "Fishing",
+      "Guide",
+      "Ice",
+      "Pits",
+      "Fish",
+      "Index",
+      "and",
+      "Choose"
+    ]
+  },
+  {
     "url": "/arena.html",
     "locale": "en",
     "source_path": "arena.html",
@@ -172,6 +192,26 @@
       "Prereqs",
       "Guide",
       "prioritize"
+    ]
+  },
+  {
+    "url": "/bio-institute-shop.html",
+    "locale": "en",
+    "source_path": "bio-institute-shop.html",
+    "title": "Bio Institute Shop",
+    "category": "Guides",
+    "description": "Plan Ancient Dino Egg spending in Last Z: weekend shop access, increasing refresh costs, useful purchases, and Fossil Album milestones.",
+    "keywords": [
+      "Last",
+      "Bio",
+      "Institute",
+      "Shop",
+      "Dino",
+      "Eggs",
+      "Refreshes",
+      "Fossils",
+      "Spending",
+      "Plan"
     ]
   },
   {
@@ -4102,6 +4142,26 @@
       "Greenhouse",
       "Frost",
       "Cores"
+    ]
+  },
+  {
+    "url": "/season-3-dinosaur-origin.html",
+    "locale": "en",
+    "source_path": "season-3-dinosaur-origin.html",
+    "title": "Season 3: Dinosaur Origin",
+    "category": "Guides",
+    "description": "Start Last Z Season 3 Dinosaur Origin: separate building resources, companion feed, and Ancient Dino Eggs, then plan the weekend shop and seasonal events.",
+    "keywords": [
+      "Last",
+      "Season",
+      "Dinosaur",
+      "Origin",
+      "Resources",
+      "Priorities",
+      "Start",
+      "separate",
+      "building",
+      "companion"
     ]
   },
   {
