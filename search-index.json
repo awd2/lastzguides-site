@@ -1030,6 +1030,26 @@
     ]
   },
   {
+    "url": "/es/hero-battlefield.html",
+    "locale": "es",
+    "source_path": "hero-battlefield.html",
+    "title": "Hero Battlefield de Last Z",
+    "category": "Guides",
+    "description": "Planifica los tres Hero Battlefields: reinicios de martes, jueves y domingo, límites de capítulos, Quick Fight y uso de Glory Badges.",
+    "keywords": [
+      "Hero",
+      "Battlefield",
+      "Last",
+      "Reinicios",
+      "repeticiones",
+      "Quick",
+      "Fight",
+      "Planifica",
+      "los",
+      "tres"
+    ]
+  },
+  {
     "url": "/es/hero-recruitment.html",
     "locale": "es",
     "source_path": "hero-recruitment.html",
@@ -1227,6 +1247,26 @@
       "badges",
       "ruta",
       "Recharge"
+    ]
+  },
+  {
+    "url": "/es/moonlit-elegy.html",
+    "locale": "es",
+    "source_path": "moonlit-elegy.html",
+    "title": "Temporada 4: Vampire / Moonlit Elegy",
+    "category": "Guides",
+    "description": "Planifica la temporada 4 Vampire / Moonlit Elegy de Last Z: edificios, cartas de la Witch, eventos nocturnos, Moon Tokens y final de temporada.",
+    "keywords": [
+      "temporada",
+      "Vampire",
+      "Last",
+      "Moonlit",
+      "Elegy",
+      "Planifica",
+      "edificios",
+      "cartas",
+      "Witch",
+      "eventos"
     ]
   },
   {
@@ -2665,6 +2705,26 @@
     ]
   },
   {
+    "url": "/fr/hero-battlefield.html",
+    "locale": "fr",
+    "source_path": "hero-battlefield.html",
+    "title": "Hero Battlefield",
+    "category": "Guides",
+    "description": "Planifiez les trois champs Hero Battlefield : sessions du mardi, jeudi et dimanche, transfert d’équipement, chapitres rejouables, Quick Fight et Glory Badges.",
+    "keywords": [
+      "Last",
+      "Hero",
+      "Battlefield",
+      "sessions",
+      "chapitres",
+      "Quick",
+      "Fight",
+      "initialisations",
+      "titions",
+      "Planifiez"
+    ]
+  },
+  {
     "url": "/fr/hero-recruitment.html",
     "locale": "fr",
     "source_path": "hero-recruitment.html",
@@ -2862,6 +2922,26 @@
       "Recharge",
       "Shield",
       "total"
+    ]
+  },
+  {
+    "url": "/fr/moonlit-elegy.html",
+    "locale": "fr",
+    "source_path": "moonlit-elegy.html",
+    "title": "Saison 4 : Vampire / Moonlit Elegy",
+    "category": "Guides",
+    "description": "Préparez la saison 4 Vampire / Moonlit Elegy : bâtiments, cartes de la Witch, événements nocturnes, dépenses de Moon Tokens et fin de saison.",
+    "keywords": [
+      "Guide",
+      "Last",
+      "saison",
+      "Vampire",
+      "Moonlit",
+      "Elegy",
+      "parez",
+      "timents",
+      "cartes",
+      "Witch"
     ]
   },
   {
@@ -3922,6 +4002,26 @@
       "Cost",
       "and",
       "Recharge"
+    ]
+  },
+  {
+    "url": "/moonlit-elegy.html",
+    "locale": "en",
+    "source_path": "moonlit-elegy.html",
+    "title": "Season 4: Vampire / Moonlit Elegy",
+    "category": "Guides",
+    "description": "Plan Last Z Season 4: Vampire / Moonlit Elegy with building priorities, Witch cards, night events, Moon Token spending, and season-end preparation.",
+    "keywords": [
+      "Last",
+      "Season",
+      "Vampire",
+      "Guide",
+      "Moonlit",
+      "Elegy",
+      "Plan",
+      "with",
+      "building",
+      "priorities"
     ]
   },
   {
