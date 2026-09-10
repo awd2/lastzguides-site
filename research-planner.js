@@ -578,6 +578,12 @@
             refs.mobileSheetContent.addEventListener("change", handlePlannerChange);
         }
         document.addEventListener("keydown", handlePlannerModalKeydown);
+        var layoutWidth = window.innerWidth;
+        window.addEventListener("resize", function () {
+            if (window.innerWidth === layoutWidth) return;
+            layoutWidth = window.innerWidth;
+            renderBranchWorkspace();
+        });
     }
 
     function trackPlannerUse(action, sourceControl) {
@@ -1613,7 +1619,7 @@
     }
 
     function treeLayout(branch) {
-        var compact = isSmallScreen();
+        var compact = window.matchMedia("(max-width: 640px)").matches;
         if (compact) {
             return mobileTreeLayout(branch);
         }
@@ -1631,6 +1637,10 @@
         var minY = Math.min.apply(Math, ys);
         var maxX = Math.max.apply(Math, xs);
         var maxY = Math.max.apply(Math, ys);
+        var viewWidth = refs.plannerView.clientWidth;
+        if (maxX > minX && viewWidth > nodeWidth + padding * 2) {
+            xScale = Math.min(xScale, (viewWidth - nodeWidth - padding * 2) / (maxX - minX));
+        }
         var points = new Map();
         branch.nodes.forEach(function (node) {
             points.set(node.id, {
@@ -1656,8 +1666,8 @@
         var windowWidth = window.innerWidth || 820;
         var documentWidth = document.documentElement && document.documentElement.clientWidth ? document.documentElement.clientWidth : windowWidth;
         var viewWidth = refs.plannerView && refs.plannerView.clientWidth ? refs.plannerView.clientWidth : windowWidth;
-        var viewportWidth = Math.max(620, Math.min(viewWidth, windowWidth, documentWidth));
-        var width = Math.max(620, viewportWidth - 20);
+        var viewportWidth = Math.min(viewWidth, windowWidth, documentWidth);
+        var width = viewportWidth - 20;
         var rows = new Map();
         branch.nodes.forEach(function (node) {
             var y = node.position && Number(node.position.y) || 0;
