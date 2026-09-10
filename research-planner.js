@@ -67,6 +67,7 @@
             "doneAmount": "{amount} done",
             "unlockRequirement": "Unlock: {requirements}",
             "labLevel": "Lab Level {level}",
+            "numberedLabLevel": "Laboratory {number} Level {level}",
             "clearNodeTarget": "Clear target for {node}",
             "setNodeMaxTarget": "Set max target for {node}",
             "clearNodeDone": "Clear completed levels for {node}",
@@ -139,6 +140,7 @@
             "doneAmount": "Completado: {amount}",
             "unlockRequirement": "Desbloqueo: {requirements}",
             "labLevel": "Laboratorio de nivel {level}",
+            "numberedLabLevel": "Laboratorio n.º {number} de nivel {level}",
             "clearNodeTarget": "Borrar el objetivo de {node}",
             "setNodeMaxTarget": "Fijar el nivel máximo como objetivo de {node}",
             "clearNodeDone": "Borrar los niveles completados de {node}",
@@ -211,6 +213,7 @@
             "doneAmount": "Terminé : {amount}",
             "unlockRequirement": "Déblocage : {requirements}",
             "labLevel": "Laboratoire de niveau {level}",
+            "numberedLabLevel": "Laboratoire n° {number}, niveau {level}",
             "clearNodeTarget": "Effacer la cible de {node}",
             "setNodeMaxTarget": "Définir le niveau maximal comme cible pour {node}",
             "clearNodeDone": "Effacer les niveaux terminés de {node}",
@@ -287,7 +290,18 @@
             "blood-rose-heroes-def": "Defensa de los héroes de Blood Rose",
             "wings-of-dawn-heroes-def": "Defensa de los héroes de Wings of Dawn",
             "guard-of-order-heroes-def": "Defensa de los héroes de Guard of Order",
-            "units-led-per-hero": "Unidades dirigidas por héroe"
+            "units-led-per-hero": "Unidades dirigidas por héroe",
+            "troop-dmg": "Daño de las tropas",
+            "troop-dmg-resistance": "Resistencia al daño de las tropas",
+            "food-production-speed": "Velocidad de producción de comida",
+            "wood-production-speed": "Velocidad de producción de madera",
+            "residence-s-zent-production-speed": "Velocidad de producción de Zent de las residencias",
+            "steel-production-speed": "Velocidad de producción de Steel",
+            "wind-turbine-production-speed": "Velocidad de producción de las turbinas eólicas",
+            "steel-plant-amount": "Cantidad de Steel Plants",
+            "construction-speed": "Velocidad de construcción",
+            "research-speed": "Velocidad de investigación",
+            "max-reservists": "Máximo de reservistas"
         },
         "fr": {
             "troop-atk": "Attaque des troupes",
@@ -347,7 +361,18 @@
             "blood-rose-heroes-def": "Défense des héros de Blood Rose",
             "wings-of-dawn-heroes-def": "Défense des héros de Wings of Dawn",
             "guard-of-order-heroes-def": "Défense des héros de Guard of Order",
-            "units-led-per-hero": "Unités commandées par héros"
+            "units-led-per-hero": "Unités commandées par héros",
+            "troop-dmg": "Dégâts des troupes",
+            "troop-dmg-resistance": "Résistance aux dégâts des troupes",
+            "food-production-speed": "Vitesse de production de nourriture",
+            "wood-production-speed": "Vitesse de production de bois",
+            "residence-s-zent-production-speed": "Vitesse de production de Zent des résidences",
+            "steel-production-speed": "Vitesse de production de Steel",
+            "wind-turbine-production-speed": "Vitesse de production des éoliennes",
+            "steel-plant-amount": "Nombre de Steel Plants",
+            "construction-speed": "Vitesse de construction",
+            "research-speed": "Vitesse de recherche",
+            "max-reservists": "Nombre maximal de réservistes"
         }
     };
     if (!data || !Array.isArray(data.branches)) {
@@ -421,6 +446,10 @@
     function init() {
         var hadSavedProgress = loadState();
         var loadedSharedPlan = importShareState();
+        var requestedBranch = new URLSearchParams(window.location.search).get("branch");
+        if (!loadedSharedPlan && branchById.has(requestedBranch)) {
+            state.activeBranchId = requestedBranch;
+        }
         entryMode = loadedSharedPlan ? "shared" : (hadSavedProgress ? "saved" : "new");
         bindActions();
         render();
@@ -2050,6 +2079,10 @@
     }
 
     function localizeUnlock(requirement) {
+        var numberedLab = /^Level (\d+) Laboratory No (\d+)$/.exec(requirement);
+        if (numberedLab) {
+            return plannerText("numberedLabLevel", { level: numberedLab[1], number: numberedLab[2] });
+        }
         var lab = /^Lab Level (\d+)$/.exec(requirement);
         return lab ? plannerText("labLevel", { level: lab[1] }) : requirement;
     }
