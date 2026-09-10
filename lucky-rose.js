@@ -147,7 +147,7 @@
         var statusPromise = window.lastzLuckyRoseStatusPromise;
         if (!statusPromise && window.fetch) {
             var statusUrl = window.lastzLuckyRoseStatusUrl ||
-                'https://lastz-lucky-rose.data-node-4821.workers.dev/lucky-rose-status.json';
+                'https://status.lastzguides.com/lucky-rose-status.json';
             statusPromise = window.fetch(statusUrl, { credentials: 'omit' })
                 .then(function(response) {
                     if (!response.ok) throw new Error('Lucky Rose status unavailable');

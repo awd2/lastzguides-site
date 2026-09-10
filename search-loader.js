@@ -5,7 +5,7 @@
     var loading = false;
     var pendingOpen = false;
     var freshCodesSeenKey = 'lastz.freshCodesSeen';
-    var luckyRoseStatusUrl = 'https://lastz-lucky-rose.data-node-4821.workers.dev/lucky-rose-status.json';
+    var luckyRoseStatusUrl = 'https://status.lastzguides.com/lucky-rose-status.json';
     var luckyRoseStatusPromise = null;
     var luckyRoseExpiryTimer = null;
     var luckyRoseCurrentStatus = null;
