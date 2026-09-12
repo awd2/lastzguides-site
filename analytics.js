@@ -7,46 +7,16 @@
 
     const MEASUREMENT_ID = 'G-PYBSRQ1QFP';
     const LDSHOP_EXPERIMENT = {
-        id: 'ldshop_argument_rotation_v1',
-        storageKey: 'lastz_ldshop_argument_rotation_v1',
-        durationMs: 28 * 24 * 60 * 60 * 1000,
-        currentCreativeId: 'current_bundle',
-        rotationCreativeIds: ['base_saving_21', 'new_user_15', 'lastzguides_5'],
-        creatives: {
-            base_saving_21: {
-                dealSmall: 'Up to',
-                dealBig: '21%',
-                dealLabel: 'Off',
-                title: 'Top up Last Z for less',
-                textParts: [
-                    'Get the same Last Z packs for ',
-                    { strong: 'up to 21% less' },
-                    ' than in-game.'
-                ]
-            },
-            new_user_15: {
-                dealSmall: 'New user',
-                dealBig: '15%',
-                dealLabel: 'Coupon',
-                title: 'New to LDShop? Get a 15% coupon',
-                textParts: [
-                    'Take an ',
-                    { strong: 'additional 15% off' },
-                    ' your first eligible Last Z top-up.'
-                ]
-            },
-            lastzguides_5: {
-                dealSmall: 'Exclusive',
-                dealBig: '5%',
-                dealLabel: 'Coupon',
-                title: 'Get the exclusive LastZGuides 5% coupon',
-                textParts: [
-                    { strong: 'No code to enter' },
-                    ' — the coupon is added to your new LDShop account automatically.'
-                ]
-            }
-        }
+        // Rollback: false restores existing static HTML; never reactivates the old test.
+        enabled: true,
+        id: 'ldshop_offers_v1',
+        storageKey: 'lastz_ldshop_offers_v1',
+        catalogKey: 'lastz_ldshop_offers_v1_catalog',
+        catalogUrl: '/assets/ldshop/offers.json'
     };
+    // BEGIN GENERATED LDSHOP STARTUP CATALOG
+    const LDSHOP_STARTUP_CATALOG = {"schema_version":1,"language":"en","currency":"USD","checked_at":"2026-09-12T15:11:31.967653Z","catalog_version":"12fa80bb3e68eb4e","primary":{"offer_id":"12202","ends_at":null,"html":"\u003ca class=\"ldshop-promo ldshop-promo--offer\" href=\"https://chain.ldshop.gg/T4VTmA3oZ\" target=\"_blank\" rel=\"sponsored nofollow noopener\" data-ldshop-placement=\"top-banner\" data-placement-id=\"ldshop-top-banner\">\u003cspan class=\"ldshop-promo__copy\">\u003cspan class=\"ldshop-promo__title\">$19.99 pack for $15.28\u003c/span>\u003cspan class=\"ldshop-promo__text\">Save $4.71 on your Last Z pack at LDShop.\u003c/span>\u003c/span>\u003cspan class=\"ldshop-promo__details\">\u003cspan class=\"ldshop-promo__deal\">23% OFF\u003c/span>\u003c/span>\u003cspan class=\"ldshop-promo__side\">\n            \u003cpicture class=\"ldshop-promo__logo\">\n                \u003csource media=\"(max-width: 640px)\" srcset=\"/assets/ldshop/ldshop-logo-vertical.png\">\n                \u003cimg src=\"/assets/ldshop/ldshop-logo-wide.png\" alt=\"LDShop\" width=\"510\" height=\"153\" loading=\"lazy\" decoding=\"async\">\n            \u003c/picture>\n            \u003cspan class=\"ldshop-promo__cta\">Top Up Now\u003c/span>\n        \u003c/span>\u003c/a>"},"offers":[{"offer_id":"16112","ends_at":null,"html":"\u003ca class=\"ldshop-promo ldshop-promo--offer\" href=\"https://chain.ldshop.gg/T4VTmA3oZ\" target=\"_blank\" rel=\"sponsored nofollow noopener\" data-ldshop-placement=\"top-banner\" data-placement-id=\"ldshop-top-banner\">\u003cspan class=\"ldshop-promo__copy\">\u003cspan class=\"ldshop-promo__title\">500 Gold Bars for $2.99\u003c/span>\u003c/span>\u003cspan class=\"ldshop-promo__details\">\u003cspan class=\"ldshop-promo__deal\">40% OFF\u003c/span>\u003cspan class=\"ldshop-promo__terms\">New LDShop customers only. One New User Discount item only.\u003c/span>\u003c/span>\u003cspan class=\"ldshop-promo__side\">\n            \u003cpicture class=\"ldshop-promo__logo\">\n                \u003csource media=\"(max-width: 640px)\" srcset=\"/assets/ldshop/ldshop-logo-vertical.png\">\n                \u003cimg src=\"/assets/ldshop/ldshop-logo-wide.png\" alt=\"LDShop\" width=\"510\" height=\"153\" loading=\"lazy\" decoding=\"async\">\n            \u003c/picture>\n            \u003cspan class=\"ldshop-promo__cta\">Top Up Now\u003c/span>\n        \u003c/span>\u003c/a>"},{"offer_id":"15682","ends_at":null,"html":"\u003ca class=\"ldshop-promo ldshop-promo--offer\" href=\"https://chain.ldshop.gg/T4VTmA3oZ\" target=\"_blank\" rel=\"sponsored nofollow noopener\" data-ldshop-placement=\"top-banner\" data-placement-id=\"ldshop-top-banner\">\u003cspan class=\"ldshop-promo__copy\">\u003cspan class=\"ldshop-promo__title\">1,000 Gold Bars for $7.64\u003c/span>\u003cspan class=\"ldshop-promo__text\">Save $2.35 on LDShop.\u003c/span>\u003c/span>\u003cspan class=\"ldshop-promo__details\">\u003cspan class=\"ldshop-promo__deal\">23% OFF\u003c/span>\u003c/span>\u003cspan class=\"ldshop-promo__side\">\n            \u003cpicture class=\"ldshop-promo__logo\">\n                \u003csource media=\"(max-width: 640px)\" srcset=\"/assets/ldshop/ldshop-logo-vertical.png\">\n                \u003cimg src=\"/assets/ldshop/ldshop-logo-wide.png\" alt=\"LDShop\" width=\"510\" height=\"153\" loading=\"lazy\" decoding=\"async\">\n            \u003c/picture>\n            \u003cspan class=\"ldshop-promo__cta\">Top Up Now\u003c/span>\n        \u003c/span>\u003c/a>"},{"offer_id":"12202","ends_at":null,"html":"\u003ca class=\"ldshop-promo ldshop-promo--offer\" href=\"https://chain.ldshop.gg/T4VTmA3oZ\" target=\"_blank\" rel=\"sponsored nofollow noopener\" data-ldshop-placement=\"top-banner\" data-placement-id=\"ldshop-top-banner\">\u003cspan class=\"ldshop-promo__copy\">\u003cspan class=\"ldshop-promo__title\">$19.99 pack for $15.28\u003c/span>\u003cspan class=\"ldshop-promo__text\">Save $4.71 on your Last Z pack at LDShop.\u003c/span>\u003c/span>\u003cspan class=\"ldshop-promo__details\">\u003cspan class=\"ldshop-promo__deal\">23% OFF\u003c/span>\u003c/span>\u003cspan class=\"ldshop-promo__side\">\n            \u003cpicture class=\"ldshop-promo__logo\">\n                \u003csource media=\"(max-width: 640px)\" srcset=\"/assets/ldshop/ldshop-logo-vertical.png\">\n                \u003cimg src=\"/assets/ldshop/ldshop-logo-wide.png\" alt=\"LDShop\" width=\"510\" height=\"153\" loading=\"lazy\" decoding=\"async\">\n            \u003c/picture>\n            \u003cspan class=\"ldshop-promo__cta\">Top Up Now\u003c/span>\n        \u003c/span>\u003c/a>"},{"offer_id":"14281","ends_at":null,"html":"\u003ca class=\"ldshop-promo ldshop-promo--offer\" href=\"https://chain.ldshop.gg/T4VTmA3oZ\" target=\"_blank\" rel=\"sponsored nofollow noopener\" data-ldshop-placement=\"top-banner\" data-placement-id=\"ldshop-top-banner\">\u003cspan class=\"ldshop-promo__copy\">\u003cspan class=\"ldshop-promo__title\">ApocaAid Monthly Pass for $19.10\u003c/span>\u003cspan class=\"ldshop-promo__text\">Save $5.89 on LDShop.\u003c/span>\u003c/span>\u003cspan class=\"ldshop-promo__details\">\u003cspan class=\"ldshop-promo__deal\">23% OFF\u003c/span>\u003c/span>\u003cspan class=\"ldshop-promo__side\">\n            \u003cpicture class=\"ldshop-promo__logo\">\n                \u003csource media=\"(max-width: 640px)\" srcset=\"/assets/ldshop/ldshop-logo-vertical.png\">\n                \u003cimg src=\"/assets/ldshop/ldshop-logo-wide.png\" alt=\"LDShop\" width=\"510\" height=\"153\" loading=\"lazy\" decoding=\"async\">\n            \u003c/picture>\n            \u003cspan class=\"ldshop-promo__cta\">Top Up Now\u003c/span>\n        \u003c/span>\u003c/a>"},{"offer_id":"14461","ends_at":null,"html":"\u003ca class=\"ldshop-promo ldshop-promo--offer\" href=\"https://chain.ldshop.gg/T4VTmA3oZ\" target=\"_blank\" rel=\"sponsored nofollow noopener\" data-ldshop-placement=\"top-banner\" data-placement-id=\"ldshop-top-banner\">\u003cspan class=\"ldshop-promo__copy\">\u003cspan class=\"ldshop-promo__title\">Season Journey for $19.10\u003c/span>\u003cspan class=\"ldshop-promo__text\">Save $5.89 on LDShop.\u003c/span>\u003c/span>\u003cspan class=\"ldshop-promo__details\">\u003cspan class=\"ldshop-promo__deal\">23% OFF\u003c/span>\u003c/span>\u003cspan class=\"ldshop-promo__side\">\n            \u003cpicture class=\"ldshop-promo__logo\">\n                \u003csource media=\"(max-width: 640px)\" srcset=\"/assets/ldshop/ldshop-logo-vertical.png\">\n                \u003cimg src=\"/assets/ldshop/ldshop-logo-wide.png\" alt=\"LDShop\" width=\"510\" height=\"153\" loading=\"lazy\" decoding=\"async\">\n            \u003c/picture>\n            \u003cspan class=\"ldshop-promo__cta\">Top Up Now\u003c/span>\n        \u003c/span>\u003c/a>"},{"offer_id":"15686","ends_at":null,"html":"\u003ca class=\"ldshop-promo ldshop-promo--offer\" href=\"https://chain.ldshop.gg/T4VTmA3oZ\" target=\"_blank\" rel=\"sponsored nofollow noopener\" data-ldshop-placement=\"top-banner\" data-placement-id=\"ldshop-top-banner\">\u003cspan class=\"ldshop-promo__copy\">\u003cspan class=\"ldshop-promo__title\">Save $23.56 on 10,000 Gold Bars\u003c/span>\u003cspan class=\"ldshop-promo__text\">Pay just $76.43 on LDShop.\u003c/span>\u003c/span>\u003cspan class=\"ldshop-promo__details\">\u003cspan class=\"ldshop-promo__deal\">23% OFF\u003c/span>\u003c/span>\u003cspan class=\"ldshop-promo__side\">\n            \u003cpicture class=\"ldshop-promo__logo\">\n                \u003csource media=\"(max-width: 640px)\" srcset=\"/assets/ldshop/ldshop-logo-vertical.png\">\n                \u003cimg src=\"/assets/ldshop/ldshop-logo-wide.png\" alt=\"LDShop\" width=\"510\" height=\"153\" loading=\"lazy\" decoding=\"async\">\n            \u003c/picture>\n            \u003cspan class=\"ldshop-promo__cta\">Top Up Now\u003c/span>\n        \u003c/span>\u003c/a>"}]};
+    // END GENERATED LDSHOP STARTUP CATALOG
     function canTrack() {
         return typeof window.gtag === 'function'
             && !['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname);
@@ -302,148 +272,123 @@
         return (document.documentElement.lang || '').toLowerCase().split('-', 1)[0] === 'en';
     }
 
-    function validLdshopExperimentState(state) {
-        if (!state || state.experiment_id !== LDSHOP_EXPERIMENT.id) return false;
-        if (state.group !== 'control' && state.group !== 'rotation') return false;
-        if (!Number.isInteger(state.qualified_exposures) || state.qualified_exposures < 0) return false;
-        if (!Number.isFinite(state.expires_at) || state.expires_at <= Date.now()) return false;
-        if (!Array.isArray(state.rotation_order)
-            || state.rotation_order.length !== LDSHOP_EXPERIMENT.rotationCreativeIds.length) {
-            return false;
-        }
-        const expected = LDSHOP_EXPERIMENT.rotationCreativeIds.slice().sort().join('|');
-        return state.rotation_order.slice().sort().join('|') === expected;
+    function readLdshopOfferState(create = false) {
+        try {
+            const raw = window.localStorage.getItem(LDSHOP_EXPERIMENT.storageKey);
+            if (raw !== null) {
+                const state = JSON.parse(raw);
+                return state && ['control', 'rotation'].includes(state.group)
+                    && Number.isFinite(state.assigned_at) && Number.isInteger(state.offer_exposures)
+                    && state.offer_exposures >= 0
+                    && Array.isArray(state.order) && state.order.every(id => typeof id === 'string')
+                    && Array.isArray(state.shown) && state.shown.every(id => typeof id === 'string')
+                    && (state.last_offer === null || typeof state.last_offer === 'string') ? state : null;
+            }
+            if (!create) return null;
+            const state = {group: Math.random() < 0.5 ? 'control' : 'rotation', assigned_at: Date.now(),
+                offer_exposures: 0, order: [], shown: [], last_offer: null};
+            return saveLdshopOfferState(state) ? state : null;
+        } catch (err) { return null; }
     }
 
-    function readLdshopExperimentState() {
+    function saveLdshopOfferState(state) {
         try {
-            if (!window.localStorage) return null;
-            const state = JSON.parse(window.localStorage.getItem(LDSHOP_EXPERIMENT.storageKey) || 'null');
-            if (validLdshopExperimentState(state)) return state;
-            window.localStorage.removeItem(LDSHOP_EXPERIMENT.storageKey);
-        } catch (err) {
-            // Storage failures leave the current banner in place and outside the experiment.
-        }
-        return null;
-    }
-
-    function writeLdshopExperimentState(state) {
-        try {
-            if (!window.localStorage) return false;
             window.localStorage.setItem(LDSHOP_EXPERIMENT.storageKey, JSON.stringify(state));
             return true;
-        } catch (err) {
-            return false;
+        } catch (err) { return false; }
+    }
+
+    function shuffleLdshopOffers(ids) {
+        const result = ids.slice();
+        for (let i = result.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [result[i], result[j]] = [result[j], result[i]];
         }
+        return result;
     }
 
-    function shuffledLdshopCreativeIds() {
-        const values = LDSHOP_EXPERIMENT.rotationCreativeIds.slice();
-        for (let index = values.length - 1; index > 0; index -= 1) {
-            const swapIndex = Math.floor(Math.random() * (index + 1));
-            [values[index], values[swapIndex]] = [values[swapIndex], values[index]];
+    function validLdshopCatalog(data) {
+        return data && data.schema_version === 1 && data.language === 'en' && data.currency === 'USD'
+            && Number.isFinite(Date.parse(data.checked_at)) && typeof data.catalog_version === 'string'
+            && Array.isArray(data.offers) && data.offers.length <= 20
+            && data.offers.every(offer => typeof offer.offer_id === 'string' && typeof offer.html === 'string'
+                && (offer.ends_at === null || Number.isFinite(Date.parse(offer.ends_at))))
+            && new Set(data.offers.map(offer => offer.offer_id)).size === data.offers.length
+            && (data.primary === null || (typeof data.primary.offer_id === 'string'
+                && typeof data.primary.html === 'string'
+                && (data.primary.ends_at === null || Number.isFinite(Date.parse(data.primary.ends_at)))));
+    }
+
+    function readLdshopCatalog() {
+        let cached = validLdshopCatalog(LDSHOP_STARTUP_CATALOG) ? LDSHOP_STARTUP_CATALOG : null;
+        try {
+            const data = JSON.parse(window.localStorage.getItem(LDSHOP_EXPERIMENT.catalogKey));
+            if (validLdshopCatalog(data) && (!cached || Date.parse(data.checked_at) > Date.parse(cached.checked_at))) cached = data;
+        } catch (err) { /* Fetch still works without a cache. */ }
+        return cached;
+    }
+
+    async function loadLdshopCatalog() {
+        const cached = readLdshopCatalog();
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 3000);
+        try {
+            const response = await fetch(LDSHOP_EXPERIMENT.catalogUrl, {cache: 'no-cache', signal: controller.signal});
+            if (!response.ok) return cached;
+            const data = await response.json();
+            if (!validLdshopCatalog(data)) return cached;
+            if (cached && Date.parse(cached.checked_at) > Date.parse(data.checked_at)) return cached;
+            try { window.localStorage.setItem(LDSHOP_EXPERIMENT.catalogKey, JSON.stringify(data)); } catch (err) { /* Optional cache. */ }
+            return data;
+        } catch (err) { return cached; }
+        finally { clearTimeout(timer); }
+    }
+
+    function selectLdshopOffer(state, catalog) {
+        if (!state || state.group !== 'rotation' || !catalog) return null;
+        // Snapshot age never expires prices. Only an explicit product end matters.
+        const available = offer => !offer.ends_at || Date.now() < Date.parse(offer.ends_at);
+        const offers = catalog.offers.filter(available);
+        const ids = offers.map(offer => offer.offer_id);
+        state.order = state.order.filter(id => ids.includes(id) && !state.shown.includes(id));
+        state.order.push(...shuffleLdshopOffers(ids.filter(id => !state.order.includes(id) && !state.shown.includes(id))));
+        if (!state.order.length) {
+            state.shown = [];
+            state.order = shuffleLdshopOffers(ids);
+            if (state.order.length > 1 && state.order[0] === state.last_offer) state.order.push(state.order.shift());
         }
-        return values;
+        const primary = state.offer_exposures === 0 && catalog.primary && available(catalog.primary) ? catalog.primary : null;
+        if (!saveLdshopOfferState(state)) return null;
+        return primary || offers.find(offer => offer.offer_id === state.order[0]) || null;
     }
 
-    function createLdshopExperimentState(clickedOnFirstExposure) {
-        const state = {
-            experiment_id: LDSHOP_EXPERIMENT.id,
-            group: Math.random() < 0.5 ? 'control' : 'rotation',
-            rotation_order: shuffledLdshopCreativeIds(),
-            qualified_exposures: 0,
-            clicked_on_first_exposure: clickedOnFirstExposure === true,
-            eligibility_recorded: false,
-            first_click_recorded: false,
-            expires_at: Date.now() + LDSHOP_EXPERIMENT.durationMs
-        };
-        return writeLdshopExperimentState(state) ? state : null;
-    }
-
-    function ldshopExposureBucket(exposureNumber) {
-        return exposureNumber >= 4 ? '4_plus' : String(exposureNumber);
-    }
-
-    function ldshopPresentation(state) {
-        const exposureNumber = state ? state.qualified_exposures + 1 : 1;
-        if (!state || state.group === 'control') {
-            return {
-                creativeId: LDSHOP_EXPERIMENT.currentCreativeId,
-                exposureNumber,
-                sequencePosition: 1
-            };
+    function renderLdshopOffer(link, offer) {
+        if (offer) {
+            const template = document.createElement('template');
+            template.innerHTML = offer.html;
+            const rendered = template.content.firstElementChild;
+            if (!rendered || !rendered.matches('a.ldshop-promo--offer') || rendered.getAttribute('href') !== link.getAttribute('href')) return false;
+            // Retain the original anchor, destination, attributes and event target.
+            link.replaceChildren(...rendered.childNodes);
+        } else {
+            const copy = document.createElement('span');
+            copy.className = 'ldshop-promo__copy';
+            [['ldshop-promo__title', 'Top up Last Z for less'],
+                ['ldshop-promo__text', 'Gold Bars, packs and passes at LDShop.']].forEach(([cls, text]) => {
+                const node = document.createElement('span'); node.className = cls; node.textContent = text; copy.appendChild(node);
+            });
+            const details = document.createElement('span'); details.className = 'ldshop-promo__details';
+            link.replaceChildren(copy, details, link.querySelector('.ldshop-promo__side'));
         }
-
-        const sequencePosition = ((exposureNumber - 1) % 4) + 1;
-        return {
-            creativeId: sequencePosition === 1
-                ? LDSHOP_EXPERIMENT.currentCreativeId
-                : state.rotation_order[sequencePosition - 2],
-            exposureNumber,
-            sequencePosition
-        };
-    }
-
-    function replaceLdshopText(element, parts) {
-        if (!element) return;
-        const nodes = parts.map((part) => {
-            if (typeof part === 'string') return document.createTextNode(part);
-            const strong = document.createElement('strong');
-            strong.textContent = part.strong;
-            return strong;
-        });
-        element.replaceChildren(...nodes);
-    }
-
-    function applyLdshopPresentation(link, state, selectedPresentation) {
-        const presentation = selectedPresentation || ldshopPresentation(state);
-        const creative = LDSHOP_EXPERIMENT.creatives[presentation.creativeId];
-        if (creative) {
-            const deal = link.querySelector('.ldshop-promo__deal');
-            const dealSmall = deal ? deal.querySelector('.ldshop-promo__deal-small') : null;
-            const dealBig = deal ? deal.querySelector('.ldshop-promo__deal-big') : null;
-            const dealLabel = deal ? deal.querySelector('.ldshop-promo__deal-label') : null;
-            const title = link.querySelector('.ldshop-promo__title');
-            if (dealSmall) dealSmall.textContent = creative.dealSmall;
-            if (dealBig) dealBig.textContent = creative.dealBig;
-            if (dealLabel) dealLabel.textContent = creative.dealLabel;
-            if (title) title.textContent = creative.title;
-            replaceLdshopText(link.querySelector('.ldshop-promo__text'), creative.textParts);
-        }
-
-        link.dataset.ldshopExperimentId = state ? LDSHOP_EXPERIMENT.id : '';
-        link.dataset.ldshopExperimentGroup = state ? state.group : '';
-        link.dataset.ldshopCreativeId = presentation.creativeId;
-        link.dataset.ldshopExposureNumber = String(presentation.exposureNumber);
-        link.dataset.ldshopSequencePosition = String(presentation.sequencePosition);
-        link.dataset.ldshopExperimentEligible = state && state.eligibility_recorded ? 'true' : 'false';
-        return presentation;
-    }
-
-    function ldshopExperimentParams(link) {
-        const experimentId = link.dataset.ldshopExperimentId || '';
-        if (!experimentId) return {};
-        const exposureNumber = Number.parseInt(link.dataset.ldshopExposureNumber || '1', 10);
-        return {
-            experiment_id: experimentId,
-            experiment_group: link.dataset.ldshopExperimentGroup || '',
-            creative_id: link.dataset.ldshopCreativeId || LDSHOP_EXPERIMENT.currentCreativeId,
-            exposure_number: exposureNumber,
-            exposure_bucket: ldshopExposureBucket(exposureNumber),
-            sequence_position: link.dataset.ldshopSequencePosition || '1',
-            experiment_eligible: link.dataset.ldshopExperimentEligible === 'true'
-        };
+        link.classList.add('ldshop-promo--offer');
+        return true;
     }
 
     function ldshopPromoParams(link) {
         const path = getPath();
-        return Object.assign({
-            partner: 'ldshop',
-            placement_id: link.getAttribute('data-placement-id') || 'ldshop-promo',
-            page_path: window.location.pathname || '/',
-            page_type: path === 'index.html' ? 'home' : 'guide',
-            guide_slug: slugFromUrl(path)
-        }, ldshopExperimentParams(link));
+        return {partner: 'ldshop', placement_id: link.getAttribute('data-placement-id') || 'ldshop-promo',
+            page_path: window.location.pathname || '/', page_type: path === 'index.html' ? 'home' : 'guide',
+            guide_slug: slugFromUrl(path)};
     }
 
     function giftCenterTrackingParams(link) {
@@ -480,98 +425,109 @@
         }
     }
 
-    function attachLdshopPromoTracking() {
-        const promoLinks = document.querySelectorAll('[data-ldshop-placement]');
-        const contexts = new WeakMap();
-        promoLinks.forEach((link) => {
-            const experimentPlacement = link.matches('.ldshop-promo');
-            const state = experimentPlacement && isEnglishPage()
-                ? readLdshopExperimentState()
-                : null;
-            const presentation = experimentPlacement
-                ? applyLdshopPresentation(link, state && state.qualified_exposures > 0 ? state : null)
-                : null;
-            contexts.set(link, { state, presentation, viewed: false, experimentPlacement });
-        });
-
-        function recordView(link) {
-            const context = contexts.get(link) || { state: null, viewed: false };
-            if (context.viewed) return context;
+    async function attachLdshopPromoTracking() {
+        const promoLinks = Array.from(document.querySelectorAll('[data-ldshop-placement]'));
+        if (!promoLinks.length) return;
+        const participating = LDSHOP_EXPERIMENT.enabled && isEnglishPage()
+            && promoLinks.some(link => link.matches('.ldshop-promo'));
+        const state = participating ? readLdshopOfferState(true) : null;
+        const contexts = new Map(promoLinks.map(link => [link, {viewed: false, clicked: false, ratio: 0, ready: false,
+            state: link.matches('.ldshop-promo') ? state : null, offer: null, replaced: false}]));
+        // Choose once, synchronously. Network updates are for the next page load.
+        const catalog = state && state.group === 'rotation' ? readLdshopCatalog() : null;
+        function params(link, context) {
+            return Object.assign(ldshopPromoParams(link), context.state && context.ready ? {
+                experiment_id: LDSHOP_EXPERIMENT.id, experiment_group: context.state.group,
+                creative_id: context.state.group === 'control' ? 'base_saving_21' : (context.offer ? context.offer.offer_id : 'fallback'),
+                catalog_version: catalog ? catalog.catalog_version : 'unavailable'
+            } : {});
+        }
+        function expire(link, context) {
+            if (context.offer && context.offer.ends_at && Date.now() >= Date.parse(context.offer.ends_at)) {
+                renderLdshopOffer(link, null);
+                context.offer = null;
+                context.replaced = context.viewed;
+            }
+        }
+        function qualify(link, context) {
+            if (!context.ready || context.viewed || context.ratio < 0.5 || document.visibilityState !== 'visible') return;
+            expire(link, context);
             context.viewed = true;
-
-            if (context.experimentPlacement && isEnglishPage()) {
-                context.state = context.state || createLdshopExperimentState();
-                if (context.state) {
-                    const presentation = context.presentation || ldshopPresentation(context.state);
-                    context.state.qualified_exposures = presentation.exposureNumber;
-                    const becameEligible = presentation.exposureNumber >= 2
-                        && !context.state.clicked_on_first_exposure
-                        && !context.state.eligibility_recorded;
-                    if (becameEligible) {
-                        context.state.eligibility_recorded = true;
-                    }
-                    writeLdshopExperimentState(context.state);
-                    applyLdshopPresentation(link, context.state, presentation);
-                    context.presentation = presentation;
-                    contexts.set(link, context);
-                    track('ldshop_promo_view', ldshopPromoParams(link));
-                    if (becameEligible) {
-                        track('ldshop_experiment_eligible', ldshopPromoParams(link));
-                    }
-                    return context;
+            if (context.state && context.offer) {
+                const latest = readLdshopOfferState();
+                if (!latest || latest.group !== context.state.group || latest.assigned_at !== context.state.assigned_at) {
+                    context.state = null;
+                } else {
+                    latest.offer_exposures++;
+                    latest.last_offer = context.offer.offer_id;
+                    latest.order = latest.order.filter(id => id !== context.offer.offer_id);
+                    if (!latest.shown.includes(context.offer.offer_id)) latest.shown.push(context.offer.offer_id);
+                    if (!saveLdshopOfferState(latest)) context.state = null;
                 }
             }
-
-            contexts.set(link, context);
-            track('ldshop_promo_view', ldshopPromoParams(link));
-            return context;
+            track('ldshop_promo_view', params(link, context));
         }
-
-        if (promoLinks.length > 0 && 'IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    const context = contexts.get(entry.target);
-                    if (!entry.isIntersecting || entry.intersectionRatio < 0.5 || (context && context.viewed)) {
-                        return;
-                    }
-                    recordView(entry.target);
-                    observer.unobserve(entry.target);
-                });
-            }, { threshold: 0.5 });
-            promoLinks.forEach((link) => observer.observe(link));
-        }
-
-        document.addEventListener('click', (event) => {
+        document.addEventListener('click', event => {
             const link = event.target.closest('[data-ldshop-placement]');
-            if (!link) return;
-            const context = contexts.get(link) || { state: null, viewed: false, experimentPlacement: false };
-            track('ldshop_promo_click', Object.assign(ldshopPromoParams(link), {
-                destination_url: link.href,
-                ldshop_clicker_id: getOrCreateClickerId()
-            }));
-            if (!context.state && context.experimentPlacement && isEnglishPage()) {
-                context.state = createLdshopExperimentState(true);
-            }
-            if (!context.state) return;
-
-            const exposureNumber = context.presentation
-                ? context.presentation.exposureNumber
-                : context.state.qualified_exposures;
-            if (exposureNumber === 1) {
-                if (!context.state.clicked_on_first_exposure) {
-                    context.state.clicked_on_first_exposure = true;
-                    writeLdshopExperimentState(context.state);
-                }
-                return;
-            }
-            if (context.state.eligibility_recorded && !context.state.first_click_recorded) {
-                context.state.first_click_recorded = true;
-                writeLdshopExperimentState(context.state);
-                track('ldshop_experiment_first_click', Object.assign(ldshopPromoParams(link), {
-                    destination_url: link.href
-                }));
+            const context = contexts.get(link);
+            if (!context) return;
+            expire(link, context);
+            const payload = Object.assign(params(link, context), {destination_url: link.href});
+            track('ldshop_promo_click', Object.assign({}, payload, {ldshop_clicker_id: getOrCreateClickerId()}));
+            if (context.state && context.viewed && !context.clicked && !context.replaced) {
+                context.clicked = true;
+                track('ldshop_offer_qualified_click', payload);
             }
         });
+        contexts.forEach((context, link) => {
+            if (context.state) {
+                if (context.state.group === 'control') {
+                    link.querySelector('.ldshop-promo__text').innerHTML =
+                        'Get the same Last Z packs for <strong>up to 21% less</strong> than in-game.';
+                } else {
+                    context.offer = selectLdshopOffer(context.state, catalog);
+                    if (!renderLdshopOffer(link, context.offer)) {
+                        context.offer = null; renderLdshopOffer(link, null);
+                    }
+                }
+                link.dataset.ldshopExperimentId = LDSHOP_EXPERIMENT.id;
+                link.dataset.ldshopExperimentGroup = context.state.group;
+                link.dataset.ldshopCreativeId = context.state.group === 'control' ? 'base_saving_21' : (context.offer ? context.offer.offer_id : 'fallback');
+            }
+            context.ready = true;
+        });
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+                const context = contexts.get(entry.target);
+                if (!context) return;
+                context.ratio = entry.isIntersecting ? entry.intersectionRatio : 0;
+                qualify(entry.target, context);
+            }), {threshold: 0.5});
+            promoLinks.forEach(link => observer.observe(link));
+            // Re-observe on return so visibility is evaluated against current geometry.
+            document.addEventListener('visibilitychange', () => {
+                contexts.forEach((context, link) => {
+                    expire(link, context);
+                    context.ratio = 0;
+                    observer.unobserve(link); observer.observe(link);
+                });
+            });
+        }
+        let expiryTimer;
+        function checkExpiry() {
+            clearTimeout(expiryTimer);
+            let next = Infinity;
+            contexts.forEach((context, link) => {
+                expire(link, context);
+                if (context.offer && context.offer.ends_at) next = Math.min(next, Date.parse(context.offer.ends_at));
+            });
+            if (Number.isFinite(next)) expiryTimer = setTimeout(checkExpiry, Math.min(2147483647, Math.max(1, next - Date.now())));
+        }
+        window.addEventListener('pageshow', checkExpiry);
+        window.addEventListener('pagehide', () => clearTimeout(expiryTimer));
+        checkExpiry();
+        // Never delay observation or relabel this page with a newer catalog.
+        if (state && state.group === 'rotation') await loadLdshopCatalog();
     }
 
     function attachGiftCenterTracking() {
