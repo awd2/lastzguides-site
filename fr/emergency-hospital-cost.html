@@ -98,45 +98,35 @@
 
     <script type="application/ld+json">
 {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "author": {"@type": "Organization", "name": "Last Z Guides"},
-        "publisher": {"@type": "Organization", "name": "Last Z Guides"},
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "Qu’affecte le plafond de niveau HQ ?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "HQ level sets the maximum level for heroes and buildings. The table lists the hero level cap for each HQ level."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Que sont les prérequis Building 1 et Building 2 ?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "They are the prerequisite buildings and levels required to upgrade HQ. The exact requirements are listed per HQ level in the table."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Quand Steel devient-il requis pour les améliorations HQ ?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "The Steel column shows when steel becomes required. Early HQ levels are zero, and higher levels add steel costs."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Que signifient les colonnes de ressources ?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Wood, Food, Zent, and Steel show the resource costs for each HQ upgrade. Values are in millions (M)."
-                }
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "author": {
+        "@type": "Organization",
+        "name": "Last Z Guides"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Last Z Guides"
+    },
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "À quoi sert la capacité Hospital ?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "La capacité est le nombre maximum de troupes blessées que Hospital peut contenir. Si elle est pleine, les blessés supplémentaires meurent."
             }
-        ]
-    }
+        },
+        {
+            "@type": "Question",
+            "name": "Qu’augmente un upgrade Hospital ?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Chaque upgrade augmente la capacité Hospital et la valeur de power du bâtiment."
+            }
+        }
+    ]
+}
     </script>
 
     <script type="application/ld+json">
@@ -333,10 +323,6 @@
             <div class="faq-item">
                 <h3>Quand Hospital se débloque-t-il ?</h3>
                 <p>Il se débloque au HQ niveau 14 (Building requirement: 2) après avoir nettoyé Block XX.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Pourquoi certaines valeurs de ressources manquent-elles aux niveaux élevés ?</h3>
-                <p>La source liste capacité et power pour ces niveaux, mais ne fournit pas les coûts de ressources.</p>
             </div>
         </section>
 
