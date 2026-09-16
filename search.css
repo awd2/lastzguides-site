@@ -810,7 +810,7 @@
         bottom: 0;
         z-index: 120;
         display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-template-columns: repeat(5, minmax(max-content, 1fr));
         gap: 4px;
         padding: 10px 8px calc(10px + env(safe-area-inset-bottom));
         border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -827,8 +827,8 @@
         min-height: 44px;
         padding: 8px 2px;
         font-size: clamp(0.7rem, 3.35vw, 0.82rem);
-        overflow-wrap: anywhere;
-        white-space: normal;
+        overflow-wrap: normal;
+        white-space: nowrap;
     }
 
     .site-header > .home-nav.site-nav {
