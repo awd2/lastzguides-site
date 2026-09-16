@@ -2488,6 +2488,7 @@ footer a:hover, .site-footer a:hover {
 /* UI Evolution Wave 2.2: ordinary editorial table readability. */
 :is(article.guide:not(.data-guide), article.guide-content) .table-scroll {
     box-sizing: border-box;
+    margin: 20px 0;
     width: 100%;
     max-width: 100%;
     overflow-x: auto;
@@ -2522,7 +2523,7 @@ footer a:hover, .site-footer a:hover {
     letter-spacing: 0.035em;
 }
 
-:is(article.guide:not(.data-guide), article.guide-content) .table-scroll .data-table th {
+:is(article.guide:not(.data-guide), article.guide-content) .table-scroll .data-table :is(th, td) {
     white-space: normal;
     overflow-wrap: normal;
     word-break: normal;
