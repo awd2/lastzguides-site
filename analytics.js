@@ -504,7 +504,6 @@
                 paused: motion.matches, hover: false, pageHidden: false, timer: null, started: null,
                 remaining: LDSHOP_CAROUSEL.interval, expiryTimer: null};
             contexts.push(context);
-            let controls, pauseButton, previousButton, nextButton;
             const visible = () => context.ratio >= 0.5 && document.visibilityState === 'visible' && !context.pageHidden;
             const params = () => Object.assign(ldshopPromoParams(link), {
                 experiment_id: LDSHOP_CAROUSEL.id, experiment_group: state.group,
@@ -522,11 +521,6 @@
             }
             function updateClock() {
                 stopClock();
-                if (pauseButton) {
-                    pauseButton.textContent = context.paused ? copy.carousel.resume : copy.carousel.pause;
-                    previousButton.disabled = nextButton.disabled = !ldshopCarouselOffers(catalog).length;
-                    pauseButton.disabled = !ldshopCarouselOffers(catalog).length;
-                }
                 if (state.group !== 'carousel' || context.paused || context.hover || !visible()
                     || !ldshopCarouselOffers(catalog).length) return;
                 context.started = performance.now();
@@ -594,7 +588,6 @@
                 link.dataset.ldshopExperimentId = LDSHOP_CAROUSEL.id;
                 link.dataset.ldshopExperimentGroup = state.group;
                 link.dataset.ldshopCreativeId = params().creative_id;
-                if (controls) controls.dataset.slidePosition = String(context.position);
                 qualify(); updateClock();
             }
             function advance(direction) {
@@ -638,28 +631,10 @@
                 }
             }, {threshold: [0, 0.5]});
             observer.observe(link);
-            if (state.group === 'carousel') {
-                controls = document.createElement('div'); controls.className = 'ldshop-carousel-controls';
-                controls.setAttribute('role', 'group'); controls.setAttribute('aria-label', copy.carousel.label);
-                function button(label, action) {
-                    const node = document.createElement('button'); node.type = 'button'; node.textContent = label;
-                    node.addEventListener('click', action); controls.appendChild(node); return node;
-                }
-                previousButton = button(copy.carousel.previous, () => { pause(); advance(-1); });
-                pauseButton = button(copy.carousel.pause, () => {
-                    context.paused = !context.paused; updateClock();
-                });
-                nextButton = button(copy.carousel.next, () => { pause(); advance(1); });
-                link.insertAdjacentElement('afterend', controls);
-                updateClock();
-            }
             link.addEventListener('mouseenter', () => { context.hover = true; updateClock(); });
             link.addEventListener('mouseleave', () => { context.hover = false; updateClock(); });
             link.addEventListener('focusin', pause);
             link.addEventListener('pointerdown', pause);
-            if (controls) controls.addEventListener('focusin', event => {
-                if (event.target !== pauseButton) pause();
-            });
             link.addEventListener('click', () => {
                 pause();
                 const payload = Object.assign(params(), {destination_url: link.href});
