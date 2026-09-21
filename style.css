@@ -4851,3 +4851,62 @@ body.ui-foundation main.guide > article > .guide-header a[href]:hover {
     .ldshop-promo--offer .ldshop-promo__logo {width:44px; flex-shrink:0;}
     .ldshop-promo--offer .ldshop-promo__cta {flex:1;}
 }
+
+/* Carousel variants reuse the control badge, typography and three-column layout. */
+.ldshop-promo--carousel,
+.ldshop-promo--carousel.ldshop-promo--offer {
+    box-sizing: border-box;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: none;
+    gap: 16px;
+}
+.ldshop-promo--carousel.ldshop-promo--offer .ldshop-promo__copy,
+.ldshop-promo--carousel.ldshop-promo--offer .ldshop-promo__side {grid-area: auto;}
+.ldshop-promo--carousel.ldshop-promo--offer .ldshop-promo__deal {
+    display: grid;
+    place-items: center;
+    width: 112px;
+    min-height: 82px;
+    padding: 10px;
+    border: 1px solid rgba(255, 228, 95, 0.34);
+    border-radius: 10px;
+    background: linear-gradient(160deg, rgba(255, 139, 20, 0.95), rgba(232, 50, 36, 0.93));
+    box-shadow: 0 12px 28px rgba(232, 50, 36, 0.24);
+    text-align: center;
+}
+.ldshop-promo--carousel.ldshop-promo--offer .ldshop-promo__title {font-size: 1.1rem; line-height: 1.25;}
+.ldshop-promo--carousel [hidden] {display: none;}
+.ldshop-carousel-controls {display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; margin-top: 6px;}
+.ldshop-carousel-controls button {
+    font: inherit;
+    font-size: 0.8rem;
+    color: inherit;
+    background: var(--surface-panel, #20222b);
+    border: 1px solid var(--border-subtle, #666);
+    border-radius: 5px;
+    padding: 8px 10px;
+    cursor: pointer;
+}
+.ldshop-carousel-controls button:focus-visible {outline: 2px solid var(--ldshop-gold, #ffe45f); outline-offset: 2px;}
+.ldshop-carousel-controls button:disabled {opacity: 0.55; cursor: default;}
+@media (max-width: 640px) {
+    .ldshop-promo--carousel,
+    .ldshop-promo--carousel.ldshop-promo--offer {grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 12px;}
+    .ldshop-promo--carousel.ldshop-promo--offer .ldshop-promo__deal {
+        box-sizing: border-box;
+        width: 100%;
+        min-height: 46px;
+        padding: 8px 10px;
+        grid-template-columns: auto auto auto;
+        justify-content: center;
+        gap: 6px;
+    }
+    .ldshop-promo--carousel.ldshop-promo--offer .ldshop-promo__title {font-size: 1rem; line-height: 1.16;}
+    .ldshop-promo--carousel.ldshop-promo--offer .ldshop-promo__text {font-size: 0.84rem; line-height: 1.34;}
+    .ldshop-promo--carousel .ldshop-promo__terms {font-size: 0.8rem; line-height: 1.3;}
+}
+@media (prefers-reduced-motion: reduce) {
+    .ldshop-promo--carousel {transition: none; transform: none;}
+}
+
+.ldshop-promo--carousel .ldshop-promo__text strong {word-break: normal; overflow-wrap: normal;}
