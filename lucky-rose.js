@@ -2,6 +2,8 @@
     'use strict';
 
     var expiryTimer = null;
+    var retryTimer = null;
+    var pendingRequest = null;
     var copyResetTimer = null;
     var currentStatus = null;
 
@@ -31,6 +33,8 @@
         if (expiryTimer) window.clearTimeout(expiryTimer);
         expiryTimer = null;
         currentStatus = null;
+        if (retryTimer) window.clearTimeout(retryTimer);
+        retryTimer = document.hidden ? null : window.setTimeout(load, 300000);
         card.classList.add('is-pending');
         card.querySelector('[data-lucky-rose-kicker]').textContent = "Checking This Week's Lucky Rose";
         card.querySelector('[data-lucky-rose-number]').textContent = '?';
@@ -62,6 +66,8 @@
         }
         var card = document.querySelector('[data-lucky-rose-card]');
         if (!card) return;
+        if (retryTimer) window.clearTimeout(retryTimer);
+        retryTimer = null;
         currentStatus = status;
         card.classList.remove('is-pending');
         card.querySelector('[data-lucky-rose-kicker]').textContent = 'Lucky Rose This Week';
@@ -144,7 +150,12 @@
     }
 
     function load() {
-        var statusPromise = window.lastzLuckyRoseStatusPromise;
+        if (retryTimer) window.clearTimeout(retryTimer);
+        retryTimer = null;
+        if (document.hidden || pendingRequest) return;
+        var statusPromise = window.getLastzLuckyRoseStatus
+            ? window.getLastzLuckyRoseStatus() : window.lastzLuckyRoseStatusPromise;
+        window.lastzLuckyRoseStatusPromise = null;
         if (!statusPromise && window.fetch) {
             var statusUrl = window.lastzLuckyRoseStatusUrl ||
                 'https://status.lastzguides.com/lucky-rose-status.json';
@@ -154,7 +165,12 @@
                     return response.json();
                 });
         }
-        if (statusPromise) statusPromise.then(render).catch(function() {});
+        if (statusPromise) {
+            pendingRequest = statusPromise.catch(function() { return null; }).then(function(status) {
+                pendingRequest = null;
+                render(status);
+            });
+        }
     }
 
     if (document.readyState === 'loading') {
@@ -164,7 +180,13 @@
     }
 
     document.addEventListener('visibilitychange', function() {
-        if (!document.hidden && currentStatus && !confirmed(currentStatus)) renderPending();
+        if (document.hidden) {
+            if (retryTimer) window.clearTimeout(retryTimer);
+            retryTimer = null;
+            return;
+        }
+        if (currentStatus && !confirmed(currentStatus)) renderPending();
+        load();
     });
 
     document.addEventListener('click', function(event) {
