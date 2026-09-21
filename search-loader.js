@@ -8,6 +8,7 @@
     var luckyRoseStatusUrl = 'https://status.lastzguides.com/lucky-rose-status.json';
     var luckyRoseStatusPromise = null;
     var luckyRoseExpiryTimer = null;
+    var luckyRoseRetryTimer = null;
     var luckyRoseCurrentStatus = null;
     var luckyRoseLink = null;
 
@@ -31,10 +32,37 @@
                 if (!response.ok) throw new Error('Lucky Rose status unavailable');
                 return response.json();
             })
-            .catch(function() { return null; });
+            .catch(function() { return null; })
+            .then(function(status) {
+                luckyRoseStatusPromise = null;
+                return status;
+            });
         window.lastzLuckyRoseStatusPromise = luckyRoseStatusPromise;
         window.lastzLuckyRoseStatusUrl = luckyRoseStatusUrl;
         return luckyRoseStatusPromise;
+    }
+
+    window.getLastzLuckyRoseStatus = getLuckyRoseStatus;
+
+    function refreshLuckyRose() {
+        if (luckyRoseRetryTimer) window.clearTimeout(luckyRoseRetryTimer);
+        luckyRoseRetryTimer = null;
+        if (document.hidden || !luckyRoseLink) return;
+        getLuckyRoseStatus().then(renderLuckyRose);
+    }
+
+    function renderLuckyRose(status) {
+        if (!isConfirmedLuckyRoseStatus(status)) {
+            renderLuckyRosePending();
+            return;
+        }
+        if (luckyRoseRetryTimer) window.clearTimeout(luckyRoseRetryTimer);
+        luckyRoseRetryTimer = null;
+        luckyRoseCurrentStatus = status;
+        luckyRoseLink.querySelector('.lucky-rose-nav__number').textContent = status.number;
+        luckyRoseLink.querySelector('.lucky-rose-nav__label').textContent = 'Roses';
+        luckyRoseLink.setAttribute('aria-label', 'Lucky Rose this week: ' + status.number + ' Yellow Roses');
+        scheduleLuckyRoseExpiry(status);
     }
 
     function renderLuckyRosePending() {
@@ -45,6 +73,8 @@
         luckyRoseLink.querySelector('.lucky-rose-nav__number').textContent = '?';
         luckyRoseLink.querySelector('.lucky-rose-nav__label').textContent = '';
         luckyRoseLink.setAttribute('aria-label', 'Lucky Rose this week: checking');
+        if (luckyRoseRetryTimer) window.clearTimeout(luckyRoseRetryTimer);
+        luckyRoseRetryTimer = document.hidden ? null : window.setTimeout(refreshLuckyRose, 300000);
     }
 
     function scheduleLuckyRoseExpiry(status) {
@@ -76,23 +106,19 @@
         header.insertBefore(link, search);
         luckyRoseLink = link;
 
-        getLuckyRoseStatus().then(function(status) {
-            if (!isConfirmedLuckyRoseStatus(status)) {
-                renderLuckyRosePending();
-                return;
-            }
-            luckyRoseCurrentStatus = status;
-            link.querySelector('.lucky-rose-nav__number').textContent = status.number;
-            link.querySelector('.lucky-rose-nav__label').textContent = 'Roses';
-            link.setAttribute('aria-label', 'Lucky Rose this week: ' + status.number + ' Yellow Roses');
-            scheduleLuckyRoseExpiry(status);
-        });
+        refreshLuckyRose();
     }
 
     document.addEventListener('visibilitychange', function() {
-        if (!document.hidden && luckyRoseCurrentStatus && !isConfirmedLuckyRoseStatus(luckyRoseCurrentStatus)) {
+        if (document.hidden) {
+            if (luckyRoseRetryTimer) window.clearTimeout(luckyRoseRetryTimer);
+            luckyRoseRetryTimer = null;
+            return;
+        }
+        if (luckyRoseCurrentStatus && !isConfirmedLuckyRoseStatus(luckyRoseCurrentStatus)) {
             renderLuckyRosePending();
         }
+        refreshLuckyRose();
     });
 
     function isCodesPath(pathname) {
