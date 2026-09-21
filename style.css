@@ -4876,19 +4876,8 @@ body.ui-foundation main.guide > article > .guide-header a[href]:hover {
 }
 .ldshop-promo--carousel.ldshop-promo--offer .ldshop-promo__title {font-size: 1.1rem; line-height: 1.25;}
 .ldshop-promo--carousel [hidden] {display: none;}
-.ldshop-carousel-controls {display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; margin-top: 6px;}
-.ldshop-carousel-controls button {
-    font: inherit;
-    font-size: 0.8rem;
-    color: inherit;
-    background: var(--surface-panel, #20222b);
-    border: 1px solid var(--border-subtle, #666);
-    border-radius: 5px;
-    padding: 8px 10px;
-    cursor: pointer;
-}
-.ldshop-carousel-controls button:focus-visible {outline: 2px solid var(--ldshop-gold, #ffe45f); outline-offset: 2px;}
-.ldshop-carousel-controls button:disabled {opacity: 0.55; cursor: default;}
+/* Hide controls from an older cached runtime during the rollout. */
+.ldshop-carousel-controls {display: none !important;}
 @media (max-width: 640px) {
     .ldshop-promo--carousel,
     .ldshop-promo--carousel.ldshop-promo--offer {grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 12px;}
