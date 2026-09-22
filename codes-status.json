@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "fresh": true,
-  "fresh_id": "38faf5a15c54a96e",
-  "fresh_count": 1,
-  "fresh_until": "2026-09-23T15:08:52Z"
+  "fresh": false,
+  "fresh_id": null,
+  "fresh_count": 0,
+  "fresh_until": null
 }
