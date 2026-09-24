@@ -82,8 +82,12 @@ Approved corrections may change freshness fields without body-content changes,
 but they must include a source comment:
 
 ```html
-<!-- lastz:freshness-correction approved="2026-06-03" source="automation/reports/freshness-rollback-proposal-2026-06-03.md" -->
+<!-- lastz:freshness-correction approved="2026-09-24" source="owner-approved correction" from="2026-09-08" to="2026-09-23" -->
 ```
+
+The `from` and `to` dates must match the exact date change. A marker applies only
+in the diff where it is added; an older marker cannot authorize a later change.
+Legacy markers without these dates do not grant an exception.
 
 Do not use a correction marker for normal edits, rewrites, or new game data. Those
 must use the meaningful-update reason codes above.
