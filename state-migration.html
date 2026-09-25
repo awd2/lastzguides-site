@@ -43,8 +43,8 @@
     <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="Last Z Guides">
     <meta property="article:published_time" content="2026-08-16">
-    <!-- lastz:freshness-update reason="new_game_data" date="2026-08-16" -->
-    <meta property="article:modified_time" content="2026-08-16">
+    <!-- lastz:freshness-update reason="new_game_data" date="2026-09-25" -->
+    <meta property="article:modified_time" content="2026-09-25">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Last Z State Migration Guide — Score, Tiers, Passes &amp; Requirements">
@@ -62,7 +62,7 @@
         "description": "Last Z State Migration guide: when migration opens, how scores and tiers work, pass costs, destination quotas, invitation phases, requirements, and move checklist.",
         "author": {"@type": "Organization", "name": "Last Z Guides"},
         "datePublished": "2026-08-16",
-        "dateModified": "2026-08-16"
+        "dateModified": "2026-09-25"
 }
     </script>
     <script type="application/ld+json">
@@ -73,10 +73,10 @@
         "publisher": {"@type": "Organization", "name": "Last Z Guides"},
         "mainEntity": [
             {"@type": "Question", "name": "When does State Migration start in Last Z?", "acceptedAnswer": {"@type": "Answer", "text": "State Migration becomes available after every season, starting after Season 2. Exact dates are different for each server group and appear in the current migration event."}},
-            {"@type": "Question", "name": "How is Migration Score calculated?", "acceptedAnswer": {"@type": "Answer", "text": "The official formula is not public. A Server 134 community model estimated 0.7184 × Technology Power + 2.2779 × Modified Vehicle Power − 5,137,698 and matched five of seven baseline accounts within about 5%. Use it only as a rough estimate; the current Migration Assessment is final."}},
-            {"@type": "Question", "name": "Can I lower my Migration Score by killing troops or removing equipment?", "acceptedAnswer": {"@type": "Answer", "text": "No reliable last-minute method is known. In one controlled community test, lowering visible stats before assessment did not reduce the in-game score as predicted. The game may use historical or hidden values, so do not destroy troops or strip equipment just to chase a cheaper tier."}},
-            {"@type": "Question", "name": "Can a Regular player migrate without the President’s invitation?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, during Free Migration, if the destination has an open Regular slot. During the Invitation Phase, an invitation or approved application is still the safer route."}},
-            {"@type": "Question", "name": "Can Medium, Advanced, or Elite players use Free Migration?", "acceptedAnswer": {"@type": "Answer", "text": "They still require an invitation or approved Special Immigration Application. Free movement without presidential approval is for Regular-tier players with an available Regular slot."}},
+            {"@type": "Question", "name": "How is Migration Score calculated?", "acceptedAnswer": {"@type": "Answer", "text": "The game lists Building Power, Tech Power, Hero Power, and Mod Vehicle Power among the inputs, but does not publish their exact weights. Migration Score keeps your best record and does not decrease. Use the score shown in your current event."}},
+            {"@type": "Question", "name": "Can I lower my Migration Score by killing troops or removing equipment?", "acceptedAnswer": {"@type": "Answer", "text": "No. The game states that Migration Score does not decrease and keeps your best record. Lowering current power will not undo a score you have already reached."}},
+            {"@type": "Question", "name": "Can a Regular player migrate without the President’s invitation?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, during Free Migration, if the destination has an open Regular slot and you meet the other migration conditions. During the Invitation Phase, Regular players need an invitation."}},
+            {"@type": "Question", "name": "Can Intermediate, Advanced, or Elite players use Free Migration?", "acceptedAnswer": {"@type": "Answer", "text": "They still require an invitation or approved Special Immigration Application. Free movement without presidential approval is for Regular-tier players with an available Regular slot."}},
             {"@type": "Question", "name": "Does my alliance move with me?", "acceptedAnswer": {"@type": "Answer", "text": "No. Migration moves the player account, not the alliance. You must leave your current alliance before migrating and join or create an alliance after arriving."}}
         ]
 }
@@ -169,14 +169,14 @@
     <article class="guide">
         <header class="guide-header guide-header--compact">
             <h1>Last Z State Migration Guide — Score, Tiers, Passes, and Requirements</h1>
-            <p class="guide-meta">Event Guide &bull; Updated <time datetime="2026-08-16">August 16, 2026</time> &bull; 9 min read &bull; <a href="about.html">Last Z Guides</a></p>
+            <p class="guide-meta">Event Guide &bull; Updated <time datetime="2026-09-25">September 25, 2026</time> &bull; 9 min read &bull; <a href="about.html">Last Z Guides</a></p>
         </header>
 
         <section class="quick-answer quick-answer--modern" aria-label="Quick Answer">
             <p class="qa-kicker">Quick Answer</p>
             <div class="qa-body">
                 <p class="qa-lede"><strong>State Migration first becomes available after Season 2—not after Season 1—and then returns after each following season.</strong> The event lets you move your existing account to an eligible state from the destination list shown for your server group.</p>
-                <p>Your current migration event screen is final for your Migration Score, Identity Tier, pass cost, eligible states, quotas, and deadlines. The developer does not publish the score formula. Community formulas can help you estimate, but their accuracy can change by server bracket and migration cycle.</p>
+                <p>Your Migration Score keeps its highest recorded value; lowering your current power does not lower it. Use the current event screen for your Identity Tier, pass cost, eligible states, quotas, and deadlines.</p>
                 <p>Before moving, secure an invitation if your tier requires one, collect enough Migration Passes, leave your alliance, step down if you are President, recall all troops, and make sure your Headquarters is not in combat.</p>
             </div>
         </section>
@@ -195,6 +195,7 @@
                 <li>the remaining quota in each destination state.</li>
             </ul>
             <p>A schedule from another server group may not apply to yours. Start preparing passes and destination contacts before the current season ends, then use the live countdown once the migration event appears.</p>
+            <p>For Server 403, the migration window between Season 3 Dinosaur Origin and Season 4 runs from September 25 at 00:00 to October 2, 2026 at 00:00, as displayed in the event. Other server groups may have different dates.</p>
         </section>
 
         <section class="guide-content">
@@ -204,20 +205,37 @@
                     <thead><tr><th>Phase</th><th>What happens</th><th>What you should do</th></tr></thead>
                     <tbody>
                         <tr><td>Prep Phase</td><td>Migration assessment, destination states, classifications, tiers, and quotas become visible.</td><td>Check your tier and pass requirement. Contact your preferred state and prepare a backup.</td></tr>
-                        <tr><td>Invitation Phase</td><td>State Presidents can invite players. Medium, Advanced, and Elite players can submit Special Immigration Applications.</td><td>Confirm that the destination has reserved the correct tier slot for you.</td></tr>
+                        <tr><td>Invitation Phase</td><td>State Presidents can invite players. Intermediate, Advanced, and Elite players can submit Special Immigration Applications.</td><td>Confirm that the destination has reserved the correct tier slot for you.</td></tr>
                         <tr><td>Free Migration Phase</td><td>Regular players can use an open Regular slot without an invitation. Other tiers still need an invitation or approved application.</td><td>Move only after checking the remaining quota and every migration condition.</td></tr>
                     </tbody>
                 </table>
             </div>
             <p>The duration of each phase can change. Follow the timer inside your current event instead of assuming that a previous migration’s schedule will repeat.</p>
-            <p>Invitations and applications normally expire after 24 hours. An invitation temporarily occupies its tier slot until it is accepted, rejected, or expires. After a Special Immigration Application is rejected, another application can normally be sent after 20 minutes.</p>
+            <p>Invitations and applications expire after 24 hours. After rejection, another invitation or application cannot be sent for 20 minutes. Intermediate, Advanced, and Elite players can submit Special Immigration Applications during both Phase II and Phase III; the destination President must approve them.</p>
         </section>
 
         <section class="guide-content">
-            <h2>Migration Score, Community Formula, and Identity Tiers</h2>
-            <p>Every account receives a Migration Score that places it into one of four Identity Tiers:</p>
-            <ul><li>Regular</li><li>Medium</li><li>Advanced</li><li>Elite</li></ul>
-            <p>Last Z does not publish the exact calculation. Community models also disagree about which power categories and weights apply, so the Migration Assessment shown in your current event is the final result.</p>
+            <h2>Migration Score and Identity Tiers</h2>
+            <p>The game lists Building Power, Tech Power, Hero Power, and Mod Vehicle Power among the inputs to Migration Score. It does not give their exact weights. Your score increases with power, never decreases, and keeps your best record.</p>
+            <p>Do not destroy troops or remove equipment to chase a cheaper tier: lowering current power will not undo a Migration Score you have already reached.</p>
+            <h3>Server 403 thresholds: September 25–October 2, 2026</h3>
+            <p>The Season 3 Dinosaur Origin → Season 4 migration round displays these ranges. Intermediate is the tier previously called Medium in this guide.</p>
+            <div class="comparison-table-wrap">
+            <table class="comparison-table">
+            <thead><tr><th>Identity Tier</th><th>Displayed Migration Score range</th></tr></thead>
+            <tbody>
+            <tr><td>Regular</td><td>0–40.0M</td></tr>
+            <tr><td>Intermediate</td><td>40.0M–80.0M</td></tr>
+            <tr><td>Advanced</td><td>80.0M–160.0M</td></tr>
+            <tr><td>Elite</td><td>&gt;160.0M</td></tr>
+            </tbody>
+            </table>
+            </div>
+            <p>These are the ranges displayed for this round, not universal thresholds. The labels overlap at exactly 40M and 80M, so use your displayed Identity Tier at either boundary.</p>
+            <h3>When to Hold Upgrades Before Migration</h3>
+            <p>If moving to your preferred state matters more than your next power increase, hold major upgrades before migration and keep the materials for after the move. Crossing into a higher Identity Tier can leave you competing for a scarcer slot, especially when several friends need to move together.</p>
+            <p>Keep collecting rewards while you save. Delaying an upgrade preserves the choice to use those materials after moving; reducing power afterward cannot roll back your score. Confirm your displayed tier and destination slot before committing to the move.</p>
+
             <h3>Community Estimate from Server 134</h3>
             <p>A community regression published by JHU570 of Server 134 on December 29, 2025 used seven accounts with screenshot-backed Technology Power, Modified Vehicle Power, and Migration Scores. Its best-fit estimate was:</p>
             <p><strong>Estimated Migration Score ≈ 0.7184 × Technology Power + 2.2779 × Modified Vehicle Power − 5,137,698</strong></p>
@@ -236,27 +254,21 @@
                 </table>
             </div>
             <p>The estimate matched five of the seven baseline accounts within about 5%. The other two accounts did not match their visible stats and were excluded as outliers. Within this small dataset, Troop Power and Hero Power did not show a stable relationship with Migration Score.</p>
-            <p>Use those results as a planning estimate, not proof that Technology Power and Modified Vehicle Power are the only inputs. The game may use hidden or historical account values, and other community models include Structure Power and Hero Power.</p>
-            <h3>Why Lowering Visible Power Is Unreliable</h3>
-            <p>In one controlled case from the report, a player lowered visible account stats before the Migration Assessment. The formula predicted a lower score, but the score displayed by the game remained closer to the account’s earlier, stronger state.</p>
-            <p>That supports a practical rule: do not destroy troops, remove equipment, or weaken the account just to chase a cheaper tier. It does not prove that the game always uses one exact peak-power value, but it shows that current visible power alone may not control the assessment.</p>
-            <p>Use the formula to estimate direction and compare account growth. Do not use it to promise an Identity Tier or pass cost. Tier thresholds change by server bracket and migration cycle; the live Migration Assessment is final.</p>
-            <h3>When to Hold Upgrades Before Migration</h3>
-            <p>If moving to your preferred state matters more than your next power increase, hold major upgrades before migration and keep the materials for after the move. Crossing into a higher Identity Tier can leave you competing for a scarcer slot, especially when several friends need to move together.</p>
-            <p>Keep collecting rewards while you save. Delaying an upgrade preserves that choice; removing equipment or destroying troops after gaining the power does not reliably lower your Migration Score. Holding upgrades does not guarantee a tier, so confirm your displayed assessment and destination slot before committing to the move.</p>
-        </section>
+            <p>This small-sample estimate does not replace the game’s stated inputs or its highest-record rule. Use it only as a rough estimate, never to guarantee an Identity Tier or pass cost.</p>
+            </section>
 
         <section class="guide-content">
             <h2>Migration Pass Costs</h2>
             <div class="comparison-table-wrap">
                 <table class="comparison-table">
                     <thead><tr><th>Identity Tier</th><th>Migration Passes</th></tr></thead>
-                    <tbody><tr><td>Regular</td><td>10</td></tr><tr><td>Medium</td><td>15</td></tr><tr><td>Advanced</td><td>20</td></tr><tr><td>Elite</td><td>50</td></tr></tbody>
+                    <tbody><tr><td>Regular</td><td>10</td></tr><tr><td>Intermediate</td><td>15</td></tr><tr><td>Advanced</td><td>20</td></tr><tr><td>Elite</td><td>50</td></tr></tbody>
                 </table>
             </div>
+            <p>In the September 25, 2026 Server 403 round, an account with 74.1M Migration Score is Intermediate and requires 15 passes. Its display of 20/15 means 20 owned and 15 required. Check your own event cost before buying passes.</p>
             <p>The Glory Shop sells one Migration Pass per week for 5,000 Glory Badges.</p>
             <p>That creates a long preparation window:</p>
-            <ul><li>Regular: 10 weeks from the Glory Shop;</li><li>Medium: 15 weeks;</li><li>Advanced: 20 weeks;</li><li>Elite: 50 weeks.</li></ul>
+            <ul><li>Regular: 10 weeks from the Glory Shop;</li><li>Intermediate: 15 weeks;</li><li>Advanced: 20 weeks;</li><li>Elite: 50 weeks.</li></ul>
             <p>Limited paid Migration Pass packs may also appear during the event, but purchase limits can prevent a last-minute catch-up. If migration is a possibility, start buying the weekly Glory Shop pass well before the season ends.</p>
         </section>
 
@@ -264,14 +276,14 @@
             <h2>Destination State Quotas</h2>
             <p>A standard destination state normally receives the following tier quotas:</p>
             <div class="comparison-table-wrap">
-                <table class="comparison-table"><thead><tr><th>Identity Tier</th><th>Standard State</th></tr></thead><tbody><tr><td>Regular</td><td>60</td></tr><tr><td>Medium</td><td>40</td></tr><tr><td>Advanced</td><td>5</td></tr><tr><td>Elite</td><td>1</td></tr></tbody></table>
+                <table class="comparison-table"><thead><tr><th>Identity Tier</th><th>Standard State</th></tr></thead><tbody><tr><td>Regular</td><td>60</td></tr><tr><td>Intermediate</td><td>40</td></tr><tr><td>Advanced</td><td>5</td></tr><tr><td>Elite</td><td>1</td></tr></tbody></table>
             </div>
             <p>More restricted destinations—often shown as Flourishing or Semi-Open states—can receive tighter high-tier quotas:</p>
             <div class="comparison-table-wrap">
-                <table class="comparison-table"><thead><tr><th>Identity Tier</th><th>Restricted State Example</th></tr></thead><tbody><tr><td>Regular</td><td>60</td></tr><tr><td>Medium</td><td>40</td></tr><tr><td>Advanced</td><td>3</td></tr><tr><td>Elite</td><td>0</td></tr></tbody></table>
+                <table class="comparison-table"><thead><tr><th>Identity Tier</th><th>Restricted State Example</th></tr></thead><tbody><tr><td>Regular</td><td>60</td></tr><tr><td>Intermediate</td><td>40</td></tr><tr><td>Advanced</td><td>3</td></tr><tr><td>Elite</td><td>0</td></tr></tbody></table>
             </div>
-            <p>State classification and quota are recalculated for each migration cycle. Always use the numbers displayed beside the destination state during your current event.</p>
-            <p>Regular and Medium capacity is much larger than Advanced and Elite capacity. A destination can therefore accept a large active group while still having no room for another whale or high-tier account.</p>
+            <p>At the start of each migration event, some states are classified as Fully Open or Semi-Open based on recent Migration Scores of active survivors. Fully Open states receive increased total slots; Semi-Open states receive fewer. Use the destination’s current quotas when coordinating a group.</p>
+            <p>Regular and Intermediate capacity is much larger than Advanced and Elite capacity. A destination can therefore accept a large active group while still having no room for another whale or high-tier account.</p>
         </section>
 
         <section class="guide-content">
@@ -323,7 +335,7 @@
             <p><a class="gift-center-button" href="state-migration-planner.html">Open Migration Planner</a></p>
             <p>A useful recruitment sheet should track:</p>
             <ul><li>player name and current state;</li><li>confirmed Migration Score and Identity Tier;</li><li>preferred destination alliance;</li><li>invitation or application status;</li><li>language and active time zone;</li><li>main account or farm;</li><li>backup destination;</li><li>person responsible for the candidate.</li></ul>
-            <p>Allocate scarce Advanced and Elite slots deliberately, but do not ignore active Regular and Medium players. Those tiers provide most of the available intake capacity and can add more daily activity, event participation, reinforcements, and future growth than one isolated high-power account.</p>
+            <p>Allocate scarce Advanced and Elite slots deliberately, but do not ignore active Regular and Intermediate players. Those tiers provide most of the available intake capacity and can add more daily activity, event participation, reinforcements, and future growth than one isolated high-power account.</p>
             <p>A candidate’s activity and fit with the destination state matter alongside raw power. A strong account that refuses state rules or expects an entire alliance to reorganize around it can create more problems than it solves.</p>
             <h3>Coordinate Invitations Without Losing Track of the Group</h3>
             <ol>
@@ -342,6 +354,21 @@
             <p>Your alliance does not move with your account. You must leave it before migrating and join or create an alliance after arriving.</p>
             <p>State-specific roles and relationships also do not transfer. A President must step down before moving, and the destination state’s alliance placement, territory, rules, and leadership structure apply after arrival.</p>
             <p>After a successful migration, a 30-day migration cooldown begins.</p>
+            <h3>Event Changes After the Move</h3>
+            <div class="comparison-table-wrap">
+            <table class="comparison-table">
+            <thead><tr><th>System</th><th>After migration</th></tr></thead>
+            <tbody>
+            <tr><td>State rankings</td><td>You leave the original state’s rankings and enter the new state’s rankings.</td></tr>
+            <tr><td>Arena</td><td>You enter Silver Arena in the first week. Peak Arena eligibility in the second week depends on your total hero power ranking.</td></tr>
+            <tr><td>Alliance Duel</td><td>Personal points reset and start accumulating again in the new state. Personal point chests refresh, so rewards can be claimed again after reaching the milestones. On migration day, you can contribute Duel Points to the first alliance you join.</td></tr>
+            <tr><td>Full Preparedness</td><td>Personal points reset and start accumulating again in the new state. Personal point chests refresh, and rewards can be claimed again after reaching the milestones.</td></tr>
+            <tr><td>Bounty Missions</td><td>Unaffected by migration.</td></tr>
+            <tr><td>Intercity Trade</td><td>Dispatched trucks finish their trips immediately. You can claim their rewards as soon as you enter the new state.</td></tr>
+            <tr><td>Peace Shield</td><td>A free Peace Shield activates automatically after migration.</td></tr>
+            </tbody>
+            </table>
+            </div>
         </section>
 
         <section class="guide-content">
@@ -351,18 +378,18 @@
             <h3>After Migration Assessment</h3>
             <ol><li>Record your displayed Migration Score and Identity Tier.</li><li>Confirm your exact pass cost.</li><li>Check the destination’s classification and tier quota.</li><li>Secure the required invitation or application approval.</li><li>Confirm which alliance will accept you after the move.</li></ol>
             <h3>Before pressing Migrate</h3>
-            <ol><li>Make sure the destination slot is still available.</li><li>Collect the full pass requirement.</li><li>Step down if you are President.</li><li>Leave your alliance.</li><li>Recall every outgoing troop.</li><li>End any combat state.</li><li>Check the event timer one final time.</li></ol>
+            <ol><li>Make sure the destination slot is still available.</li><li>Collect the full pass requirement.</li><li>Step down if you are President.</li><li>Leave your alliance.</li><li>Recall every outgoing troop.</li><li>End any combat state.</li><li>Check the event timer one final time.</li><li>Plan around the Alliance Duel and Full Preparedness personal-point resets.</li></ol>
             <h3>After arriving</h3>
-            <ol><li>Join the planned destination alliance.</li><li>Move to the correct alliance hive.</li><li>Read the destination state’s NAP and internal attack rules.</li><li>Confirm current <a href="alliance-duel.html">Alliance Duel</a> and State vs State expectations.</li><li>Check that your resources, troops, heroes, research, and inventory are present.</li></ol>
+            <ol><li>Join your planned alliance first: it is the alliance you can contribute Duel Points to on migration day.</li><li>Move to the correct alliance hive.</li><li>Read the destination state’s NAP and internal attack rules.</li><li>Confirm current <a href="alliance-duel.html">Alliance Duel</a> and State vs State expectations.</li><li>Check that your resources, troops, heroes, research, and inventory are present.</li></ol>
         </section>
 
         <section class="faq-section">
             <h2>Frequently Asked Questions</h2>
             <div class="faq-item"><h3>When does State Migration start in Last Z?</h3><p>State Migration becomes available after every season, starting after Season 2. Exact dates are different for each server group and appear in the current migration event.</p></div>
-            <div class="faq-item"><h3>How is Migration Score calculated?</h3><p>The official formula is not public. A Server 134 community model estimated 0.7184 × Technology Power + 2.2779 × Modified Vehicle Power − 5,137,698 and matched five of seven baseline accounts within about 5%. Use it only as a rough estimate; the current Migration Assessment is final.</p></div>
-            <div class="faq-item"><h3>Can I lower my Migration Score by killing troops or removing equipment?</h3><p>No reliable last-minute method is known. In one controlled community test, lowering visible stats before assessment did not reduce the in-game score as predicted. The game may use historical or hidden values, so do not destroy troops or strip equipment just to chase a cheaper tier.</p></div>
-            <div class="faq-item"><h3>Can a Regular player migrate without the President’s invitation?</h3><p>Yes, during Free Migration, if the destination has an open Regular slot. During the Invitation Phase, an invitation or approved application is still the safer route.</p></div>
-            <div class="faq-item"><h3>Can Medium, Advanced, or Elite players use Free Migration?</h3><p>They still require an invitation or approved Special Immigration Application. Free movement without presidential approval is for Regular-tier players with an available Regular slot.</p></div>
+            <div class="faq-item"><h3>How is Migration Score calculated?</h3><p>The game lists Building Power, Tech Power, Hero Power, and Mod Vehicle Power among the inputs, but does not publish their exact weights. Migration Score keeps your best record and does not decrease. Use the score shown in your current event.</p></div>
+            <div class="faq-item"><h3>Can I lower my Migration Score by killing troops or removing equipment?</h3><p>No. The game states that Migration Score does not decrease and keeps your best record. Lowering current power will not undo a score you have already reached.</p></div>
+            <div class="faq-item"><h3>Can a Regular player migrate without the President’s invitation?</h3><p>Yes, during Free Migration, if the destination has an open Regular slot and you meet the other migration conditions. During the Invitation Phase, Regular players need an invitation.</p></div>
+            <div class="faq-item"><h3>Can Intermediate, Advanced, or Elite players use Free Migration?</h3><p>They still require an invitation or approved Special Immigration Application. Free movement without presidential approval is for Regular-tier players with an available Regular slot.</p></div>
             <div class="faq-item"><h3>Does my alliance move with me?</h3><p>No. Migration moves the player account, not the alliance. You must leave your current alliance before migrating and join or create an alliance after arriving.</p></div>
         </section>
 
