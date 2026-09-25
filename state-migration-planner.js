@@ -6,6 +6,10 @@
     var MAX_APPLICANTS = 500;
     var MAX_IMPORT_BYTES = 1024 * 1024;
     var TIERS = ["Regular", "Medium", "Advanced", "Elite"];
+    // Keep Medium in saved boards and JSON exports for v1 compatibility.
+    function tierLabel(tier) {
+        return tier === "Medium" ? "Intermediate" : tier;
+    }
     var STANDARD_QUOTAS = {Regular: 60, Medium: 40, Advanced: 5, Elite: 1};
     var STATUSES = [
         "New",
@@ -328,9 +332,9 @@
             card.className = "migration-slot-card";
             if (used > limit) {
                 card.classList.add("is-over");
-                overages.push(tier + " is over the current slot limit by " + (used - limit) + ".");
+                overages.push(tierLabel(tier) + " is over the current slot limit by " + (used - limit) + ".");
             }
-            appendTextElement(card, "span", tier);
+            appendTextElement(card, "span", tierLabel(tier));
             appendTextElement(card, "strong", used + " / " + limit);
             appendTextElement(card, "small", Math.max(0, limit - used) + " remaining");
             refs.slotSummary.appendChild(card);
@@ -430,7 +434,7 @@
         row.appendChild(playerCell);
 
         var tierCell = cell("Tier / Score");
-        appendTextElement(tierCell, "span", applicant.tier, "migration-tier-pill" + (applicant.tier === "Unknown" ? " migration-tier-pill--unknown" : ""));
+        appendTextElement(tierCell, "span", tierLabel(applicant.tier), "migration-tier-pill" + (applicant.tier === "Unknown" ? " migration-tier-pill--unknown" : ""));
         appendTextElement(tierCell, "span", applicant.migrationScore ? "Score " + applicant.migrationScore : "No score", "migration-cell-secondary");
         row.appendChild(tierCell);
 
@@ -532,6 +536,7 @@
         state.applicants.forEach(function (applicant) {
             lines.push(fields.map(function (field) {
                 var value = field[1] === "passesReady" ? (applicant.passesReady ? "Yes" : "No") : applicant[field[1]];
+                if (field[1] === "tier") value = tierLabel(value);
                 return csvCell(value);
             }).join(","));
         });
@@ -606,7 +611,7 @@
         var lines = ["**" + title + destination + "**", ""];
         TIERS.forEach(function (tier) {
             var limit = state.board.quotas[tier];
-            lines.push("• " + tier + ": " + counts[tier] + " / " + limit + " reserved");
+            lines.push("• " + tierLabel(tier) + ": " + counts[tier] + " / " + limit + " reserved");
         });
         lines.push("", "**Applicants (" + state.applicants.length + ")**");
         if (!state.applicants.length) {
@@ -614,7 +619,7 @@
         } else {
             state.applicants.slice(0, 40).forEach(function (applicant) {
                 var alliance = applicant.targetAlliance ? " → " + applicant.targetAlliance : "";
-                lines.push("• " + applicant.playerName + " | " + applicant.tier + " | " + applicant.status + alliance);
+                lines.push("• " + applicant.playerName + " | " + tierLabel(applicant.tier) + " | " + applicant.status + alliance);
             });
             if (state.applicants.length > 40) {
                 lines.push("…and " + (state.applicants.length - 40) + " more in the exported board.");
