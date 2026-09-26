@@ -2069,6 +2069,12 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://lastzguides.com/migration-calculator.html</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://lastzguides.com/military-center.html</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://lastzguides.com/military-center.html" />
         <xhtml:link rel="alternate" hreflang="fr" href="https://lastzguides.com/fr/military-center.html" />

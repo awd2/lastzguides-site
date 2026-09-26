@@ -1090,14 +1090,24 @@
         padding-right: 8px;
     }
 
-    .site-header--has-lucky-rose .site-primary-nav {
+    .site-header .site-primary-nav {
         gap: 2px;
     }
 
-    .site-header--has-lucky-rose .site-primary-nav a {
+    .site-header .site-primary-nav a {
         padding-left: 3px;
         padding-right: 3px;
         font-size: 0.68rem;
+        letter-spacing: 0;
+    }
+}
+
+@media (min-width: 701px) and (max-width: 1100px) {
+    .site-header .site-primary-nav { gap: 4px; }
+    .site-header .site-primary-nav a {
+        padding-left: 4px;
+        padding-right: 4px;
+        font-size: 0.75rem;
         letter-spacing: 0;
     }
 }

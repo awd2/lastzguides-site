@@ -1,0 +1,65 @@
+.score-calculator {
+    --focus-ring: #f2eee5;
+    width: min(1000px, calc(100% - 32px));
+    margin: 12px auto 28px;
+    color: var(--color-text, #e0e0e0);
+    font-family: var(--lz-type-reading, 'Source Sans 3', sans-serif);
+    line-height: 1.4;
+}
+.migration-calculator-page > .breadcrumb,
+.migration-calculator-page > .site-footer {
+    width: min(1000px, calc(100% - 32px));
+    max-width: 1000px;
+    padding-left: 0;
+    padding-right: 0;
+}
+.score-calculator h1,
+.score-calculator h2 {
+    color: var(--color-text-strong, #fff);
+    font-family: var(--lz-type-display, 'Barlow Condensed', sans-serif);
+    font-weight: 600;
+    letter-spacing: .02em;
+    line-height: 1.1;
+}
+.score-calculator h1 { font-size: 1.75rem; border-left: 2px solid var(--color-accent, #c44); padding-left: 10px; }
+.score-calculator > p { margin: 8px 0 16px; }
+.score-workspace { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.score-calculator form,
+.score-calculator .result { padding: 16px; border: 1px solid var(--card-border, #333); background: var(--surface-panel, #252525); border-radius: 4px; }
+.score-calculator form > p:first-child { margin-bottom: 12px; font-size: .9rem; }
+.score-calculator .note { color: var(--color-muted-strong, #999); }
+.score-calculator .form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.score-field { display: grid; grid-template-rows: auto 44px auto; gap: 4px; min-width: 0; }
+.score-field label { font-weight: 700; font-size: .95rem; line-height: 1.2; }
+.score-field input { grid-row: 2; width: 100%; box-sizing: border-box; min-width: 0; min-height: 44px; padding: 8px 10px; font: inherit; font-size: 16px; line-height: 1.25; color: var(--color-text, #e0e0e0); background: var(--surface-page, #1a1a1a); border: 1px solid var(--color-muted, #888); border-radius: 4px; }
+.score-field small { overflow-wrap: anywhere; }
+.score-calculator .score-error { grid-row: 3; color: #ffb4ab; font-size: .8rem; line-height: 1.3; }
+.score-error:empty { display: none; }
+.score-field input[aria-invalid="true"] { border: 2px solid #ffb4ab; }
+.score-calculator form > .note { font-size: .85rem; margin: 6px 0 12px; }
+.score-actions { display: flex; gap: 10px; }
+.score-actions button { min-height: 44px; padding: 8px 14px; font: inherit; font-weight: 700; cursor: pointer; color: var(--color-text, #e0e0e0); background: var(--surface-page, #1a1a1a); border: 1px solid var(--color-muted, #888); border-radius: 4px; }
+.score-actions button[type="submit"] { background: var(--color-accent, #c44); border-color: #e17168; color: var(--color-text-strong, #fff); }
+.score-actions button:hover { background: var(--surface-panel-hover, #2a2a2a); }
+.score-actions button[type="submit"]:hover { background: #b93f37; }
+.score-calculator :is(input, button, summary, a):focus-visible { outline: 2px solid var(--focus-ring, #f2eee5); outline-offset: 3px; }
+.score-calculator .result { border-left: 2px solid #8bd9eb; }
+.score-calculator .result h2 { font-size: 1.35rem; margin-bottom: 10px; }
+.score-calculator .result p { font-size: .9rem; line-height: 1.4; }
+.score-calculator .result p + p { margin-top: 10px; }
+.score-calculator .result .score-value { font-size: 2.5rem; font-weight: 700; color: #8bd9eb; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; line-height: 1.1; }
+.score-calculator .score-caveat { font-size: .85rem; line-height: 1.4; margin: 12px 0 0; }
+.score-calculator details { margin-top: 20px; border-top: 1px solid var(--card-border, #333); border-bottom: 1px solid var(--card-border, #333); padding: 4px 0; }
+.score-calculator summary { cursor: pointer; min-height: 44px; display: list-item; padding: 12px 0; font-weight: 700; }
+.score-calculator details p { margin: 8px 0 12px; padding: 0; line-height: 1.5; }
+.score-calculator a:not(.related-card) { color: var(--color-text, #e0e0e0); text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 700px) {
+    .score-calculator { margin-top: 12px; }
+    .score-calculator h1 { font-size: 1.55rem; }
+    .score-calculator > p { font-size: .9rem; margin-bottom: 12px; }
+    .score-workspace { grid-template-columns: 1fr; gap: 12px; }
+    .score-calculator form, .score-calculator .result { padding: 12px; }
+}
+@media (max-width: 360px), (min-width: 701px) and (max-width: 900px) {
+    .score-field:nth-child(n+3) label { min-height: 2.4em; }
+}
