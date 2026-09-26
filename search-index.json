@@ -4185,6 +4185,26 @@
     ]
   },
   {
+    "url": "/migration-calculator.html",
+    "locale": "en",
+    "source_path": "migration-calculator.html",
+    "title": "Migration Score Calculator",
+    "category": "Guides",
+    "description": "Estimate your Last Z Migration Score from Structure, Tech, Hero and Modified Vehicle Power. A community estimate, not an official migration assessment.",
+    "keywords": [
+      "Last",
+      "Migration",
+      "Score",
+      "Calculator",
+      "Estimate",
+      "your",
+      "from",
+      "Structure",
+      "Tech",
+      "Hero"
+    ]
+  },
+  {
     "url": "/military-center.html",
     "locale": "en",
     "source_path": "military-center.html",
@@ -4588,9 +4608,9 @@
     "url": "/season-2-winter.html",
     "locale": "en",
     "source_path": "season-2-winter.html",
-    "title": "Season 2 Winter Guide",
+    "title": "Season 2 Winter / Everfrost Guide",
     "category": "Guides",
-    "description": "Last Z Season 2 Winter guide: city reset, Smart Greenhouse, Bio Lab, Frost Cores, Ice Blooms, Frostbanes, Snow Leopards, Yetis, and what to upgrade first.",
+    "description": "Plan Last Z Season 2 Winter / Everfrost: Bio Lab 26 vs 28, Greenhouse payback, daily Frost Core farming, and what resets or carries over.",
     "keywords": [
       "Last",
       "Season",
