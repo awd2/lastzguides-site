@@ -32,6 +32,14 @@
     return value === null || /m$/i.test(raw.trim()) ? raw : value.toLocaleString('en-US');
   }
 
+  function formatPowerDuringInput(raw, inputType) {
+    if (/^[\d, ]+$/.test(raw)) {
+      return formatPower(inputType === 'insertFromPaste' ? raw : raw.replace(/[, ]/g, ''));
+    }
+    if (inputType !== 'insertFromPaste' && /^[\d, ]+m$/i.test(raw)) return raw.replace(/[, ]/g, '');
+    return raw;
+  }
+
   // Server 403 thresholds for September 25–October 2, 2026; use unrounded score.
   function estimateTier(score) {
     if (!Number.isFinite(score) || score <= 0) return null;
@@ -46,7 +54,7 @@
     return values.some((value, index) => value < ranges[index][0] || value > ranges[index][1]);
   }
 
-  if (typeof module !== 'undefined' && module.exports) module.exports = { parsePower, estimate, isExtrapolation, formatPower, estimateTier };
+  if (typeof module !== 'undefined' && module.exports) module.exports = { parsePower, estimate, isExtrapolation, formatPower, formatPowerDuringInput, estimateTier };
   if (typeof document === 'undefined') return;
   const form = document.getElementById('migration-score-form');
   if (!form) return;
@@ -69,9 +77,26 @@
     inputs[index].removeAttribute('aria-invalid');
     document.getElementById(fields[index] + '-error').textContent = '';
   }
-  inputs.forEach((input, index) => input.addEventListener('input', () => {
+  inputs.forEach((input, index) => input.addEventListener('input', event => {
     clearResult();
     clearError(index);
+    const raw = input.value;
+    const formatted = formatPowerDuringInput(raw, event.inputType);
+    if (formatted === raw) return;
+    const beforeCaret = raw.slice(0, input.selectionStart);
+    input.value = formatted;
+    let caret;
+    if (/m$/i.test(formatted)) {
+      caret = beforeCaret.replace(/[, ]/g, '').length;
+    } else {
+      const digitsBeforeCaret = beforeCaret.replace(/\D/g, '').length;
+      caret = 0;
+      for (let digits = 0; caret < formatted.length && digits < digitsBeforeCaret; caret++) {
+        if (/\d/.test(formatted[caret])) digits++;
+      }
+      if (beforeCaret.length === raw.length) caret = formatted.length;
+    }
+    input.setSelectionRange(caret, caret);
   }));
   inputs.forEach(input => input.addEventListener('blur', () => {
     input.value = formatPower(input.value);
@@ -99,8 +124,7 @@
     }
     const messages = [
       { text: (score / 1000000).toFixed(1) + 'M', className: 'score-value' },
-      { text: 'Estimated Tier: ' + estimateTier(score), className: 'score-tier' },
-      { text: 'Estimated tier uses the September 25–October 2, 2026 thresholds from server 403. Check your in-game Migration Assessment for your actual tier, pass cost and eligibility.' }
+      { text: 'Estimated Tier: ' + estimateTier(score), className: 'score-tier' }
     ];
     if (isExtrapolation(values)) messages.push({ text: 'Your power values are outside the range of the player examples used for this estimate. This result is an extrapolation.' });
     showResult(messages);
