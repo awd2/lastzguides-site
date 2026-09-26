@@ -2,8 +2,8 @@
   "schema_version": 1,
   "language": "en",
   "currency": "USD",
-  "checked_at": "2026-09-25T11:50:49.211177Z",
-  "catalog_version": "a97737880eac0541",
+  "checked_at": "2026-09-26T11:24:46.471786Z",
+  "catalog_version": "0b84df68e2c1c5e8",
   "primary": {
     "offer_id": "12202",
     "ends_at": null,
