@@ -60,6 +60,10 @@
     parent.appendChild(element);
     return element;
   }
+  function addIcon(parent, item) {
+    const icon = document.getElementById('resource-icons').content.querySelector(`[data-icon="${item.key}"]`);
+    if (icon) parent.appendChild(icon.cloneNode(true));
+  }
   const usedTools = new Set();
   function recordUse(kind) {
     if (usedTools.has(kind)) return;
@@ -130,7 +134,9 @@
       const grid = add(missingBox, 'div', 'resource-grid', '');
       for (const row of missing) {
         const cell = add(grid, 'div', 'resource', '');
-        add(cell, 'span', 'resource-name', row.item.label);
+        const name = add(cell, 'span', 'resource-name', '');
+        addIcon(name, row.item);
+        name.append(row.item.label);
         add(cell, 'strong', '', row.item.format(row.amount));
       }
       add(missingBox, 'p', 'result-note', missing.some(row => row.amount > 0) ? 'More materials are needed for this target.' : 'Your entered inventory covers this cost.');
@@ -154,7 +160,9 @@
       if (!active.length) add(costBox, 'p', 'zero-result', 'No additional materials');
       for (const item of active) {
         const cell = add(costBox, 'div', 'resource', '');
-        add(cell, 'span', 'resource-name', item.label);
+        const name = add(cell, 'span', 'resource-name', '');
+        addIcon(name, item);
+        name.append(item.label);
         add(cell, 'strong', '', item.format(total[item.key]));
       }
       if (kind === 'forge') {
@@ -168,7 +176,9 @@
       for (const item of active) {
         const wrap = add(inventoryBox, 'div', 'field', '');
         const inputId = `${kind}-have-${item.key}`;
-        const label = add(wrap, 'label', '', `${item.label} available${item.key === 'zents' || item.key === 'electricity' ? ' (M)' : ''}`);
+        const label = add(wrap, 'label', '', '');
+        addIcon(label, item);
+        label.append(`${item.label} available${item.key === 'zents' || item.key === 'electricity' ? ' (M)' : ''}`);
         label.htmlFor = inputId;
         const input = add(wrap, 'input', '', '');
         input.id = inputId;

@@ -121,7 +121,8 @@
     border-radius: 4px;
     background: var(--surface-page, #1d1d1d);
 }
-.equipment-calculator-page .resource-name { display: block; color: #c5c5c5; font-size: .84rem; line-height: 1.2; }
+.equipment-calculator-page .resource-name { display: flex; align-items: center; gap: 7px; min-height: 28px; color: #c5c5c5; font-size: .84rem; line-height: 1.2; }
+.equipment-calculator-page .resource-icon { width: 28px; height: 28px; flex: 0 0 28px; object-fit: contain; }
 .equipment-calculator-page .resource strong { display: block; margin-top: 5px; color: #fff; font-size: 1.6rem; line-height: 1.1; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .equipment-calculator-page .zero-result { color: #fff; font-size: 1.3rem; font-weight: 700; }
 .equipment-calculator-page .requirement { margin: 13px 0 0; color: #c9c9c9; font-size: .9rem; }
@@ -129,27 +130,32 @@
 .equipment-calculator-page .inventory[inert] { opacity: .65; }
 .equipment-calculator-page .inventory[inert] summary { cursor: default; }
 .equipment-calculator-page .inventory summary {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    column-gap: 8px;
-    min-height: 52px;
-    padding: 7px 42px 7px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-sizing: border-box;
+    min-height: 44px;
+    max-width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #81504b;
+    border-radius: 6px;
+    background: var(--surface-panel, #2b2524);
     list-style: none;
     color: #fff;
     cursor: pointer;
 }
+.equipment-calculator-page .inventory summary::marker { content: ''; }
 .equipment-calculator-page .inventory summary::-webkit-details-marker { display: none; }
 .equipment-calculator-page .inventory summary::before { content: none; }
-.equipment-calculator-page .inventory summary::after { content: '⌄'; position: absolute; right: 12px; top: 50%; transform: translateY(-56%); color: #f2b9b2; font-size: 1.4rem; line-height: 1; }
-.equipment-calculator-page .inventory[open] summary::after { transform: translateY(-45%) rotate(180deg); }
+.equipment-calculator-page .inventory summary::after { content: ''; width: 8px; height: 8px; flex: 0 0 8px; border-right: 2px solid #f2b9b2; border-bottom: 2px solid #f2b9b2; transform: translateY(-2px) rotate(45deg); transition: transform .15s ease; }
+.equipment-calculator-page .inventory[open] summary::after { transform: translateY(2px) rotate(225deg); }
 .equipment-calculator-page .inventory-summary-title { font-size: .96rem; font-weight: 700; }
-.equipment-calculator-page .inventory-summary-help { color: #bcbcbc; font-size: .83rem; font-weight: 400; }
-.equipment-calculator-page .inventory summary:hover .inventory-summary-title { text-decoration: underline; text-underline-offset: 3px; }
+.equipment-calculator-page .inventory summary:hover { border-color: #d78d80; background: #342a29; }
+.equipment-calculator-page .inventory summary:focus-visible { outline: 2px solid var(--focus-ring, #ffb0a7); outline-offset: 3px; }
 .equipment-calculator-page .inventory > p { margin: 0 0 14px; color: #bcbcbc; font-size: .85rem; }
+.equipment-calculator-page .inventory[open] > p { margin-top: 14px; }
 .equipment-calculator-page .inventory-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-.equipment-calculator-page .inventory-fields .field label { font-weight: 500; }
+.equipment-calculator-page .inventory-fields .field label { display: flex; align-items: center; gap: 7px; min-height: 28px; font-weight: 500; }
 .equipment-calculator-page .missing-result { margin-top: 16px; }
 .equipment-calculator-page .missing-result h3 { margin: 0 0 10px; color: #fff; font-size: .95rem; }
 .equipment-calculator-page .missing-result .resource strong { font-size: 1.35rem; }
