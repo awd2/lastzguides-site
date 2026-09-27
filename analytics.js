@@ -235,7 +235,7 @@
                     next_job_id: link.getAttribute('data-next-job-id') || '',
                     from_job_id: link.getAttribute('data-from-job-id') || '',
                     from_page: slugFromUrl(getPath()),
-                    to_page: slugFromUrl(link.getAttribute('href') || ''),
+                    to_page: normalizedPageFromUrl(link.getAttribute('href') || ''),
                     to_title: link.textContent.trim(),
                     interaction_source: 'contextual_next_job',
                     page_type: 'guide',

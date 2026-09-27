@@ -4795,29 +4795,33 @@ body.ui-foundation main.guide > article > .guide-header a[href]:hover {
 /* Gear guide route to the equipment cost tool. */
 a.equipment-tool-entry,
 a.equipment-tool-entry:visited {
+    box-sizing: border-box;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    min-height: 50px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    width: 100%;
+    min-height: 44px;
     margin: 8px 0 14px;
-    padding: 11px 15px;
-    border: 1px solid #81504b;
+    padding: 8px 12px;
+    border: 1px solid var(--border-subtle, #444);
     border-left: 3px solid var(--color-accent, #c44);
     border-radius: 4px;
-    background: var(--surface-panel, #2b2524);
+    background: var(--surface-panel, #252525);
     color: var(--color-text-strong, #fff);
     text-decoration: none;
     text-align: left;
 }
-.equipment-tool-entry strong { font-size: .95rem; }
-.equipment-tool-entry span { color: #f2b9b2; font-size: .84rem; }
+.equipment-tool-entry__title { display: inline-flex; align-items: baseline; gap: 8px; line-height: 1.3; }
+.equipment-tool-entry__title strong { font-size: .95rem; }
+.equipment-tool-entry__title > span { color: #f2b9b2; }
+.equipment-tool-entry__help { color: var(--color-muted, #bcbcbc); font-size: .84rem; line-height: 1.35; }
+.equipment-tool-entry:hover { border-color: #a96d65; background: #302b2a; }
 .equipment-tool-entry:hover strong { text-decoration: underline; text-underline-offset: 3px; }
 .equipment-tool-entry:focus-visible { outline: 2px solid var(--focus-ring, #ffb0a7); outline-offset: 3px; }
-@media (max-width: 640px) {
-    .equipment-tool-entry { flex-direction: column; align-items: flex-start; gap: 3px; padding: 10px 11px; }
-    .equipment-tool-entry span { font-size: .75rem; }
-}
+body.ui-foundation.ui-guide-utilities .guide-content .equipment-table-link { margin: -8px 0 18px; }
+.equipment-table-link a { box-sizing: border-box; display: inline-flex; align-items: center; min-height: 44px; padding: 4px 6px; margin-left: -6px; }
+.equipment-table-link a:focus-visible { outline: 2px solid var(--focus-ring, #ffb0a7); outline-offset: 2px; }
 
 /* LDShop offer variant; source: automation/experiments/ldshop_offers/offer.css */
 /* Scoped proposal: retain the shared placement, palette, assets and CTA. */
