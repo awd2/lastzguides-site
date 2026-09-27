@@ -1,0 +1,180 @@
+.equipment-calculator-page .tool-shell {
+    width: min(1000px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 0 0 28px;
+    color: var(--color-text, #e0e0e0);
+    font-family: var(--lz-type-reading, 'Source Sans 3', sans-serif);
+}
+.equipment-calculator-page > .breadcrumb,
+.equipment-calculator-page > .site-footer {
+    width: min(1000px, calc(100% - 32px));
+    max-width: 1000px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 0;
+    padding-left: 0;
+}
+.equipment-calculator-page .tool-intro { padding: 12px 0 10px; }
+.equipment-calculator-page .tool-intro h1 {
+    margin: 0;
+    padding-left: 12px;
+    border-left: 3px solid var(--color-accent, #c44);
+    color: var(--color-text-strong, #fff);
+    font: 700 2rem/1.1 var(--lz-type-display, 'Barlow Condensed', sans-serif);
+}
+.equipment-calculator-page .tool-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--card-border, #3a3a3a);
+}
+.equipment-calculator-page .tool-tabs button {
+    min-height: 44px;
+    padding: 10px 20px;
+    border: 1px solid var(--card-border, #3a3a3a);
+    border-bottom: 0;
+    border-radius: 6px 6px 0 0;
+    background: var(--surface-page, #1a1a1a);
+    color: var(--color-text, #ccc);
+    font-family: inherit;
+    font-size: .95rem;
+    font-weight: 700;
+    line-height: 1.2;
+    cursor: pointer;
+}
+.equipment-calculator-page .tool-tabs button[aria-selected="true"] {
+    border-color: #81504b;
+    background: var(--surface-panel, #252525);
+    color: var(--color-text-strong, #fff);
+    box-shadow: inset 0 3px 0 var(--color-accent, #c44);
+}
+.equipment-calculator-page .calculator {
+    margin-bottom: 18px;
+    padding: 22px;
+    border: 1px solid var(--card-border, #3a3a3a);
+    border-radius: 8px;
+    background: var(--surface-panel, #252525);
+}
+.equipment-calculator-page .calculator[hidden] { display: none; }
+.equipment-calculator-page .calculator-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+.equipment-calculator-page .calculator h2 {
+    margin: 0;
+    color: var(--color-text-strong, #fff);
+    font: 700 1.6rem/1.1 var(--lz-type-display, 'Barlow Condensed', sans-serif);
+}
+.equipment-calculator-page .per-item {
+    padding: 3px 10px;
+    border: 1px solid #62504e;
+    border-radius: 999px;
+    color: #f0d7d3;
+    font-size: .75rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.equipment-calculator-page .planner-lede { margin: -2px 0 14px; color: #bdbdbd; font-size: .9rem; }
+.equipment-calculator-page .stage-fields {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 22px minmax(0, 1fr);
+    gap: 12px;
+    align-items: end;
+}
+.equipment-calculator-page .field { min-width: 0; }
+.equipment-calculator-page .field label { display: block; margin-bottom: 6px; color: #f2f2f2; font-weight: 700; font-size: .87rem; }
+.equipment-calculator-page .field select,
+.equipment-calculator-page .field input {
+    display: block;
+    width: 100%;
+    height: 46px;
+    padding: 8px 12px;
+    border: 1px solid #797979;
+    border-radius: 4px;
+    background-color: var(--surface-page, #1b1b1b);
+    color: #fff;
+    font: inherit;
+}
+.equipment-calculator-page .field select {
+    appearance: none;
+    padding-right: 44px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='m3 6 5 5 5-5' fill='none' stroke='%23e6e6e6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+}
+.equipment-calculator-page .tool-tabs button:disabled,
+.equipment-calculator-page .stage-fields select:disabled { cursor: default; opacity: .65; }
+.equipment-calculator-page :is(select, input, summary, button, a):focus-visible { outline: 2px solid var(--focus-ring, #ffb0a7); outline-offset: 3px; }
+.equipment-calculator-page .field input[aria-invalid="true"] { border-color: #ff988d; }
+.equipment-calculator-page .stage-arrow { color: #bbb; font-size: 1.3rem; line-height: 46px; text-align: center; }
+.equipment-calculator-page .result { margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--card-border, #3a3a3a); }
+.equipment-calculator-page .result-label { margin: 0 0 10px; color: #c7c7c7; letter-spacing: .09em; font-size: .73rem; font-weight: 800; }
+.equipment-calculator-page .resource-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.equipment-calculator-page .resource {
+    min-width: 0;
+    padding: 13px 14px;
+    border: 1px solid #3e3e3e;
+    border-left: 3px solid var(--color-accent, #c44);
+    border-radius: 4px;
+    background: var(--surface-page, #1d1d1d);
+}
+.equipment-calculator-page .resource-name { display: block; color: #c5c5c5; font-size: .84rem; line-height: 1.2; }
+.equipment-calculator-page .resource strong { display: block; margin-top: 5px; color: #fff; font-size: 1.6rem; line-height: 1.1; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.equipment-calculator-page .zero-result { color: #fff; font-size: 1.3rem; font-weight: 700; }
+.equipment-calculator-page .requirement { margin: 13px 0 0; color: #c9c9c9; font-size: .9rem; }
+.equipment-calculator-page .inventory { margin-top: 17px; padding-top: 7px; border-top: 1px solid var(--card-border, #3a3a3a); }
+.equipment-calculator-page .inventory[inert] { opacity: .65; }
+.equipment-calculator-page .inventory[inert] summary { cursor: default; }
+.equipment-calculator-page .inventory summary {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    column-gap: 8px;
+    min-height: 52px;
+    padding: 7px 42px 7px 0;
+    list-style: none;
+    color: #fff;
+    cursor: pointer;
+}
+.equipment-calculator-page .inventory summary::-webkit-details-marker { display: none; }
+.equipment-calculator-page .inventory summary::before { content: none; }
+.equipment-calculator-page .inventory summary::after { content: '⌄'; position: absolute; right: 12px; top: 50%; transform: translateY(-56%); color: #f2b9b2; font-size: 1.4rem; line-height: 1; }
+.equipment-calculator-page .inventory[open] summary::after { transform: translateY(-45%) rotate(180deg); }
+.equipment-calculator-page .inventory-summary-title { font-size: .96rem; font-weight: 700; }
+.equipment-calculator-page .inventory-summary-help { color: #bcbcbc; font-size: .83rem; font-weight: 400; }
+.equipment-calculator-page .inventory summary:hover .inventory-summary-title { text-decoration: underline; text-underline-offset: 3px; }
+.equipment-calculator-page .inventory > p { margin: 0 0 14px; color: #bcbcbc; font-size: .85rem; }
+.equipment-calculator-page .inventory-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.equipment-calculator-page .inventory-fields .field label { font-weight: 500; }
+.equipment-calculator-page .missing-result { margin-top: 16px; }
+.equipment-calculator-page .missing-result h3 { margin: 0 0 10px; color: #fff; font-size: .95rem; }
+.equipment-calculator-page .missing-result .resource strong { font-size: 1.35rem; }
+.equipment-calculator-page .result-note { margin: 10px 0 0; color: #c7c7c7; font-size: .85rem; }
+.equipment-calculator-page .input-error { color: #ffb4ab; font-size: .9rem; }
+@media (max-width: 640px) {
+    .equipment-calculator-page .tool-shell { width: calc(100% - 24px); }
+    .equipment-calculator-page > .breadcrumb,
+    .equipment-calculator-page > .site-footer { width: calc(100% - 24px); }
+    .equipment-calculator-page .tool-intro { padding: 12px 2px 9px; }
+    .equipment-calculator-page .tool-intro h1 { font-size: 1.65rem; }
+    .equipment-calculator-page .tool-tabs { margin-bottom: 0; }
+    .equipment-calculator-page .tool-tabs button { flex: 1; padding: 10px; }
+    .equipment-calculator-page .calculator { padding: 15px 13px; margin-bottom: 14px; }
+    .equipment-calculator-page .calculator h2 { font-size: 1.4rem; }
+    .equipment-calculator-page .calculator-heading { margin-bottom: 13px; }
+    .equipment-calculator-page .per-item { padding: 2px 7px; font-size: .69rem; }
+    .equipment-calculator-page .stage-fields { grid-template-columns: minmax(0, 1fr) 16px minmax(0, 1fr); gap: 7px; }
+    .equipment-calculator-page .stage-arrow { font-size: 1rem; }
+    .equipment-calculator-page .field label { font-size: .78rem; }
+    .equipment-calculator-page .field select, .equipment-calculator-page .field input { padding-left: 7px; font-size: 16px; }
+    .equipment-calculator-page .field select { padding-right: 33px; background-position: right 12px center; }
+    .equipment-calculator-page .resource-grid, .equipment-calculator-page .inventory-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .equipment-calculator-page .resource { padding: 10px; }
+    .equipment-calculator-page .resource strong { font-size: 1.35rem; }
+    .equipment-calculator-page .resource-name { font-size: .77rem; }
+    .equipment-calculator-page .requirement { font-size: .83rem; }
+}

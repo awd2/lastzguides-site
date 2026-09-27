@@ -455,6 +455,26 @@
     ]
   },
   {
+    "url": "/equipment-calculator.html",
+    "locale": "en",
+    "source_path": "equipment-calculator.html",
+    "title": "Equipment Calculator",
+    "category": "Guides",
+    "description": "Calculate Power Core promotion and Mythic forging costs for one Last Z equipment item from its current step to a target.",
+    "keywords": [
+      "Last",
+      "Equipment",
+      "Calculator",
+      "Promotion",
+      "and",
+      "Forging",
+      "Costs",
+      "Calculate",
+      "Power",
+      "Core"
+    ]
+  },
+  {
     "url": "/es/",
     "locale": "es",
     "source_path": "index.html",
