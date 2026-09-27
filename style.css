@@ -1724,8 +1724,8 @@ body.ui-standard-cost .breadcrumb {
     cursor: pointer;
 }
 
-.guide a:not(.related-card):not(.atlas-card):not(.ldshop-promo):not(.topup-cta-button),
-.guide-content a:not(.related-card):not(.atlas-card):not(.ldshop-promo):not(.topup-cta-button) {
+.guide a:not(.related-card):not(.atlas-card):not(.ldshop-promo):not(.topup-cta-button):not(.equipment-tool-entry),
+.guide-content a:not(.related-card):not(.atlas-card):not(.ldshop-promo):not(.topup-cta-button):not(.equipment-tool-entry) {
     color: #9ad9ff;
     text-decoration: underline;
     text-decoration-thickness: 2px;
@@ -1734,13 +1734,13 @@ body.ui-standard-cost .breadcrumb {
     transition: color 0.15s ease, text-decoration-color 0.15s ease;
 }
 
-.guide a:not(.related-card):not(.atlas-card):not(.ldshop-promo):not(.topup-cta-button):visited,
-.guide-content a:not(.related-card):not(.atlas-card):not(.ldshop-promo):not(.topup-cta-button):visited {
+.guide a:not(.related-card):not(.atlas-card):not(.ldshop-promo):not(.topup-cta-button):not(.equipment-tool-entry):visited,
+.guide-content a:not(.related-card):not(.atlas-card):not(.ldshop-promo):not(.topup-cta-button):not(.equipment-tool-entry):visited {
     color: #7fbfe8;
 }
 
-.guide a:not(.related-card):not(.atlas-card):not(.ldshop-promo):not(.topup-cta-button):hover,
-.guide-content a:not(.related-card):not(.atlas-card):not(.ldshop-promo):not(.topup-cta-button):hover {
+.guide a:not(.related-card):not(.atlas-card):not(.ldshop-promo):not(.topup-cta-button):not(.equipment-tool-entry):hover,
+.guide-content a:not(.related-card):not(.atlas-card):not(.ldshop-promo):not(.topup-cta-button):not(.equipment-tool-entry):hover {
     color: #cfeeff;
     text-decoration-color: #cfeeff;
 }
@@ -4790,6 +4790,33 @@ body.ui-foundation main.guide > article > .guide-header a[href]:hover {
     body.ui-foundation main.guide > article > .guide-header p {
         line-height: 1.68;
     }
+}
+
+/* Gear guide route to the equipment cost tool. */
+a.equipment-tool-entry,
+a.equipment-tool-entry:visited {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 50px;
+    margin: 8px 0 14px;
+    padding: 11px 15px;
+    border: 1px solid #81504b;
+    border-left: 3px solid var(--color-accent, #c44);
+    border-radius: 4px;
+    background: var(--surface-panel, #2b2524);
+    color: var(--color-text-strong, #fff);
+    text-decoration: none;
+    text-align: left;
+}
+.equipment-tool-entry strong { font-size: .95rem; }
+.equipment-tool-entry span { color: #f2b9b2; font-size: .84rem; }
+.equipment-tool-entry:hover strong { text-decoration: underline; text-underline-offset: 3px; }
+.equipment-tool-entry:focus-visible { outline: 2px solid var(--focus-ring, #ffb0a7); outline-offset: 3px; }
+@media (max-width: 640px) {
+    .equipment-tool-entry { flex-direction: column; align-items: flex-start; gap: 3px; padding: 10px 11px; }
+    .equipment-tool-entry span { font-size: .75rem; }
 }
 
 /* LDShop offer variant; source: automation/experiments/ldshop_offers/offer.css */
