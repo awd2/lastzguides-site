@@ -4930,3 +4930,31 @@ body.ui-foundation.ui-guide-utilities .guide-content .equipment-table-link { mar
 }
 
 .ldshop-promo--carousel .ldshop-promo__text strong {word-break: normal; overflow-wrap: normal;}
+
+/* Decorative game artwork beside resource labels; explicit dimensions avoid layout shift. */
+img.item-icon {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    max-width: none;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-inline-end: 6px;
+}
+
+.atlas-resource-total { display: inline-flex; align-items: center; flex-shrink: 0; }
+
+/* Keep the artwork beside the whole label, including when the label wraps. */
+.item-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    vertical-align: middle;
+    text-align: inherit;
+}
+.item-label > .item-icon { flex: 0 0 28px; margin-inline-end: 0; }
+.item-label > span { min-width: min-content; word-break: normal; overflow-wrap: normal; }
+
+.item-label > .item-icon-slot { width: 28px; height: 28px; min-width: 28px; flex: 0 0 28px; }
+table.data-table.resource-icon-table { table-layout: auto; }
+table.data-table.resource-icon-table th { word-break: normal; overflow-wrap: normal; }
