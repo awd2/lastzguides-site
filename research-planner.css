@@ -2671,3 +2671,257 @@ body.planner-modal-open {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* Branch comparison is an optional workspace view, never a landing screen. */
+.planner-app .planner-branch-controls {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+    min-width: 0;
+}
+.planner-app .planner-branch-controls .branch-picker { flex: 1; }
+.planner-app [data-show-overview] {
+    max-width: 40%;
+    white-space: normal;
+}
+.planner-app .branch-overview {
+    display: grid;
+    border-radius: 4px;
+    background: var(--surface-panel, #20211d);
+    border-color: var(--border-subtle, #3c3d36);
+}
+.planner-app .branch-overview[hidden],
+.planner-app .planner-layout[hidden],
+.planner-app [data-show-overview][hidden] { display: none; }
+.planner-app .branch-overview-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+}
+.planner-app [data-close-overview] { justify-self: start; min-height: 44px; }
+.planner-app .branch-card {
+    border-radius: 4px;
+    background: var(--surface-panel, #20211d);
+    border-color: var(--border-subtle, #3c3d36);
+    align-content: start;
+    font-variant-numeric: tabular-nums;
+    gap: 9px;
+}
+.planner-app .branch-card:hover,
+.planner-app .branch-card.is-active {
+    border-color: #8bd9eb;
+    box-shadow: none;
+}
+.planner-app .branch-card-total { color: #8bd9eb; font-size: 0.8rem; }
+.planner-app .branch-card-meta,
+.planner-app .branch-card-kicker {
+    color: var(--color-muted, #b4b1a8);
+    font-size: 0.78rem;
+    white-space: normal;
+    text-transform: none;
+    letter-spacing: normal;
+    overflow: visible;
+}
+.planner-app .branch-card:focus-visible,
+.planner-app [data-show-overview]:focus-visible,
+.planner-app [data-close-overview]:focus-visible {
+    outline: 2px solid var(--focus-ring, #e5b1b1);
+    outline-offset: 3px;
+}
+
+/* Shared badge artwork, kept beside its amount on every Planner surface. */
+.planner-app .planner-badge-amount {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    vertical-align: middle;
+    font-variant-numeric: tabular-nums;
+}
+.planner-app .planner-badge-amount .item-icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    object-fit: contain;
+}
+.planner-app .planner-badge-unit {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+.planner-app .planner-branch-label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--color-muted, #b4b1a8);
+    font-size: .72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+.planner-app .planner-branch-controls .branch-picker-button {
+    height: 100%;
+    letter-spacing: normal;
+    text-transform: none;
+}
+.planner-app .branch-card > strong {
+    min-height: 2.4em;
+}
+.planner-app .branch-card-costs {
+    display: grid;
+    gap: 6px;
+}
+.planner-app .branch-card-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: var(--color-muted, #b4b1a8);
+    font-weight: 400;
+    line-height: 1.3;
+}
+.planner-app .branch-card-total .planner-badge-amount {
+    color: var(--color-text, #efede6);
+    font-weight: 600;
+}
+.planner-app .branch-card-remaining .planner-badge-amount {
+    color: #8bd9eb;
+    font-weight: 800;
+}
+@media (max-width: 1250px) {
+    .planner-app .planner-branch-controls .branch-picker-button {
+        padding-left: 10px;
+        padding-right: 32px;
+    }
+    .planner-app .planner-branch-controls .branch-picker-button::after { right: 12px; }
+}
+@media (max-width: 640px) {
+    .planner-app .tree-node-grid {
+        grid-template-columns: max-content minmax(0, 1fr);
+    }
+    .planner-app .tree-node .planner-badge-amount { gap: 2px; }
+    .planner-app .tree-node .planner-badge-amount .item-icon {
+        width: 10px;
+        height: 10px;
+        flex-basis: 10px;
+    }
+}
+.planner-app .planner-toolbar-controls { min-width: 0; }
+.planner-app .planner-branch-controls .branch-picker-button,
+.planner-app .planner-branch-controls [data-show-overview] {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+@media (max-width: 640px) {
+    .planner-app .tree-node-grid { gap: 0; }
+}
+/* Badge results and their controls must reflow when text needs more room. */
+@media (max-width: 640px) {
+    .planner-app .branch-summary-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: start;
+    }
+    .planner-app .branch-summary-title { flex: 1 0 100%; }
+    .planner-app .branch-summary-metrics {
+        flex: 1 1 max-content;
+        min-width: 0;
+        overflow: visible;
+    }
+    .planner-app .branch-summary-metrics > .branch-summary-metric {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .planner-app .branch-summary-metric > span { min-width: 76px; }
+    .planner-app .branch-summary-metrics > .branch-summary-metric > strong {
+        overflow: visible;
+        text-overflow: clip;
+    }
+    .planner-app .branch-summary-controls {
+        flex: 1 1 6.5rem;
+        min-width: 0;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 6.5rem), 1fr));
+    }
+    .planner-app .branch-summary-controls :where(.planner-tab, .planner-toggle, .icon-button) {
+        height: auto;
+        min-height: 26px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        line-height: 1.2;
+    }
+}
+
+/* Completed levels and spent budget are distinct saved-progress measures. */
+.planner-app .branch-card-progress-pair { display: grid; gap: 9px; min-width: 0; }
+.planner-app .branch-progress-metric { display: grid; gap: 4px; }
+.planner-app .branch-progress-label {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 3px 8px;
+    color: var(--color-muted, #b4b1a8);
+    font-size: .75rem;
+    line-height: 1.3;
+    font-weight: 400;
+}
+.planner-app .branch-progress-label > :last-child {
+    color: var(--color-text, #efede6);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+.planner-app .branch-progress-track {
+    display: block;
+    height: 4px;
+    background: var(--border-subtle, #3c3d36);
+}
+.planner-app .branch-progress-track > span {
+    display: block;
+    height: 100%;
+    background: #59c3dd;
+}
+.planner-app .branch-progress-levels .branch-progress-track > span { background: #b4b1a8; }
+.planner-app .planner-toolbar-controls { --planner-toolbar-control-height: 2.875rem; }
+.planner-app .planner-toolbar-row :is(.branch-picker-button, [data-show-overview], [data-copy-share], [data-clear-targets], [data-reset-planner]) {
+    min-height: var(--planner-toolbar-control-height, 46px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.2;
+}
+.planner-app .planner-toolbar-row .branch-picker-button { justify-content: start; }
+.planner-app .planner-toolbar-row [data-show-overview] {
+    color: #f2eee5;
+    background: #2b6572;
+    border-color: #59c3dd;
+    font-weight: 800;
+}
+.planner-app .planner-toolbar-row [data-show-overview]:hover { background: #307080; border-color: #8bd9eb; }
+.planner-app .planner-toolbar-row [data-show-overview][aria-expanded="true"] { background: #214c57; border-color: #8bd9eb; box-shadow: inset 0 0 0 1px #8bd9eb; }
+.planner-app .planner-toolbar-row [data-show-overview]:focus-visible { outline-color: #8bd9eb; }
+@media (max-width: 1250px) {
+    .planner-app .planner-toolbar-controls { --planner-toolbar-control-height: 3.6rem; }
+}
+@media (min-width: 981px) {
+    .planner-app .planner-appbar { grid-template-columns: minmax(260px, 1fr) minmax(0, 2fr); }
+    .planner-app .planner-toolbar-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        gap: 8px;
+    }
+    .planner-app .planner-toolbar-row .planner-branch-controls,
+    .planner-app .planner-toolbar-row .planner-actions { display: contents; }
+    .planner-app .planner-toolbar-row .branch-picker { flex: 1 1 12rem; }
+    .planner-app .planner-toolbar-row .branch-picker-button { height: 100%; }
+    .planner-app .planner-toolbar-row [data-share-status] { align-self: center; }
+}
+
+.planner-app .branch-card-costs { min-width: 0; }
+.planner-app .branch-card-total { min-width: 0; flex-wrap: wrap; }
+.planner-app .branch-card-total .planner-badge-amount { margin-left: auto; }

@@ -174,12 +174,18 @@
                 <p class="planner-data-note">Badge totals are maintained from in-game research costs. Your progress stays in this browser unless you share a plan URL.</p>
             </div>
 
-            <label class="branch-picker">
-                <span>Branch</span>
+            <div class="planner-toolbar-controls">
+            <span class="planner-branch-label">Branch</span>
+            <div class="planner-toolbar-row">
+            <div class="planner-branch-controls">
+            <div class="branch-picker">
                 <select data-branch-select aria-label="Select research branch"></select>
                 <button type="button" class="branch-picker-button" data-branch-menu-button aria-expanded="false"></button>
                 <div class="branch-picker-menu" data-branch-menu hidden></div>
-            </label>
+            </div>
+            <button type="button" class="planner-button planner-button--muted" data-show-overview aria-expanded="false" aria-controls="branch-overview" hidden>All branches</button>
+            </div>
+
 
             <div class="planner-dashboard" aria-label="Planner totals">
                 <div class="planner-total-card planner-total-card--scope">
@@ -214,6 +220,8 @@
                 </label>
                 <span class="planner-status" data-share-status aria-live="polite"></span>
             </div>
+            </div>
+            </div>
         </section>
         <noscript>
             <section class="planner-panel">
@@ -222,13 +230,14 @@
             </section>
         </noscript>
 
-        <section class="branch-overview" aria-labelledby="branch-overview-title">
+        <section class="branch-overview" id="branch-overview" aria-labelledby="branch-overview-title" hidden>
             <div class="branch-overview-head">
                 <div>
-                    <h2 id="branch-overview-title">Choose a Research Branch</h2>
-                    <p>Start from the same branch-first mental model as the in-game tree, then open the map to set done and target levels.</p>
+                    <h2 id="branch-overview-title" tabindex="-1">All branches</h2>
+                    <p>Compare full branch costs and saved levels. Select a branch to continue your plan.</p>
                 </div>
             </div>
+            <button type="button" class="planner-button planner-button--muted" data-close-overview>Back to branch</button>
             <div class="branch-overview-grid" data-branch-overview></div>
         </section>
 
