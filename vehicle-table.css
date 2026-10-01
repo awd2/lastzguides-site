@@ -1,5 +1,5 @@
 .data-guide {
-    max-width: 1100px;
+    max-width: var(--page-shell-width, 1100px);
     --data-table-surface: #242424;
     --data-table-surface-header: rgba(20, 20, 20, 0.6);
     --data-table-border: rgba(255, 255, 255, 0.08);
