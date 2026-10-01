@@ -834,6 +834,7 @@
     }
 
     function setOverviewVisible(visible, moveFocus) {
+        var workspaceWasHidden = refs.branchLayout.hidden;
         refs.branchMenu.hidden = true;
         refs.branchMenuButton.setAttribute("aria-expanded", "false");
         closeDrawer();
@@ -841,6 +842,7 @@
         refs.overviewPanel.hidden = !visible;
         refs.branchLayout.hidden = visible;
         refs.overviewButton.setAttribute("aria-expanded", String(visible));
+        if (!visible && workspaceWasHidden) renderBranchWorkspace();
         if (moveFocus === false) return;
         if (visible) {
             renderBranchOverview();
@@ -902,6 +904,7 @@
     }
 
     function renderBranchWorkspace() {
+        if (refs.branchLayout.hidden) return;
         var branch = branchById.get(state.activeBranchId);
         if (!branch) {
             refs.branchSummary.innerHTML = "";
@@ -1001,22 +1004,61 @@
         ].join("");
     }
 
+    function treeViewportWidth() {
+        var style = window.getComputedStyle(refs.plannerView);
+        return refs.plannerView.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+    }
+
     function renderTree(branch) {
+        var availableWidth = treeViewportWidth();
+        if (refs.branchLayout.hidden || !(availableWidth > 0)) return;
         var scrollPosition = getTreeScrollPosition();
-        var layout = treeLayout(branch);
+        var rowCounts = new Map();
+        branch.nodes.forEach(function (node) {
+            var y = node.position && Number(node.position.y) || 0;
+            rowCounts.set(y, (rowCounts.get(y) || 0) + 1);
+        });
+        var compact = window.matchMedia("(max-width: 640px)").matches;
+        var tablet = !compact && isTabletScreen();
+        var spacing = {
+            padding: compact ? 10 : tablet ? 24 : 42,
+            minGap: compact ? 8 : tablet ? 28 : 24,
+            rowSpace: compact ? 20 : 30
+        };
+        refs.plannerView.style.setProperty("--planner-tree-padding", spacing.padding + "px");
+        refs.plannerView.style.setProperty("--planner-tree-gap", spacing.minGap + "px");
+        refs.plannerView.style.setProperty("--planner-tree-available-width", availableWidth + "px");
+        refs.plannerView.style.setProperty("--planner-tree-columns", Math.max.apply(Math, Array.from(rowCounts.values())));
         var warningKeys = dependencyWarnings(branch).keys;
         refs.plannerView.innerHTML = [
-            '<div class="tree-scroll">',
-            '<div class="tree-stage" style="width:', Math.ceil(layout.width), 'px;height:', Math.ceil(layout.height), 'px;">',
-            '<div class="tree-canvas-inner" style="width:', layout.width, 'px;height:', layout.height, 'px;">',
-            renderEdges(branch, layout),
+            '<div class="tree-scroll"><div class="tree-stage"><div class="tree-canvas-inner">',
             branch.nodes.map(function (node) {
-                return renderTreeNode(branch, node, layout, warningKeys.has(nodeKey(branch.id, node.id)));
+                return renderTreeNode(branch, node, null, warningKeys.has(nodeKey(branch.id, node.id)));
             }).join(""),
-            "</div>",
-            "</div>",
-            "</div>"
+            "</div></div></div>"
         ].join("");
+        // CSS owns card sizing. Measure natural content before placing nodes and edges.
+        var cards = Array.from(refs.plannerView.querySelectorAll(".tree-node"));
+        var size = {
+            nodeWidth: cards[0].getBoundingClientRect().width,
+            nodeHeight: Math.max.apply(Math, cards.map(function (card) { return card.getBoundingClientRect().height; })),
+            padding: spacing.padding,
+            minGap: spacing.minGap,
+            rowSpace: spacing.rowSpace
+        };
+        if (!(size.nodeWidth > 0 && size.nodeHeight > 0)) return;
+        var layout = treeLayout(branch, size);
+        refs.plannerView.querySelectorAll(".tree-stage, .tree-canvas-inner").forEach(function (element) {
+            element.style.width = layout.width + "px";
+            element.style.height = layout.height + "px";
+        });
+        cards.forEach(function (card, index) {
+            var point = layout.points.get(branch.nodes[index].id);
+            card.style.left = point.x + "px";
+            card.style.top = point.y + "px";
+            card.style.height = layout.nodeHeight + "px";
+        });
+        refs.plannerView.querySelector(".tree-canvas-inner").insertAdjacentHTML("afterbegin", renderEdges(branch, layout));
         restoreTreeScrollPosition(scrollPosition);
     }
 
@@ -1046,7 +1088,7 @@
 
     function renderTreeNode(branch, node, layout, hasWarning) {
         var key = nodeKey(branch.id, node.id);
-        var point = layout.points.get(node.id);
+        var point = layout ? layout.points.get(node.id) : { x: 0, y: 0 };
         var done = getLevel(key);
         var target = getTarget(key);
         var progress = node.maxLevel ? Math.round(done / node.maxLevel * 100) : 0;
@@ -1685,29 +1727,40 @@
         });
     }
 
-    function treeLayout(branch) {
-        var compact = window.matchMedia("(max-width: 640px)").matches;
-        if (compact) {
-            return mobileTreeLayout(branch);
+    function treeLayout(branch, size) {
+        if (window.matchMedia("(max-width: 640px)").matches) {
+            return mobileTreeLayout(branch, size);
         }
         if (isTabletScreen()) {
-            return tabletTreeLayout(branch);
+            return tabletTreeLayout(branch, size);
         }
-        var nodeWidth = 220;
-        var nodeHeight = 196;
-        var padding = 42;
+        var rows = treeRows(branch);
+        var nodeWidth = size.nodeWidth;
+        var nodeHeight = size.nodeHeight;
+        var padding = size.padding;
         var xScale = 2.35;
         var yScale = 2.05;
+        var minXGap = Infinity;
+        rows.forEach(function (row) {
+            row.nodes.forEach(function (node, index) {
+                if (index) minXGap = Math.min(minXGap, node.position.x - row.nodes[index - 1].position.x);
+            });
+        });
+        var minYGap = Infinity;
+        rows.forEach(function (row, index) {
+            if (index) minYGap = Math.min(minYGap, row.y - rows[index - 1].y);
+        });
         var xs = branch.nodes.map(function (node) { return node.position && Number(node.position.x) || 0; });
-        var ys = branch.nodes.map(function (node) { return node.position && Number(node.position.y) || 0; });
         var minX = Math.min.apply(Math, xs);
-        var minY = Math.min.apply(Math, ys);
         var maxX = Math.max.apply(Math, xs);
-        var maxY = Math.max.apply(Math, ys);
-        var viewWidth = refs.plannerView.clientWidth;
-        if (maxX > minX && viewWidth > nodeWidth + padding * 2) {
-            xScale = Math.min(xScale, (viewWidth - nodeWidth - padding * 2) / (maxX - minX));
+        var minY = rows[0].y;
+        var maxY = rows[rows.length - 1].y;
+        var viewWidth = treeViewportWidth();
+        if (maxX > minX) {
+            xScale = Math.min(xScale, Math.max(0, viewWidth - nodeWidth - padding * 2) / (maxX - minX));
         }
+        if (minXGap > 0 && isFinite(minXGap)) xScale = Math.max(xScale, (nodeWidth + size.minGap) / minXGap);
+        if (isFinite(minYGap)) yScale = Math.max(yScale, (nodeHeight + size.rowSpace) / minYGap);
         var points = new Map();
         branch.nodes.forEach(function (node) {
             points.set(node.id, {
@@ -1716,117 +1769,55 @@
             });
         });
         return {
-            nodeWidth: nodeWidth,
-            nodeHeight: nodeHeight,
+            nodeWidth: nodeWidth, nodeHeight: nodeHeight,
             width: (maxX - minX) * xScale + nodeWidth + padding * 2,
             height: (maxY - minY) * yScale + nodeHeight + padding * 2,
             points: points
         };
     }
 
-    function tabletTreeLayout(branch) {
-        var nodeWidth = 160;
-        var nodeHeight = 160;
-        var padding = 24;
-        var minGap = 28;
-        var rowGap = 190;
-        var windowWidth = window.innerWidth || 820;
-        var documentWidth = document.documentElement && document.documentElement.clientWidth ? document.documentElement.clientWidth : windowWidth;
-        var viewWidth = refs.plannerView && refs.plannerView.clientWidth ? refs.plannerView.clientWidth : windowWidth;
-        var viewportWidth = Math.min(viewWidth, windowWidth, documentWidth);
-        var width = viewportWidth - 20;
+    function treeRows(branch) {
         var rows = new Map();
         branch.nodes.forEach(function (node) {
             var y = node.position && Number(node.position.y) || 0;
-            var rowKey = String(y);
-            if (!rows.has(rowKey)) {
-                rows.set(rowKey, { y: y, nodes: [] });
-            }
-            rows.get(rowKey).nodes.push(node);
+            if (!rows.has(y)) rows.set(y, { y: y, nodes: [] });
+            rows.get(y).nodes.push(node);
         });
-        var sortedRows = Array.from(rows.values()).sort(function (a, b) {
-            return a.y - b.y;
-        });
-        sortedRows.forEach(function (row) {
+        return Array.from(rows.values()).sort(function (a, b) { return a.y - b.y; }).map(function (row) {
             row.nodes.sort(function (a, b) {
                 var ax = a.position && Number(a.position.x) || 0;
                 var bx = b.position && Number(b.position.x) || 0;
                 return ax - bx || a.name.localeCompare(b.name);
             });
-            var needed = row.nodes.length * nodeWidth + Math.max(0, row.nodes.length - 1) * minGap + padding * 2;
-            width = Math.max(width, needed);
+            return row;
         });
-        var points = new Map();
-        sortedRows.forEach(function (row, rowIndex) {
-            var count = row.nodes.length;
-            var usable = width - padding * 2 - nodeWidth;
-            row.nodes.forEach(function (node, index) {
-                var x = count === 1 ? (width - nodeWidth) / 2 : padding + (usable * index / (count - 1));
-                points.set(node.id, {
-                    x: Math.round(x),
-                    y: padding + rowIndex * rowGap
-                });
-            });
-        });
-        return {
-            nodeWidth: nodeWidth,
-            nodeHeight: nodeHeight,
-            width: width,
-            height: padding * 2 + sortedRows.length * rowGap + nodeHeight - rowGap,
-            points: points
-        };
     }
 
-    function mobileTreeLayout(branch) {
-        var nodeWidth = 94;
-        var nodeHeight = 128;
-        var padding = 10;
-        var minGap = 4;
-        var rowGap = 136;
-        var windowWidth = window.innerWidth || 390;
-        var documentWidth = document.documentElement && document.documentElement.clientWidth ? document.documentElement.clientWidth : windowWidth;
-        var visualWidth = window.visualViewport && window.visualViewport.width ? window.visualViewport.width : windowWidth;
-        var viewWidth = refs.plannerView && refs.plannerView.clientWidth ? refs.plannerView.clientWidth : windowWidth;
-        var viewportWidth = Math.max(300, Math.min(viewWidth, windowWidth, documentWidth, visualWidth));
-        var width = Math.max(300, Math.min(340, viewportWidth - 22));
-        var rows = new Map();
-        branch.nodes.forEach(function (node) {
-            var y = node.position && Number(node.position.y) || 0;
-            var rowKey = String(y);
-            if (!rows.has(rowKey)) {
-                rows.set(rowKey, { y: y, nodes: [] });
-            }
-            rows.get(rowKey).nodes.push(node);
+    function tabletTreeLayout(branch, size) {
+        return mobileTreeLayout(branch, size);
+    }
+
+    function mobileTreeLayout(branch, size) {
+        var rows = treeRows(branch);
+        var width = treeViewportWidth();
+        rows.forEach(function (row) {
+            width = Math.max(width, row.nodes.length * size.nodeWidth + (row.nodes.length - 1) * size.minGap + size.padding * 2);
         });
-        var sortedRows = Array.from(rows.values()).sort(function (a, b) {
-            return a.y - b.y;
-        });
-        sortedRows.forEach(function (row) {
-            row.nodes.sort(function (a, b) {
-                var ax = a.position && Number(a.position.x) || 0;
-                var bx = b.position && Number(b.position.x) || 0;
-                return ax - bx || a.name.localeCompare(b.name);
-            });
-            var needed = row.nodes.length * nodeWidth + Math.max(0, row.nodes.length - 1) * minGap + padding * 2;
-            width = Math.max(width, needed);
-        });
+        var rowGap = size.nodeHeight + size.rowSpace;
         var points = new Map();
-        sortedRows.forEach(function (row, rowIndex) {
+        rows.forEach(function (row, rowIndex) {
             var count = row.nodes.length;
-            var usable = width - padding * 2 - nodeWidth;
+            var usable = width - size.padding * 2 - size.nodeWidth;
             row.nodes.forEach(function (node, index) {
-                var x = count === 1 ? (width - nodeWidth) / 2 : padding + (usable * index / (count - 1));
                 points.set(node.id, {
-                    x: Math.round(x),
-                    y: padding + rowIndex * rowGap
+                    x: count === 1 ? (width - size.nodeWidth) / 2 : size.padding + usable * index / (count - 1),
+                    y: size.padding + rowIndex * rowGap
                 });
             });
         });
         return {
-            nodeWidth: nodeWidth,
-            nodeHeight: nodeHeight,
-            width: width,
-            height: padding * 2 + sortedRows.length * rowGap + nodeHeight - rowGap,
+            nodeWidth: size.nodeWidth, nodeHeight: size.nodeHeight,
+            width: width, height: size.padding * 2 + (rows.length - 1) * rowGap + size.nodeHeight,
             points: points
         };
     }

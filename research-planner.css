@@ -872,8 +872,8 @@ body.planner-modal-open {
 
 .tree-node {
     position: absolute;
-    width: 220px;
-    height: 196px;
+    width: var(--planner-tree-node-width, 220px);
+    min-height: var(--planner-tree-node-height, 196px);
     overflow: hidden;
     background: rgba(25, 49, 75, 0.95);
     border: 1px solid #245d7a;
@@ -905,6 +905,7 @@ body.planner-modal-open {
     justify-items: center;
     gap: 9px;
     width: 100%;
+    min-height: calc(var(--planner-tree-node-height, 196px) - 2px);
     height: 100%;
     padding: 16px 12px 12px;
     border: 0;
@@ -978,8 +979,8 @@ body.planner-modal-open {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 58px;
-    height: 52px;
+    width: 3.625rem;
+    height: 3.25rem;
     color: #fff;
     background: #08aeea;
     clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%);
@@ -999,11 +1000,8 @@ body.planner-modal-open {
 
 .tree-node-title {
     color: #fff;
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    max-width: 190px;
+    width: 100%;
+    overflow-wrap: anywhere;
     min-height: 44px;
     text-align: center;
     font-size: 1rem;
@@ -1551,8 +1549,8 @@ body.planner-modal-open {
     }
 
     .tree-node {
-        width: 160px;
-        height: 160px;
+        width: var(--planner-tree-node-width, 160px);
+        min-height: var(--planner-tree-node-height, 160px);
         border-radius: 9px;
     }
 
@@ -1563,13 +1561,12 @@ body.planner-modal-open {
     }
 
     .node-hex {
-        width: 48px;
-        height: 43px;
+        width: 3rem;
+        height: 2.6875rem;
         font-size: 1.02rem;
     }
 
     .tree-node-title {
-        max-width: 136px;
         min-height: 36px;
         font-size: 0.85rem;
         line-height: 1.15;
@@ -1897,27 +1894,26 @@ body.planner-modal-open {
     }
 
     .tree-node {
-        width: 94px;
-        height: 128px;
+        width: var(--planner-tree-node-width, 104px);
+        min-height: var(--planner-tree-node-height, 128px);
         border-radius: 8px;
     }
 
     .tree-node-open {
         grid-template-rows: auto minmax(38px, auto) auto;
-        padding: 10px 6px 8px;
+        padding: 10px 4px 8px;
         gap: 4px;
         align-items: center;
         text-align: center;
     }
 
     .node-hex {
-        width: 34px;
-        height: 30px;
+        width: 2.125rem;
+        height: 1.875rem;
         font-size: 0.78rem;
     }
 
     .tree-node-title {
-        max-width: 82px;
         min-height: 38px;
         display: flex;
         align-items: center;
@@ -2363,7 +2359,7 @@ body.planner-modal-open {
 .planner-app .node-hex {
     color: #f2eee5;
     background: #2b6572;
-    border-color: #59c3dd;
+    border: 0;
     box-shadow: none;
     text-shadow: none;
 }
@@ -2730,10 +2726,10 @@ body.planner-modal-open {
 /* Shared badge artwork, kept beside its amount on every Planner surface. */
 .planner-app .planner-badge-amount {
     display: inline-flex;
-    align-items: center;
+    align-items: baseline;
     gap: 4px;
     white-space: nowrap;
-    vertical-align: middle;
+    vertical-align: baseline;
     font-variant-numeric: tabular-nums;
 }
 .planner-app .planner-badge-amount .item-icon {
@@ -2741,6 +2737,8 @@ body.planner-modal-open {
     height: 18px;
     flex: 0 0 18px;
     object-fit: contain;
+    align-self: center;
+    margin-inline-end: 0;
 }
 .planner-app .planner-badge-unit {
     position: absolute;
@@ -2925,3 +2923,47 @@ body.planner-modal-open {
 .planner-app .branch-card-costs { min-width: 0; }
 .planner-app .branch-card-total { min-width: 0; flex-wrap: wrap; }
 .planner-app .branch-card-total .planner-badge-amount { margin-left: auto; }
+
+/* Interactive tree geometry is measured from these CSS-owned card dimensions. */
+.planner-app .tree-node { padding: 0; }
+.planner-app .planner-view {
+    --planner-tree-node-width: 13.75rem;
+    --planner-tree-node-height: 12.25rem;
+}
+.planner-app .tree-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.planner-app .tree-node-grid {
+    grid-template-columns: max-content max-content;
+    justify-content: space-between;
+    gap: 8px;
+    text-align: left;
+}
+.planner-app .tree-node-grid small {
+    font-size: .65rem;
+    line-height: 1.2;
+    margin: 0;
+}
+.planner-app .tree-node-grid strong {
+    font-size: .9375rem;
+    line-height: 1.25;
+    margin-top: 3px;
+}
+@media (max-width: 980px) {
+    .planner-app .planner-view {
+        --planner-tree-node-width: 10rem;
+        --planner-tree-node-height: var(--planner-tree-node-width, 160px);
+    }
+    .planner-app .tree-node-grid strong { font-size: .75rem; }
+}
+@media (max-width: 640px) {
+    .planner-app .planner-view {
+        --planner-tree-node-width: clamp(6.5rem, calc((var(--planner-tree-available-width, 300px) - var(--planner-tree-padding, 10px) * 2 - (var(--planner-tree-columns, 3) - 1) * var(--planner-tree-gap, 8px)) / var(--planner-tree-columns, 3)), 10rem);
+        --planner-tree-node-height: 8rem;
+    }
+    .planner-app .tree-node-grid small { font-size: .54rem; }
+    .planner-app .tree-node-grid strong { font-size: .625rem; }
+    .planner-app .tree-node-grid { gap: 6px; }
+}
