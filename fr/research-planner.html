@@ -177,12 +177,18 @@
                 <p class="planner-data-note">Votre progression est sauvegardée dans ce navigateur. Un lien de partage permet de transmettre votre plan.</p>
             </div>
 
-            <label class="branch-picker">
-                <span>Branche</span>
+            <div class="planner-toolbar-controls">
+            <span class="planner-branch-label">Branche</span>
+            <div class="planner-toolbar-row">
+            <div class="planner-branch-controls">
+            <div class="branch-picker">
                 <select data-branch-select aria-label="Choisir une branche de recherche"></select>
                 <button type="button" class="branch-picker-button" data-branch-menu-button aria-expanded="false"></button>
                 <div class="branch-picker-menu" data-branch-menu hidden></div>
-            </label>
+            </div>
+            <button type="button" class="planner-button planner-button--muted" data-show-overview aria-expanded="false" aria-controls="branch-overview" hidden>Toutes les branches</button>
+            </div>
+
 
             <div class="planner-dashboard" aria-label="Totaux du planificateur">
                 <div class="planner-total-card planner-total-card--scope">
@@ -226,13 +232,14 @@
             </section>
         </noscript>
 
-        <section class="branch-overview" aria-labelledby="branch-overview-title">
+        <section class="branch-overview" id="branch-overview" aria-labelledby="branch-overview-title" hidden>
             <div class="branch-overview-head">
                 <div>
-                    <h2 id="branch-overview-title">Choisir une branche de recherche</h2>
-                    <p>Choisissez une branche comme dans l’arbre du jeu, puis ouvrez sa carte pour définir les niveaux terminés et les objectifs.</p>
+                    <h2 id="branch-overview-title" tabindex="-1">Toutes les branches</h2>
+                    <p>Comparez les coûts complets et les niveaux sauvegardés. Choisissez une branche pour poursuivre votre plan.</p>
                 </div>
             </div>
+            <button type="button" class="planner-button planner-button--muted" data-close-overview>Retour à la branche</button>
             <div class="branch-overview-grid" data-branch-overview></div>
         </section>
 

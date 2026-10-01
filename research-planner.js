@@ -77,12 +77,16 @@
             "nodeLevel": "Lv. {done}/{max}",
             "nodeTarget": "target {level}",
             "clearNode": "Clear {node}",
-            "targetLevelCost": "Target Lv {level} · ★{amount}",
+            "targetLevelCost": "Target Lv {level} · {amount}",
             "setTargetLevel": "Set target level {level}",
             "branchTableTitle": "{branch} Table",
             "branchStatsTitle": "{branch} Stats",
             "missingPrerequisites": "{node} has completed levels but missing prerequisites: {requirements}.",
-            "levelTableShort": "Lv"
+            "levelTableShort": "Lv",
+            "fullBranchCost": "Full cost",
+            "finishBranchCost": "To finish",
+            "levelsCompleted": "Levels completed",
+            "badgesSpent": "Badges spent"
         },
         "es": {
             "level": "Nivel",
@@ -150,12 +154,16 @@
             "nodeLevel": "Niv. {done}/{max}",
             "nodeTarget": "objetivo {level}",
             "clearNode": "Borrar el progreso de {node}",
-            "targetLevelCost": "Objetivo niv. {level} · ★{amount}",
+            "targetLevelCost": "Objetivo niv. {level} · {amount}",
             "setTargetLevel": "Fijar el nivel {level} como objetivo",
             "branchTableTitle": "Tabla — {branch}",
             "branchStatsTitle": "Estadísticas — {branch}",
             "missingPrerequisites": "{node} tiene niveles completados, pero faltan requisitos: {requirements}.",
-            "levelTableShort": "Niv."
+            "levelTableShort": "Niv.",
+            "fullBranchCost": "Coste total",
+            "finishBranchCost": "Para terminar",
+            "levelsCompleted": "Niveles completados",
+            "badgesSpent": "Insignias gastadas"
         },
         "fr": {
             "level": "Niveau",
@@ -223,12 +231,16 @@
             "nodeLevel": "Niv. {done}/{max}",
             "nodeTarget": "cible {level}",
             "clearNode": "Effacer la progression de {node}",
-            "targetLevelCost": "Cible niv. {level} · ★{amount}",
+            "targetLevelCost": "Cible niv. {level} · {amount}",
             "setTargetLevel": "Définir le niveau {level} comme cible",
             "branchTableTitle": "Tableau — {branch}",
             "branchStatsTitle": "Statistiques — {branch}",
             "missingPrerequisites": "Des niveaux de {node} sont terminés, mais il manque des prérequis : {requirements}.",
-            "levelTableShort": "Niv."
+            "levelTableShort": "Niv.",
+            "fullBranchCost": "Coût total",
+            "finishBranchCost": "Pour terminer",
+            "levelsCompleted": "Niveaux terminés",
+            "badgesSpent": "Badges dépensés"
         }
     };
     var plannerStatStrings = {
@@ -415,6 +427,10 @@
         remainingBadges: document.querySelector("[data-remaining-badges]"),
         branchList: document.querySelector("[data-branch-list]"),
         branchSummary: document.querySelector("[data-branch-summary]"),
+        overviewPanel: document.querySelector("#branch-overview"),
+        overviewButton: document.querySelector("[data-show-overview]"),
+        overviewBack: document.querySelector("[data-close-overview]"),
+        branchLayout: document.querySelector(".planner-layout"),
         branchOverview: document.querySelector("[data-branch-overview]"),
         warningPanel: document.querySelector("[data-warning-panel]"),
         statPanel: document.querySelector("[data-stat-panel]"),
@@ -456,6 +472,22 @@
     }
 
     function bindActions() {
+        refs.overviewButton.hidden = false;
+        refs.overviewButton.addEventListener("click", function () {
+            setOverviewVisible(refs.overviewPanel.hidden);
+        });
+        refs.overviewBack.addEventListener("click", function () {
+            setOverviewVisible(false);
+        });
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && !refs.branchMenu.hidden) {
+                refs.branchMenu.hidden = true;
+                refs.branchMenuButton.setAttribute("aria-expanded", "false");
+                refs.branchMenuButton.focus();
+            } else if (event.key === "Escape" && !refs.overviewPanel.hidden) {
+                setOverviewVisible(false);
+            }
+        });
         refs.copyShare.addEventListener("click", function () {
             copyShareLink();
         });
@@ -481,6 +513,7 @@
         });
         refs.branchSelect.addEventListener("change", function () {
             state.activeBranchId = refs.branchSelect.value;
+            setOverviewVisible(false, false);
             state.selectedKey = null;
             saveState();
             closeDrawer();
@@ -497,6 +530,7 @@
                 return;
             }
             state.activeBranchId = button.getAttribute("data-branch-choice");
+            setOverviewVisible(false, false);
             state.selectedKey = null;
             refs.branchMenu.hidden = true;
             refs.branchMenuButton.setAttribute("aria-expanded", "false");
@@ -527,6 +561,7 @@
                 return;
             }
             state.activeBranchId = button.getAttribute("data-branch-id");
+            setOverviewVisible(false, false);
             state.selectedKey = null;
             saveState();
             closeDrawer();
@@ -538,16 +573,13 @@
                 if (!button) {
                     return;
                 }
-                var previous = state.activeBranchId;
                 state.activeBranchId = button.getAttribute("data-branch-card");
+                setOverviewVisible(false, false);
                 state.selectedKey = null;
                 saveState();
                 closeDrawer();
                 render();
-                var workspace = document.querySelector(".planner-workspace");
-                if (workspace && previous !== state.activeBranchId) {
-                    workspace.scrollIntoView({ behavior: "smooth", block: "start" });
-                }
+                focusActiveBranch();
             });
         }
         refs.branchSummary.addEventListener("click", handlePlannerClick);
@@ -739,12 +771,12 @@
         var branchScoped = isSmallScreen() && activeBranch;
         var totals = branchScoped ? calculateTotals([activeBranch]) : calculateTotals(branches);
         var scopeTotal = branchScoped ? activeBranch.totalBadges : data.totalBadges;
-        refs.totalBadges.textContent = formatNumber(scopeTotal);
-        refs.completedBadges.textContent = formatNumber(totals.completedBadges);
+        refs.totalBadges.innerHTML = badgeAmount(scopeTotal);
+        refs.completedBadges.innerHTML = badgeAmount(totals.completedBadges);
         refs.completedLevels.textContent = plannerText("completedLevels", { done: totals.completedLevels, total: totals.totalLevels });
-        refs.plannedBadges.textContent = formatNumber(totals.plannedBadges);
+        refs.plannedBadges.innerHTML = badgeAmount(totals.plannedBadges);
         refs.plannedLevels.textContent = plannerText("targetLevels", { count: totals.targetLevels });
-        refs.remainingBadges.textContent = formatNumber(scopeTotal - totals.completedBadges);
+        refs.remainingBadges.innerHTML = badgeAmount(scopeTotal - totals.completedBadges);
         if (refs.totalLabel) {
             refs.totalLabel.textContent = plannerText(branchScoped ? "branchTotal" : "total");
         }
@@ -801,37 +833,72 @@
         });
     }
 
-    function renderBranchOverview() {
-        if (!refs.branchOverview) {
-            return;
+    function setOverviewVisible(visible, moveFocus) {
+        refs.branchMenu.hidden = true;
+        refs.branchMenuButton.setAttribute("aria-expanded", "false");
+        closeDrawer();
+        closeMobileSheet();
+        refs.overviewPanel.hidden = !visible;
+        refs.branchLayout.hidden = visible;
+        refs.overviewButton.setAttribute("aria-expanded", String(visible));
+        if (moveFocus === false) return;
+        if (visible) {
+            renderBranchOverview();
+            document.getElementById("branch-overview-title").focus();
+        } else {
+            focusActiveBranch();
         }
+    }
+
+    function focusActiveBranch() {
+        var heading = refs.branchSummary.querySelector("h2");
+        if (heading) {
+            heading.setAttribute("tabindex", "-1");
+            heading.focus();
+        }
+    }
+
+    function renderBranchOverview() {
+        if (!refs.branchOverview) return;
         refs.branchOverview.innerHTML = branches.map(function (branch) {
             var summary = calculateTotals([branch]);
-            var targetBadges = summary.completedBadges + summary.plannedBadges;
-            var donePct = branch.totalBadges ? Math.round(summary.completedBadges / branch.totalBadges * 100) : 0;
-            var targetPct = branch.totalBadges ? Math.round(targetBadges / branch.totalBadges * 100) : 0;
             return [
                 '<button type="button" class="branch-card',
                 branch.id === state.activeBranchId ? " is-active" : "",
                 '" data-branch-card="', escapeAttr(branch.id), '">',
-                '<span class="branch-card-kicker">', escapeHtml(branch.unlockRequirements && branch.unlockRequirements.length ? branch.unlockRequirements.map(localizeUnlock).join(" + ") : plannerText("openBranch")), "</span>",
                 '<strong>', escapeHtml(branch.name), "</strong>",
-                '<span class="branch-card-total">★ ', formatNumber(branch.totalBadges), "</span>",
-                '<span class="branch-card-meta">',
-                '<span>', escapeHtml(plannerText("levelProgress", { done: summary.completedLevels, total: summary.totalLevels })), "</span>",
-                '<span>', escapeHtml(plannerText("nodeCount", { count: branch.nodes.length })), "</span>",
+                '<span class="branch-card-costs">',
+                '<span class="branch-card-total"><span>', escapeHtml(plannerText("fullBranchCost")),
+                '</span>', badgeAmount(branch.totalBadges), "</span>",
+                '<span class="branch-card-total branch-card-remaining"><span>', escapeHtml(plannerText("finishBranchCost")),
+                '</span>', badgeAmount(summary.remainingBadges), "</span></span>",
+                '<span class="branch-card-progress-pair">',
+                overviewProgress("levelsCompleted", summary.completedLevels, summary.totalLevels, true),
+                overviewProgress("badgesSpent", summary.completedBadges, branch.totalBadges, false),
                 "</span>",
-                '<span class="branch-card-progress" aria-hidden="true">',
-                '<span class="branch-card-target" style="width:', targetPct, '%"></span>',
-                '<span class="branch-card-done" style="width:', donePct, '%"></span>',
-                "</span>",
-                '<span class="branch-card-plan">',
-                badgeMetric("b", "doneAmount", summary.completedBadges),
-                badgeMetric("b", "targetAmount", targetBadges),
-                "</span>",
+                branch.unlockRequirements.length ? '<span class="branch-card-kicker">' + escapeHtml(plannerText("unlockRequirement", { requirements: branch.unlockRequirements.map(localizeUnlock).join(" + ") })) + '</span>' : "",
                 "</button>"
             ].join("");
         }).join("");
+    }
+
+    function completedRatio(done, total) {
+        return total > 0 ? Math.max(0, Math.min(1, done / total)) : null;
+    }
+
+    function formatCompletedPercent(ratio) {
+        if (ratio === null) return "—";
+        // Truncate the display, so an incomplete measure never rounds up to 100%.
+        var displayed = ratio === 1 ? 1 : Math.floor(ratio * 1000) / 1000;
+        return displayed.toLocaleString(plannerLocale.numberLocale, { style: "percent", maximumFractionDigits: 1 });
+    }
+
+    function overviewProgress(labelKey, done, total, showLevels) {
+        var ratio = completedRatio(done, total);
+        return '<span class="branch-progress-metric' + (showLevels ? ' branch-progress-levels' : '') + '"><span class="branch-progress-label"><span>' +
+            escapeHtml(plannerText(labelKey)) + '</span><span>' +
+            (showLevels ? formatNumber(done) + '/' + formatNumber(total) + ' · ' : '') + formatCompletedPercent(ratio) +
+            '</span></span><span class="branch-progress-track" aria-hidden="true"><span style="width:' + (ratio === null ? 0 : ratio * 100) + '%"></span></span></span>';
     }
 
     function renderBranchWorkspace() {
@@ -863,9 +930,9 @@
             "<h2>", escapeHtml(branch.name), "</h2>",
             "</div>",
             '<div class="branch-summary-metrics">',
-            '<span class="branch-summary-metric"><span>' + escapeHtml(plannerText("spent")) + '</span><strong>', formatNumber(summary.completedBadges), '</strong></span>',
-            '<span class="branch-summary-metric"><span>' + escapeHtml(plannerText("remaining")) + '</span><strong>', formatNumber(summary.remainingBadges), '</strong></span>',
-            targetActive ? '<span class="branch-summary-metric branch-summary-goal"><span>' + escapeHtml(plannerText("goal")) + '</span><strong>' + formatNumber(summary.plannedBadges) + '</strong><button type="button" class="summary-clear-target" data-action="clear-branch-targets" data-branch-id="' + escapeAttr(branch.id) + '" aria-label="' + escapeAttr(plannerText("clearGoal")) + '">x</button></span>' : "",
+            '<span class="branch-summary-metric"><span>' + escapeHtml(plannerText("spent")) + '</span><strong>', badgeAmount(summary.completedBadges), '</strong></span>',
+            '<span class="branch-summary-metric"><span>' + escapeHtml(plannerText("remaining")) + '</span><strong>', badgeAmount(summary.remainingBadges), '</strong></span>',
+            targetActive ? '<span class="branch-summary-metric branch-summary-goal"><span>' + escapeHtml(plannerText("goal")) + '</span><strong>' + badgeAmount(summary.plannedBadges) + '</strong><button type="button" class="summary-clear-target" data-action="clear-branch-targets" data-branch-id="' + escapeAttr(branch.id) + '" aria-label="' + escapeAttr(plannerText("clearGoal")) + '">x</button></span>' : "",
             "</div>",
             mobileControls,
             '<button type="button" class="planner-button planner-button--muted" data-action="clear-branch" data-branch-id="', escapeAttr(branch.id), '">' + escapeHtml(plannerText("clear")) + '</button>',
@@ -1001,7 +1068,7 @@
             '<span class="tree-node-title">', escapeHtml(node.name), "</span>",
             '<span class="tree-node-grid">',
             '<span class="node-level-stat"><small>' + escapeHtml(plannerText("level")) + '</small><strong>', done, "/", node.maxLevel, "</strong></span>",
-            '<span class="node-remaining-stat"><small>' + escapeHtml(plannerText("remaining")) + '</small><strong>★ ', formatNumber(remaining), "</strong></span>",
+            '<span class="node-remaining-stat"><small>' + escapeHtml(plannerText("remaining")) + '</small><strong>', badgeAmount(remaining), "</strong></span>",
             "</span>",
             '<span class="node-progress"><span style="width:', progress, '%"></span></span>',
             "</button>",
@@ -1033,9 +1100,9 @@
                     '<td><button type="button" class="table-node-name" data-action="open-node" data-key="', escapeAttr(key), '">', escapeHtml(node.name), "</button></td>",
                     '<td>', levelSelect("completed", key, done, node.maxLevel), "</td>",
                     '<td>', levelSelect("target", key, target, node.maxLevel), "</td>",
-                    "<td>", formatNumber(spent), "</td>",
-                    "<td>", formatNumber(planned), "</td>",
-                    "<td>", formatNumber(node.totalBadges - spent), "</td>",
+                    "<td>", badgeAmount(spent), "</td>",
+                    "<td>", badgeAmount(planned), "</td>",
+                    "<td>", badgeAmount(node.totalBadges - spent), "</td>",
                     "<td>", escapeHtml(parents), "</td>",
                     '<td><div class="row-actions">',
                     miniButton("complete-parents", key, plannerText("fillPrereqs")),
@@ -1116,7 +1183,7 @@
             "<p>", escapeHtml(branch.name), "</p><h2 id=\"drawer-title\">", escapeHtml(node.name), "</h2>",
             '<span>', escapeHtml(plannerText("nodeLevel", { done: done, max: node.maxLevel })), target > done ? " · " + escapeHtml(plannerText("nodeTarget", { level: target })) : "", "</span>",
             "</div>",
-            '<div class="drawer-remaining"><span>' + escapeHtml(plannerText("remaining")) + '</span><strong>★ ', formatNumber(remaining), "</strong><small>", done, "/", node.maxLevel, "</small></div>",
+            '<div class="drawer-remaining"><span>' + escapeHtml(plannerText("remaining")) + '</span><strong>', badgeAmount(remaining), "</strong><small>", done, "/", node.maxLevel, "</small></div>",
             "</div>",
             '<div class="drawer-progress"><span style="width:', pct, '%"></span></div>',
             '<div class="drawer-quick">',
@@ -1128,7 +1195,7 @@
             "</div>",
             '<div class="drawer-target-control">',
             '<button type="button" class="mini-button" data-action="plan-max" data-key="', escapeAttr(state.selectedKey), '">' + escapeHtml(plannerText("targetMax")) + '</button>',
-            planned > 0 ? '<span class="drawer-target-cost">' + escapeHtml(plannerText("targetLevelCost", { level: target, amount: formatNumber(planned) })) + "</span>" : "",
+            planned > 0 ? '<span class="drawer-target-cost">' + escapeHtml(plannerText("targetLevelCost", { level: target, amount: "" })) + badgeAmount(planned) + "</span>" : "",
             "</div>",
             "</div>",
             renderLevelTable(node, state.selectedKey, done, target)
@@ -1143,7 +1210,7 @@
                 '<tr class="', level <= done ? "is-done" : "", level === target && target > done ? " is-target" : "", '">',
                 '<td><input type="checkbox" data-action="toggle-level" data-key="', escapeAttr(key), '" data-level="', level, '" ', level <= done ? "checked" : "", "></td>",
                 "<td>", level, "</td>",
-                "<td>★ ", formatNumber(cost), "</td>",
+                "<td>", badgeAmount(cost, false), "</td>",
                 '<td><button type="button" class="flag-button flag-button--icon', level === target && target > done ? " is-selected" : "", '" data-action="target-level" data-key="', escapeAttr(key), '" data-level="', level, '" aria-label="', escapeAttr(plannerText("setTargetLevel", { level: level })), '">⚑</button></td>',
                 "</tr>"
             ].join("");
@@ -2097,10 +2164,15 @@
         return lab ? plannerText("labLevel", { level: lab[1] }) : requirement;
     }
 
+    function badgeAmount(amount, announceUnit) {
+        return '<span class="planner-badge-amount"><img class="item-icon" role="presentation" src="/assets/items/badges.webp" width="18" height="18" alt="" aria-hidden="true" decoding="async"><span>' + formatNumber(amount) + '</span>' +
+            (announceUnit === false ? "" : '<span class="planner-badge-unit"> ' + escapeHtml(plannerText("badges")) + '</span>') + '</span>';
+    }
+
     function badgeMetric(tag, key, amount) {
         var marker = "{amount}";
         var parts = plannerText(key, { amount: marker }).split(marker);
-        return "<span>" + escapeHtml(parts[0]) + "<" + tag + ">" + formatNumber(amount) + "</" + tag + ">" + escapeHtml(parts[1]) + "</span>";
+        return "<span>" + escapeHtml(parts[0]) + "<" + tag + ">" + badgeAmount(amount) + "</" + tag + ">" + escapeHtml(parts[1]) + "</span>";
     }
 
     function formatNumber(value) {

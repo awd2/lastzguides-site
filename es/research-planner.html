@@ -177,12 +177,18 @@
                 <p class="planner-data-note">Tu progreso se guarda en este navegador. Puedes compartir el plan mediante un enlace.</p>
             </div>
 
-            <label class="branch-picker">
-                <span>Rama</span>
+            <div class="planner-toolbar-controls">
+            <span class="planner-branch-label">Rama</span>
+            <div class="planner-toolbar-row">
+            <div class="planner-branch-controls">
+            <div class="branch-picker">
                 <select data-branch-select aria-label="Seleccionar rama de investigación"></select>
                 <button type="button" class="branch-picker-button" data-branch-menu-button aria-expanded="false"></button>
                 <div class="branch-picker-menu" data-branch-menu hidden></div>
-            </label>
+            </div>
+            <button type="button" class="planner-button planner-button--muted" data-show-overview aria-expanded="false" aria-controls="branch-overview" hidden>Todas las ramas</button>
+            </div>
+
 
             <div class="planner-dashboard" aria-label="Totales del planificador">
                 <div class="planner-total-card planner-total-card--scope">
@@ -226,13 +232,14 @@
             </section>
         </noscript>
 
-        <section class="branch-overview" aria-labelledby="branch-overview-title">
+        <section class="branch-overview" id="branch-overview" aria-labelledby="branch-overview-title" hidden>
             <div class="branch-overview-head">
                 <div>
-                    <h2 id="branch-overview-title">Elige una rama de investigación</h2>
-                    <p>Elige una rama como en el árbol del juego y abre su mapa para indicar los niveles completados y los objetivos.</p>
+                    <h2 id="branch-overview-title" tabindex="-1">Todas las ramas</h2>
+                    <p>Compara los costes completos y los niveles guardados. Selecciona una rama para continuar tu plan.</p>
                 </div>
             </div>
+            <button type="button" class="planner-button planner-button--muted" data-close-overview>Volver a la rama</button>
             <div class="branch-overview-grid" data-branch-overview></div>
         </section>
 
