@@ -923,6 +923,12 @@
     }
 }
 
+@media (max-width: 600px) {
+    .tank-planner-page {
+        padding-bottom: var(--mobile-nav-space, calc(8rem + env(safe-area-inset-bottom)));
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .tank-planner-page *,
     .tank-planner-page *::before,

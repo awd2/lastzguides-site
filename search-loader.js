@@ -313,6 +313,17 @@
         });
     }
 
+    function reserveMobileNavigationSpace() {
+        var nav = document.querySelector('.mobile-bottom-nav');
+        if (!nav || !window.ResizeObserver) return;
+        function updateSpace() {
+            var height = Math.ceil(nav.getBoundingClientRect().height);
+            document.documentElement.style.setProperty('--mobile-nav-space', (height + 9) + 'px');
+        }
+        new ResizeObserver(updateSpace).observe(nav);
+        updateSpace();
+    }
+
     function loadSearch() {
         if (loaded || loading) return;
         loading = true;
@@ -367,6 +378,7 @@
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {
+            reserveMobileNavigationSpace();
             buildTOC();
             enhanceComparisonTables();
             centerActiveClusterNavItem();
@@ -374,6 +386,7 @@
             enhanceLuckyRoseNavigation();
         });
     } else {
+        reserveMobileNavigationSpace();
         buildTOC();
         enhanceComparisonTables();
         centerActiveClusterNavItem();
