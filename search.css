@@ -182,6 +182,7 @@
 
 @media (max-width: 600px) {
     .mobile-bottom-nav a.has-fresh-code {
+        flex-direction: column;
         gap: 2px;
         overflow-wrap: normal;
         white-space: nowrap;
@@ -189,8 +190,9 @@
 
     .mobile-bottom-nav a.has-fresh-code .fresh-code-nav-badge {
         min-width: 18px;
-        height: 16px;
-        padding: 0 3px;
+        min-height: 16px;
+        height: auto;
+        padding: 1px 3px;
         font-size: 0.58rem;
     }
 }
@@ -809,9 +811,9 @@
         box-sizing: border-box;
         bottom: 0;
         z-index: 120;
-        display: grid;
-        grid-template-columns: repeat(5, minmax(max-content, 1fr));
-        gap: 4px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3px;
         padding: 10px 8px calc(10px + env(safe-area-inset-bottom));
         border-top: 1px solid rgba(255, 255, 255, 0.08);
         background: rgba(26, 26, 26, 0.96);
@@ -821,14 +823,20 @@
     }
 
     .mobile-bottom-nav a {
-        min-width: 0;
-        width: 100%;
+        flex: 1 0 min-content;
+        min-width: 44px;
+        width: auto;
         height: auto;
         min-height: 44px;
-        padding: 8px 2px;
-        font-size: clamp(0.7rem, 3.35vw, 0.82rem);
+        padding: 4px 2px;
+        font-size: clamp(0.75rem, 3.35vw, 0.82rem);
         overflow-wrap: normal;
         white-space: nowrap;
+    }
+
+    .mobile-bottom-nav__label,
+    .mobile-bottom-nav__kind {
+        display: block;
     }
 
     .site-header > .home-nav.site-nav {
