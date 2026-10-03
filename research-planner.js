@@ -432,6 +432,8 @@
         overviewBack: document.querySelector("[data-close-overview]"),
         branchLayout: document.querySelector(".planner-layout"),
         branchOverview: document.querySelector("[data-branch-overview]"),
+        promo: document.querySelector(".planner-shell > .ldshop-promo-wrap"),
+        promoHome: document.querySelector(".planner-shell > .planner-related"),
         warningPanel: document.querySelector("[data-warning-panel]"),
         statPanel: document.querySelector("[data-stat-panel]"),
         workspace: document.querySelector(".planner-workspace"),
@@ -474,6 +476,7 @@
     function bindActions() {
         refs.overviewButton.hidden = false;
         refs.overviewButton.addEventListener("click", function () {
+            if (refs.overviewPanel.hidden) trackPlannerNavigation("overview_open");
             setOverviewVisible(refs.overviewPanel.hidden);
         });
         refs.overviewBack.addEventListener("click", function () {
@@ -573,6 +576,7 @@
                 if (!button) {
                     return;
                 }
+                trackPlannerNavigation("overview_select_branch");
                 state.activeBranchId = button.getAttribute("data-branch-card");
                 setOverviewVisible(false, false);
                 state.selectedKey = null;
@@ -614,6 +618,7 @@
         window.addEventListener("resize", function () {
             if (window.innerWidth === layoutWidth) return;
             layoutWidth = window.innerWidth;
+            positionOverviewPromo();
             renderBranchWorkspace();
         });
     }
@@ -634,21 +639,26 @@
         trackPlannerUse("meaningful_use", sourceControl);
     }
 
-    function sendPlannerAnalytics(eventData) {
+    function trackPlannerNavigation(action) {
+        sendPlannerAnalytics({planner_id: "research-planner", action: action, entry_mode: entryMode}, "planner_navigation");
+    }
+
+    function sendPlannerAnalytics(eventData, eventName) {
+        eventName = eventName || PLANNER_EVENT_NAME;
         if (window.analytics && typeof window.analytics.trackEvent === "function") {
-            window.analytics.trackEvent(PLANNER_EVENT_NAME, eventData);
-            recordPlannerAnalyticsDebug("analytics", eventData);
+            window.analytics.trackEvent(eventName, eventData);
+            recordPlannerAnalyticsDebug("analytics", eventData, eventName);
             return;
         }
     }
 
-    function recordPlannerAnalyticsDebug(transport, eventData) {
+    function recordPlannerAnalyticsDebug(transport, eventData, eventName) {
         if (!isPlannerAnalyticsDebug()) {
             return;
         }
         window.__plannerAnalyticsEvents = window.__plannerAnalyticsEvents || [];
         window.__plannerAnalyticsEvents.push({
-            event: PLANNER_EVENT_NAME,
+            event: eventName,
             transport: transport,
             params: Object.assign({}, eventData)
         });
@@ -841,6 +851,7 @@
         closeMobileSheet();
         refs.overviewPanel.hidden = !visible;
         refs.branchLayout.hidden = visible;
+        positionOverviewPromo();
         refs.overviewButton.setAttribute("aria-expanded", String(visible));
         if (!visible && workspaceWasHidden) renderBranchWorkspace();
         if (moveFocus === false) return;
@@ -860,8 +871,32 @@
         }
     }
 
+    function positionOverviewPromo() {
+        if (!refs.promo || !refs.promoHome) return;
+        var focused = document.activeElement;
+        var restoreFocus = focused && refs.promo.contains(focused);
+        refs.promoHome.before(refs.promo);
+        if (!refs.overviewPanel.hidden) {
+            // Measure the uninterrupted grid so widening from one column can fill row 1.
+            var cards = refs.branchOverview.querySelectorAll("[data-branch-card]");
+            var firstTop = cards.length ? cards[0].offsetTop : 0;
+            var nextRow = null;
+            for (var i = 1; i < cards.length; i++) {
+                if (cards[i].offsetTop > firstTop) {
+                    nextRow = cards[i];
+                    break;
+                }
+            }
+            if (nextRow) nextRow.before(refs.promo);
+            else refs.branchOverview.appendChild(refs.promo);
+        }
+        if (restoreFocus) focused.focus({preventScroll: true});
+    }
+
     function renderBranchOverview() {
         if (!refs.branchOverview) return;
+        // Keep the existing node and its experiment listeners across grid rebuilds.
+        if (refs.promo && refs.promoHome) refs.promoHome.before(refs.promo);
         refs.branchOverview.innerHTML = branches.map(function (branch) {
             var summary = calculateTotals([branch]);
             return [
@@ -882,6 +917,7 @@
                 "</button>"
             ].join("");
         }).join("");
+        positionOverviewPromo();
     }
 
     function completedRatio(done, total) {
