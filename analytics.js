@@ -631,6 +631,16 @@
                 }
             }, {threshold: [0, 0.5]});
             observer.observe(link);
+            // Reparenting a Planner promo changes its width without a window resize.
+            if ('ResizeObserver' in window) {
+                let width = link.getBoundingClientRect().width;
+                new ResizeObserver(() => {
+                    const nextWidth = link.getBoundingClientRect().width;
+                    if (nextWidth <= 0 || nextWidth === width) return;
+                    width = nextWidth;
+                    sizeBlock();
+                }).observe(link);
+            }
             link.addEventListener('mouseenter', () => { context.hover = true; updateClock(); });
             link.addEventListener('mouseleave', () => { context.hover = false; updateClock(); });
             link.addEventListener('focusin', pause);

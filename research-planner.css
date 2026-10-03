@@ -2692,6 +2692,11 @@ body.planner-modal-open {
 .planner-app .branch-overview-grid {
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
 }
+.planner-app .branch-overview-grid > .ldshop-promo-wrap {
+    grid-column: 1 / -1;
+    width: 100%;
+    box-sizing: border-box;
+}
 .planner-app [data-close-overview] { justify-self: start; min-height: 44px; }
 .planner-app .branch-card {
     border-radius: 4px;
