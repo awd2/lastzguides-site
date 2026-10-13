@@ -15,7 +15,7 @@
         catalogUrl: '/assets/ldshop/offers.json'
     };
     // BEGIN GENERATED LDSHOP STARTUP CATALOG
-    const LDSHOP_STARTUP_CATALOG = {"schema_version":1,"language":"en","currency":"USD","checked_at":"2026-10-12T15:24:20.518007Z","catalog_version":"b4c2ebdd38fa4710","primary":null,"offers":[]};
+    const LDSHOP_STARTUP_CATALOG = {"schema_version":1,"language":"en","currency":"USD","checked_at":"2026-10-13T14:11:13.198059Z","catalog_version":"b4c2ebdd38fa4710","primary":null,"offers":[]};
     // END GENERATED LDSHOP STARTUP CATALOG
     function canTrack() {
         return typeof window.gtag === 'function'
