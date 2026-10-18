@@ -4961,3 +4961,334 @@ table.data-table.resource-icon-table th { word-break: normal; overflow-wrap: nor
 /* Atlas cards retain distinct crawlable routes to costs and the calculator. */
 .atlas-actions { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: auto; }
 .atlas-actions .atlas-link { min-height: 44px; padding-top: 0; margin-top: 0; }
+
+/* First-paint Quick Answer rules; keep in sync with quick-answer.css. */
+/* =========================
+   QUICK ANSWER - Modern Variant A
+   Google-style Featured Answer UX
+   ========================= */
+
+/* =========================
+   LEGACY NEUTRALIZER
+   Stops style.css .quick-answer rules from leaking
+   ========================= */
+
+/* Kill legacy counter-based numbering */
+.quick-answer.quick-answer--modern ol {
+    counter-reset: none !important;
+}
+
+.quick-answer.quick-answer--modern ol li::before {
+    content: none !important;
+    display: none !important;
+}
+
+.quick-answer.quick-answer--modern ol li::marker {
+    content: "" !important;
+}
+
+/* Reset legacy list styles */
+.quick-answer.quick-answer--modern .qa-list {
+    list-style: none !important;
+    counter-reset: none !important;
+}
+
+.quick-answer.quick-answer--modern .qa-list > li {
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    border-bottom: none !important;
+}
+
+/* Override legacy flex display on li */
+.quick-answer.quick-answer--modern .qa-item {
+    display: grid !important;
+}
+
+/* Reset all paragraph margins inside modern variant */
+.quick-answer.quick-answer--modern :where(p) {
+    margin: 0;
+}
+
+/* =========================
+   END LEGACY NEUTRALIZER
+   ========================= */
+
+/* Visually hidden but accessible */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Shared field-manual Quick Answer component */
+.quick-answer--modern {
+    --qa-surface: #1d1e1a;
+    --qa-accent: #d9584c;
+    --color-muted: #b4b1a8;
+    --focus-ring: #ff9d94;
+    width: 100%;
+    margin-bottom: 28px;
+    padding: 22px var(--lz-space-6, 24px);
+    border: 1px solid var(--border-subtle, #3c3d36);
+    border-left: 3px solid var(--qa-accent, #d9584c);
+    border-radius: 0 var(--qa-radius, 4px) var(--qa-radius, 4px) 0;
+    background:
+        linear-gradient(90deg, rgba(217, 88, 76, 0.075), transparent 42%),
+        var(--qa-surface, #1d1e1a);
+    color: var(--color-text, #f2eee5);
+    font-family: var(--lz-type-reading, 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+}
+
+.quick-answer--modern .qa-kicker {
+    margin: 0 0 14px;
+    color: #ff9d94;
+    font-size: 0.76rem;
+    font-weight: 650;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.quick-answer--modern .qa-body {
+    display: grid;
+    width: 100%;
+    max-width: none;
+    gap: 18px;
+}
+
+.guide:not(.data-guide) .quick-answer--modern .qa-lede,
+.guide:not(.data-guide) .quick-answer--modern .qa-body > p {
+    max-width: 68ch;
+}
+
+.data-guide .quick-answer--modern .qa-lede,
+.data-guide .quick-answer--modern .qa-body > p,
+.research-branch-guide .quick-answer--modern .qa-lede,
+.research-branch-guide .quick-answer--modern .qa-body > p {
+    max-width: 92ch;
+}
+
+.quick-answer--modern .qa-lede,
+.quick-answer--modern .qa-body > p {
+    color: #ddd8ce;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+.quick-answer--modern .qa-lede {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.52;
+}
+
+.quick-answer--modern .qa-lede strong {
+    color: var(--color-text-strong, #f2eee5);
+    font-weight: 650;
+}
+
+.quick-answer--modern .qa-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 24px;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--border-subtle, #3c3d36);
+    list-style: none;
+}
+
+.quick-answer.quick-answer--modern .qa-item {
+    display: grid !important;
+    grid-template-columns: 1.35rem minmax(0, 1fr);
+    align-items: baseline;
+    gap: 0;
+    column-gap: 8px;
+    padding: 10px 0 !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--border-subtle, #3c3d36) !important;
+}
+
+.quick-answer--modern .qa-num {
+    color: var(--focus-ring, #ff9d94);
+    font-size: 0.9rem;
+    font-weight: 650;
+    line-height: 1.2;
+    opacity: 1;
+}
+
+.quick-answer--modern .qa-line {
+    display: block;
+    min-width: 0;
+    color: #c7c3ba;
+    font-size: 0.94rem;
+    line-height: 1.5;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+.quick-answer--modern .qa-title {
+    display: inline;
+    color: var(--color-text-strong, #f2eee5);
+    font-weight: 650;
+}
+
+.quick-answer--modern .qa-sep {
+    display: inline;
+    margin: 0 0.3em;
+    color: #696a60;
+    font-weight: 400;
+}
+
+.quick-answer--modern .qa-detail {
+    display: inline;
+    color: var(--color-muted, #b4b1a8);
+    font-weight: 400;
+    opacity: 1;
+}
+
+.quick-answer--modern .qa-detail a[href*="last-z.com/giftCenter"] {
+    white-space: nowrap;
+    overflow-wrap: normal;
+}
+
+.quick-answer--modern .qa-callouts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: 12px;
+    margin-top: 0;
+    padding-top: 2px;
+}
+
+.quick-answer--modern .qa-callout {
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr);
+    gap: 8px;
+    margin: 0;
+    padding: 10px 0 10px 10px;
+    border: 0 solid var(--border-subtle, #3c3d36);
+    border-left: 1px solid #696a60;
+    border-radius: calc(var(--qa-radius, 4px) * 0);
+    background: transparent;
+    color: #c7c3ba;
+    font-size: 0.88rem;
+    line-height: 1.48;
+}
+
+.quick-answer--modern .qa-callout--note {
+    border-left-color: #7fa6ba;
+}
+
+.quick-answer--modern .qa-callout--tip {
+    border-left-color: var(--color-accent, #d9584c);
+}
+
+.quick-answer--modern .qa-icon {
+    flex-shrink: 0;
+    font-size: 13px;
+    line-height: 1.35;
+}
+
+.quick-answer--modern .qa-callout-text {
+    color: #c7c3ba;
+}
+
+.quick-answer--modern .qa-callout-text strong {
+    color: var(--color-text-strong, #f2eee5);
+    font-weight: 650;
+}
+
+.quick-answer--modern .qa-callout-text a,
+.quick-answer--modern .qa-callout-text a:visited {
+    color: #ff9d94;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 157, 148, 0.5);
+    transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.quick-answer--modern .qa-callout-text a:hover {
+    color: #ffd0cb;
+    border-bottom-color: #ffd0cb;
+}
+
+.quick-answer--modern .qa-callout-text a:focus-visible {
+    outline: 2px solid #ff9d94;
+    outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+    .quick-answer--modern .qa-callouts {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+@media (max-width: 599px) {
+    .quick-answer--modern {
+        margin-bottom: 24px;
+        padding: 18px var(--lz-space-4, 16px);
+    }
+
+    .quick-answer--modern .qa-kicker {
+        margin-bottom: 12px;
+    }
+
+    .quick-answer--modern .qa-body {
+        gap: 16px;
+    }
+
+    .quick-answer--modern .qa-lede {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .quick-answer--modern .qa-list {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .quick-answer--modern .qa-item {
+        grid-template-columns: 1.25rem minmax(0, 1fr);
+        column-gap: 7px;
+        padding: 9px 0 !important;
+    }
+
+    .quick-answer--modern .qa-line {
+        font-size: 0.93rem;
+    }
+
+    .quick-answer--modern .qa-sep {
+        margin: 0 0.15em;
+        font-size: 0;
+    }
+
+    .quick-answer--modern .qa-sep::before {
+        content: "·";
+        font-size: 1rem;
+    }
+
+    .quick-answer--modern .qa-callout,
+    .quick-answer--modern .qa-callout--note,
+    .quick-answer--modern .qa-callout--tip {
+        padding: 10px 0 10px 9px;
+        font-size: 0.88rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .quick-answer--modern,
+    .quick-answer--modern *,
+    .quick-answer--modern *::before,
+    .quick-answer--modern *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

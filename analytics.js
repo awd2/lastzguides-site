@@ -57,6 +57,66 @@
         return window.location.pathname.replace(/^\//, '') || 'index.html';
     }
 
+    // Page-load sampling; 0 disables collection, 1 includes every page load.
+    const WEB_VITALS_SAMPLE_RATE = 0.25;
+
+    function attachWebVitals() {
+        if (!canTrack() && !isAnalyticsDebug()) return;
+        const sampleRate = WEB_VITALS_SAMPLE_RATE;
+        let visitType = 'unknown';
+        try {
+            visitType = window.localStorage.getItem('lastz_web_vitals_seen') ? 'returning' : 'first';
+            window.localStorage.setItem('lastz_web_vitals_seen', '1');
+        } catch (err) {
+            // Do not label storage-blocked visitors as first-time players.
+            visitType = 'unknown';
+        }
+        // Mark visits even outside the sample so returning-player counts are unbiased.
+        if (Math.random() >= sampleRate) return;
+        const path = getPath().replace(/^(fr|es)\//, '') || 'index.html';
+        const locale = (getPath().match(/^(fr|es)\//) || [null, 'en'])[1];
+        const pageTemplate = path === 'index.html' ? 'home'
+            : path === 'codes.html' ? 'codes'
+            : /(?:planner|calculator)\.html$/.test(path) ? 'tool'
+            : /-costs?\.html$/.test(path) || document.querySelector('.research-branch-guide')
+                ? 'cost_table' : 'guide';
+        const sent = new Set();
+        const report = (metric) => {
+            if (!['LCP', 'INP', 'CLS'].includes(metric.name) || sent.has(metric.name)
+                || !Number.isFinite(metric.value) || metric.value < 0) return;
+            sent.add(metric.name);
+            track('web_vital', {
+                metric_name: metric.name,
+                metric_value: Math.round(metric.value * (metric.name === 'CLS' ? 1000 : 1)),
+                metric_rating: metric.rating,
+                page_template: pageTemplate,
+                locale: locale,
+                visit_type: visitType,
+                navigation_type: metric.navigationType,
+                sample_rate: sampleRate
+            });
+        };
+        const load = () => {
+            const script = document.createElement('script');
+            script.src = '/assets/vendor/web-vitals-6.2.3.iife.js';
+            script.async = true;
+            script.onload = () => {
+                const vitals = window.webVitals;
+                if (!vitals) return;
+                vitals.onLCP(report);
+                vitals.onINP(report);
+                vitals.onCLS(report);
+            };
+            document.head.appendChild(script);
+        };
+        const schedule = () => {
+            if (window.requestIdleCallback) window.requestIdleCallback(load, {timeout: 1000});
+            else window.setTimeout(load, 0);
+        };
+        if (document.readyState === 'complete') schedule();
+        else window.addEventListener('load', schedule, {once: true});
+    }
+
     function slugFromUrl(url) {
         if (!url) return '';
         return url.replace(/^\//, '').replace(/\.html$/, '');
@@ -441,7 +501,7 @@
         }
     }
 
-    const LDSHOP_CAROUSEL = {id: 'ldshop_carousel_v1', storageKey: 'lastz_ldshop_carousel_v1', interval: 8000};
+    const LDSHOP_CAROUSEL = {id: 'ldshop_carousel_v1', storageKey: 'lastz_ldshop_carousel_v1'};
 
     function readLdshopCarouselState() {
         try {
@@ -449,11 +509,10 @@
             if (raw !== null) {
                 const state = JSON.parse(raw);
                 return state && ['control', 'carousel'].includes(state.group)
-                    && Number.isFinite(state.assigned_at) ? state : null;
+                    && Number.isFinite(state.assigned_at) ? {group: 'ended_control'} : null;
             }
-            const state = {group: Math.random() < 0.5 ? 'control' : 'carousel', assigned_at: Date.now()};
-            window.localStorage.setItem(LDSHOP_CAROUSEL.storageKey, JSON.stringify(state));
-            return state;
+            // The experiment ended; leave historical assignments untouched and enroll nobody.
+            return {group: 'ended_control'};
         } catch (err) { return null; }
     }
 
@@ -501,45 +560,24 @@
 
         document.querySelectorAll('.ldshop-promo').forEach(link => {
             const original = link.cloneNode(true);
-            const context = {viewed: false, clicked: false, slideViewed: false, slideClicked: false,
-                ratio: 0, position: 0, cycle: 0, offer: null, maximum: null, queue: [],
-                paused: motion.matches, hover: false, pageHidden: false, timer: null, started: null,
-                remaining: LDSHOP_CAROUSEL.interval, expiryTimer: null};
+            const context = {viewed: false, clicked: false, ratio: 0, maximum: null,
+                pageHidden: false, expiryTimer: null};
             contexts.push(context);
             const visible = () => context.ratio >= 0.5 && document.visibilityState === 'visible' && !context.pageHidden;
             const params = () => Object.assign(ldshopPromoParams(link), {
                 experiment_id: LDSHOP_CAROUSEL.id, experiment_group: state.group,
-                creative_id: context.offer ? context.offer.offer_id : (context.maximum ? (context.maximum.ordinary_pack ? 'base_saving_max' : 'gold_saving_max') : 'fallback'),
+                creative_id: context.maximum ? (context.maximum.ordinary_pack ? 'base_saving_max' : 'gold_saving_max') : 'fallback',
                 catalog_version: catalog?.catalog_version || 'unavailable',
-                displayed_discount: context.offer?.discount_percent || context.maximum?.discount_percent || 0,
+                displayed_discount: context.maximum?.discount_percent || 0,
                 maximum_offer_id: context.maximum?.offer_id || 'none',
-                slide_position: context.position, slide_cycle: context.cycle,
+                slide_position: 0, slide_cycle: 0,
                 reduced_motion: motion.matches ? 'yes' : 'no'
             });
-            function stopClock() {
-                if (context.started !== null) context.remaining = Math.max(0, context.remaining - (performance.now() - context.started));
-                context.started = null;
-                clearTimeout(context.timer); context.timer = null;
-            }
-            function updateClock() {
-                stopClock();
-                if (state.group !== 'carousel' || context.paused || context.hover || !visible()
-                    || !ldshopCarouselOffers(catalog).length) return;
-                context.started = performance.now();
-                context.timer = setTimeout(function ldshopCarouselTick() {
-                    stopClock();
-                    advance(1);
-                }, Math.max(1, context.remaining));
-            }
             function qualify() {
                 if (!visible()) return;
                 if (!context.viewed) {
                     context.viewed = true;
                     track('ldshop_carousel_view', params());
-                }
-                if (!context.slideViewed) {
-                    context.slideViewed = true;
-                    track('ldshop_slide_view', params());
                 }
             }
             function render(target, offer) {
@@ -568,7 +606,7 @@
                 return true;
             }
             function sizeBlock() {
-                // Equal reserved geometry in both arms; no page movement when a slide changes.
+                // Preserve the existing control height; product rendering is only an inert sizing probe.
                 const probe = original.cloneNode(true);
                 probe.removeAttribute('id'); probe.setAttribute('aria-hidden', 'true'); probe.inert = true;
                 Object.assign(probe.style, {position: 'absolute', visibility: 'hidden', pointerEvents: 'none',
@@ -582,55 +620,31 @@
                 probe.remove();
                 link.style.minHeight = Math.ceil(height) + 'px';
             }
-            function show(offer) {
-                stopClock(); context.remaining = LDSHOP_CAROUSEL.interval;
-                context.offer = offer;
+            function show() {
                 context.maximum = ldshopCarouselMaximum(ldshopCarouselOffers(catalog));
-                if (!render(link, offer)) { context.offer = null; render(link, null); }
-                context.slideViewed = false; context.slideClicked = false;
+                render(link, null);
                 link.dataset.ldshopExperimentId = LDSHOP_CAROUSEL.id;
                 link.dataset.ldshopExperimentGroup = state.group;
                 link.dataset.ldshopCreativeId = params().creative_id;
-                qualify(); updateClock();
+                qualify();
             }
-            function advance(direction) {
-                const available = ldshopCarouselOffers(catalog);
-                const preceding = context.queue.slice(0, context.position);
-                context.queue = context.queue.filter(id => available.some(offer => offer.offer_id === id));
-                context.position = preceding.filter(id => context.queue.includes(id)).length;
-                let position = context.position + direction;
-                if (position < 0) position = 0;
-                if (position > context.queue.length) {
-                    position = 0; context.cycle++;
-                    context.queue = shuffleLdshopOffers(available.map(offer => offer.offer_id));
-                }
-                context.position = position;
-                show(position ? available.find(offer => offer.offer_id === context.queue[position - 1]) || null : null);
-            }
-            function pause() { context.paused = true; updateClock(); }
             function refreshVisibility() {
-                stopClock(); context.ratio = 0;
+                context.ratio = 0;
                 observer.unobserve(link); observer.observe(link);
             }
             function checkExpiry() {
                 clearTimeout(context.expiryTimer);
                 const available = ldshopCarouselOffers(catalog);
-                if (context.offer && !available.some(offer => offer.offer_id === context.offer.offer_id)) {
-                    context.position = 0; show(null);
-                } else if (!context.offer && context.maximum?.offer_id !== ldshopCarouselMaximum(available)?.offer_id) {
-                    show(null);
-                }
+                if (context.maximum?.offer_id !== ldshopCarouselMaximum(available)?.offer_id) show();
                 const next = Math.min(...available.filter(offer => offer.ends_at).map(offer => Date.parse(offer.ends_at)));
                 if (!context.pageHidden && Number.isFinite(next)) context.expiryTimer = setTimeout(checkExpiry,
                     Math.min(2147483647, Math.max(1, next - Date.now())));
-                updateClock();
             }
-            context.queue = shuffleLdshopOffers(ldshopCarouselOffers(catalog).map(offer => offer.offer_id));
-            show(null); sizeBlock();
+            show(); sizeBlock();
             const observer = new IntersectionObserver(entries => {
                 for (const entry of entries) {
                     context.ratio = entry.isIntersecting ? entry.intersectionRatio : 0;
-                    qualify(); updateClock();
+                    qualify();
                 }
             }, {threshold: [0, 0.5]});
             observer.observe(link);
@@ -644,33 +658,24 @@
                     sizeBlock();
                 }).observe(link);
             }
-            link.addEventListener('mouseenter', () => { context.hover = true; updateClock(); });
-            link.addEventListener('mouseleave', () => { context.hover = false; updateClock(); });
-            link.addEventListener('focusin', pause);
-            link.addEventListener('pointerdown', pause);
             link.addEventListener('click', () => {
-                pause();
                 const payload = Object.assign(params(), {destination_url: link.href});
                 track('ldshop_promo_click', Object.assign({}, payload, {ldshop_clicker_id: getOrCreateClickerId()}));
                 if (context.viewed && !context.clicked) {
                     context.clicked = true; track('ldshop_carousel_qualified_click', payload);
                 }
-                if (context.slideViewed && !context.slideClicked) {
-                    context.slideClicked = true; track('ldshop_slide_click', payload);
-                }
             });
             document.addEventListener('visibilitychange', () => { checkExpiry(); refreshVisibility(); });
             window.addEventListener('resize', () => { sizeBlock(); refreshVisibility(); });
             window.addEventListener('pagehide', () => {
-                context.pageHidden = true; stopClock(); clearTimeout(context.expiryTimer); observer.disconnect();
+                context.pageHidden = true; clearTimeout(context.expiryTimer); observer.disconnect();
             });
             window.addEventListener('pageshow', () => {
                 context.pageHidden = false; checkExpiry(); refreshVisibility();
             });
-            motion.addEventListener('change', () => { if (motion.matches) pause(); });
             checkExpiry();
         });
-        // Both arms need the same current maximum; fetch does not change this page.
+        // Refresh the common maximum for the next load; never swap this page after fetch.
         await loadLdshopCatalog(true);
     }
 
@@ -853,6 +858,7 @@
     };
 
     function init() {
+        attachWebVitals();
         trackLLMReferralSession();
         attachNavigationTracking();
         attachHomeTracking();
