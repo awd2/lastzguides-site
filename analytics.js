@@ -435,7 +435,8 @@
         return primary || offers.find(offer => offer.offer_id === state.order[0]) || null;
     }
 
-    function renderLdshopOffer(link, offer) {
+    function renderLdshopOffer(link, offer, preserveFlowNote = true) {
+        const flowNote = preserveFlowNote && link.querySelector('.ldshop-promo__flow-note');
         if (offer) {
             const template = document.createElement('template');
             const locale = ldshopLocale();
@@ -456,6 +457,7 @@
             const details = document.createElement('span'); details.className = 'ldshop-promo__details';
             link.replaceChildren(copy, details, link.querySelector('.ldshop-promo__side'));
         }
+        if (flowNote) link.querySelector('.ldshop-promo__copy').appendChild(flowNote);
         link.classList.add('ldshop-promo--offer');
         return true;
     }
@@ -584,7 +586,7 @@
                 target.classList.add('ldshop-promo--carousel');
                 const maximum = ldshopCarouselMaximum(ldshopCarouselOffers(catalog));
                 if (offer) {
-                    if (!renderLdshopOffer(target, offer)) return false;
+                    if (!renderLdshopOffer(target, offer, false)) return false;
                     const deal = original.querySelector('.ldshop-promo__deal').cloneNode(true);
                     deal.querySelector('.ldshop-promo__deal-big').textContent = offer.discount_percent + '%';
                     deal.querySelector('.ldshop-promo__deal-small').textContent = '';
@@ -612,13 +614,13 @@
                 Object.assign(probe.style, {position: 'absolute', visibility: 'hidden', pointerEvents: 'none',
                     width: link.getBoundingClientRect().width + 'px', minHeight: '0', height: 'auto', left: '0', top: '0'});
                 link.parentNode.appendChild(probe);
-                let height = 0;
+                let height = probe.getBoundingClientRect().height;
                 for (const offer of [null, ...ldshopCarouselOffers(catalog)]) {
                     render(probe, offer);
                     height = Math.max(height, probe.getBoundingClientRect().height);
                 }
                 probe.remove();
-                link.style.minHeight = Math.ceil(height) + 'px';
+                link.style.minHeight = height + 'px';
             }
             function show() {
                 context.maximum = ldshopCarouselMaximum(ldshopCarouselOffers(catalog));
