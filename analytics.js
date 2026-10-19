@@ -342,7 +342,7 @@
         return (document.documentElement.lang || '').toLowerCase().split('-', 1)[0] === 'en';
     }
 
-    function readLdshopOfferState(create = false) {
+    function readLdshopOfferState() {
         try {
             const raw = window.localStorage.getItem(LDSHOP_EXPERIMENT.storageKey);
             if (raw !== null) {
@@ -354,10 +354,8 @@
                     && Array.isArray(state.shown) && state.shown.every(id => typeof id === 'string')
                     && (state.last_offer === null || typeof state.last_offer === 'string') ? state : null;
             }
-            if (!create) return null;
-            const state = {group: Math.random() < 0.5 ? 'control' : 'rotation', assigned_at: Date.now(),
-                offer_exposures: 0, order: [], shown: [], last_offer: null};
-            return saveLdshopOfferState(state) ? state : null;
+            // The experiment ended; preserve historical state and enroll nobody.
+            return null;
         } catch (err) { return null; }
     }
 
@@ -532,9 +530,7 @@
     }
 
     async function attachLdshopPromoTracking() {
-        // Formation retains its assignment and the old control/ApocaAid contract.
-        if (window.location.pathname === '/formation-buildings.html'
-            || !LDSHOP_EXPERIMENT.enabled
+        if (!LDSHOP_EXPERIMENT.enabled
             || !document.querySelector('.ldshop-promo')) return attachLdshopOfferTracking();
         const language = (document.documentElement.lang || '').toLowerCase().split('-', 1)[0];
         if (!LDSHOP_LOCALE_COPY[language]) return attachLdshopOfferTracking();
