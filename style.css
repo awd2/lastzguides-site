@@ -1469,6 +1469,15 @@ body > .home-nav.site-nav {
     word-break: break-word;
 }
 
+.ldshop-promo__flow-note {
+    display: block;
+    color: #d2d5df;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    font-weight: 400;
+    overflow-wrap: anywhere;
+}
+
 .ldshop-promo__text strong {
     color: var(--ldshop-gold, #ffe45f);
     font-weight: 800;
