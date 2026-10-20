@@ -15,11 +15,14 @@
     <title>Last Z Tank Planner (2026) — Wrench Calculator and Vehicle Milestones</title>
     <meta name="description" content="Track vehicle modification sub-levels, calculate spent and remaining Golden Wrenches, save progress, and plan Cheetah, Hercules, Destroyer, and Destroyer EX.">
     <link rel="canonical" href="https://lastzguides.com/tank-planner.html">
+    
     <link rel="alternate" href="https://lastzguides.com/tank-planner.html" hreflang="en">
+    <link rel="alternate" href="https://lastzguides.com/fr/tank-planner.html" hreflang="fr">
+    <link rel="alternate" href="https://lastzguides.com/es/tank-planner.html" hreflang="es">
     <link rel="alternate" href="https://lastzguides.com/tank-planner.html" hreflang="x-default">
-    <link rel="stylesheet" href="style.css?v=73d8d4f8e0c9">
+<link rel="stylesheet" href="style.css?v=73d8d4f8e0c9">
     <link rel="stylesheet" href="search.css?v=472b3bb662e7">
-    <link rel="stylesheet" href="tank-planner.css?v=af19941346f2">
+    <link rel="stylesheet" href="tank-planner.css?v=5a63796788c2">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="icon" href="favicon.ico" sizes="any">
@@ -115,8 +118,8 @@
             <summary class="language-switcher__button" aria-label="Language: EN">EN</summary>
             <div class="language-switcher__menu" role="list">
                 <a href="/tank-planner.html" hreflang="en" lang="en" aria-current="page">English</a>
-                <a href="/fr/vehicle-modification-cost.html" hreflang="fr" lang="fr">Guide en français</a>
-                <a href="/es/vehicle-modification-cost.html" hreflang="es" lang="es">Guía en español</a>
+                <a href="/fr/tank-planner.html" hreflang="fr" lang="fr">Français</a>
+                <a href="/es/tank-planner.html" hreflang="es" lang="es">Español</a>
             </div>
         </details>
     </header>
@@ -229,18 +232,40 @@
                 <a href="power-guide.html"><strong>Power Guide</strong><span>Choose the next useful account upgrade.</span></a>
             </div>
         </section>
-    </main>
-
-    <nav class="home-nav site-nav" aria-label="Guide categories">
-        <a href="/#progression">Progression</a>
-        <a href="/#research-tech">Research</a>
-        <a href="research-planner.html">Planner</a>
-        <a href="/#heroes-gear" class="is-active">Heroes</a>
-        <a href="/#pvp-formations">PvP</a>
-        <a href="/#events-competitive">Events</a>
-        <a href="/#economy-f2p">Economy</a>
-    </nav>
-
+    <template id="calculator-strings">
+  <span data-string="saveFailed">Progress could not be saved in this browser.</span>
+  <span data-string="noProgress">No progress</span>
+  <span data-string="noGoal">No goal</span>
+  <span data-string="level">Lv. {level}</span>
+  <span data-string="milestoneOption"> · milestone</span>
+  <span data-string="milestoneHeading"> · Milestone</span>
+  <span data-string="currentSublevel">{name} current sub-level</span>
+  <span data-string="decrease">Decrease {name} progress</span>
+  <span data-string="increase">Increase {name} progress</span>
+  <span data-string="remaining">{count} left</span>
+  <span data-string="markDone">Mark {name} done</span>
+  <span data-string="markUndone">Mark {name} not done</span>
+  <span data-string="done">Done</span>
+  <span data-string="goal">Goal</span>
+  <span data-string="clearGoal">Clear goal for {name}</span>
+  <span data-string="setGoal">Set goal for {name}</span>
+  <span data-string="group0">To Cheetah</span>
+  <span data-string="group10">To Hercules</span>
+  <span data-string="group20">To Destroyer</span>
+  <span data-string="group30">To Destroyer EX</span>
+  <span data-string="group40">To Full Path</span>
+  <span data-string="currentRow">Current sub-level for {name}</span>
+  <span data-string="goalRow">Goal sub-level for {name}</span>
+  <span data-string="current">Current</span>
+  <span data-string="reached">Reached</span>
+  <span data-string="spent">{count} spent</span>
+  <span data-string="remainingLabel">left</span>
+  <span data-string="cheetah">Cheetah</span>
+  <span data-string="shareFallback">Copy the address bar URL to share this plan.</span>
+  <span data-string="shareCopied">Plan link copied.</span>
+  <span data-string="reset">Tank Planner reset.</span>
+  <span data-string="sharedLoaded">Shared plan loaded.</span>
+</template>
     <dialog class="tank-dialog" data-reset-dialog aria-labelledby="tank-reset-title">
         <form method="dialog" class="tank-dialog-shell tank-dialog-shell--confirm">
             <button type="button" class="tank-dialog-close" data-close-dialog aria-label="Close">×</button>
@@ -252,14 +277,27 @@
             </div>
         </form>
     </dialog>
+</main>
+
+    <nav class="home-nav site-nav" aria-label="Guide categories">
+        <a href="/#progression">Progression</a>
+        <a href="/#research-tech">Research</a>
+        <a href="research-planner.html">Planner</a>
+        <a href="/#heroes-gear" class="is-active">Heroes</a>
+        <a href="/#pvp-formations">PvP</a>
+        <a href="/#events-competitive">Events</a>
+        <a href="/#economy-f2p">Economy</a>
+    </nav>
+
+
 
     <footer class="site-footer">
         <a href="/">All Guides</a>
         <div class="footer-links"><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="disclosure.html">Disclosure</a></div>
     </footer>
     <script src="tank-planner-data.js?v=0147330e1c85"></script>
-    <script src="tank-planner.js?v=0e86a846a82c"></script>
+    <script src="tank-planner.js?v=7cd262b99f55"></script>
     <script src="analytics.js" defer></script>
-    <script src="search-loader.js?v=75c8118be86f" defer></script>
+    <script src="search-loader.js?v=f16393e47973" defer></script>
 </body>
 </html>

@@ -172,6 +172,7 @@
 }
 
 .tank-actions {
+    flex-wrap: wrap;
     position: relative;
     justify-content: flex-end;
 }

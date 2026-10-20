@@ -44,6 +44,17 @@
 
     window.getLastzLuckyRoseStatus = getLuckyRoseStatus;
 
+    function luckyRoseLabels() {
+        var language = (document.documentElement.lang || 'en').toLowerCase().split('-', 1)[0];
+        if (language === 'fr') {
+            return { label: 'Roses', prefix: 'Lucky Rose cette semaine : ', checking: 'Lucky Rose cette semaine : vérification' };
+        }
+        if (language === 'es') {
+            return { label: 'Rosas', prefix: 'Lucky Rose esta semana: ', checking: 'Lucky Rose esta semana: comprobando' };
+        }
+        return { label: 'Roses', prefix: 'Lucky Rose this week: ', checking: 'Lucky Rose this week: checking' };
+    }
+
     function refreshLuckyRose() {
         if (luckyRoseRetryTimer) window.clearTimeout(luckyRoseRetryTimer);
         luckyRoseRetryTimer = null;
@@ -60,8 +71,9 @@
         luckyRoseRetryTimer = null;
         luckyRoseCurrentStatus = status;
         luckyRoseLink.querySelector('.lucky-rose-nav__number').textContent = status.number;
-        luckyRoseLink.querySelector('.lucky-rose-nav__label').textContent = 'Roses';
-        luckyRoseLink.setAttribute('aria-label', 'Lucky Rose this week: ' + status.number + ' Yellow Roses');
+        var labels = luckyRoseLabels();
+        luckyRoseLink.querySelector('.lucky-rose-nav__label').textContent = labels.label;
+        luckyRoseLink.setAttribute('aria-label', labels.prefix + status.number + ' Yellow Roses');
         scheduleLuckyRoseExpiry(status);
     }
 
@@ -72,7 +84,8 @@
         luckyRoseCurrentStatus = null;
         luckyRoseLink.querySelector('.lucky-rose-nav__number').textContent = '?';
         luckyRoseLink.querySelector('.lucky-rose-nav__label').textContent = '';
-        luckyRoseLink.setAttribute('aria-label', 'Lucky Rose this week: checking');
+        var labels = luckyRoseLabels();
+        luckyRoseLink.setAttribute('aria-label', labels.checking);
         if (luckyRoseRetryTimer) window.clearTimeout(luckyRoseRetryTimer);
         luckyRoseRetryTimer = document.hidden ? null : window.setTimeout(refreshLuckyRose, 300000);
     }
@@ -89,7 +102,7 @@
 
     function enhanceLuckyRoseNavigation() {
         var language = (document.documentElement.lang || 'en').toLowerCase().split('-', 1)[0];
-        if (language !== 'en') return;
+        if (language !== 'en' && language !== 'fr' && language !== 'es') return;
         var header = document.querySelector('.site-header');
         var search = header && header.querySelector('.search-trigger');
         if (!header || !search || header.querySelector('.lucky-rose-nav')) return;
@@ -97,7 +110,9 @@
         var link = document.createElement('a');
         link.className = 'lucky-rose-nav';
         link.href = '/lucky-rose.html';
-        link.setAttribute('aria-label', 'Lucky Rose this week: checking');
+        if (language !== 'en') link.setAttribute('hreflang', 'en');
+        var labels = luckyRoseLabels();
+        link.setAttribute('aria-label', labels.checking);
         link.innerHTML = luckyRoseIcon() +
             '<span class="lucky-rose-nav__number">?</span>' +
             '<span class="lucky-rose-nav__label"></span>';
@@ -242,13 +257,15 @@
             return;
         }
 
+        var language = (document.documentElement.lang || 'en').toLowerCase().split('-', 1)[0];
+        var tocTitle = language === 'fr' ? 'Sur cette page' : language === 'es' ? 'En esta página' : 'On this page';
         var toc = document.createElement('nav');
         toc.className = 'toc';
-        toc.setAttribute('aria-label', 'On this page');
+        toc.setAttribute('aria-label', tocTitle);
 
         var title = document.createElement('div');
         title.className = 'toc-title';
-        title.textContent = 'On this page';
+        title.textContent = tocTitle;
         toc.appendChild(title);
 
         var list = document.createElement('ul');

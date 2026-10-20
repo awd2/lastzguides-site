@@ -550,6 +550,26 @@
     ]
   },
   {
+    "url": "/es/equipment-calculator.html",
+    "locale": "es",
+    "source_path": "equipment-calculator.html",
+    "title": "Equipment Calculator",
+    "category": "Guides",
+    "description": "Calcula los costes de promoción y forja de una pieza con Equipment Calculator. Elige un objetivo y descuenta los recursos de tu inventario.",
+    "keywords": [
+      "Calculadora",
+      "costes",
+      "equipo",
+      "Last",
+      "Equipment",
+      "Calculator",
+      "Calcula",
+      "los",
+      "promoci",
+      "forja"
+    ]
+  },
+  {
     "url": "/es/events.html",
     "locale": "es",
     "source_path": "events.html",
@@ -710,6 +730,26 @@
     ]
   },
   {
+    "url": "/es/migration-calculator.html",
+    "locale": "es",
+    "source_path": "migration-calculator.html",
+    "title": "Migration Calculator",
+    "category": "Guides",
+    "description": "Estima tu puntuación de migración de Last Z con Migration Calculator a partir de cuatro valores de potencia. Una estimación de la comunidad, no oficial.",
+    "keywords": [
+      "Calculadora",
+      "puntuaci",
+      "migraci",
+      "Last",
+      "Migration",
+      "Calculator",
+      "Estima",
+      "con",
+      "partir",
+      "cuatro"
+    ]
+  },
+  {
     "url": "/es/power-guide.html",
     "locale": "es",
     "source_path": "power-guide.html",
@@ -850,6 +890,26 @@
     ]
   },
   {
+    "url": "/es/tank-planner.html",
+    "locale": "es",
+    "source_path": "tank-planner.html",
+    "title": "Tank Planner",
+    "category": "Guides",
+    "description": "Planificador de modificación de vehículo de Last Z: sigue tu progreso con Tank Planner, calcula las Golden Wrenches restantes y comparte tu objetivo.",
+    "keywords": [
+      "Planificador",
+      "modificaci",
+      "veh",
+      "culo",
+      "Last",
+      "Tank",
+      "Planner",
+      "Sigue",
+      "tus",
+      "subniveles"
+    ]
+  },
+  {
     "url": "/es/tech.html",
     "locale": "es",
     "source_path": "tech.html",
@@ -893,7 +953,7 @@
     "url": "/es/vehicle-modification-cost.html",
     "locale": "es",
     "source_path": "vehicle-modification-cost.html",
-    "title": "Calculadora de wrenches de Last Z",
+    "title": "Calculadora de llaves de Last Z",
     "category": "Equipment",
     "description": "Calculadora de wrenches y tabla de costes de Vehicle Modification en Last Z: Hercules, Destroyer, Destroyer EX, totales acumulados de wrenches y milestones d...",
     "keywords": [
@@ -1145,6 +1205,26 @@
     ]
   },
   {
+    "url": "/fr/equipment-calculator.html",
+    "locale": "fr",
+    "source_path": "equipment-calculator.html",
+    "title": "Equipment Calculator",
+    "category": "Guides",
+    "description": "Calculez les coûts de promotion et de forge d’une pièce avec Equipment Calculator. Choisissez un objectif et déduisez les ressources de votre inventaire.",
+    "keywords": [
+      "Calculateur",
+      "quipement",
+      "Last",
+      "Equipment",
+      "Calculator",
+      "Calculez",
+      "les",
+      "promotion",
+      "forge",
+      "une"
+    ]
+  },
+  {
     "url": "/fr/events.html",
     "locale": "fr",
     "source_path": "events.html",
@@ -1168,7 +1248,7 @@
     "url": "/fr/farm-account.html",
     "locale": "fr",
     "source_path": "farm-account.html",
-    "title": "Guide farm account Last Z",
+    "title": "Guide du compte ferme Last Z",
     "category": "Economy",
     "description": "Comment créer un farm account Last Z sur le même serveur avant Season 2, configurer Character Management, collecter des ressources et soutenir votre HQ princ...",
     "keywords": [
@@ -1302,6 +1382,26 @@
       "duction",
       "tickets",
       "meilleurs"
+    ]
+  },
+  {
+    "url": "/fr/migration-calculator.html",
+    "locale": "fr",
+    "source_path": "migration-calculator.html",
+    "title": "Migration Calculator",
+    "category": "Guides",
+    "description": "Estimez votre score de migration Last Z avec Migration Calculator à partir de vos quatre valeurs de puissance. Une estimation communautaire, non officielle.",
+    "keywords": [
+      "Calculateur",
+      "score",
+      "migration",
+      "Last",
+      "Calculator",
+      "Estimez",
+      "votre",
+      "avec",
+      "partir",
+      "vos"
     ]
   },
   {
@@ -1445,6 +1545,26 @@
     ]
   },
   {
+    "url": "/fr/tank-planner.html",
+    "locale": "fr",
+    "source_path": "tank-planner.html",
+    "title": "Tank Planner",
+    "category": "Guides",
+    "description": "Planificateur de modification de véhicule Last Z : suivez vos progrès avec Tank Planner, calculez les Golden Wrenches restantes et partagez votre objectif.",
+    "keywords": [
+      "Planificateur",
+      "modification",
+      "hicule",
+      "Last",
+      "Tank",
+      "Planner",
+      "Suivez",
+      "vos",
+      "sous-niveaux",
+      "avec"
+    ]
+  },
+  {
     "url": "/fr/tech.html",
     "locale": "fr",
     "source_path": "tech.html",
@@ -1488,7 +1608,7 @@
     "url": "/fr/vehicle-modification-cost.html",
     "locale": "fr",
     "source_path": "vehicle-modification-cost.html",
-    "title": "Calculateur de wrenches Last Z",
+    "title": "Calculateur de clés Last Z",
     "category": "Equipment",
     "description": "Calculateur de wrenches et table de coûts Vehicle Modification Last Z : Hercules, Destroyer, Destroyer EX, totaux cumulés de wrenches et milestones d’upgrade.",
     "keywords": [

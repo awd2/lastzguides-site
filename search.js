@@ -653,13 +653,15 @@
             return;
         }
 
+        const language = (document.documentElement.lang || 'en').toLowerCase().split('-', 1)[0];
+        const tocTitle = language === 'fr' ? 'Sur cette page' : language === 'es' ? 'En esta página' : 'On this page';
         const toc = document.createElement('nav');
         toc.className = 'toc';
-        toc.setAttribute('aria-label', 'On this page');
+        toc.setAttribute('aria-label', tocTitle);
 
         const title = document.createElement('div');
         title.className = 'toc-title';
-        title.textContent = 'On this page';
+        title.textContent = tocTitle;
         toc.appendChild(title);
 
         const list = document.createElement('ul');

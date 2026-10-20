@@ -439,7 +439,17 @@
                     <div class="panel-title">Vehicle Wrench Planner</div>
                     <p>Enter your current wrench stash to estimate your next unlock and how far it will take you in the full vehicle path.</p>
                     <p><a href="tank-planner.html">Track exact sub-level progress in the Tank Planner, with saved totals and milestone estimates.</a></p>
-                    <form class="planner-form" id="vehicle-planner" novalidate>
+                    <form class="planner-form" id="vehicle-planner" novalidate
+                        data-result-percent="% of the full vehicle path"
+                        data-result-completed="Full table completed"
+                        data-result-after-max=" after maxing the table"
+                        data-result-all-unlocks="All major vehicle unlocks reached"
+                        data-result-at-level=" at level "
+                        data-result-below-first="Below the first major unlock ("
+                        data-result-not-enough="Not enough to reach the first table row yet"
+                        data-result-next-in=" in "
+                        data-result-more-wrenches=" more wrenches"
+                        data-result-level="Level ">
                         <label for="vehicle-wrenches" class="planner-label">Current wrenches</label>
                         <div class="planner-row">
                             <input id="vehicle-wrenches" name="wrenches" type="number" min="0" step="1" inputmode="numeric" placeholder="Example: 10450">
@@ -730,7 +740,7 @@
                 name: name,
                 cumulative: cumulative,
                 isMilestone: isMilestone,
-                label: 'Level ' + level + ' — ' + name
+                label: form.dataset.resultLevel + level + ' — ' + name
             };
         }).filter(Boolean);
 
@@ -769,29 +779,29 @@
             var remaining = stash - used;
             var percent = totalCost > 0 ? (Math.min(stash, totalCost) / totalCost) * 100 : 0;
 
-            results.querySelector('[data-field="percent"]').textContent = percent.toFixed(1) + '% of the full vehicle path';
+            results.querySelector('[data-field="percent"]').textContent = percent.toFixed(1) + form.dataset.resultPercent;
             results.querySelector('[data-field="used"]').textContent = formatNumber(used);
 
             if (stash >= totalCost) {
-                results.querySelector('[data-field="milestone"]').textContent = 'Full table completed';
-                results.querySelector('[data-field="remaining"]').textContent = formatNumber(stash - totalCost) + ' after maxing the table';
-                results.querySelector('[data-field="next"]').textContent = 'All major vehicle unlocks reached';
+                results.querySelector('[data-field="milestone"]').textContent = form.dataset.resultCompleted;
+                results.querySelector('[data-field="remaining"]').textContent = formatNumber(stash - totalCost) + form.dataset.resultAfterMax;
+                results.querySelector('[data-field="next"]').textContent = form.dataset.resultAllUnlocks;
             } else {
                 if (affordableMilestone) {
-                    results.querySelector('[data-field="milestone"]').textContent = affordableMilestone.name + ' at level ' + affordableMilestone.level;
+                    results.querySelector('[data-field="milestone"]').textContent = affordableMilestone.name + form.dataset.resultAtLevel + affordableMilestone.level;
                 } else if (affordableEntry) {
-                    results.querySelector('[data-field="milestone"]').textContent = 'Below the first major unlock (' + affordableEntry.label + ')';
+                    results.querySelector('[data-field="milestone"]').textContent = form.dataset.resultBelowFirst + affordableEntry.label + ')';
                 } else {
-                    results.querySelector('[data-field="milestone"]').textContent = 'Not enough to reach the first table row yet';
+                    results.querySelector('[data-field="milestone"]').textContent = form.dataset.resultNotEnough;
                 }
 
                 results.querySelector('[data-field="remaining"]').textContent = formatNumber(Math.max(remaining, 0));
 
                 if (nextMajor) {
                     var short = Math.max(nextMajor.cumulative - stash, 0);
-                    results.querySelector('[data-field="next"]').textContent = nextMajor.name + ' in ' + formatNumber(short) + ' more wrenches';
+                    results.querySelector('[data-field="next"]').textContent = nextMajor.name + form.dataset.resultNextIn + formatNumber(short) + form.dataset.resultMoreWrenches;
                 } else {
-                    results.querySelector('[data-field="next"]').textContent = 'All major vehicle unlocks reached';
+                    results.querySelector('[data-field="next"]').textContent = form.dataset.resultAllUnlocks;
                 }
             }
 
@@ -800,6 +810,6 @@
     }());
     </script>
     <script src="analytics.js" defer></script>
-    <script src="search-loader.js?v=75c8118be86f" defer></script>
+    <script src="search-loader.js?v=f16393e47973" defer></script>
 </body>
 </html>
