@@ -1,34 +1,45 @@
 (() => {
   'use strict';
+  const locale = typeof document === 'undefined' ? 'en-US' : ({ fr: 'fr-FR', es: 'es-ES' }[document.documentElement?.lang.split('-')[0]] || 'en-US');
+  const strings = typeof document === 'undefined' ? {} : Object.fromEntries(
+    Array.from(document.getElementById('calculator-strings').content.querySelectorAll('[data-string]'),
+      node => [node.dataset.string, node.textContent]));
+  function text(key, values = {}) {
+    return strings[key].replace(/\{(\w+)\}/g, (_, name) => values[name]);
+  }
   const data = typeof window === 'undefined' ? null : window.equipmentCosts;
-  const forgeNames = ['No forging', '+1', '+2', '+3', '+4', '+5', 'MAX'];
+  const forgeNames = [strings.noForging, '+1', '+2', '+3', '+4', '+5', 'MAX'];
   const specs = {
     forge: [
-      { key: 'stones', label: 'Forging Stones', format: value => formatInt(value), parse: parseWhole },
-      { key: 'modules', label: 'Pulse Modules', format: value => formatInt(value), parse: parseWhole },
-      { key: 'electricity', label: 'Electricity', format: value => formatMillions(value), parse: parseMillions }
+      { key: 'stones', label: strings.stones, format: value => formatInt(value), parse: parseWhole },
+      { key: 'modules', label: strings.modules, format: value => formatInt(value), parse: parseWhole },
+      { key: 'electricity', label: strings.electricity, format: value => formatMillions(value), parse: parseMillions }
     ],
     promote: [
-      { key: 'cores', label: 'Power Cores', format: value => formatInt(value), parse: parseWhole },
-      { key: 'zents', label: 'Zent', format: value => formatMillions(value), parse: parseMillions },
-      { key: 'orange', label: 'Spare orange items', format: value => formatInt(value), parse: parseWhole }
+      { key: 'cores', label: strings.cores, format: value => formatInt(value), parse: parseWhole },
+      { key: 'zents', label: strings.zents, format: value => formatMillions(value), parse: parseMillions },
+      { key: 'orange', label: strings.orange, format: value => formatInt(value), parse: parseWhole }
     ]
   };
-  function formatInt(value) { return value.toLocaleString('en-US'); }
-  function formatMillions(value) { return `${(value / 1000000).toLocaleString('en-US', { maximumFractionDigits: 6 })}M`; }
+  function formatInt(value) { return value.toLocaleString(locale); }
+  function formatMillions(value) { return `${(value / 1000000).toLocaleString(locale, { maximumFractionDigits: 6 })}M`; }
   function parseWhole(text) {
     if (!/^\d+$/.test(text.trim())) return null;
     const n = Number(text);
     return Number.isSafeInteger(n) ? n : null;
   }
-  function parseMillions(text) {
+  function parseMillions(text, language = locale) {
+    if (language === 'fr' || language === 'fr-FR' || language === 'es' || language === 'es-ES') {
+      if (!/^\d+(?:,\d{1,6})?$/.test(text.trim())) return null;
+      text = text.replace(',', '.');
+    }
     if (!/^\d+(?:\.\d{1,6})?$/.test(text.trim())) return null;
     const [whole, fraction = ''] = text.trim().split('.');
     const n = Number(whole) * 1000000 + Number(fraction.padEnd(6, '0'));
     return Number.isSafeInteger(n) ? n : null;
   }
-  function promotionName(step) {
-    if (step === 0) return 'No promotion';
+  function promotionName(step, copy = strings) {
+    if (step === 0) return copy.noPromotion;
     const stars = Math.floor(step / 6), part = step % 6;
     if (part === 0) return `${stars}★`;
     return stars ? `${stars}★ + ${part}/6` : `${part}/6`;
@@ -117,20 +128,20 @@
     function renderMissing() {
       missingBox.replaceChildren();
       if (!disclosure.open) return false;
-      if (!active.length) { add(missingBox, 'p', '', 'Nothing else is needed for this transition.'); return false; }
+      if (!active.length) { add(missingBox, 'p', '', strings.nothing); return false; }
       const missing = [];
       for (const item of active) {
         const input = inventoryBox.querySelector(`[data-resource="${item.key}"]`);
         const entered = input.value.trim() ? item.parse(input.value) : 0;
         if (entered === null) {
           input.setAttribute('aria-invalid', 'true');
-          add(missingBox, 'p', 'input-error', `Enter a non-negative ${item.key === 'zents' || item.key === 'electricity' ? 'amount in millions with up to six decimal places' : 'whole number'} for ${item.label}.`);
+          add(missingBox, 'p', 'input-error', text(item.key === 'zents' || item.key === 'electricity' ? 'invalidMillions' : 'invalidWhole', { resource: item.label }));
           return false;
         }
         input.removeAttribute('aria-invalid');
         missing.push({ item, amount: Math.max(0, total[item.key] - entered) });
       }
-      add(missingBox, 'h3', '', 'Still missing after inventory');
+      add(missingBox, 'h3', '', strings.missing);
       const grid = add(missingBox, 'div', 'resource-grid', '');
       for (const row of missing) {
         const cell = add(grid, 'div', 'resource', '');
@@ -139,7 +150,7 @@
         name.append(row.item.label);
         add(cell, 'strong', '', row.item.format(row.amount));
       }
-      add(missingBox, 'p', 'result-note', missing.some(row => row.amount > 0) ? 'More materials are needed for this target.' : 'Your entered inventory covers this cost.');
+      add(missingBox, 'p', 'result-note', missing.some(row => row.amount > 0) ? strings.more : strings.covered);
       const signature = JSON.stringify(missing.map(row => row.amount));
       const changed = signature !== lastMissing;
       lastMissing = signature;
@@ -157,7 +168,7 @@
       total = cost(kind, start, target);
       active = specs[kind].filter(item => total[item.key] > 0);
       costBox.replaceChildren();
-      if (!active.length) add(costBox, 'p', 'zero-result', 'No additional materials');
+      if (!active.length) add(costBox, 'p', 'zero-result', strings.noMaterials);
       for (const item of active) {
         const cell = add(costBox, 'div', 'resource', '');
         const name = add(cell, 'span', 'resource-name', '');
@@ -167,9 +178,9 @@
       }
       if (kind === 'forge') {
         const gate = data.forging[target - 1];
-        requirement.textContent = target === start ? 'No new forging stage selected.' : `Requirement for ${forgeNames[target]}: enhancement level ${gate.level} and ${gate.stars} completed promotion ${gate.stars === 1 ? 'star' : 'stars'}.`;
+        requirement.textContent = target === start ? strings.noForgeStage : text('forgeRequirement', { stage: forgeNames[target], level: gate.level, count: gate.stars, stars: text(gate.stars === 1 ? 'oneStar' : 'manyStars') });
       } else {
-        requirement.textContent = target === start ? 'No new promotion step selected.' : 'Promotion unlocks at enhancement level 20.';
+        requirement.textContent = target === start ? strings.noPromotionStep : strings.promotionUnlock;
       }
       for (const input of inventoryBox.querySelectorAll('input[data-resource]')) saved[input.dataset.resource] = input.value;
       inventoryBox.replaceChildren();
@@ -178,7 +189,7 @@
         const inputId = `${kind}-have-${item.key}`;
         const label = add(wrap, 'label', '', '');
         addIcon(label, item);
-        label.append(`${item.label} available${item.key === 'zents' || item.key === 'electricity' ? ' (M)' : ''}`);
+        label.append(text(item.key === 'zents' || item.key === 'electricity' ? 'availableMillions' : 'available', { resource: item.label }));
         label.htmlFor = inputId;
         const input = add(wrap, 'input', '', '');
         input.id = inputId;

@@ -1,9 +1,21 @@
 (function () {
   'use strict';
+  const locale = typeof document === 'undefined' ? 'en-US' : ({ fr: 'fr-FR', es: 'es-ES' }[document.documentElement?.lang.split('-')[0]] || 'en-US');
 
   // Parse decimal text exactly before converting to Number: never round input points.
-  function parsePower(raw) {
-    const text = raw.trim();
+  function parsePower(raw, language = locale) {
+    let text = raw.trim();
+    if (language === 'fr' || language === 'fr-FR') {
+      if (/^\d+(?:[,.]\d+)?[ \u00a0\u202f]*m$/i.test(text)) text = text.replace(',', '.').replace(/[ \u00a0\u202f]/g, '');
+      else if (/^\d{1,3}(,\d{3}){2,}$/.test(text)) text = text.replace(/,/g, '');
+      else if (/^\d+$/.test(text) || /^\d{1,3}([ \u00a0\u202f]\d{3})+$/.test(text)) text = text.replace(/[ \u00a0\u202f]/g, '');
+      else return null;
+    } else if (language === 'es' || language === 'es-ES') {
+      if (/^\d+(?:[,.]\d+)? *m$/i.test(text)) text = text.replace(',', '.').replace(/ /g, '');
+      else if (/^\d{1,3}(,\d{3}){2,}$/.test(text)) text = text.replace(/,/g, '');
+      else if (/^\d+$/.test(text) || /^\d{1,3}(\.\d{3})+$/.test(text)) text = text.replace(/\./g, '');
+      else return null;
+    }
     if (!text) return null;
     let digits;
     const millions = /^(\d+)(?:\.(\d+))?m$/i.exec(text);
@@ -27,12 +39,14 @@
     return Number(hundredths) / 100;
   }
 
-  function formatPower(raw) {
-    const value = parsePower(raw);
-    return value === null || /m$/i.test(raw.trim()) ? raw : value.toLocaleString('en-US');
+  function formatPower(raw, language = locale) {
+    const value = parsePower(raw, language);
+    return value === null || /m$/i.test(raw.trim()) ? raw : value.toLocaleString(language);
   }
 
   function formatPowerDuringInput(raw, inputType) {
+    // Preserve localized decimal/group separators while typing; normalize on blur.
+    if (locale !== 'en-US') return raw;
     if (/^[\d, ]+$/.test(raw)) {
       return formatPower(inputType === 'insertFromPaste' ? raw : raw.replace(/[, ]/g, ''));
     }
@@ -62,7 +76,9 @@
   // Keep inputs unnamed so native submission cannot transmit power if JS fails.
   const inputs = fields.map(name => document.getElementById('score-' + name));
   const result = document.getElementById('score-result');
-  const initial = 'Enter all four power values to calculate your estimate.';
+  const stringBlock = document.getElementById('calculator-strings');
+  const text = key => stringBlock.content?.querySelector('[data-string="' + key + '"]').textContent || '';
+  const initial = text('initial');
 
   function showResult(messages) {
     result.replaceChildren(...messages.map(({ text, className }) => {
@@ -112,21 +128,21 @@
         if (firstInvalid === -1) firstInvalid = index;
         inputs[index].setAttribute('aria-invalid', 'true');
         document.getElementById(fields[index] + '-error').textContent = inputs[index].value.trim()
-          ? 'Enter a non-negative whole power value, such as 20,000,000 or 20.5M.'
-          : 'Enter this power value.';
+          ? text('invalid')
+          : text('required');
       }
     });
     if (firstInvalid !== -1) { inputs[firstInvalid].focus(); return; }
     const score = estimate(values);
     if (score <= 0) {
-      showResult([{ text: 'These values are outside this model’s usable range. Check your power values; no estimate is shown.' }]);
+      showResult([{ text: text('unusable') }]);
       return;
     }
     const messages = [
-      { text: (score / 1000000).toFixed(1) + 'M', className: 'score-value' },
-      { text: 'Estimated Tier: ' + estimateTier(score), className: 'score-tier' }
+      { text: (locale === 'en-US' ? (score / 1000000).toFixed(1) : (score / 1000000).toLocaleString(locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 })) + 'M', className: 'score-value' },
+      { text: text('tier-' + estimateTier(score)), className: 'score-tier' }
     ];
-    if (isExtrapolation(values)) messages.push({ text: 'Your power values are outside the range of the player examples used for this estimate. This result is an extrapolation.' });
+    if (isExtrapolation(values)) messages.push({ text: text('extrapolation') });
     showResult(messages);
   });
   form.addEventListener('reset', () => {

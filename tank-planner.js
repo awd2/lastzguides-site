@@ -7,9 +7,16 @@
         return;
     }
 
+    var strings = Object.fromEntries(Array.from(
+        document.getElementById("calculator-strings").content.querySelectorAll("[data-string]"),
+        function (node) { return [node.dataset.string, node.textContent]; }));
+    function text(key, values) {
+        return strings[key].replace(/\{(\w+)\}/g, function (_, name) { return values[name]; });
+    }
+
     var STORAGE_KEY = "lastz:tank-planner:v2";
     var LEGACY_STORAGE_KEY = "lastz:tank-planner:v1";
-    var formatter = new Intl.NumberFormat("en-US");
+    var formatter = new Intl.NumberFormat({ fr: "fr-FR", es: "es-ES" }[document.documentElement.lang.split("-")[0]] || "en-US");
     var progress = data.modifications.map(function () { return 0; });
     var goalIndex = -1;
     var goalSublevel = 0;
@@ -147,7 +154,7 @@
             window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: 2, progress: progress, goalIndex: goalIndex, goalSublevel: goalSublevel }));
             return true;
         } catch (error) {
-            setStatus("Progress could not be saved in this browser.");
+            setStatus(text("saveFailed"));
             return false;
         }
     }
@@ -228,7 +235,7 @@
     function modificationOptions(selectedIndex, emptyLabel) {
         return '<option value="-1">' + escapeHtml(emptyLabel) + '</option>' + data.modifications.map(function (modification, index) {
             var milestone = data.milestones.some(function (item) { return item.level === modification.level; });
-            return '<option value="' + index + '"' + (index === selectedIndex ? " selected" : "") + '>Lv. ' + modification.level + " — " + escapeHtml(modification.name) + (milestone ? " · milestone" : "") + "</option>";
+            return '<option value="' + index + '"' + (index === selectedIndex ? " selected" : "") + '>' + escapeHtml(text('level', { level: modification.level })) + " — " + escapeHtml(modification.name) + (milestone ? text("milestoneOption") : "") + "</option>";
         }).join("");
     }
 
@@ -236,7 +243,7 @@
         if (!modification) {
             return '<option value="0">—</option>';
         }
-        var options = includeEmpty ? '<option value="0">No goal</option>' : "";
+        var options = includeEmpty ? '<option value="0">' + escapeHtml(text('noGoal')) + '</option>' : "";
         return options + Array.from({ length: modification.sublevels }, function (_, index) {
             var value = index + 1;
             return '<option value="' + value + '"' + (value === selected ? " selected" : "") + ">" + value + "/" + modification.sublevels + "</option>";
@@ -245,17 +252,17 @@
 
     function renderSelectors() {
         var frontier = currentIndex();
-        elements.currentModification.innerHTML = modificationOptions(frontier, "No progress");
+        elements.currentModification.innerHTML = modificationOptions(frontier, text("noProgress"));
         elements.currentSublevel.innerHTML = sublevelOptions(data.modifications[frontier], frontier >= 0 ? progress[frontier] : 0, false);
         elements.currentSublevel.disabled = frontier < 0;
-        elements.goalModification.innerHTML = modificationOptions(goalIndex, "No goal");
+        elements.goalModification.innerHTML = modificationOptions(goalIndex, text("noGoal"));
         elements.goalSublevel.innerHTML = sublevelOptions(data.modifications[goalIndex], goalSublevel, true);
         elements.goalSublevel.disabled = goalIndex < 0;
     }
 
     function nodeControlsMarkup(modification, index, current) {
         return '<div class="tank-node-detail">' +
-            '<div class="tank-node-stepper" role="group" aria-label="' + escapeHtml(modification.name) + ' current sub-level"><button type="button" data-action="decrement" data-index="' + index + '" aria-label="Decrease ' + escapeHtml(modification.name) + ' progress"' + (current <= 0 ? " disabled" : "") + '>−</button><output>' + current + "/" + modification.sublevels + '</output><button type="button" data-action="increment" data-index="' + index + '" aria-label="Increase ' + escapeHtml(modification.name) + ' progress"' + (current >= modification.sublevels ? " disabled" : "") + '>+</button></div></div>';
+            '<div class="tank-node-stepper" role="group" aria-label="' + escapeHtml(text('currentSublevel', { name: modification.name })) + '"><button type="button" data-action="decrement" data-index="' + index + '" aria-label="' + escapeHtml(text('decrease', { name: modification.name })) + '"' + (current <= 0 ? " disabled" : "") + '>−</button><output>' + current + "/" + modification.sublevels + '</output><button type="button" data-action="increment" data-index="' + index + '" aria-label="' + escapeHtml(text('increase', { name: modification.name })) + '"' + (current >= modification.sublevels ? " disabled" : "") + '>+</button></div></div>';
     }
 
     function pathNodeMarkup(modification, index) {
@@ -267,22 +274,22 @@
         var remaining = (modification.sublevels - current) * ratedPerSub(modification);
         var milestone = data.milestones.find(function (item) { return item.level === modification.level; });
         return '<article class="tank-path-node' + (complete ? " is-complete" : "") + (isCurrent ? " is-current" : "") + (isGoal ? " has-goal" : "") + '" id="' + modification.id + '">' +
-            '<div class="tank-node-row"><button type="button" class="tank-node-summary" data-action="toggle-node" data-index="' + index + '" aria-expanded="' + isExpanded + '"><span class="tank-node-heading"><span class="tank-node-level">Lv. ' + modification.level + (milestone ? " · Milestone" : "") + '</span><strong>' + escapeHtml(modification.name) + '</strong><small>' + escapeHtml(modification.rating) + '</small></span><span class="tank-node-state"><strong>' + current + "/" + modification.sublevels + '</strong><small>' + formatNumber(remaining) + ' left</small></span><span class="tank-node-chevron" aria-hidden="true"></span></button>' +
-            '<button type="button" class="tank-node-quick tank-node-done" data-action="toggle-done" data-index="' + index + '" aria-pressed="' + complete + '" aria-label="Mark ' + escapeHtml(modification.name) + (complete ? ' not done' : ' done') + '"><span class="tank-node-done-icon" aria-hidden="true"></span><span>Done</span></button>' +
-            '<button type="button" class="tank-node-quick tank-node-goal" data-action="toggle-goal" data-index="' + index + '" aria-pressed="' + isGoal + '" aria-label="' + (isGoal ? 'Clear goal for ' : 'Set goal for ') + escapeHtml(modification.name) + '"><span class="tank-node-goal-icon" aria-hidden="true"></span><span>Goal</span></button></div>' +
+            '<div class="tank-node-row"><button type="button" class="tank-node-summary" data-action="toggle-node" data-index="' + index + '" aria-expanded="' + isExpanded + '"><span class="tank-node-heading"><span class="tank-node-level">' + escapeHtml(text("level", { level: modification.level })) + (milestone ? text("milestoneHeading") : "") + '</span><strong>' + escapeHtml(modification.name) + '</strong><small>' + escapeHtml(modification.rating) + '</small></span><span class="tank-node-state"><strong>' + current + "/" + modification.sublevels + '</strong><small>' + escapeHtml(text('remaining', { count: formatNumber(remaining) })) + '</small></span><span class="tank-node-chevron" aria-hidden="true"></span></button>' +
+            '<button type="button" class="tank-node-quick tank-node-done" data-action="toggle-done" data-index="' + index + '" aria-pressed="' + complete + '" aria-label="' + escapeHtml(text(complete ? 'markUndone' : 'markDone', { name: modification.name })) + '"><span class="tank-node-done-icon" aria-hidden="true"></span><span>' + escapeHtml(text("done")) + '</span></button>' +
+            '<button type="button" class="tank-node-quick tank-node-goal" data-action="toggle-goal" data-index="' + index + '" aria-pressed="' + isGoal + '" aria-label="' + escapeHtml(text(isGoal ? 'clearGoal' : 'setGoal', { name: modification.name })) + '"><span class="tank-node-goal-icon" aria-hidden="true"></span><span>' + escapeHtml(text("goal")) + '</span></button></div>' +
             '<div class="tank-node-progress" aria-hidden="true"><span style="width:' + (current / modification.sublevels * 100) + '%"></span></div>' +
             (isExpanded ? nodeControlsMarkup(modification, index, current) : "") + '</article>';
     }
 
     function pathMarkup() {
-        var groupStarts = { 0: "To Cheetah", 10: "To Hercules", 20: "To Destroyer", 30: "To Destroyer EX", 40: "To Full Path" };
+        var groupStarts = { 0: text("group0"), 10: text("group10"), 20: text("group20"), 30: text("group30"), 40: text("group40") };
         return data.modifications.map(function (modification, index) {
             return (groupStarts[index] ? '<h3 class="tank-path-group">' + groupStarts[index] + '</h3>' : "") + pathNodeMarkup(modification, index);
         }).join("");
     }
 
     function rowSelect(type, index, current, maximum) {
-        return '<select data-row-' + type + ' data-index="' + index + '" aria-label="' + (type === "current" ? "Current" : "Goal") + ' sub-level for ' + escapeHtml(data.modifications[index].name) + '">' + Array.from({ length: maximum + 1 }, function (_, value) {
+        return '<select data-row-' + type + ' data-index="' + index + '" aria-label="' + escapeHtml(text(type === "current" ? "currentRow" : "goalRow", { name: data.modifications[index].name })) + '">' + Array.from({ length: maximum + 1 }, function (_, value) {
             return '<option value="' + value + '"' + (value === current ? " selected" : "") + ">" + value + "/" + maximum + "</option>";
         }).join("") + "</select>";
     }
@@ -292,15 +299,15 @@
         var target = index === goalIndex ? goalSublevel : 0;
         var remaining = (modification.sublevels - current) * ratedPerSub(modification);
         var isExpanded = index === expandedIndex;
-        return '<tr class="tank-table-row ' + (current === modification.sublevels ? "is-complete " : "") + (index === goalIndex ? "has-goal" : "") + '" id="table-' + modification.id + '"><td><button type="button" data-action="toggle-table" data-index="' + index + '" aria-expanded="' + isExpanded + '"><strong>' + escapeHtml(modification.name) + '</strong><small>' + escapeHtml(modification.rating) + '</small></button></td><td>' + modification.level + '</td><td>' + current + "/" + modification.sublevels + '</td><td>' + formatNumber(remaining) + '</td></tr>' + (isExpanded ? '<tr class="tank-table-detail"><td colspan="4"><div><label><span>Current</span>' + rowSelect("current", index, current, modification.sublevels) + '</label><label><span>Goal</span>' + rowSelect("goal", index, target, modification.sublevels) + '</label></div></td></tr>' : "");
+        return '<tr class="tank-table-row ' + (current === modification.sublevels ? "is-complete " : "") + (index === goalIndex ? "has-goal" : "") + '" id="table-' + modification.id + '"><td><button type="button" data-action="toggle-table" data-index="' + index + '" aria-expanded="' + isExpanded + '"><strong>' + escapeHtml(modification.name) + '</strong><small>' + escapeHtml(modification.rating) + '</small></button></td><td>' + modification.level + '</td><td>' + current + "/" + modification.sublevels + '</td><td>' + formatNumber(remaining) + '</td></tr>' + (isExpanded ? '<tr class="tank-table-detail"><td colspan="4"><div><label><span>' + escapeHtml(text("current")) + '</span>' + rowSelect("current", index, current, modification.sublevels) + '</label><label><span>' + escapeHtml(text("goal")) + '</span>' + rowSelect("goal", index, target, modification.sublevels) + '</label></div></td></tr>' : "");
     }
 
     function milestoneMarkup(milestone, spent) {
         var index = data.modifications.findIndex(function (item) { return item.level === milestone.level; });
         var active = index === goalIndex && goalSublevel === data.modifications[index].sublevels;
         var remaining = Math.max(milestone.ratedWrenches - spent, 0);
-        var label = milestone.name === "Cheetah Armored Vehicle" ? "Cheetah" : milestone.name;
-        return '<button type="button" data-action="milestone" data-index="' + index + '" class="' + (remaining === 0 ? "is-reached " : "") + (active ? "is-goal" : "") + '" aria-pressed="' + active + '"><span>' + escapeHtml(label) + '<small>Lv. ' + milestone.level + '</small></span><strong>' + (active ? "Goal" : remaining === 0 ? "Reached" : formatNumber(remaining)) + '<small>' + (active ? formatNumber(remaining) + " left" : remaining === 0 ? formatNumber(milestone.ratedWrenches) + " spent" : "left") + '</small></strong></button>';
+        var label = milestone.name === "Cheetah Armored Vehicle" ? text("cheetah") : milestone.name;
+        return '<button type="button" data-action="milestone" data-index="' + index + '" class="' + (remaining === 0 ? "is-reached " : "") + (active ? "is-goal" : "") + '" aria-pressed="' + active + '"><span>' + escapeHtml(label) + '<small>' + escapeHtml(text('level', { level: milestone.level })) + '</small></span><strong>' + (active ? text("goal") : remaining === 0 ? text("reached") : formatNumber(remaining)) + '<small>' + (active ? text("remaining", { count: formatNumber(remaining) }) : remaining === 0 ? text("spent", { count: formatNumber(milestone.ratedWrenches) }) : text("remainingLabel")) + '</small></strong></button>';
     }
 
     function restoreFocus(focus) {
@@ -438,12 +445,12 @@
         }
         var fallback = function () {
             window.history.replaceState(null, "", url);
-            setStatus("Copy the address bar URL to share this plan.");
+            setStatus(text("shareFallback"));
         };
         if (navigator.clipboard && window.isSecureContext) {
             navigator.clipboard.writeText(url.toString()).then(function () {
                 window.history.replaceState(null, "", url);
-                setStatus("Plan link copied.");
+                setStatus(text("shareCopied"));
                 if (hasUsefulState()) track("share_success");
             }).catch(fallback);
         } else {
@@ -461,7 +468,7 @@
         window.history.replaceState(null, "", url);
         closeDialog(resetDialog);
         render();
-        setStatus("Tank Planner reset.");
+        setStatus(text("reset"));
     }
 
     function setView(nextView, shouldTrack) {
@@ -525,7 +532,7 @@
     attachDialogBehavior(resetDialog);
 
     if (loadedFromShare) {
-        setStatus("Shared plan loaded.");
+        setStatus(text("sharedLoaded"));
     }
     var frontier = currentIndex();
     if (frontier >= 0) {

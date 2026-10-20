@@ -15,6 +15,11 @@
 <title>Last Z Equipment Calculator — Promotion and Forging Costs</title>
 <meta name="description" content="Calculate Power Core promotion and Mythic forging costs for one Last Z equipment item from its current step to a target.">
 <link rel="canonical" href="https://lastzguides.com/equipment-calculator.html">
+
+    <link rel="alternate" href="https://lastzguides.com/equipment-calculator.html" hreflang="en">
+    <link rel="alternate" href="https://lastzguides.com/fr/equipment-calculator.html" hreflang="fr">
+    <link rel="alternate" href="https://lastzguides.com/es/equipment-calculator.html" hreflang="es">
+    <link rel="alternate" href="https://lastzguides.com/equipment-calculator.html" hreflang="x-default">
 <meta property="og:title" content="Last Z Equipment Calculator — Promotion and Forging Costs">
 <meta property="og:description" content="Calculate Power Core promotion and Mythic forging costs for one Last Z equipment item from its current step to a target.">
 <meta property="og:type" content="website">
@@ -30,8 +35,6 @@
 <meta name="twitter:image" content="https://lastzguides.com/assets/social/last-z-guides-share-v3.png">
 <meta name="twitter:image:alt" content="Last Z Guides social preview highlighting gift codes, practical guides, exact research costs, and the Research Planner.">
 <!-- lastz:freshness-update reason="cost_table_update" date="2026-09-27" -->
-<link rel="alternate" href="https://lastzguides.com/equipment-calculator.html" hreflang="en">
-<link rel="alternate" href="https://lastzguides.com/equipment-calculator.html" hreflang="x-default">
 <link rel="stylesheet" href="style.css?v=73d8d4f8e0c9">
 <link rel="stylesheet" href="search.css?v=472b3bb662e7">
 <link rel="stylesheet" href="equipment-calculator.css?v=911576d41dfc">
@@ -62,7 +65,7 @@
 
 </head>
 <body class="equipment-calculator-page">
-    <header class="site-header">
+    <header class="site-header site-header--has-language">
         <a href="/" class="logo-link">
             <img decoding="async" class="site-logo" src="favicon-32.png" alt="Last Z Guides" width="18" height="18">
             <span>Last Z Guides</span>
@@ -80,6 +83,14 @@
             <span>Search...</span>
             <kbd><span>⌘</span>K</kbd>
         </button>
+        <details class="language-switcher">
+            <summary class="language-switcher__button" aria-label="Language: EN">EN</summary>
+            <div class="language-switcher__menu" role="list">
+                <a href="/equipment-calculator.html" hreflang="en" lang="en" aria-current="page">English</a>
+                <a href="/fr/equipment-calculator.html" hreflang="fr" lang="fr">Français</a>
+                <a href="/es/equipment-calculator.html" hreflang="es" lang="es">Español</a>
+            </div>
+        </details>
     </header>
     <nav class="mobile-bottom-nav" aria-label="Primary navigation">
         <a href="/">Home</a>
@@ -199,6 +210,31 @@
 </template>
 <section class="planner-panel planner-related" aria-labelledby="equipment-links-title"><h2 id="equipment-links-title">More on equipment</h2><div class="related-grid"><a class="related-card" href="/gear.html">Gear upgrade priorities and full cost tables →</a></div></section>
 <noscript>JavaScript is needed for the interactive totals. The Gear Guide has the full Promotion and Forging cost tables.</noscript>
+<template id="calculator-strings">
+  <span data-string="noForging">No forging</span>
+  <span data-string="noPromotion">No promotion</span>
+  <span data-string="stones">Forging Stones</span>
+  <span data-string="modules">Pulse Modules</span>
+  <span data-string="electricity">Electricity</span>
+  <span data-string="cores">Power Cores</span>
+  <span data-string="zents">Zent</span>
+  <span data-string="orange">Spare orange items</span>
+  <span data-string="nothing">Nothing else is needed for this transition.</span>
+  <span data-string="invalidMillions">Enter a non-negative amount in millions with up to six decimal places for {resource}.</span>
+  <span data-string="invalidWhole">Enter a non-negative whole number for {resource}.</span>
+  <span data-string="missing">Still missing after inventory</span>
+  <span data-string="more">More materials are needed for this target.</span>
+  <span data-string="covered">Your entered inventory covers this cost.</span>
+  <span data-string="noMaterials">No additional materials</span>
+  <span data-string="noForgeStage">No new forging stage selected.</span>
+  <span data-string="forgeRequirement">Requirement for {stage}: enhancement level {level} and {count} completed promotion {stars}.</span>
+  <span data-string="oneStar">star</span>
+  <span data-string="manyStars">stars</span>
+  <span data-string="noPromotionStep">No new promotion step selected.</span>
+  <span data-string="promotionUnlock">Promotion unlocks at enhancement level 20.</span>
+  <span data-string="available">{resource} available</span>
+  <span data-string="availableMillions">{resource} available (M)</span>
+</template>
 </main>
     <nav class="home-nav site-nav" aria-label="Guide categories">
         <a href="/#progression">Progression</a>
@@ -221,7 +257,7 @@
     </footer>
 <script src="analytics.js" defer></script>
 <script src="equipment-calculator-data.js?v=16d4e200ea65" defer></script>
-<script src="equipment-calculator.js?v=63251cdfd663" defer></script>
-<script src="search-loader.js?v=75c8118be86f" defer></script>
+<script src="equipment-calculator.js?v=32db26084290" defer></script>
+<script src="search-loader.js?v=f16393e47973" defer></script>
 </body>
 </html>
