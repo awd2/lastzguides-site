@@ -67,6 +67,7 @@
             "doneAmount": "{amount} done",
             "unlockRequirement": "Unlock: {requirements}",
             "labLevel": "Lab Level {level}",
+            "t10Unlock": "Final node unlocks T10",
             "numberedLabLevel": "Laboratory {number} Level {level}",
             "clearNodeTarget": "Clear target for {node}",
             "setNodeMaxTarget": "Set max target for {node}",
@@ -144,6 +145,7 @@
             "doneAmount": "Completado: {amount}",
             "unlockRequirement": "Desbloqueo: {requirements}",
             "labLevel": "Laboratorio de nivel {level}",
+            "t10Unlock": "El último nodo desbloquea T10",
             "numberedLabLevel": "Laboratorio n.º {number} de nivel {level}",
             "clearNodeTarget": "Borrar el objetivo de {node}",
             "setNodeMaxTarget": "Fijar el nivel máximo como objetivo de {node}",
@@ -221,6 +223,7 @@
             "doneAmount": "Terminé : {amount}",
             "unlockRequirement": "Déblocage : {requirements}",
             "labLevel": "Laboratoire de niveau {level}",
+            "t10Unlock": "Le dernier nœud débloque T10",
             "numberedLabLevel": "Laboratoire n° {number}, niveau {level}",
             "clearNodeTarget": "Effacer la cible de {node}",
             "setNodeMaxTarget": "Définir le niveau maximal comme cible pour {node}",
@@ -980,6 +983,7 @@
             '<p class="branch-summary-meta">',
             escapeHtml(plannerText("branchSummary", { nodes: branch.nodes.length, levels: summary.totalLevels })),
             branch.unlockRequirements.length ? " · " + escapeHtml(plannerText("unlockRequirement", { requirements: branch.unlockRequirements.map(localizeUnlock).join(" + ") })) : "",
+            branch.id === "unit-special-training" ? " · " + escapeHtml(plannerText("t10Unlock")) : "",
             "</p>"
         ].join("");
 

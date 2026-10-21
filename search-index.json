@@ -795,7 +795,7 @@
     "source_path": "research-planner.html",
     "title": "Research Planner",
     "category": "Research",
-    "description": "Usa el Research Planner de Last Z para marcar niveles completados, fijar nodos objetivo, calcular badges restantes por rama, guardar progreso localmente y co...",
+    "description": "Calcula las insignias restantes en Last Z, incluida la ruta T10 completa (Unit Special Training). Guarda tu progreso localmente y comparte tu plan.",
     "keywords": [
       "Last",
       "Research",
@@ -1450,7 +1450,7 @@
     "source_path": "research-planner.html",
     "title": "Calculateur de badges Last Z",
     "category": "Research",
-    "description": "Calculez les badges nécessaires à vos objectifs de recherche dans Last Z. Renseignez vos niveaux actuels et cibles, sauvegardez votre progression et partagez...",
+    "description": "Calculez les badges restants dans Last Z, dont le parcours T10 complet (Unit Special Training). Sauvegardez votre progression en local et partagez votre plan.",
     "keywords": [
       "Research",
       "Planner",
@@ -1828,9 +1828,9 @@
     "url": "/hq-construction-cost.html",
     "locale": "en",
     "source_path": "hq-construction-cost.html",
-    "title": "HQ Construction Cost Table",
+    "title": "HQ Upgrade Calculator",
     "category": "Progression",
-    "description": "Last Z HQ construction cost table for levels 1-35: wood, food, zent, steel, hero caps, prerequisite buildings, build times, and total costs.",
+    "description": "Calculate HQ construction costs from your current level to HQ35: wood, food, Zent, Steel and build time at your construction speed. Full HQ1–35 table.",
     "keywords": [
       "Last",
       "Construction",
@@ -2250,7 +2250,7 @@
     "source_path": "research-planner.html",
     "title": "Research Planner",
     "category": "Research",
-    "description": "Use the Last Z Research Planner to track completed levels, set target nodes, calculate remaining badges by branch, save progress locally, and share a researc...",
+    "description": "Calculate remaining badges in Last Z, including the full T10 (Unit Special Training) path. Track levels, save progress locally, and share your research plan.",
     "keywords": [
       "Last",
       "Research",

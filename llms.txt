@@ -29,6 +29,7 @@ Key guides:
 - [Redeem Codes](https://lastzguides.com/codes.html): Copy active codes for the official Gift Center; find recently expired codes and redemption help.
 
 Tools:
+- [HQ Upgrade Calculator](https://lastzguides.com/hq-construction-cost.html#hq-calculator): Total HQ construction costs between levels, list prerequisite buildings, and calculate build time at your construction speed; full HQ1–35 table.
 - [Research Planner (Badge Calculator)](https://lastzguides.com/research-planner.html): Calculate remaining badges by branch from completed research levels and target nodes; save progress and share a plan link.
 - [Tank Planner (Wrench Calculator)](https://lastzguides.com/tank-planner.html): Track vehicle modification progress and calculate spent and remaining Golden Wrenches.
 - [Migration Score Calculator](https://lastzguides.com/migration-calculator.html): Estimate Migration Score from Structure, Tech, Hero and Modified Vehicle Power; a community estimate, not an official assessment.
