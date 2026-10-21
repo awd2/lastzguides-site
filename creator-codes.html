@@ -167,7 +167,7 @@
       "name": "What happens when a creator code expires?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The official site says: “This code has expired. Please bind a creator code again.” Bind a code again on the official site. The 100 Z-Points achievement does not repeat."
+        "text": "The site asks you to bind a code again. Pick a current code from the list; the 100 Z-Points achievement doesn't repeat."
       }
     },
     {
@@ -175,7 +175,7 @@
       "name": "How do creators get a Creator Code?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Creator Codes are available to eligible official Last Z content creators. Join through the periodic Community Outpost Recruitment Events announced on the official Discord. Selected participants may be invited; each creator is evaluated individually, not by subscriber count alone. Creators earn rewards when players recharge through the official Gold Bar Store with their code."
+        "text": "Only official Last Z content creators get one; the team picks them through Community Outpost recruitment events announced on the official Discord. Creators earn rewards when players top up on the official site with their code."
       }
     }
   ]
@@ -257,11 +257,11 @@
         </section>
         <section class="guide-content" id="verified-codes">
             <h2>Verified Last Z Creator Codes</h2>
-            <p>Checked by binding on October 21, 2026 · valid until November 4, 2026, 02:00 UTC (00:00 Apocalypse Time)</p>
-            <p><strong>Bind links this code on the official site and replaces any code you already have.</strong> You can change or unbind it on the same page.</p>
-            <p>Creators share their codes in their own videos and posts; these are the ones we checked.</p>
-            <div class="creator-codes-list">
-                <div class="highlight-box">
+            <p id="creator-codes-dates">Checked October 21, 2026 · valid until November 4, 02:00 UTC</p>
+            <p id="creator-codes-bind-note"><strong>Bind replaces any code you already have.</strong></p>
+            <p id="creator-codes-expired" hidden>These codes expired on November 4. We're checking new ones; meanwhile, look in your favorite creators' latest videos.</p>
+            <div class="creator-codes-list" data-checked="2026-10-21" data-valid-until="2026-11-04T02:00:00Z">
+                <div class="highlight-box" data-creator-code="NEMOSHQLZ">
                     <p>Creator code &middot; Nemos HQ</p>
                     <p><strong><span class="creator-code-value">NEMOSHQLZ</span></strong></p>
                     <div class="creator-code-actions">
@@ -269,7 +269,7 @@
                         <a href="https://last-z.com/#/en/creator-code?bindCode=NEMOSHQLZ" target="_blank" rel="noopener" aria-label="Bind NEMOSHQLZ on last-z.com">Bind on last-z.com</a>
                     </div>
                 </div>
-                <div class="highlight-box">
+                <div class="highlight-box" data-creator-code="QUEENGAMINGLZ">
                     <p>Creator code &middot; Queen Gaming</p>
                     <p><strong><span class="creator-code-value">QUEENGAMINGLZ</span></strong></p>
                     <div class="creator-code-actions">
@@ -277,7 +277,7 @@
                         <a href="https://last-z.com/#/en/creator-code?bindCode=QUEENGAMINGLZ" target="_blank" rel="noopener" aria-label="Bind QUEENGAMINGLZ on last-z.com">Bind on last-z.com</a>
                     </div>
                 </div>
-                <div class="highlight-box">
+                <div class="highlight-box" data-creator-code="TITANLZ">
                     <p>Creator code &middot; XxxTITANxxX</p>
                     <p><strong><span class="creator-code-value">TITANLZ</span></strong></p>
                     <div class="creator-code-actions">
@@ -312,13 +312,11 @@
                     </tbody>
                 </table>
             </div>
-            <p>Claim completed achievements on the website and collect the rewards from your in-game mailbox. These missions can only be completed once and do not reset after completion.</p>
+            <p>Claim them on the website; rewards arrive in your in-game mailbox. Each can be completed once.</p>
         </section>
         <section class="guide-content" id="change-code">
             <h2>Change or Unbind Your Code</h2>
-            <p>The linked-code screen shows <strong>Creator code linked</strong>, your code, <strong>Change Code</strong> and <strong>Unbind</strong>. You can change or remove the code at any time.</p>
-            <p>Creator codes expire. The screen shows <strong>Code expires in</strong>. The codes we checked share one end time, and switching, unbinding or rebinding does not restart the countdown.</p>
-            <p>After expiry, the site says: “This code has expired. Please bind a creator code again.” Bind a code again on the same page.</p>
+            <p>On the Creator Code page, use Change Code to switch or Unbind to remove your code at any time.</p>
         </section>
         <section class="guide-content" id="comparison">
             <h2>Creator Codes vs Gift Codes</h2>
@@ -328,7 +326,7 @@
                     <tbody>
                         <tr><th scope="row">Where it goes</th><td>Creator Code on the official Gold Bar website</td><td>Official Gift Center</td></tr>
                         <tr><th scope="row">What it does</th><td>Links one creator; unlocks one-time achievements</td><td>Redeems that gift code's rewards</td></tr>
-                        <tr><th scope="row">Time limit</th><td>Expires at the time shown in Code expires in; bind a code again after</td><td>Each code expires; new codes often within hours</td></tr>
+                        <tr><th scope="row">Time limit</th><td>Has an end date</td><td>Often runs out within hours</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -339,8 +337,8 @@
             <div class="faq-item"><h3>Can I support more than one creator at once?</h3><p>No. You can link one creator code at a time. Change Code replaces the linked code; Unbind removes it.</p></div>
             <div class="faq-item"><h3>Can I get the binding reward again by switching codes?</h3><p>No. Achievement missions can only be completed once. Switching or rebinding does not make the 100 Z-Points achievement available again.</p></div>
             <div class="faq-item"><h3>Does supporting a creator make top-ups more expensive?</h3><p>No. While the code is active, the creator receives a portion of your official-site top-up revenue at no extra cost to you. Binding itself is free.</p></div>
-            <div class="faq-item"><h3>What happens when a creator code expires?</h3><p>The official site says: “This code has expired. Please bind a creator code again.” Bind a code again on the official site. The 100 Z-Points achievement does not repeat.</p></div>
-            <div class="faq-item"><h3>How do creators get a Creator Code?</h3><p>Creator Codes are available to eligible official Last Z content creators. Join through the periodic Community Outpost Recruitment Events announced on the official Discord. Selected participants may be invited; each creator is evaluated individually, not by subscriber count alone. Creators earn rewards when players recharge through the official Gold Bar Store with their code.</p></div>
+            <div class="faq-item"><h3>What happens when a creator code expires?</h3><p>The site asks you to bind a code again. Pick a current code from the list; the 100 Z-Points achievement doesn't repeat.</p></div>
+            <div class="faq-item"><h3>How do creators get a Creator Code?</h3><p>Only official Last Z content creators get one; the team picks them through Community Outpost recruitment events announced on the official Discord. Creators earn rewards when players top up on the official site with their code.</p></div>
         </section>
         <section class="related-guides">
             <h2>Related Guides</h2>
@@ -373,6 +371,31 @@
     </footer>
     <script src="analytics.js" defer></script>
     <script src="search-loader.js?v=f16393e47973" defer></script>
+    <script id="creator-codes-expiry-script">
+      (function() {
+        var list = document.querySelector('[data-valid-until]');
+        var expires = Date.parse(list.getAttribute('data-valid-until'));
+        var timer;
+        function checkExpiry() {
+          window.clearTimeout(timer);
+          if (!Number.isFinite(expires)) return;
+          var remaining = expires - Date.now();
+          if (remaining <= 0) {
+            document.getElementById('creator-codes-expired').hidden = false;
+            document.getElementById('creator-codes-dates').hidden = true;
+            document.getElementById('creator-codes-bind-note').hidden = true;
+            list.querySelectorAll('a[href*="bindCode="]').forEach(function(link) {
+              link.hidden = true;
+              link.removeAttribute('href');
+            });
+          } else {
+            timer = window.setTimeout(checkExpiry, Math.min(remaining, 2147483647));
+          }
+        }
+        checkExpiry();
+        document.addEventListener('visibilitychange', checkExpiry);
+      })();
+    </script>
     <script>
       document.querySelectorAll('[data-copy-creator-code]').forEach(function(button) {
         button.addEventListener('click', async function() {
