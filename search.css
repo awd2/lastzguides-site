@@ -952,7 +952,7 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    font-family: var(--lz-type-reading, 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+    font-family: var(--lz-type-system, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
 }
 
 .site-header .logo-link {
@@ -1215,7 +1215,7 @@ body.ui-foundation .search-modal {
     box-shadow:
         0 28px 64px rgba(0, 0, 0, 0.55),
         0 0 0 1px rgba(242, 238, 229, 0.03);
-    font-family: var(--lz-type-reading, 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+    font-family: var(--lz-type-system, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
 }
 
 body.ui-foundation .search-input-wrapper {
@@ -1359,7 +1359,7 @@ body.ui-foundation .search-cancel:hover {
         box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.34);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        font-family: var(--lz-type-reading, 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+        font-family: var(--lz-type-system, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
     }
 
     .mobile-bottom-nav a {
