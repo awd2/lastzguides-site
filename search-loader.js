@@ -341,6 +341,81 @@
         updateSpace();
     }
 
+    function enhanceChannels() {
+        var container = document.querySelector('.site-channels');
+        if (!container) return;
+        var bell = container.querySelector('.site-channels__bell');
+        var menu = container.querySelector('.site-channels__menu');
+        var seenKey = 'lastz.channels.seen.v1';
+        var label = bell.getAttribute('aria-label');
+        var unseen = false;
+        try {
+            // Reading may work when writes are blocked (quota or private browsing).
+            var seen = window.localStorage.getItem(seenKey);
+            window.localStorage.setItem(seenKey, seen === '1' ? '1' : '0');
+            unseen = seen !== '1';
+        } catch (_) { /* No persistent storage: no dot. */ }
+        function renderDot() {
+            bell.classList.toggle('has-unseen', unseen);
+            bell.setAttribute('aria-label', unseen ? bell.dataset.unseenLabel : label);
+        }
+        function remember() {
+            unseen = false;
+            renderDot();
+            try { window.localStorage.setItem(seenKey, '1'); } catch (_) { /* Optional storage. */ }
+        }
+        function close(restoreFocus) {
+            if (menu.hidden) return;
+            menu.hidden = true;
+            bell.setAttribute('aria-expanded', 'false');
+            if (restoreFocus) bell.focus({ preventScroll: true });
+        }
+        renderDot();
+        bell.addEventListener('click', function() {
+            if (!menu.hidden) { close(true); return; }
+            remember();
+            var language = document.querySelector('.language-switcher');
+            if (language) language.open = false;
+            menu.hidden = false;
+            bell.setAttribute('aria-expanded', 'true');
+            menu.querySelector('a').focus({ preventScroll: true });
+        });
+        document.addEventListener('click', function(event) {
+            if (!container.contains(event.target)) close(menu.contains(document.activeElement));
+            var link = event.target.closest && event.target.closest('[data-channel-platform]');
+            if (!link) return;
+            remember();
+            var platform = link.dataset.channelPlatform;
+            var placement = link.dataset.channelPlacement;
+            // Existing codes / Lucky Rose handlers retain their own analytics.
+            if (placement && /^(header_icons|header_bell|footer|about)$/.test(placement)) {
+                if (window.analytics && typeof window.analytics.trackEvent === 'function') {
+                    window.analytics.trackEvent('channel_join_click', { platform: platform, placement: placement });
+                }
+            }
+        });
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && !menu.hidden) { event.preventDefault(); close(true); }
+        });
+        document.addEventListener('focusin', function(event) {
+            if (!container.contains(event.target)) close(false);
+        });
+        window.addEventListener('resize', function() {
+            if (!bell.getClientRects().length) {
+                var restore = !menu.hidden;
+                close(false);
+                if (restore) {
+                    var icon = container.querySelector('.site-channels__icons a');
+                    var target = icon.getClientRects().length ? icon : document.querySelector('.search-trigger');
+                    if (target) target.focus({ preventScroll: true });
+                }
+            }
+        });
+        window.addEventListener('storage', function(event) {
+            if (event.key === seenKey && event.newValue === '1') { unseen = false; renderDot(); }
+        });
+    }
+
     function loadSearch() {
         if (loaded || loading) return;
         loading = true;
@@ -401,6 +476,7 @@
             centerActiveClusterNavItem();
             enhanceFreshCodeNavigation();
             enhanceLuckyRoseNavigation();
+            enhanceChannels();
         });
     } else {
         reserveMobileNavigationSpace();
@@ -409,5 +485,6 @@
         centerActiveClusterNavItem();
         enhanceFreshCodeNavigation();
         enhanceLuckyRoseNavigation();
+        enhanceChannels();
     }
 })();
