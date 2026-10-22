@@ -67,6 +67,14 @@
     <!-- Schema.org: Organization -->
 
 
+<style data-code-alerts>
+      #code-alerts .code-alerts-links, .code-alert-prompt .code-alerts-links { display: flex; flex-wrap: wrap; gap: 10px; }
+      :is(#code-alerts, .code-alert-prompt) .gift-center-button { gap: 8px; min-height: 44px; width: auto; text-decoration: none; }
+      .code-alert-prompt { grid-column: 1 / -1; position: relative; padding-top: 12px; border-top: 1px solid var(--border-subtle); }
+      .code-alert-prompt p { margin: 0 36px 12px 0; line-height: 1.4; }
+      .code-alert-prompt-close { position: absolute; top: 0; right: -8px; width: 44px; height: 44px; border: 0; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+      .code-alert-prompt-close:focus-visible { outline: 2px solid var(--focus-ring); }
+    </style>
     <meta name="description" content="Copiez les codes cadeau Last Z actifs vérifiés chaque jour, utilisez-les via le Gift Center officiel, récupérez votre UID avec Avatar &gt; Settings &gt; Copy ID, puis vérifiez les récompenses dans la mailbox.">
     <meta name="keywords" content="Last Z codes, Last Z redeem codes, Last Z gift codes, Last Z free diamonds, Last Z codes 2026, Last Z promo codes, Last Z gift center, Last Z UID">
     <meta property="og:title" content="Codes cadeau Last Z — codes de redemption actifs, Gift Center, UID">
@@ -346,7 +354,12 @@
                 <a class="gift-center-button" href="https://last-z.com/giftCenter/#/login" target="_blank" rel="noopener">Ouvrir le Gift Center</a>
             </div>
         </section>
-        <!-- active-codes:end --><section class="quick-answer quick-answer--modern" aria-label="Réponse rapide">
+        <!-- active-codes:end -->
+
+        <div class="highlight-box" id="code-alerts" data-after-copy-text="Recevez les prochains codes avant qu'ils expirent" data-close-label="Fermer" data-close-symbol="✕">
+            <p><strong>Recevez les nouveaux codes avant qu'ils expirent</strong></p>
+            <div class="code-alerts-links"><a class="gift-center-button" data-channel-platform="discord" href="https://discord.gg/tEMqv3Gq3Y" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.2a18.4 18.4 0 0 0-5.6 0L8.6 3a19.8 19.8 0 0 0-4.9 1.4C.6 9 .1 13.5.4 17.9a20 20 0 0 0 6 3l1.2-2a13.2 13.2 0 0 1-1.9-.9l.5-.4a14.7 14.7 0 0 0 11.6 0l.5.4a13.2 13.2 0 0 1-1.9.9l1.2 2a20 20 0 0 0 6-3c.4-5.1-.7-9.5-3.3-13.5ZM8 15.3c-1.1 0-2-1-2-2.3s.9-2.3 2-2.3 2 1 2 2.3-.9 2.3-2 2.3Zm8 0c-1.1 0-2-1-2-2.3s.9-2.3 2-2.3 2 1 2 2.3-.9 2.3-2 2.3Z"></path></svg>Discord</a> <a class="gift-center-button" data-channel-platform="telegram" href="https://t.me/lastzguides" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.9 3.3 18.5 20c-.3 1.2-1 1.5-2 .9l-5.2-3.8-2.5 2.4c-.3.3-.5.5-1 .5l.4-5.3 9.6-8.7c.4-.4-.1-.6-.6-.2L5.3 13.3.2 11.7c-1.1-.4-1.1-1.1.2-1.6L20.3 2.4c.9-.3 1.7.2 1.6.9Z"></path></svg>Telegram</a></div>
+        </div><section class="quick-answer quick-answer--modern" aria-label="Réponse rapide">
             <p class="qa-kicker">Réponse rapide</p>
             <div class="qa-body">
                 <p class="qa-lede"><strong>Comment utiliser correctement les codes Last Z :</strong> ouvrez le Gift Center officiel, copiez votre UID depuis Settings, collez le code exactement, puis récupérez les récompenses dans votre mailbox en jeu.</p>
@@ -760,25 +773,103 @@
             button.classList.remove('is-copied');
           }, 1600);
         };
+        var fallbackCopy = function() {
+          var input = document.createElement('textarea');
+          input.value = code;
+          input.setAttribute('readonly', '');
+          input.style.position = 'absolute';
+          input.style.left = '-9999px';
+          document.body.appendChild(input);
+          var copied = false;
+          try {
+            input.select();
+            copied = document.execCommand('copy');
+          } catch (error) {
+            // A denied fallback must not report a successful copy.
+          } finally {
+            document.body.removeChild(input);
+            button.focus({ preventScroll: true });
+          }
+          if (copied) setCopied();
+          else {
+            var card = button.closest('.code-card');
+            var codeText = card && card.querySelector('.code-card__code');
+            var selection = window.getSelection();
+            if (codeText && selection) {
+              var range = document.createRange();
+              range.selectNodeContents(codeText);
+              selection.removeAllRanges();
+              selection.addRange(range);
+            }
+          }
+        };
         if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(code).then(setCopied);
+          try {
+            navigator.clipboard.writeText(code).then(setCopied, fallbackCopy);
+          } catch (error) {
+            fallbackCopy();
+          }
           return;
         }
-        var input = document.createElement('textarea');
-        input.value = code;
-        input.setAttribute('readonly', '');
-        input.style.position = 'absolute';
-        input.style.left = '-9999px';
-        document.body.appendChild(input);
-        input.select();
-        var copied = false;
-        try {
-          copied = document.execCommand('copy');
-        } finally {
-          document.body.removeChild(input);
-        }
-        if (copied) setCopied();
+        fallbackCopy();
       });
+    </script>
+    <script data-code-alerts>
+      (() => {
+        const block = document.getElementById('code-alerts');
+        if (!block) return;
+        const storageKey = 'lastz.codes.channel-prompt.v1';
+        let consumed = false;
+        let prompt, copyButton;
+        const alreadySeen = () => {
+          try { return consumed || window.localStorage.getItem(storageKey) === '1'; }
+          catch (_) { return consumed; }
+        };
+        const remember = () => {
+          consumed = true;
+          try { window.localStorage.setItem(storageKey, '1'); } catch (_) { /* Optional storage. */ }
+        };
+        const close = () => {
+          if (!prompt) return;
+          const restoreFocus = prompt.contains(document.activeElement);
+          prompt.remove();
+          prompt = null;
+          document.removeEventListener('keydown', escape);
+          if (restoreFocus && copyButton.isConnected) copyButton.focus({ preventScroll: true });
+        };
+        const escape = event => { if (event.key === 'Escape') close(); };
+        document.addEventListener('click', event => {
+          const link = event.target.closest('[data-channel-platform]');
+          if (!link || (!block.contains(link) && !prompt?.contains(link))) return;
+          const platform = link.dataset.channelPlatform;
+          const placement = prompt?.contains(link) ? 'after_copy' : 'block';
+          window.analytics?.trackEvent?.('channel_join_click', { platform, placement });
+          remember();
+        });
+        document.addEventListener('lastz:code-copied', event => {
+          const button = event.target.closest('[data-copy-code]');
+          const card = button?.closest('.code-card');
+          if (!card || alreadySeen()) return;
+          remember();
+          copyButton = button;
+          prompt = block.cloneNode(true);
+          prompt.removeAttribute('id');
+          prompt.className = 'code-alert-prompt';
+          const title = prompt.querySelector('p');
+          title.textContent = block.dataset.afterCopyText;
+          title.setAttribute('role', 'status');
+          const dismiss = document.createElement('button');
+          dismiss.type = 'button';
+          dismiss.className = 'code-alert-prompt-close';
+          dismiss.textContent = block.dataset.closeSymbol;
+          dismiss.setAttribute('aria-label', block.dataset.closeLabel);
+          dismiss.addEventListener('click', close);
+          prompt.appendChild(dismiss);
+          card.appendChild(prompt);
+          document.addEventListener('keydown', escape);
+          // In-flow, no animation or timer: stays until dismissed or navigation.
+        });
+      })();
     </script>
 </body>
 </html>
