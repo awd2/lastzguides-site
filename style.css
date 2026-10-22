@@ -2114,6 +2114,13 @@ body.ui-foundation.ui-guide-utilities > article.guide-content .faq-item p {
     font-weight: 400;
 }
 
+
+.footer-follow {
+    color: var(--color-muted, #b4b1a8);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
 /* Footer */
 footer, .site-footer {
     box-sizing: border-box;
