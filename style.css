@@ -1159,9 +1159,9 @@ body.ui-foundation.ui-guide-utilities > article.guide-content > :where(section:n
 }
 
 body > .home-nav.site-nav {
-    margin-top: 36px;
-    border-top-color: var(--border-subtle, rgba(255, 255, 255, 0.08));
-    border-bottom: 1px solid var(--border-faint, rgba(255, 255, 255, 0.06));
+    margin-top: var(--lz-space-3, 12px);
+    border-top: 0;
+    border-bottom: 0;
 }
 
 @media (max-width: 600px) {
@@ -2115,70 +2115,115 @@ body.ui-foundation.ui-guide-utilities > article.guide-content .faq-item p {
 }
 
 
-.footer-follow {
-    color: var(--color-muted, #b4b1a8);
-    font-size: 0.9rem;
-    line-height: 1.5;
+/* Compact only the content-to-category boundary; keep related content intact. */
+body > :is(article.guide, article.guide-content):has(+ .home-nav.site-nav) {
+    padding-bottom: var(--lz-space-4, 16px);
 }
 
-/* Footer */
-footer, .site-footer {
+body > .planner-shell:has(+ .home-nav.site-nav) {
+    margin-bottom: var(--lz-space-3, 12px);
+}
+
+/* Footer: channels first in source/mobile; legal links first on wider shells. */
+.site-footer {
     box-sizing: border-box;
     width: 100%;
     max-width: var(--page-shell-width, 760px);
     margin: 0 auto;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 28px 20px 32px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--lz-space-2, 8px) var(--lz-space-4, 16px);
+    padding: 11px var(--lz-space-5, 20px) 12px;
     border-top: 1px solid var(--border-subtle, #3c3d36);
-    text-align: left;
     font-family: var(--lz-type-reading, 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+    line-height: 1.4;
 }
 
-footer a, .site-footer a {
-    color: var(--color-muted, #b4b1a8);
+.site-footer a {
+    color: var(--nav-text, #c7c7c7);
     text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.15s;
+    font-size: 0.875rem;
 }
 
-footer .footer-links,
+.site-footer .footer-channels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--lz-space-2, 8px);
+    order: 1;
+}
+
+.site-footer .footer-channels a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--lz-space-2, 8px);
+    min-height: 40px;
+    padding: 8px var(--lz-space-3, 12px);
+    border: 1px solid var(--border-subtle, #3c3d36);
+    border-radius: 4px;
+    background: var(--surface-panel, #252525);
+    color: var(--color-text-strong, #fff);
+    font-weight: 600;
+}
+
+.site-footer .footer-channels svg {
+    flex: none;
+}
+
 .site-footer .footer-links {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 8px 12px;
+    align-items: center;
+    gap: 0 6px;
 }
 
-footer .footer-links a::before,
-.site-footer .footer-links a::before {
-    content: "·";
-    margin: 0 6px 0 0;
-    color: #555;
+.site-footer .footer-links a {
+    padding: 6px 0;
+    min-height: 32px;
 }
 
-footer a:hover, .site-footer a:hover {
-    color: #ff9d94;
+.site-footer .footer-divider {
+    color: var(--nav-text, #c7c7c7);
+}
+
+.site-footer a:focus-visible {
+    outline: 2px solid var(--nav-text, #c7c7c7);
+    outline-offset: 3px;
+}
+
+@media (hover: hover) {
+    .site-footer a:hover {
+        color: #ff9d94;
+    }
+
+    .site-footer .footer-channels a:hover {
+        background: var(--surface-panel-hover, #2a2a2a);
+    }
 }
 
 @media (max-width: 600px) {
-    footer,
     .site-footer,
     .guide:not(.data-guide) ~ .site-footer,
     .data-guide ~ .site-footer,
     .planner-shell ~ .site-footer {
         width: auto;
         max-width: none;
-        margin-right: 16px;
-        margin-left: 16px;
-        padding: 24px 0;
+        margin-right: var(--lz-space-4, 16px);
+        margin-left: var(--lz-space-4, 16px);
+        padding: 11px 0 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
     }
 
-    .planner-shell ~ .site-footer {
-        display: flex !important;
-        padding-bottom: 24px;
+    .site-footer .footer-channels {
+        order: 0;
+    }
+
+    .site-footer .footer-links {
+        column-gap: 2px;
     }
 
     .atlas-grid {
@@ -2219,13 +2264,12 @@ footer a:hover, .site-footer a:hover {
         margin-right: 2px;
     }
 
-    footer, .site-footer {
-        padding: 24px 16px;
-        gap: 8px;
-    }
+}
 
-    footer a, .site-footer a {
-        font-size: 0.85rem;
+/* The Planner's legacy mobile stylesheet hides its footer through 640px. */
+@media (max-width: 640px) {
+    .planner-shell ~ .site-footer {
+        display: flex !important;
     }
 }
 
