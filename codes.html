@@ -874,5 +874,72 @@
         });
       })();
     </script>
+    <script data-code-live>
+      (function() {
+        var config = {"locale":"en","cards":{"official":"<article class=\"code-card\">\n                    <div class=\"code-card__main\">\n                        <span class=\"status-pill status-pill--fresh\">Fresh</span>\n                        <strong class=\"code-card__code\">LIVECODETOKEN</strong>\n                        <span class=\"code-card__meta\">Official &middot; First seen __DATE__</span>\n                    </div>\n                    <button class=\"copy-code-button\" type=\"button\" data-copy-code=\"LIVECODETOKEN\" data-copy-label=\"Copy\" data-copied-label=\"Copied\" aria-label=\"Copy code LIVECODETOKEN\">Copy</button>\n                </article>","community":"<article class=\"code-card\">\n                    <div class=\"code-card__main\">\n                        <span class=\"status-pill status-pill--fresh\">Fresh</span>\n                        <strong class=\"code-card__code\">LIVECODETOKEN</strong>\n                        <span class=\"code-card__meta\">Community &middot; First seen __DATE__</span>\n                    </div>\n                    <button class=\"copy-code-button\" type=\"button\" data-copy-code=\"LIVECODETOKEN\" data-copy-label=\"Copy\" data-copied-label=\"Copied\" aria-label=\"Copy code LIVECODETOKEN\">Copy</button>\n                </article>"},"summary":"{count} active {noun}.","singular":"code","plural":"codes"};
+        var grid = document.querySelector('[data-code-grid]');
+        if (!grid || !window.fetch || !window.AbortController) return;
+        var controller = new AbortController();
+        var timer = window.setTimeout(function() { controller.abort(); }, 4000);
+        var token = function(value) {
+          return typeof value === 'string' && /^[A-Z0-9]{5,32}$/.test(value) && /[A-Z]/.test(value);
+        };
+        var utcDate = function(value) {
+          return typeof value === 'string' && /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d+)?(?:Z|\+00:00)$/.test(value) && Number.isFinite(Date.parse(value));
+        };
+        fetch('https://lastz-codes-scheduler.data-node-4821.workers.dev/codes-live.json', {
+          cache: 'no-store', signal: controller.signal
+        }).then(function(response) {
+          if (!response.ok) return null;
+          return response.json();
+        }).then(function(data) {
+          if (!data || data.v !== 1 || !utcDate(data.updated_at) ||
+              !Array.isArray(data.active) || !Array.isArray(data.withdrawn) ||
+              !data.withdrawn.every(token) || !data.active.every(function(row) {
+                return row && token(row.code) && (row.kind === 'official' || row.kind === 'community') && utcDate(row.first_seen_at);
+              })) return;
+          var now = Date.now();
+          var withdrawn = new Set(data.withdrawn);
+          var existing = new Set(Array.from(grid.querySelectorAll('[data-copy-code]')).map(function(button) {
+            return button.getAttribute('data-copy-code');
+          }));
+          var changed = false;
+          data.active.slice().reverse().forEach(function(row) {
+            var age = now - Date.parse(row.first_seen_at);
+            if (existing.has(row.code) || withdrawn.has(row.code) || age < 0 || age > 86400000) return;
+            var date = new Date(row.first_seen_at);
+            var formatted = new Intl.DateTimeFormat(config.locale, {
+              day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'
+            }).format(date);
+            var template = document.createElement('template');
+            var cardHtml = config.cards[row.kind].replace(/LIVECODETOKEN/g, row.code).replace('__DATE__', formatted);
+            template.innerHTML = cardHtml;
+            var card = template.content.firstElementChild;
+            card.setAttribute('data-live', '');
+            grid.prepend(card);
+            existing.add(row.code);
+            changed = true;
+          });
+          grid.querySelectorAll('.code-card').forEach(function(card) {
+            var button = card.querySelector('[data-copy-code]');
+            if (button && withdrawn.has(button.getAttribute('data-copy-code')) && !card.hidden) {
+              card.hidden = true;
+              // The existing card display rule overrides the UA hidden rule.
+              card.style.display = 'none';
+              changed = true;
+            }
+          });
+          if (!changed) return;
+          var count = Array.from(grid.querySelectorAll('.code-card')).filter(function(card) { return !card.hidden; }).length;
+          var summary = document.querySelector('.active-codes-heading p');
+          if (summary) {
+            var countText = config.summary.replace('{count}', count).replace('{noun}', count === 1 ? config.singular : config.plural);
+            summary.textContent = summary.textContent.replace(/^\d+ [^.]+\./, countText);
+          }
+        }).catch(function() {
+          // Optional live overlay: static cards remain usable on failure.
+        }).finally(function() { window.clearTimeout(timer); });
+      })();
+    </script>
 </body>
 </html>
