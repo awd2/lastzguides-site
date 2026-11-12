@@ -271,8 +271,6 @@
             "troop-atk-in-siege-assaults": "Ataque de las tropas al atacar en un asedio",
             "troop-def-in-siege-assaults": "Defensa de las tropas al atacar en un asedio",
             "troop-load": "Capacidad de carga de las tropas",
-            "in-field-troop-atk": "Ataque de las tropas en campo abierto",
-            "in-field-troop-def": "Defensa de las tropas en campo abierto",
             "rider-hp": "Vida de los Riders",
             "assaulter-hp": "Vida de los Assaulters",
             "shooter-hp": "Vida de los Shooters",
@@ -316,7 +314,21 @@
             "steel-plant-amount": "Cantidad de Steel Plants",
             "construction-speed": "Velocidad de construcción",
             "research-speed": "Velocidad de investigación",
-            "max-reservists": "Máximo de reservistas"
+            "max-reservists": "Máximo de reservistas",
+            "field-troop-atk": "Ataque de las tropas en campo abierto",
+            "field-troop-def": "Defensa de las tropas en campo abierto",
+            "new-structure": "Nuevo edificio",
+            "unit-training-speed": "Velocidad de entrenamiento de unidades",
+            "team-dmg": "Daño del equipo",
+            "team-dmg-reduction": "Reducción del daño recibido por el equipo",
+            "team-health": "Vida del equipo",
+            "team-up-atk": "Ataque en cooperación",
+            "team-up-def": "Defensa en cooperación",
+            "reduces-minimum-rally-launching-time": "Reducción del tiempo mínimo para iniciar una concentración",
+            "troop-atk-siege-defenses": "Ataque de las tropas al defender un asedio",
+            "troop-def-siege-defenses": "Defensa de las tropas al defender un asedio",
+            "troop-atk-siege-assaults": "Ataque de las tropas al atacar en un asedio",
+            "troop-def-siege-assaults": "Defensa de las tropas al atacar en un asedio"
         },
         "fr": {
             "troop-atk": "Attaque des troupes",
@@ -342,8 +354,6 @@
             "troop-atk-in-siege-assaults": "Attaque des troupes à l’assaut d’un siège",
             "troop-def-in-siege-assaults": "Défense des troupes à l’assaut d’un siège",
             "troop-load": "Capacité de charge des troupes",
-            "in-field-troop-atk": "Attaque des troupes en rase campagne",
-            "in-field-troop-def": "Défense des troupes en rase campagne",
             "rider-hp": "Points de vie des Riders",
             "assaulter-hp": "Points de vie des Assaulters",
             "shooter-hp": "Points de vie des Shooters",
@@ -387,7 +397,21 @@
             "steel-plant-amount": "Nombre de Steel Plants",
             "construction-speed": "Vitesse de construction",
             "research-speed": "Vitesse de recherche",
-            "max-reservists": "Nombre maximal de réservistes"
+            "max-reservists": "Nombre maximal de réservistes",
+            "field-troop-atk": "Attaque des troupes en campagne",
+            "field-troop-def": "Défense des troupes en campagne",
+            "new-structure": "Nouveau bâtiment",
+            "unit-training-speed": "Vitesse d’entraînement des unités",
+            "team-dmg": "Dégâts de l’équipe",
+            "team-dmg-reduction": "Réduction des dégâts subis par l’équipe",
+            "team-health": "PV de l’équipe",
+            "team-up-atk": "Attaque en coopération",
+            "team-up-def": "Défense en coopération",
+            "reduces-minimum-rally-launching-time": "Réduction du délai minimal de lancement d’un ralliement",
+            "troop-atk-siege-defenses": "Attaque des troupes en défense de siège",
+            "troop-def-siege-defenses": "Défense des troupes en défense de siège",
+            "troop-atk-siege-assaults": "Attaque des troupes à l’assaut d’un siège",
+            "troop-def-siege-assaults": "Défense des troupes à l’assaut d’un siège"
         }
     };
     if (!data || !Array.isArray(data.branches)) {
@@ -1602,8 +1626,9 @@
         return changed;
     }
 
-    function requiredParentLevel(branch, parent, childRequiredLevel) {
-        return parent.maxLevel;
+    function requiredParentLevel(child, parent, childRequiredLevel) {
+        var link = child.requires.find(function (item) { return item.id === parent.id; });
+        return childRequiredLevel >= (link.from || 1) ? link.level : 0;
     }
 
     function walkRequiredAncestors(branch, node, level, callback) {
@@ -1615,7 +1640,7 @@
                     return;
                 }
                 var parent = nodeMap.get(parentId);
-                var requiredLevel = requiredParentLevel(branch, parent, currentRequiredLevel);
+                var requiredLevel = requiredParentLevel(current, parent, currentRequiredLevel);
                 var previous = bestRequired.get(parentId) || 0;
                 if (requiredLevel <= previous) {
                     return;
@@ -1714,14 +1739,13 @@
                 return;
             }
             var missingCompleted = [];
-            var requiredLevel = Math.max(done, target);
             node.parents.forEach(function (parentId) {
                 var parent = nodeMap.get(parentId);
                 if (!parent) {
                     return;
                 }
                 var parentKey = nodeKey(branch.id, parentId);
-                var parentRequired = requiredParentLevel(branch, parent, requiredLevel);
+                var parentRequired = requiredParentLevel(node, parent, done);
                 if (done > 0 && getLevel(parentKey) < parentRequired) {
                     missingCompleted.push(parent.name + " " + parentRequired + "/" + parent.maxLevel);
                 }
@@ -1739,7 +1763,7 @@
         branch.nodes.forEach(function (node) {
             var done = getLevel(nodeKey(branch.id, node.id));
             (node.stats || []).forEach(function (stat) {
-                if (!stat || String(stat.key).toLowerCase() === "power") {
+                if (!stat || stat.format === "text" || String(stat.key).toLowerCase() === "power") {
                     return;
                 }
                 if (!statsByKey.has(stat.key)) {
