@@ -24,6 +24,7 @@
     <link rel="preload" as="style" href="quick-answer.css?v=915212a84592" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="quick-answer.css?v=915212a84592"></noscript>
     <link rel="stylesheet" href="search.css?v=ccdcb30b94ef">
+    <link rel="stylesheet" href="vehicle-table.css?v=10aa23e12d41">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="icon" href="favicon.ico" sizes="any">
@@ -276,8 +277,23 @@
             <h2 id="leaders-will-and-army-expansion">Leader’s Will and Army Expansion Costs</h2>
             <h3 id="leaders-will">Leader’s Will</h3>
             <p>Leader’s Will costs <strong>6,089,170 badges</strong> for the full branch. Requires Lab Level 35 + 80% Tactical Master. <a href="research-planner.html?branch=leaders-will">Research Planner</a></p>
-            <h3 id="army-expansion">Army Expansion</h3>
-            <p>Army Expansion research costs <strong>no badges</strong>, but it still requires resources and research time. It is separate from <a href="army-building-cost.html">Army Building</a>.</p>
+            <h2 id="research-without-badges">Research trees without badges</h2>
+            <div class="data-table-card">
+                <p class="table-subnote">Base time (before Research Speed). Select a tree to plan its levels.</p>
+                <div class="table-scroll" role="region" aria-label="Research trees without badges" tabindex="0">
+                    <table class="data-table research-resource-table">
+                        <thead><tr><th scope="col">Tree</th><th scope="col">Nodes / levels</th><th scope="col">Electricity</th><th scope="col">Zent</th><th scope="col">Base time</th><th scope="col">Requires</th></tr></thead>
+                        <tbody>
+                        <tr><th scope="row"><a href="research-planner.html?branch=new-home">New Home</a></th><td>50 / 50</td><td>13,070,400</td><td>7,847,240</td><td>5 d 53 m</td><td>Lab Level 1</td></tr>
+                        <tr><th scope="row"><a href="research-planner.html?branch=shelter-building">Shelter Building</a></th><td>18 / 110</td><td>160,000,080</td><td>120,000,120</td><td>114 d 2 h</td><td>Lab Level 5</td></tr>
+                        <tr><th scope="row"><a href="research-planner.html?branch=elite-troops">Elite Troops</a></th><td>21 / 115</td><td>260,000,120</td><td>192,000,070</td><td>171 d 18 h</td><td>Lab Level 8</td></tr>
+                        <tr><th scope="row"><a href="research-planner.html?branch=hq-management">HQ Management</a></th><td>20 / 195</td><td>1,440,000,220</td><td>432,000,180</td><td>266 d 9 h</td><td>Lab Level 14 + 100% Shelter Building</td></tr>
+                        <tr><th scope="row"><a href="research-planner.html?branch=rapid-growth">Rapid Growth</a></th><td>16 / 185</td><td>2,400,000,130</td><td>720,000,180</td><td>1,009 d</td><td>Lab Level 22 + 100% HQ Management</td></tr>
+                        <tr id="army-expansion"><th scope="row"><a href="research-planner.html?branch=army-expansion">Army Expansion</a></th><td>26 / 310</td><td>19,062,500,000</td><td>17,155,750,000</td><td>11,031 d 13 h</td><td>Lab Level 33 + 50% Rapid Growth</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </section>
 
         <section class="guide-content">

@@ -54,7 +54,6 @@
             "shareCopied": "Share link copied.",
             "sharePrompt": "Copy share link:",
             "shareReady": "Share link ready.",
-            "tableDescription": "Node levels, targets, badge spend, and remaining cost.",
             "statsDescription": "Current / target / max bonuses for this branch.",
             "completedLevels": "{done} of {total} levels",
             "targetLevels": "{count} target levels",
@@ -87,7 +86,19 @@
             "fullBranchCost": "Full cost",
             "finishBranchCost": "To finish",
             "levelsCompleted": "Levels completed",
-            "badgesSpent": "Badges spent"
+            "badgesSpent": "Badges spent",
+            "electricity": "Electricity",
+            "zent": "Zent",
+            "time": "Time",
+            "baseTime": "Base time (before Research Speed)",
+            "badgeResearch": "Badge research",
+            "noBadgeResearch": "No-badge research",
+            "day": "d",
+            "hour": "h",
+            "minute": "m",
+            "second": "s",
+            "openNodeDetails": "Open {node} details",
+            "tableDescription": "Node levels, targets, resource costs and base time."
         },
         "es": {
             "level": "Nivel",
@@ -132,7 +143,6 @@
             "shareCopied": "Enlace para compartir copiado.",
             "sharePrompt": "Copia el enlace para compartir:",
             "shareReady": "Enlace para compartir listo.",
-            "tableDescription": "Niveles de las tecnologías, objetivos, insignias gastadas y coste restante.",
             "statsDescription": "Bonificaciones actuales, objetivo y máximas de esta rama.",
             "completedLevels": "Niveles completados: {done}/{total}",
             "targetLevels": "Niveles adicionales previstos: {count}",
@@ -165,7 +175,19 @@
             "fullBranchCost": "Coste total",
             "finishBranchCost": "Para terminar",
             "levelsCompleted": "Niveles completados",
-            "badgesSpent": "Insignias gastadas"
+            "badgesSpent": "Insignias gastadas",
+            "electricity": "Electricity",
+            "zent": "Zent",
+            "time": "Tiempo",
+            "baseTime": "Tiempo base (antes de Research Speed)",
+            "badgeResearch": "Investigación con insignias",
+            "noBadgeResearch": "Investigación sin insignias",
+            "day": "d",
+            "hour": "h",
+            "minute": "min",
+            "second": "s",
+            "openNodeDetails": "Abrir los detalles de {node}",
+            "tableDescription": "Niveles de las tecnologías, objetivos, costes de recursos y tiempo base."
         },
         "fr": {
             "level": "Niveau",
@@ -210,7 +232,6 @@
             "shareCopied": "Lien de partage copié.",
             "sharePrompt": "Copiez le lien de partage :",
             "shareReady": "Lien de partage prêt.",
-            "tableDescription": "Niveaux des technologies, cibles, badges dépensés et coût restant.",
             "statsDescription": "Bonus actuels, visés et maximaux de cette branche.",
             "completedLevels": "Niveaux terminés : {done}/{total}",
             "targetLevels": "Niveaux supplémentaires visés : {count}",
@@ -243,7 +264,19 @@
             "fullBranchCost": "Coût total",
             "finishBranchCost": "Pour terminer",
             "levelsCompleted": "Niveaux terminés",
-            "badgesSpent": "Badges dépensés"
+            "badgesSpent": "Badges dépensés",
+            "electricity": "Electricity",
+            "zent": "Zent",
+            "time": "Temps",
+            "baseTime": "Temps de base (avant Research Speed)",
+            "badgeResearch": "Recherches avec badges",
+            "noBadgeResearch": "Recherches sans badges",
+            "day": "j",
+            "hour": "h",
+            "minute": "min",
+            "second": "s",
+            "openNodeDetails": "Ouvrir les détails de {node}",
+            "tableDescription": "Niveaux des technologies, cibles, coûts en ressources et temps de base."
         }
     };
     var plannerStatStrings = {
@@ -281,7 +314,7 @@
             "food-gathering-speed": "Velocidad de recolección de comida",
             "wood-gathering-speed": "Velocidad de recolección de madera",
             "zent-gathering-speed": "Velocidad de recolección de Zent",
-            "electricity-gathering-speed": "Velocidad de recolección de electricidad",
+            "electricity-gathering-speed": "Velocidad de recolección de Electricity",
             "all-points": "Todos los puntos",
             "unit-training-volume": "Cantidad de unidades por entrenamiento",
             "resource-gathering-driven-points": "Puntos por recolectar recursos",
@@ -328,7 +361,23 @@
             "troop-atk-siege-defenses": "Ataque de las tropas al defender un asedio",
             "troop-def-siege-defenses": "Defensa de las tropas al defender un asedio",
             "troop-atk-siege-assaults": "Ataque de las tropas al atacar en un asedio",
-            "troop-def-siege-assaults": "Defensa de las tropas al atacar en un asedio"
+            "troop-def-siege-assaults": "Defensa de las tropas al atacar en un asedio",
+            "assaulter-training-volume": "Cantidad de Assaulters por entrenamiento",
+            "rider-training-volume": "Cantidad de Riders por entrenamiento",
+            "shooter-training-volume": "Cantidad de Shooters por entrenamiento",
+            "farm-storage": "Almacenamiento de granjas",
+            "lumberyards-storage": "Almacenamiento de aserraderos",
+            "reduces-resource-used-for-assaulter-training": "Reducción de recursos para entrenar Assaulters",
+            "reduces-resource-used-for-rider-training": "Reducción de recursos para entrenar Riders",
+            "reduces-resource-used-for-shooter-training": "Reducción de recursos para entrenar Shooters",
+            "residences-zent-production-speed": "Velocidad de producción de Zent de las residencias",
+            "residences-zent-storage": "Almacenamiento de Zent de las residencias",
+            "resource-protection": "Protección de recursos",
+            "resource-protection-cap": "Límite de protección de recursos",
+            "unit-cap": "Límite de unidades",
+            "wind-turbine-yield-h": "Producción de turbinas eólicas",
+            "wind-turbines-storage": "Almacenamiento de turbinas eólicas",
+            "zent-yields-bonus": "Bonificación de producción de Zent"
         },
         "fr": {
             "troop-atk": "Attaque des troupes",
@@ -364,7 +413,7 @@
             "food-gathering-speed": "Vitesse de récolte de nourriture",
             "wood-gathering-speed": "Vitesse de récolte de bois",
             "zent-gathering-speed": "Vitesse de récolte de Zent",
-            "electricity-gathering-speed": "Vitesse de collecte d’électricité",
+            "electricity-gathering-speed": "Vitesse de collecte d’Electricity",
             "all-points": "Tous les points",
             "unit-training-volume": "Nombre d’unités par entraînement",
             "resource-gathering-driven-points": "Points de récolte de ressources",
@@ -411,7 +460,23 @@
             "troop-atk-siege-defenses": "Attaque des troupes en défense de siège",
             "troop-def-siege-defenses": "Défense des troupes en défense de siège",
             "troop-atk-siege-assaults": "Attaque des troupes à l’assaut d’un siège",
-            "troop-def-siege-assaults": "Défense des troupes à l’assaut d’un siège"
+            "troop-def-siege-assaults": "Défense des troupes à l’assaut d’un siège",
+            "assaulter-training-volume": "Nombre d’Assaulters par entraînement",
+            "rider-training-volume": "Nombre de Riders par entraînement",
+            "shooter-training-volume": "Nombre de Shooters par entraînement",
+            "farm-storage": "Stockage des fermes",
+            "lumberyards-storage": "Stockage des scieries",
+            "reduces-resource-used-for-assaulter-training": "Réduction des ressources pour entraîner les Assaulters",
+            "reduces-resource-used-for-rider-training": "Réduction des ressources pour entraîner les Riders",
+            "reduces-resource-used-for-shooter-training": "Réduction des ressources pour entraîner les Shooters",
+            "residences-zent-production-speed": "Vitesse de production de Zent des résidences",
+            "residences-zent-storage": "Stockage de Zent des résidences",
+            "resource-protection": "Protection des ressources",
+            "resource-protection-cap": "Plafond de protection des ressources",
+            "unit-cap": "Limite d’unités",
+            "wind-turbine-yield-h": "Production des éoliennes",
+            "wind-turbines-storage": "Stockage des éoliennes",
+            "zent-yields-bonus": "Bonus de production de Zent"
         }
     };
     if (!data || !Array.isArray(data.branches)) {
@@ -808,12 +873,12 @@
         var branchScoped = isSmallScreen() && activeBranch;
         var totals = branchScoped ? calculateTotals([activeBranch]) : calculateTotals(branches);
         var scopeTotal = branchScoped ? activeBranch.totalBadges : data.totalBadges;
-        refs.totalBadges.innerHTML = badgeAmount(scopeTotal);
-        refs.completedBadges.innerHTML = badgeAmount(totals.completedBadges);
+        refs.totalBadges.innerHTML = branchScoped && !activeBranch.totalBadges ? "—" : badgeAmount(scopeTotal);
+        refs.completedBadges.innerHTML = branchScoped && !activeBranch.totalBadges ? "—" : badgeAmount(totals.completedBadges);
         refs.completedLevels.textContent = plannerText("completedLevels", { done: totals.completedLevels, total: totals.totalLevels });
-        refs.plannedBadges.innerHTML = badgeAmount(totals.plannedBadges);
+        refs.plannedBadges.innerHTML = branchScoped && !activeBranch.totalBadges ? "—" : badgeAmount(totals.plannedBadges);
         refs.plannedLevels.textContent = plannerText("targetLevels", { count: totals.targetLevels });
-        refs.remainingBadges.innerHTML = badgeAmount(scopeTotal - totals.completedBadges);
+        refs.remainingBadges.innerHTML = branchScoped && !activeBranch.totalBadges ? "—" : badgeAmount(scopeTotal - totals.completedBadges);
         if (refs.totalLabel) {
             refs.totalLabel.textContent = plannerText(branchScoped ? "branchTotal" : "total");
         }
@@ -823,14 +888,19 @@
     }
 
     function renderBranchSelect() {
-        refs.branchSelect.innerHTML = branches.map(function (branch) {
-            return '<option value="' + escapeAttr(branch.id) + '"' + (branch.id === state.activeBranchId ? " selected" : "") + ">" + escapeHtml(branch.name) + "</option>";
+        refs.branchSelect.innerHTML = [true, false].map(function (badges) {
+            return '<optgroup label="' + escapeAttr(plannerText(badges ? "badgeResearch" : "noBadgeResearch")) + '">' + branches.filter(function (branch) {
+                return Boolean(branch.totalBadges) === badges;
+            }).map(function (branch) {
+                return '<option value="' + escapeAttr(branch.id) + '"' + (branch.id === state.activeBranchId ? " selected" : "") + ">" + escapeHtml(branch.name) + "</option>";
+            }).join("") + '</optgroup>';
         }).join("");
         refs.branchSelect.value = state.activeBranchId;
         var activeBranch = branchById.get(state.activeBranchId);
         refs.branchMenuButton.textContent = activeBranch ? activeBranch.name : plannerText("selectBranch");
-        refs.branchMenu.innerHTML = branches.map(function (branch) {
+        refs.branchMenu.innerHTML = branches.map(function (branch, index) {
             return [
+                index === 0 || Boolean(branch.totalBadges) !== Boolean(branches[index - 1].totalBadges) ? '<div class="branch-group-label">' + escapeHtml(plannerText(branch.totalBadges ? "badgeResearch" : "noBadgeResearch")) + '</div>' : "",
                 '<button type="button" class="branch-picker-option',
                 branch.id === state.activeBranchId ? " is-active" : "",
                 '" data-branch-choice="', escapeAttr(branch.id), '">',
@@ -861,9 +931,7 @@
                 branch.totalBadges ? Math.round(summary.completedBadges / branch.totalBadges * 100) : 0,
                 '%"></span></span>',
                 '<span class="branch-button-meta">',
-                badgeMetric("strong", "spentAmount", summary.completedBadges),
-                badgeMetric("strong", "targetAmount", summary.plannedBadges),
-                badgeMetric("strong", "leftAmount", summary.remainingBadges),
+                branch.totalBadges ? badgeMetric("strong", "spentAmount", summary.completedBadges) + badgeMetric("strong", "targetAmount", summary.plannedBadges) + badgeMetric("strong", "leftAmount", summary.remainingBadges) : resourceAmounts(summary.remainingResources, false, true),
                 "</span>"
             ].join("");
             refs.branchList.appendChild(button);
@@ -924,21 +992,21 @@
         if (!refs.branchOverview) return;
         // Keep the existing node and its experiment listeners across grid rebuilds.
         if (refs.promo && refs.promoHome) refs.promoHome.before(refs.promo);
-        refs.branchOverview.innerHTML = branches.map(function (branch) {
+        refs.branchOverview.innerHTML = branches.map(function (branch, index) {
             var summary = calculateTotals([branch]);
             return [
+                index === 0 || Boolean(branch.totalBadges) !== Boolean(branches[index - 1].totalBadges) ? '<h3 class="branch-group-label">' + escapeHtml(plannerText(branch.totalBadges ? "badgeResearch" : "noBadgeResearch")) + '</h3>' : "",
                 '<button type="button" class="branch-card',
                 branch.id === state.activeBranchId ? " is-active" : "",
                 '" data-branch-card="', escapeAttr(branch.id), '">',
                 '<strong>', escapeHtml(branch.name), "</strong>",
-                '<span class="branch-card-costs">',
-                '<span class="branch-card-total"><span>', escapeHtml(plannerText("fullBranchCost")),
-                '</span>', badgeAmount(branch.totalBadges), "</span>",
-                '<span class="branch-card-total branch-card-remaining"><span>', escapeHtml(plannerText("finishBranchCost")),
-                '</span>', badgeAmount(summary.remainingBadges), "</span></span>",
+                branch.totalBadges ? '<span class="branch-card-costs">' : '',
+                branch.totalBadges ? '<span class="branch-card-total"><span>' + escapeHtml(plannerText("fullBranchCost")) + '</span>' + badgeAmount(branch.totalBadges) + '</span>' : '',
+                branch.totalBadges ? '<span class="branch-card-total branch-card-remaining"><span>' + escapeHtml(plannerText("finishBranchCost")) + '</span>' + badgeAmount(summary.remainingBadges) + '</span></span>' : '',
+                resourceAmounts(branchResources(branch), false, true, !branch.totalBadges),
                 '<span class="branch-card-progress-pair">',
                 overviewProgress("levelsCompleted", summary.completedLevels, summary.totalLevels, true),
-                overviewProgress("badgesSpent", summary.completedBadges, branch.totalBadges, false),
+                branch.totalBadges ? overviewProgress("badgesSpent", summary.completedBadges, branch.totalBadges, false) : "",
                 "</span>",
                 branch.unlockRequirements.length ? '<span class="branch-card-kicker">' + escapeHtml(plannerText("unlockRequirement", { requirements: branch.unlockRequirements.map(localizeUnlock).join(" + ") })) + '</span>' : "",
                 "</button>"
@@ -977,8 +1045,8 @@
         }
 
         var summary = calculateTotals([branch]);
-        var pct = branch.totalBadges ? Math.round(summary.completedBadges / branch.totalBadges * 100) : 0;
-        var targetActive = summary.plannedBadges > 0;
+        var pct = Math.round((branch.totalBadges ? summary.completedBadges / branch.totalBadges : summary.completedLevels / summary.totalLevels) * 100);
+        var targetActive = summary.targetLevels > 0;
         var viewButtonTarget = !isSmallScreen() && state.view === "table" ? "tree" : "table";
         var viewButtonLabel = plannerText(viewButtonTarget === "tree" ? "map" : "table");
         var viewButtonIcon = viewButtonTarget === "tree" ? "↔" : "☰";
@@ -996,9 +1064,9 @@
             "<h2>", escapeHtml(branch.name), "</h2>",
             "</div>",
             '<div class="branch-summary-metrics">',
-            '<span class="branch-summary-metric"><span>' + escapeHtml(plannerText("spent")) + '</span><strong>', badgeAmount(summary.completedBadges), '</strong></span>',
-            '<span class="branch-summary-metric"><span>' + escapeHtml(plannerText("remaining")) + '</span><strong>', badgeAmount(summary.remainingBadges), '</strong></span>',
-            targetActive ? '<span class="branch-summary-metric branch-summary-goal"><span>' + escapeHtml(plannerText("goal")) + '</span><strong>' + badgeAmount(summary.plannedBadges) + '</strong><button type="button" class="summary-clear-target" data-action="clear-branch-targets" data-branch-id="' + escapeAttr(branch.id) + '" aria-label="' + escapeAttr(plannerText("clearGoal")) + '">x</button></span>' : "",
+            '<span class="branch-summary-metric"><span>' + escapeHtml(plannerText("spent")) + '</span><strong>', resourceAmounts(summary.completedResources, branch.totalBadges > 0, true), '</strong></span>',
+            '<span class="branch-summary-metric"><span>' + escapeHtml(plannerText("remaining")) + '</span><strong>', resourceAmounts(summary.remainingResources, branch.totalBadges > 0, true), '</strong></span>',
+            targetActive ? '<span class="branch-summary-metric branch-summary-goal"><span>' + escapeHtml(plannerText("goal")) + '</span><strong>' + resourceAmounts(summary.plannedResources, branch.totalBadges > 0, true) + '</strong><button type="button" class="summary-clear-target" data-action="clear-branch-targets" data-branch-id="' + escapeAttr(branch.id) + '" aria-label="' + escapeAttr(plannerText("clearGoal")) + '">x</button></span>' : "",
             "</div>",
             mobileControls,
             '<button type="button" class="planner-button planner-button--muted" data-action="clear-branch" data-branch-id="', escapeAttr(branch.id), '">' + escapeHtml(plannerText("clear")) + '</button>',
@@ -1008,6 +1076,7 @@
             escapeHtml(plannerText("branchSummary", { nodes: branch.nodes.length, levels: summary.totalLevels })),
             branch.unlockRequirements.length ? " · " + escapeHtml(plannerText("unlockRequirement", { requirements: branch.unlockRequirements.map(localizeUnlock).join(" + ") })) : "",
             branch.id === "unit-special-training" ? " · " + escapeHtml(plannerText("t10Unlock")) : "",
+            " · ", escapeHtml(plannerText("baseTime")),
             "</p>"
         ].join("");
 
@@ -1058,7 +1127,7 @@
                 var pct = stat.total ? Math.min(100, Math.round(stat.target / stat.total * 100)) : 0;
                 return [
                     '<div class="stat-card">',
-                    '<span>', escapeHtml((plannerStatStrings[plannerLocale.code] || {})[stat.key] || stat.label), "</span>",
+                    '<span>', escapeHtml(((plannerStatStrings[plannerLocale.code] || {})[stat.key] || stat.label).replace(/\.+$/, "")), "</span>",
                     "<strong>", escapeHtml(formatStat(stat.earned, stat.format)), " / ", escapeHtml(formatStat(stat.target, stat.format)), " / ", escapeHtml(formatStat(stat.total, stat.format)), "</strong>",
                     '<small><span style="width:', pct, '%"></span></small>',
                     "</div>"
@@ -1160,6 +1229,7 @@
         var remaining = node.totalBadges - costToLevel(node, done);
         var classes = [
             "tree-node",
+            branch.totalBadges ? "" : "tree-node--no-badges",
             done >= node.maxLevel ? "is-complete" : "",
             done > 0 && done < node.maxLevel ? "is-partial" : "",
             target > done ? "has-target" : "",
@@ -1169,12 +1239,12 @@
             '<article class="', classes, '" style="left:', point.x, 'px;top:', point.y, 'px;">',
             '<button type="button" class="node-corner node-corner--left', target > done ? " is-selected" : "", '" data-action="', target > done ? "clear-target" : "plan-max", '" data-key="', escapeAttr(key), '" aria-label="', escapeAttr(plannerText(target > done ? "clearNodeTarget" : "setNodeMaxTarget", { node: node.name })), '" title="', escapeAttr(plannerText(target > done ? "clearTarget" : "setTarget")), '">⚑</button>',
             '<button type="button" class="node-corner node-corner--right', done >= node.maxLevel ? " is-selected" : "", '" data-action="', done >= node.maxLevel ? "clear" : "max", '" data-key="', escapeAttr(key), '" aria-label="', escapeAttr(plannerText(done >= node.maxLevel ? "clearNodeDone" : "completeNode", { node: node.name })), '" title="', escapeAttr(plannerText(done >= node.maxLevel ? "clearDone" : "markDone")), '">✓</button>',
-            '<button type="button" class="tree-node-open" data-action="open-node" data-key="', escapeAttr(key), '" aria-label="', escapeAttr(plannerText(planned ? "openNodeTarget" : "openNodeRemaining", { node: node.name, amount: formatNumber(planned || remaining) })), '">',
+            '<button type="button" class="tree-node-open" data-action="open-node" data-key="', escapeAttr(key), '" aria-label="', escapeAttr(plannerText(branch.totalBadges ? (planned ? "openNodeTarget" : "openNodeRemaining") : "openNodeDetails", { node: node.name, amount: formatNumber(planned || remaining) })), '">',
             '<span class="node-hex">', escapeHtml(initials(node.name)), "</span>",
             '<span class="tree-node-title">', escapeHtml(node.name), "</span>",
             '<span class="tree-node-grid">',
             '<span class="node-level-stat"><small>' + escapeHtml(plannerText("level")) + '</small><strong>', done, "/", node.maxLevel, "</strong></span>",
-            '<span class="node-remaining-stat"><small>' + escapeHtml(plannerText("remaining")) + '</small><strong>', badgeAmount(remaining), "</strong></span>",
+            '<span class="node-remaining-stat"><small>' + escapeHtml(plannerText("remaining")) + '</small><strong>', (branch.totalBadges ? badgeAmount(remaining) : formatTime(rangeCost(node, done, node.maxLevel, "researchTime"))), "</strong></span>",
             "</span>",
             '<span class="node-progress"><span style="width:', progress, '%"></span></span>',
             "</button>",
@@ -1206,9 +1276,9 @@
                     '<td><button type="button" class="table-node-name" data-action="open-node" data-key="', escapeAttr(key), '">', escapeHtml(node.name), "</button></td>",
                     '<td>', levelSelect("completed", key, done, node.maxLevel), "</td>",
                     '<td>', levelSelect("target", key, target, node.maxLevel), "</td>",
-                    "<td>", badgeAmount(spent), "</td>",
-                    "<td>", badgeAmount(planned), "</td>",
-                    "<td>", badgeAmount(node.totalBadges - spent), "</td>",
+                    "<td>", resourceAmounts(nodeResources(node, 0, done), branch.totalBadges > 0), "</td>",
+                    "<td>", resourceAmounts(nodeResources(node, done, target), branch.totalBadges > 0), "</td>",
+                    "<td>", resourceAmounts(nodeResources(node, done, node.maxLevel), branch.totalBadges > 0), "</td>",
                     "<td>", escapeHtml(parents), "</td>",
                     '<td><div class="row-actions">',
                     miniButton("complete-parents", key, plannerText("fillPrereqs")),
@@ -1249,9 +1319,9 @@
                     '<label>', escapeHtml(plannerText("target")), ' ', levelSelect("target", key, target, node.maxLevel), "</label>",
                     "</div>",
                     '<div class="node-list-metrics">',
-                    badgeMetric("strong", "spentAmount", spent),
-                    badgeMetric("strong", "targetAmount", planned),
-                    badgeMetric("strong", "leftAmount", remaining),
+                    '<span>' + escapeHtml(plannerText("spent")) + resourceAmounts(nodeResources(node, 0, done), branch.totalBadges > 0) + '</span>',
+                    '<span>' + escapeHtml(plannerText("target")) + resourceAmounts(nodeResources(node, done, target), branch.totalBadges > 0) + '</span>',
+                    '<span>' + escapeHtml(plannerText("remaining")) + resourceAmounts(nodeResources(node, done, node.maxLevel), branch.totalBadges > 0) + '</span>',
                     "</div>",
                     '<div class="row-actions">',
                     miniButton("complete-parents", key, plannerText("fillPrereqs")),
@@ -1289,7 +1359,7 @@
             "<p>", escapeHtml(branch.name), "</p><h2 id=\"drawer-title\">", escapeHtml(node.name), "</h2>",
             '<span>', escapeHtml(plannerText("nodeLevel", { done: done, max: node.maxLevel })), target > done ? " · " + escapeHtml(plannerText("nodeTarget", { level: target })) : "", "</span>",
             "</div>",
-            '<div class="drawer-remaining"><span>' + escapeHtml(plannerText("remaining")) + '</span><strong>', badgeAmount(remaining), "</strong><small>", done, "/", node.maxLevel, "</small></div>",
+            '<div class="drawer-remaining"><span>' + escapeHtml(plannerText("remaining")) + '</span><strong>', resourceAmounts(nodeResources(node, done, node.maxLevel), branch.totalBadges > 0), "</strong><small>", done, "/", node.maxLevel, "</small></div>",
             "</div>",
             '<div class="drawer-progress"><span style="width:', pct, '%"></span></div>',
             '<div class="drawer-quick">',
@@ -1301,22 +1371,24 @@
             "</div>",
             '<div class="drawer-target-control">',
             '<button type="button" class="mini-button" data-action="plan-max" data-key="', escapeAttr(state.selectedKey), '">' + escapeHtml(plannerText("targetMax")) + '</button>',
-            planned > 0 ? '<span class="drawer-target-cost">' + escapeHtml(plannerText("targetLevelCost", { level: target, amount: "" })) + badgeAmount(planned) + "</span>" : "",
+            target > done ? '<span class="drawer-target-cost">' + escapeHtml(plannerText("targetLevelCost", { level: target, amount: "" })) + resourceAmounts(nodeResources(node, done, target), branch.totalBadges > 0) + "</span>" : "",
             "</div>",
             "</div>",
-            renderLevelTable(node, state.selectedKey, done, target)
+            renderLevelTable(node, state.selectedKey, done, target, branch.totalBadges > 0)
         ].join("");
         syncPlannerModalState();
     }
 
-    function renderLevelTable(node, key, done, target) {
+    function renderLevelTable(node, key, done, target, showBadges) {
         var rows = node.badgeCost.map(function (cost, index) {
             var level = index + 1;
             return [
                 '<tr class="', level <= done ? "is-done" : "", level === target && target > done ? " is-target" : "", '">',
                 '<td><input type="checkbox" data-action="toggle-level" data-key="', escapeAttr(key), '" data-level="', level, '" ', level <= done ? "checked" : "", "></td>",
                 "<td>", level, "</td>",
-                "<td>", badgeAmount(cost, false), "</td>",
+                showBadges ? "<td>" + badgeAmount(cost, false) + "</td>" : "",
+                "<td>", formatNumber(node.electricityCost[index]), "<br>", formatNumber(node.zentCost[index]), "</td>",
+                "<td>", formatTime(node.researchTime[index]), "</td>",
                 '<td><button type="button" class="flag-button flag-button--icon', level === target && target > done ? " is-selected" : "", '" data-action="target-level" data-key="', escapeAttr(key), '" data-level="', level, '" aria-label="', escapeAttr(plannerText("setTargetLevel", { level: level })), '">⚑</button></td>',
                 "</tr>"
             ].join("");
@@ -1324,7 +1396,7 @@
         return [
             '<div class="level-table-wrap drawer-levels">',
             '<table class="level-table">',
-            "<thead><tr><th></th><th>" + escapeHtml(plannerText("levelTableShort")) + "</th><th>" + escapeHtml(plannerText("badges")) + "</th><th></th></tr></thead>",
+            "<thead><tr><th></th><th>" + escapeHtml(plannerText("levelTableShort")) + "</th>" + (showBadges ? "<th>" + escapeHtml(plannerText("badges")) + "</th>" : "") + "<th>Electricity<br>Zent</th><th>" + escapeHtml(plannerText("time")) + "</th><th></th></tr></thead>",
             "<tbody>",
             rows,
             "</tbody>",
@@ -1704,6 +1776,9 @@
 
     function calculateTotals(branchList) {
         var totals = {
+            completedResources: {badgeCost: 0, electricityCost: 0, zentCost: 0, researchTime: 0},
+            plannedResources: {badgeCost: 0, electricityCost: 0, zentCost: 0, researchTime: 0},
+            remainingResources: {badgeCost: 0, electricityCost: 0, zentCost: 0, researchTime: 0},
             completedBadges: 0,
             plannedBadges: 0,
             remainingBadges: 0,
@@ -1716,6 +1791,11 @@
                 var key = nodeKey(branch.id, node.id);
                 var done = getLevel(key);
                 var target = getTarget(key);
+                Object.keys(totals.completedResources).forEach(function (field) {
+                    totals.completedResources[field] += rangeCost(node, 0, done, field);
+                    totals.plannedResources[field] += rangeCost(node, done, target, field);
+                    totals.remainingResources[field] += rangeCost(node, done, node.maxLevel, field);
+                });
                 totals.completedBadges += costToLevel(node, done);
                 totals.plannedBadges += target > done ? rangeCost(node, done, target) : 0;
                 totals.remainingBadges += node.totalBadges - costToLevel(node, done);
@@ -1928,15 +2008,58 @@
         return rangeCost(node, 0, clampLevel(level, node.maxLevel));
     }
 
-    function rangeCost(node, fromLevel, toLevel) {
+    function rangeCost(node, fromLevel, toLevel, field) {
         var from = clampLevel(fromLevel, node.maxLevel);
         var to = clampLevel(toLevel, node.maxLevel);
         if (to <= from) {
             return 0;
         }
-        return node.badgeCost.slice(from, to).reduce(function (sum, cost) {
+        return node[field || "badgeCost"].slice(from, to).reduce(function (sum, cost) {
             return sum + Number(cost || 0);
         }, 0);
+    }
+
+    function nodeResources(node, from, to) {
+        var costs = {};
+        ["badgeCost", "electricityCost", "zentCost", "researchTime"].forEach(function (field) {
+            costs[field] = rangeCost(node, from, to, field);
+        });
+        return costs;
+    }
+
+    function branchResources(branch) {
+        return {badgeCost: branch.totalBadges, electricityCost: branch.totalElectricity,
+            zentCost: branch.totalZent, researchTime: branch.totalResearchTime};
+    }
+
+    function formatTime(seconds) {
+        var units = [[86400, "day"], [3600, "hour"], [60, "minute"], [1, "second"]];
+        var remaining = seconds;
+        var nonzero = units.filter(function (unit) {
+            var value = Math.floor(remaining / unit[0]);
+            remaining %= unit[0];
+            return value > 0;
+        });
+        // Round on the second non-zero unit, then decompose again for carries.
+        var precision = nonzero.length > 1 ? nonzero[1][0] : 1;
+        remaining = Math.round(seconds / precision) * precision;
+        var parts = [];
+        units.forEach(function (unit) {
+            var value = Math.floor(remaining / unit[0]);
+            remaining %= unit[0];
+            if (value) parts.push(formatNumber(value) + " " + plannerText(unit[1]));
+        });
+        return parts.slice(0, 2).join(" ") || "0 " + plannerText("second");
+    }
+
+    function resourceAmounts(costs, showBadges, compact, includeTime) {
+        var labels = {badgeCost: "badges", electricityCost: "electricity", zentCost: "zent", researchTime: "time"};
+        return '<span class="resource-amounts' + (includeTime === false ? ' resource-amounts--line' : '') + '">' + Object.keys(labels).filter(function (field) {
+            return (field !== "badgeCost" || showBadges) && (field !== "researchTime" || includeTime !== false);
+        }).map(function (field) {
+            var value = field === "researchTime" ? formatTime(costs[field]) : compact ? Number(costs[field]).toLocaleString(plannerLocale.numberLocale, {notation: "compact", maximumFractionDigits: 1}) : formatNumber(costs[field]);
+            return '<span class="resource-amount"><span>' + escapeHtml(plannerText(labels[field])) + '</span> <span>' + value + '</span></span>';
+        }).join("") + '</span>';
     }
 
     function copyShareLink() {
