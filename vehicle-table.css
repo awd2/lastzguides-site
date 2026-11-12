@@ -731,3 +731,19 @@ body.ui-standard-cost--two-label-columns .data-guide .data-table td:nth-child(-n
         background: transparent;
     }
 }
+
+/* Atlas labels stay readable inside the existing horizontal table scroll. */
+.data-table.research-resource-table th {
+    white-space: nowrap;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+.data-table.research-resource-table th[scope="row"] {
+    position: static;
+    min-width: 140px;
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+    text-transform: none;
+    letter-spacing: normal;
+}

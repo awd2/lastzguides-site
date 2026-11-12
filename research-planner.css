@@ -2852,7 +2852,9 @@ body.planner-modal-open {
         height: auto;
         min-height: 26px;
         white-space: normal;
-        overflow-wrap: anywhere;
+        overflow-wrap: normal;
+        word-break: normal;
+        padding-inline: 4px;
         line-height: 1.2;
     }
 }
@@ -2971,4 +2973,86 @@ body.planner-modal-open {
     .planner-app .tree-node-grid small { font-size: .54rem; }
     .planner-app .tree-node-grid strong { font-size: .625rem; }
     .planner-app .tree-node-grid { gap: 6px; }
+}
+
+/* Separate resource amounts retain exact table values and contained reflow. */
+.planner-app .branch-group-label {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 8px 0;
+    font-size: 0.85rem;
+    color: var(--color-muted, #b4b1a8);
+}
+.planner-app .branch-picker-menu .branch-group-label { padding: 8px 12px; }
+.planner-app .resource-amounts {
+    display: grid;
+    gap: 3px;
+    min-width: 0;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    font-variant-numeric: tabular-nums;
+    white-space: normal;
+}
+.planner-app .resource-amount {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+.planner-app .resource-amount > span:first-child { font-weight: 400; }
+.planner-app .resource-amount > span:last-child { text-align: right; }
+.planner-app .branch-summary-metrics { align-items: start; }
+.planner-app .branch-summary-metrics > .branch-summary-metric {
+    align-items: start;
+    white-space: normal;
+}
+.planner-app .branch-summary-metric > strong { min-width: 0; }
+.planner-app .drawer-head { grid-template-columns: 72px minmax(0, 1fr); }
+.planner-app .drawer-remaining {
+    grid-column: 1 / -1;
+    text-align: left;
+    min-width: 0;
+}
+.planner-app .drawer-remaining strong,
+.planner-app .drawer-target-cost { white-space: normal; }
+.planner-app .drawer-target-control { flex: 1 1 240px; }
+.planner-app .drawer-levels .level-table {
+    table-layout: auto;
+    width: 100%;
+    min-width: 0;
+    font-size: 0.78rem;
+}
+.planner-app .drawer-levels .level-table :is(th, td) {
+    padding: 9px 4px;
+    width: auto;
+    white-space: normal;
+    overflow-wrap: normal;
+    font-variant-numeric: tabular-nums;
+}
+.planner-app .node-list-metrics {
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+.planner-app .node-list-metrics .resource-amounts { display: grid; }
+.planner-app .node-list-metrics .resource-amount { display: flex; }
+@media (max-width: 640px) {
+    .planner-app .branch-summary-metrics { flex-basis: 100%; gap: 8px; }
+    .planner-app .branch-summary-metrics > .branch-summary-metric {
+        display: grid;
+        grid-template-columns: 76px minmax(0, 1fr) auto;
+        width: 100%;
+    }
+    .planner-app .branch-summary-metrics > .branch-summary-metric > strong { width: 100%; }
+}
+
+.planner-app .resource-amounts--line { display: flex; flex-wrap: wrap; gap: 12px; }
+@media (min-width: 641px) {
+    .planner-app .branch-summary-metric .resource-amounts { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+}
+
+.planner-app .tree-node--no-badges .tree-node-grid {
+    grid-template-columns: max-content minmax(0, 1fr);
+}
+.planner-app .tree-node--no-badges .node-remaining-stat strong {
+    white-space: normal;
+    overflow-wrap: normal;
 }
