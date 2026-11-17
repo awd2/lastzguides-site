@@ -645,6 +645,15 @@
     }
 
     function bindActions() {
+        var speedTips = Array.from(document.querySelectorAll(".planner-speed-tip"));
+        document.addEventListener("click", function (event) {
+            speedTips.forEach(function (tip) {
+                if (!tip.querySelector("summary").contains(event.target)) tip.open = false;
+            });
+        }, true); // Also close for toolbar clicks that stop bubbling.
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") speedTips.forEach(function (tip) { tip.open = false; });
+        });
         refs.overviewButton.hidden = false;
         refs.overviewButton.addEventListener("click", function () {
             if (refs.overviewPanel.hidden) trackPlannerNavigation("overview_open");
@@ -1323,7 +1332,7 @@
             '<span class="tree-node-title">', escapeHtml(node.name), "</span>",
             '<span class="tree-node-grid">',
             '<span class="node-level-stat"><small>' + escapeHtml(plannerText("level")) + '</small><strong>', done, "/", node.maxLevel, "</strong></span>",
-            '<span class="node-remaining-stat"><small>' + escapeHtml(plannerText("remaining")) + '</small><strong>', (branch.totalBadges ? badgeAmount(remaining) : resourceAmount("electricity", rangeCost(node, done, node.maxLevel, "electricityCost"), true)), "</strong></span>",
+            '<span class="node-remaining-stat"><small>' + escapeHtml(plannerText("remaining")) + '</small><strong>', (branch.totalBadges ? badgeAmount(remaining) : resourceAmount("zent", rangeCost(node, done, node.maxLevel, "zentCost"), true)), "</strong></span>",
             "</span>",
             '<span class="node-progress"><span style="width:', progress, '%"></span></span>',
             "</button>",
@@ -1439,7 +1448,7 @@
             "<p>", escapeHtml(branch.name), "</p><h2 id=\"drawer-title\">", escapeHtml(node.name), "</h2>",
             '<span>', escapeHtml(plannerText("nodeLevel", { done: done, max: node.maxLevel })), target > done ? " · " + escapeHtml(plannerText("nodeTarget", { level: target })) : "", "</span>",
             "</div>",
-            '<div class="drawer-remaining"><span>' + escapeHtml(plannerText("remaining")) + '</span><strong>', resourceAmounts(nodeResources(node, done, node.maxLevel), branch.totalBadges > 0, false, true), "</strong></div>",
+            '<div class="drawer-remaining"><span>' + escapeHtml(plannerText("remaining")) + '</span><strong>', resourceAmounts(nodeResources(node, done, node.maxLevel), branch.totalBadges > 0, true, true), "</strong></div>",
             "</div>",
             renderBonus(node, done, target),
             '<div class="drawer-progress"><span style="width:', pct, '%"></span></div>',
@@ -2092,7 +2101,7 @@
                 var unlock = stat.values[next - 1];
                 return unlock ? '<p>' + escapeHtml(plannerText("unlocks", {name: unlock})) + '</p>' : "";
             }
-            var current = done ? "+" + formatStat(stat.values[done - 1], stat.format) : "—";
+            var current = "+" + formatStat(done ? stat.values[done - 1] : 0, stat.format);
             var value = current + (next > done ? " → +" + formatStat(stat.values[next - 1], stat.format) : "");
             return '<p><span>' + escapeHtml(statLabel(stat)) + '</span><strong>' + escapeHtml(value) + '</strong></p>';
         }).join("") + '</section>';
@@ -2165,8 +2174,9 @@
     }
 
     function resourceAmount(kind, amount, compact) {
-        var value = kind === "time" ? formatTime(amount) : compact ? Number(amount).toLocaleString(plannerLocale.numberLocale, {notation: "compact", maximumFractionDigits: 1}) : formatNumber(amount);
-        return '<span class="resource-amount" role="group" aria-label="' + escapeAttr(plannerText(kind) + ": " + value) + '">' + resourceIcon(kind) + '<span>' + escapeHtml(value) + '</span></span>';
+        var value = kind === "time" ? formatTime(amount) : compact !== false ? Number(amount).toLocaleString(plannerLocale.numberLocale, {notation: "compact", maximumFractionDigits: 1}) : formatNumber(amount);
+        var exact = kind === "time" ? value : formatNumber(amount);
+        return '<span class="resource-amount" role="group" title="' + escapeAttr(exact) + '" aria-label="' + escapeAttr(plannerText(kind) + ": " + exact) + '">' + resourceIcon(kind) + '<span>' + escapeHtml(value) + '</span></span>';
     }
 
     function resourceAmounts(costs, showBadges, compact, prompt, secondary) {
