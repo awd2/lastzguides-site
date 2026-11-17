@@ -1,6 +1,8 @@
 (function () {
     "use strict";
 
+    var SPEED_STORAGE_KEY = "lastz.researchPlanner.speed";
+    var researchSpeed = null;
     var STORAGE_KEY = "lastz.researchPlanner.v3";
     var LEGACY_STORAGE_KEY = "lastz.researchPlanner.v2";
     var LEGACY_NODE_STORAGE_KEY = "lastz.researchPlanner.v1";
@@ -90,7 +92,6 @@
             "electricity": "Electricity",
             "zent": "Zent",
             "time": "Time",
-            "baseTime": "Base time (before Research Speed)",
             "badgeResearch": "Badge research",
             "noBadgeResearch": "No-badge research",
             "day": "d",
@@ -98,7 +99,16 @@
             "minute": "m",
             "second": "s",
             "openNodeDetails": "Open {node} details",
-            "tableDescription": "Node levels, targets, resource costs and base time."
+            "researchSpeed": "Research speed, %",
+            "speedPlaceholder": "e.g. 319",
+            "speedTip": "In game: open any research, tap ⓘ next to Duration and use the top line, “Research Speed Up”.",
+            "speedError": "Enter a research speed from 0 to 1000%.",
+            "addSpeed": "Add research speed",
+            "speedHelp": "Where to find your research speed",
+            "bonus": "Bonus",
+            "power": "Power",
+            "unlocks": "Unlocks: {name}",
+            "tableDescription": "Node levels, targets and resource costs."
         },
         "es": {
             "level": "Nivel",
@@ -179,7 +189,6 @@
             "electricity": "Electricity",
             "zent": "Zent",
             "time": "Tiempo",
-            "baseTime": "Tiempo base (antes de Research Speed)",
             "badgeResearch": "Investigación con insignias",
             "noBadgeResearch": "Investigación sin insignias",
             "day": "d",
@@ -187,7 +196,16 @@
             "minute": "min",
             "second": "s",
             "openNodeDetails": "Abrir los detalles de {node}",
-            "tableDescription": "Niveles de las tecnologías, objetivos, costes de recursos y tiempo base."
+            "researchSpeed": "Velocidad de investigación, %",
+            "speedPlaceholder": "p. ej. 319",
+            "speedTip": "En el juego: abre cualquier investigación, toca ⓘ junto a Duración y usa la primera línea, «Research Speed Up».",
+            "speedError": "Introduce una velocidad de investigación de 0 a 1000 %.",
+            "addSpeed": "Añadir velocidad de investigación",
+            "speedHelp": "Dónde encontrar tu velocidad de investigación",
+            "bonus": "Bonificación",
+            "power": "Poder",
+            "unlocks": "Desbloquea: {name}",
+            "tableDescription": "Niveles de las tecnologías, objetivos y costes de recursos."
         },
         "fr": {
             "level": "Niveau",
@@ -268,7 +286,6 @@
             "electricity": "Electricity",
             "zent": "Zent",
             "time": "Temps",
-            "baseTime": "Temps de base (avant Research Speed)",
             "badgeResearch": "Recherches avec badges",
             "noBadgeResearch": "Recherches sans badges",
             "day": "j",
@@ -276,7 +293,16 @@
             "minute": "min",
             "second": "s",
             "openNodeDetails": "Ouvrir les détails de {node}",
-            "tableDescription": "Niveaux des technologies, cibles, coûts en ressources et temps de base."
+            "researchSpeed": "Vitesse de recherche, %",
+            "speedPlaceholder": "p. ex. 319",
+            "speedTip": "Dans le jeu : ouvrez une recherche, touchez ⓘ à côté de Durée et utilisez la première ligne, « Research Speed Up ».",
+            "speedError": "Saisissez une vitesse de recherche de 0 à 1000 %.",
+            "addSpeed": "Ajouter la vitesse de recherche",
+            "speedHelp": "Où trouver votre vitesse de recherche",
+            "bonus": "Bonus",
+            "power": "Puissance",
+            "unlocks": "Débloque : {name}",
+            "tableDescription": "Niveaux des technologies, cibles et coûts en ressources."
         }
     };
     var plannerStatStrings = {
@@ -561,8 +587,61 @@
             state.activeBranchId = requestedBranch;
         }
         entryMode = loadedSharedPlan ? "shared" : (hadSavedProgress ? "saved" : "new");
+        initResearchSpeed();
         bindActions();
         render();
+    }
+
+    // Same accepted notation and per-level rounding as the HQ calculator.
+    function parseResearchSpeed(value) {
+        var raw = value.trim().replace(/%$/, "").trim();
+        if (!/^\d+(?:\.\d+)?$/.test(raw)) return null;
+        var speed = Number(raw);
+        return Number.isFinite(speed) && speed >= 0 && speed <= 1000 ? speed : null;
+    }
+
+    function researchSeconds(seconds, speed) {
+        return Math.floor(seconds * 100 / (100 + speed));
+    }
+
+    function initResearchSpeed() {
+        document.querySelector(".planner-branch-controls").insertAdjacentHTML("afterend", [
+            '<div class="planner-speed"><div class="planner-speed-label"><label for="research-speed">', escapeHtml(plannerText("researchSpeed")), '</label>',
+            '<details class="planner-speed-tip"><summary aria-label="', escapeAttr(plannerText("speedHelp")), '">ⓘ</summary><p>', escapeHtml(plannerText("speedTip")), '</p></details></div>',
+            '<input id="research-speed" type="text" inputmode="decimal" autocomplete="off" placeholder="', escapeAttr(plannerText("speedPlaceholder")), '" aria-describedby="research-speed-error">',
+            '<p id="research-speed-error" role="status" hidden>', escapeHtml(plannerText("speedError")), '</p></div>'
+        ].join(""));
+        refs.speedInput = document.querySelector("#research-speed");
+        refs.speedError = document.querySelector("#research-speed-error");
+        try {
+            var saved = localStorage.getItem(SPEED_STORAGE_KEY);
+            if (saved !== null && parseResearchSpeed(saved) !== null) refs.speedInput.value = saved;
+        } catch (error) { /* Storage is optional. */ }
+        researchSpeed = parseResearchSpeed(refs.speedInput.value);
+        refs.speedInput.addEventListener("input", updateResearchSpeed);
+        document.addEventListener("click", function (event) {
+            if (!event.target.closest('[data-add-speed]')) return;
+            if (state.selectedKey) closeDrawer();
+            if (state.mobileSheet) closeMobileSheet();
+            refs.speedInput.focus();
+        });
+    }
+
+    function updateResearchSpeed() {
+        var raw = refs.speedInput.value;
+        researchSpeed = parseResearchSpeed(raw);
+        var invalid = raw.trim() !== "" && researchSpeed === null;
+        refs.speedError.hidden = !invalid;
+        refs.speedInput.setAttribute("aria-invalid", String(invalid));
+        try {
+            if (researchSpeed === null) localStorage.removeItem(SPEED_STORAGE_KEY);
+            else localStorage.setItem(SPEED_STORAGE_KEY, String(researchSpeed));
+        } catch (error) { /* Storage is optional. */ }
+        render();
+    }
+
+    function speedPrompt() {
+        return researchSpeed === null ? '<button type="button" class="planner-speed-prompt" data-add-speed>' + resourceIcon("time") + escapeHtml(plannerText("addSpeed")) + '</button>' : "";
     }
 
     function bindActions() {
@@ -668,8 +747,8 @@
                 if (!button) {
                     return;
                 }
-                trackPlannerNavigation("overview_select_branch");
                 state.activeBranchId = button.getAttribute("data-branch-card");
+                trackPlannerNavigation("overview_select_branch");
                 setOverviewVisible(false, false);
                 state.selectedKey = null;
                 saveState();
@@ -719,7 +798,8 @@
         var eventData = {
             planner_id: "research-planner",
             action: action,
-            entry_mode: entryMode
+            entry_mode: entryMode,
+            branch_id: state.activeBranchId
         };
         if (sourceControl) eventData.source_control = sourceControl;
         sendPlannerAnalytics(eventData);
@@ -732,7 +812,7 @@
     }
 
     function trackPlannerNavigation(action) {
-        sendPlannerAnalytics({planner_id: "research-planner", action: action, entry_mode: entryMode}, "planner_navigation");
+        sendPlannerAnalytics({planner_id: "research-planner", action: action, entry_mode: entryMode, branch_id: state.activeBranchId}, "planner_navigation");
     }
 
     function sendPlannerAnalytics(eventData, eventName) {
@@ -992,7 +1072,7 @@
         if (!refs.branchOverview) return;
         // Keep the existing node and its experiment listeners across grid rebuilds.
         if (refs.promo && refs.promoHome) refs.promoHome.before(refs.promo);
-        refs.branchOverview.innerHTML = branches.map(function (branch, index) {
+        refs.branchOverview.innerHTML = speedPrompt() + branches.map(function (branch, index) {
             var summary = calculateTotals([branch]);
             return [
                 index === 0 || Boolean(branch.totalBadges) !== Boolean(branches[index - 1].totalBadges) ? '<h3 class="branch-group-label">' + escapeHtml(plannerText(branch.totalBadges ? "badgeResearch" : "noBadgeResearch")) + '</h3>' : "",
@@ -1003,7 +1083,7 @@
                 branch.totalBadges ? '<span class="branch-card-costs">' : '',
                 branch.totalBadges ? '<span class="branch-card-total"><span>' + escapeHtml(plannerText("fullBranchCost")) + '</span>' + badgeAmount(branch.totalBadges) + '</span>' : '',
                 branch.totalBadges ? '<span class="branch-card-total branch-card-remaining"><span>' + escapeHtml(plannerText("finishBranchCost")) + '</span>' + badgeAmount(summary.remainingBadges) + '</span></span>' : '',
-                resourceAmounts(branchResources(branch), false, true, !branch.totalBadges),
+                resourceAmounts(branchResources(branch), false, true, false, Boolean(branch.totalBadges)),
                 '<span class="branch-card-progress-pair">',
                 overviewProgress("levelsCompleted", summary.completedLevels, summary.totalLevels, true),
                 branch.totalBadges ? overviewProgress("badgesSpent", summary.completedBadges, branch.totalBadges, false) : "",
@@ -1065,7 +1145,7 @@
             "</div>",
             '<div class="branch-summary-metrics">',
             '<span class="branch-summary-metric"><span>' + escapeHtml(plannerText("spent")) + '</span><strong>', resourceAmounts(summary.completedResources, branch.totalBadges > 0, true), '</strong></span>',
-            '<span class="branch-summary-metric"><span>' + escapeHtml(plannerText("remaining")) + '</span><strong>', resourceAmounts(summary.remainingResources, branch.totalBadges > 0, true), '</strong></span>',
+            '<span class="branch-summary-metric"><span>' + escapeHtml(plannerText("remaining")) + '</span><strong>', resourceAmounts(summary.remainingResources, branch.totalBadges > 0, true, true), '</strong></span>',
             targetActive ? '<span class="branch-summary-metric branch-summary-goal"><span>' + escapeHtml(plannerText("goal")) + '</span><strong>' + resourceAmounts(summary.plannedResources, branch.totalBadges > 0, true) + '</strong><button type="button" class="summary-clear-target" data-action="clear-branch-targets" data-branch-id="' + escapeAttr(branch.id) + '" aria-label="' + escapeAttr(plannerText("clearGoal")) + '">x</button></span>' : "",
             "</div>",
             mobileControls,
@@ -1076,7 +1156,6 @@
             escapeHtml(plannerText("branchSummary", { nodes: branch.nodes.length, levels: summary.totalLevels })),
             branch.unlockRequirements.length ? " · " + escapeHtml(plannerText("unlockRequirement", { requirements: branch.unlockRequirements.map(localizeUnlock).join(" + ") })) : "",
             branch.id === "unit-special-training" ? " · " + escapeHtml(plannerText("t10Unlock")) : "",
-            " · ", escapeHtml(plannerText("baseTime")),
             "</p>"
         ].join("");
 
@@ -1126,8 +1205,8 @@
             stats.map(function (stat) {
                 var pct = stat.total ? Math.min(100, Math.round(stat.target / stat.total * 100)) : 0;
                 return [
-                    '<div class="stat-card">',
-                    '<span>', escapeHtml(((plannerStatStrings[plannerLocale.code] || {})[stat.key] || stat.label).replace(/\.+$/, "")), "</span>",
+                    '<div class="stat-card' + (stat.key === "power" ? ' stat-card--power' : '') + '">',
+                    '<span>', escapeHtml(statLabel(stat)), "</span>",
                     "<strong>", escapeHtml(formatStat(stat.earned, stat.format)), " / ", escapeHtml(formatStat(stat.target, stat.format)), " / ", escapeHtml(formatStat(stat.total, stat.format)), "</strong>",
                     '<small><span style="width:', pct, '%"></span></small>',
                     "</div>"
@@ -1244,7 +1323,7 @@
             '<span class="tree-node-title">', escapeHtml(node.name), "</span>",
             '<span class="tree-node-grid">',
             '<span class="node-level-stat"><small>' + escapeHtml(plannerText("level")) + '</small><strong>', done, "/", node.maxLevel, "</strong></span>",
-            '<span class="node-remaining-stat"><small>' + escapeHtml(plannerText("remaining")) + '</small><strong>', (branch.totalBadges ? badgeAmount(remaining) : formatTime(rangeCost(node, done, node.maxLevel, "researchTime"))), "</strong></span>",
+            '<span class="node-remaining-stat"><small>' + escapeHtml(plannerText("remaining")) + '</small><strong>', (branch.totalBadges ? badgeAmount(remaining) : resourceAmount("electricity", rangeCost(node, done, node.maxLevel, "electricityCost"), true)), "</strong></span>",
             "</span>",
             '<span class="node-progress"><span style="width:', progress, '%"></span></span>',
             "</button>",
@@ -1260,6 +1339,7 @@
         refs.plannerView.innerHTML = [
             '<div class="planner-table-wrap">',
             '<table class="planner-table">',
+            researchSpeed === null ? "<caption>" + speedPrompt() + "</caption>" : "",
             "<thead><tr><th>" + escapeHtml(plannerText("node")) + "</th><th>" + escapeHtml(plannerText("done")) + "</th><th>" + escapeHtml(plannerText("target")) + "</th><th>" + escapeHtml(plannerText("spent")) + "</th><th>" + escapeHtml(plannerText("targetCost")) + "</th><th>" + escapeHtml(plannerText("remaining")) + "</th><th>" + escapeHtml(plannerText("prereqs")) + "</th><th>" + escapeHtml(plannerText("actions")) + "</th></tr></thead>",
             "<tbody>",
             branch.nodes.map(function (node) {
@@ -1300,7 +1380,7 @@
 
     function renderMobileListMarkup(branch) {
         return [
-            '<div class="node-list">',
+            '<div class="node-list">', speedPrompt(),
             branch.nodes.map(function (node) {
                 var key = nodeKey(branch.id, node.id);
                 var done = getLevel(key);
@@ -1359,8 +1439,9 @@
             "<p>", escapeHtml(branch.name), "</p><h2 id=\"drawer-title\">", escapeHtml(node.name), "</h2>",
             '<span>', escapeHtml(plannerText("nodeLevel", { done: done, max: node.maxLevel })), target > done ? " · " + escapeHtml(plannerText("nodeTarget", { level: target })) : "", "</span>",
             "</div>",
-            '<div class="drawer-remaining"><span>' + escapeHtml(plannerText("remaining")) + '</span><strong>', resourceAmounts(nodeResources(node, done, node.maxLevel), branch.totalBadges > 0), "</strong><small>", done, "/", node.maxLevel, "</small></div>",
+            '<div class="drawer-remaining"><span>' + escapeHtml(plannerText("remaining")) + '</span><strong>', resourceAmounts(nodeResources(node, done, node.maxLevel), branch.totalBadges > 0, false, true), "</strong></div>",
             "</div>",
+            renderBonus(node, done, target),
             '<div class="drawer-progress"><span style="width:', pct, '%"></span></div>',
             '<div class="drawer-quick">',
             '<button type="button" class="drawer-trash" data-action="clear" data-key="', escapeAttr(state.selectedKey), '" aria-label="', escapeAttr(plannerText("clearNode", { node: node.name })), '">⌫</button>',
@@ -1380,28 +1461,32 @@
     }
 
     function renderLevelTable(node, key, done, target, showBadges) {
+        var showTime = researchSpeed !== null;
         var rows = node.badgeCost.map(function (cost, index) {
             var level = index + 1;
+            var resources = resourceAmount("electricity", node.electricityCost[index]) + resourceAmount("zent", node.zentCost[index]);
+            var time = showTime ? resourceAmount("time", researchSeconds(node.researchTime[index], researchSpeed)) : "";
             return [
                 '<tr class="', level <= done ? "is-done" : "", level === target && target > done ? " is-target" : "", '">',
-                '<td><input type="checkbox" data-action="toggle-level" data-key="', escapeAttr(key), '" data-level="', level, '" ', level <= done ? "checked" : "", "></td>",
+                '<td><input type="checkbox" aria-label="', escapeAttr(plannerText("level") + " " + level), '" data-action="toggle-level" data-key="', escapeAttr(key), '" data-level="', level, '" ', level <= done ? "checked" : "", "></td>",
                 "<td>", level, "</td>",
-                showBadges ? "<td>" + badgeAmount(cost, false) + "</td>" : "",
-                "<td>", formatNumber(node.electricityCost[index]), "<br>", formatNumber(node.zentCost[index]), "</td>",
-                "<td>", formatTime(node.researchTime[index]), "</td>",
+                '<td class="level-bonus">', levelBonus(node, index), '</td>',
+                showBadges ? '<td class="level-badges">' + badgeAmount(cost) + '</td>' : "",
+                '<td class="level-resources">', resources, '</td>',
+                showTime ? '<td class="level-time">' + time + '</td>' : "",
                 '<td><button type="button" class="flag-button flag-button--icon', level === target && target > done ? " is-selected" : "", '" data-action="target-level" data-key="', escapeAttr(key), '" data-level="', level, '" aria-label="', escapeAttr(plannerText("setTargetLevel", { level: level })), '">⚑</button></td>',
-                "</tr>"
+                '</tr><tr class="level-mobile-resources', level <= done ? ' is-done' : '', '"><td colspan="', showBadges ? 5 : 4, '"><span class="resource-line resource-line--secondary">', resources, time, '</span></td></tr>'
             ].join("");
         }).join("");
+        function heading(kind, className) {
+            return '<th class="' + className + '" aria-label="' + escapeAttr(plannerText(kind)) + '">' + resourceIcon(kind) + '</th>';
+        }
         return [
-            '<div class="level-table-wrap drawer-levels">',
-            '<table class="level-table">',
-            "<thead><tr><th></th><th>" + escapeHtml(plannerText("levelTableShort")) + "</th>" + (showBadges ? "<th>" + escapeHtml(plannerText("badges")) + "</th>" : "") + "<th>Electricity<br>Zent</th><th>" + escapeHtml(plannerText("time")) + "</th><th></th></tr></thead>",
-            "<tbody>",
-            rows,
-            "</tbody>",
-            "</table>",
-            "</div>"
+            '<div class="level-table-wrap drawer-levels"><table class="level-table">',
+            '<thead><tr><th></th><th>', escapeHtml(plannerText("levelTableShort")), '</th><th>', escapeHtml(plannerText("bonus")), '</th>',
+            showBadges ? heading("badges", "level-badges") : "",
+            '<th class="level-resources" aria-label="Electricity / Zent">', resourceIcon("electricity"), ' / ', resourceIcon("zent"), '</th>',
+            showTime ? heading("time", "level-time") : "", '<th></th></tr></thead><tbody>', rows, '</tbody></table></div>'
         ].join("");
     }
 
@@ -1843,7 +1928,7 @@
         branch.nodes.forEach(function (node) {
             var done = getLevel(nodeKey(branch.id, node.id));
             (node.stats || []).forEach(function (stat) {
-                if (!stat || stat.format === "text" || String(stat.key).toLowerCase() === "power") {
+                if (!stat || stat.format === "text") {
                     return;
                 }
                 if (!statsByKey.has(stat.key)) {
@@ -1865,6 +1950,8 @@
             });
         });
         return Array.from(statsByKey.values()).sort(function (a, b) {
+            if (a.key === "power") return -1;
+            if (b.key === "power") return 1;
             var ar = a.total ? a.target / a.total : 0;
             var br = b.total ? b.target / b.total : 0;
             return br - ar || a.label.localeCompare(b.label);
@@ -1990,8 +2077,33 @@
 
     function nodeStats(node) {
         return (node.stats || []).filter(function (stat) {
-            return stat && Array.isArray(stat.values) && stat.values.length && String(stat.key).toLowerCase() !== "power";
-        }).slice(0, 4);
+            return stat && Array.isArray(stat.values) && stat.values.length;
+        });
+    }
+
+    function statLabel(stat) {
+        return (stat.key === "power" ? plannerText("power") : (plannerStatStrings[plannerLocale.code] || {})[stat.key] || stat.label).replace(/\.+$/, "");
+    }
+
+    function renderBonus(node, done, target) {
+        var next = target > done ? target : Math.min(done + 1, node.maxLevel);
+        return '<section class="drawer-bonus"><h3>' + escapeHtml(plannerText("bonus")) + '</h3>' + nodeStats(node).map(function (stat) {
+            if (stat.format === "text") {
+                var unlock = stat.values[next - 1];
+                return unlock ? '<p>' + escapeHtml(plannerText("unlocks", {name: unlock})) + '</p>' : "";
+            }
+            var current = done ? "+" + formatStat(stat.values[done - 1], stat.format) : "—";
+            var value = current + (next > done ? " → +" + formatStat(stat.values[next - 1], stat.format) : "");
+            return '<p><span>' + escapeHtml(statLabel(stat)) + '</span><strong>' + escapeHtml(value) + '</strong></p>';
+        }).join("") + '</section>';
+    }
+
+    function levelBonus(node, index) {
+        return nodeStats(node).filter(function (stat) { return stat.key !== "power"; }).map(function (stat) {
+            var value = stat.values[index];
+            if (stat.format === "text") return value ? '<span>' + escapeHtml(plannerText("unlocks", {name: value})) + '</span>' : "";
+            return '<span aria-label="' + escapeAttr(statLabel(stat) + ": " + formatStat(value, stat.format)) + '" title="' + escapeAttr(statLabel(stat)) + '">+' + escapeHtml(formatStat(value, stat.format)) + '</span>';
+        }).join("");
     }
 
     function getLevel(key) {
@@ -2015,7 +2127,7 @@
             return 0;
         }
         return node[field || "badgeCost"].slice(from, to).reduce(function (sum, cost) {
-            return sum + Number(cost || 0);
+            return sum + (field === "researchTime" && researchSpeed !== null ? researchSeconds(Number(cost || 0), researchSpeed) : Number(cost || 0));
         }, 0);
     }
 
@@ -2029,20 +2141,15 @@
 
     function branchResources(branch) {
         return {badgeCost: branch.totalBadges, electricityCost: branch.totalElectricity,
-            zentCost: branch.totalZent, researchTime: branch.totalResearchTime};
+            zentCost: branch.totalZent, researchTime: branch.nodes.reduce(function (sum, node) { return sum + rangeCost(node, 0, node.maxLevel, "researchTime"); }, 0)};
     }
 
     function formatTime(seconds) {
         var units = [[86400, "day"], [3600, "hour"], [60, "minute"], [1, "second"]];
-        var remaining = seconds;
-        var nonzero = units.filter(function (unit) {
-            var value = Math.floor(remaining / unit[0]);
-            remaining %= unit[0];
-            return value > 0;
-        });
-        // Round on the second non-zero unit, then decompose again for carries.
-        var precision = nonzero.length > 1 ? nonzero[1][0] : 1;
-        remaining = Math.round(seconds / precision) * precision;
+        var largest = units.findIndex(function (unit) { return seconds >= unit[0]; });
+        // Round on the immediately smaller unit, including when its value is zero.
+        var precision = largest >= 0 && largest < units.length - 1 ? units[largest + 1][0] : 1;
+        var remaining = Math.round(seconds / precision) * precision;
         var parts = [];
         units.forEach(function (unit) {
             var value = Math.floor(remaining / unit[0]);
@@ -2052,14 +2159,23 @@
         return parts.slice(0, 2).join(" ") || "0 " + plannerText("second");
     }
 
-    function resourceAmounts(costs, showBadges, compact, includeTime) {
-        var labels = {badgeCost: "badges", electricityCost: "electricity", zentCost: "zent", researchTime: "time"};
-        return '<span class="resource-amounts' + (includeTime === false ? ' resource-amounts--line' : '') + '">' + Object.keys(labels).filter(function (field) {
-            return (field !== "badgeCost" || showBadges) && (field !== "researchTime" || includeTime !== false);
-        }).map(function (field) {
-            var value = field === "researchTime" ? formatTime(costs[field]) : compact ? Number(costs[field]).toLocaleString(plannerLocale.numberLocale, {notation: "compact", maximumFractionDigits: 1}) : formatNumber(costs[field]);
-            return '<span class="resource-amount"><span>' + escapeHtml(plannerText(labels[field])) + '</span> <span>' + value + '</span></span>';
-        }).join("") + '</span>';
+    function resourceIcon(kind) {
+        if (kind === "time") return '<svg class="planner-resource-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg>';
+        return '<img class="planner-resource-icon" src="/assets/items/' + kind + '.webp" width="18" height="18" alt="" role="presentation" aria-hidden="true" decoding="async">';
+    }
+
+    function resourceAmount(kind, amount, compact) {
+        var value = kind === "time" ? formatTime(amount) : compact ? Number(amount).toLocaleString(plannerLocale.numberLocale, {notation: "compact", maximumFractionDigits: 1}) : formatNumber(amount);
+        return '<span class="resource-amount" role="group" aria-label="' + escapeAttr(plannerText(kind) + ": " + value) + '">' + resourceIcon(kind) + '<span>' + escapeHtml(value) + '</span></span>';
+    }
+
+    function resourceAmounts(costs, showBadges, compact, prompt, secondary) {
+        var resources = resourceAmount("electricity", costs.electricityCost, compact) + resourceAmount("zent", costs.zentCost, compact);
+        if (researchSpeed !== null) resources += resourceAmount("time", costs.researchTime);
+        if (prompt) resources += speedPrompt();
+        return '<span class="resource-amounts' + (showBadges ? ' resource-amounts--badges' : '') + '">' +
+            (showBadges ? badgeAmount(costs.badgeCost) : "") +
+            '<span class="resource-line' + (showBadges || secondary ? ' resource-line--secondary' : '') + '">' + resources + '</span></span>';
     }
 
     function copyShareLink() {

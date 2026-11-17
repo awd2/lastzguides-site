@@ -2984,75 +2984,77 @@ body.planner-modal-open {
     color: var(--color-muted, #b4b1a8);
 }
 .planner-app .branch-picker-menu .branch-group-label { padding: 8px 12px; }
-.planner-app .resource-amounts {
-    display: grid;
-    gap: 3px;
-    min-width: 0;
-    font-size: 0.78rem;
-    line-height: 1.4;
-    font-variant-numeric: tabular-nums;
-    white-space: normal;
-}
-.planner-app .resource-amount {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-}
-.planner-app .resource-amount > span:first-child { font-weight: 400; }
-.planner-app .resource-amount > span:last-child { text-align: right; }
+.planner-app .stat-card--power { grid-column: 1 / -1; }
+.planner-app .stat-card--power strong { white-space: normal; overflow-wrap: normal; font-size: 0.9rem; }
+
+/* Badge-first costs share one icon line for secondary resources.
+   Match the existing tool palette: the global muted token is too dark here. */
+.planner-app :is(.resource-amounts, .level-table, .planner-speed, .planner-speed-prompt) { --color-muted: #b4b1a8; }
+.planner-app .resource-amounts { display: grid; gap: 4px; min-width: 0; font-variant-numeric: tabular-nums; }
+.planner-app .resource-amounts > .planner-badge-amount { font-size: inherit; font-weight: 800; }
+.planner-app .resource-line { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: 0.95rem; }
+.planner-app .resource-line--secondary { color: var(--color-muted, #b4b1a8); font-size: 0.75rem; font-weight: 400; }
+.planner-app .resource-amount { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.planner-app .planner-resource-icon { display: inline-block; width: 18px; height: 18px; flex: 0 0 18px; margin: 0; object-fit: contain; vertical-align: middle; }
 .planner-app .branch-summary-metrics { align-items: start; }
-.planner-app .branch-summary-metrics > .branch-summary-metric {
-    align-items: start;
-    white-space: normal;
-}
+.planner-app .branch-summary-metrics > .branch-summary-metric { align-items: start; white-space: normal; }
 .planner-app .branch-summary-metric > strong { min-width: 0; }
+.planner-app .branch-card > .resource-amounts { margin-top: 6px; }
+.planner-app .planner-table .resource-line { gap: 4px 8px; }
 .planner-app .drawer-head { grid-template-columns: 72px minmax(0, 1fr); }
-.planner-app .drawer-remaining {
-    grid-column: 1 / -1;
-    text-align: left;
-    min-width: 0;
-}
-.planner-app .drawer-remaining strong,
-.planner-app .drawer-target-cost { white-space: normal; }
+.planner-app .drawer-remaining { grid-column: 1 / -1; text-align: left; min-width: 0; }
+.planner-app .drawer-remaining strong, .planner-app .drawer-target-cost { white-space: normal; }
+.planner-app .drawer-remaining > strong, .planner-app .drawer-remaining .resource-amounts { display: block; font-size: 1.5rem; }
+.planner-app .drawer-remaining .resource-amounts > .planner-badge-amount { color: #8bd9eb; font-size: 1.5rem; }
+.planner-app .drawer-remaining .resource-line { color: var(--color-text, #f2eee5); font-size: 0.95rem; font-weight: 400; }
+.planner-app .drawer-remaining .resource-line--secondary { color: var(--color-muted, #b4b1a8); font-size: 0.8rem; }
+.planner-app .drawer-remaining .resource-line span { color: inherit; font-size: inherit; font-weight: inherit; }
+.planner-app .drawer-remaining .planner-badge-amount span { color: inherit; font-size: inherit; font-weight: inherit; }
 .planner-app .drawer-target-control { flex: 1 1 240px; }
-.planner-app .drawer-levels .level-table {
-    table-layout: auto;
-    width: 100%;
-    min-width: 0;
-    font-size: 0.78rem;
-}
-.planner-app .drawer-levels .level-table :is(th, td) {
-    padding: 9px 4px;
-    width: auto;
-    white-space: normal;
-    overflow-wrap: normal;
-    font-variant-numeric: tabular-nums;
-}
-.planner-app .node-list-metrics {
-    grid-template-columns: 1fr;
-    gap: 8px;
-}
+.planner-app .drawer-target-cost > .resource-amounts { margin-top: 4px; font-size: 1.1rem; }
+.planner-app .drawer-bonus { margin: 16px 0; }
+.planner-app .drawer-bonus h3 { margin: 0 0 8px; font-size: 0.9rem; }
+.planner-app .drawer-bonus p { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; margin: 4px 0; font-size: 0.85rem; }
+.planner-app .drawer-bonus strong { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.planner-app .drawer-levels .level-table { table-layout: auto; width: 100%; min-width: 0; font-size: 0.78rem; }
+.planner-app .drawer-levels .level-table :is(th, td) { padding: 9px 4px; width: auto; white-space: nowrap; overflow-wrap: normal; font-variant-numeric: tabular-nums; }
+.planner-app .drawer-levels .level-table :is(th, td):nth-child(3) { color: var(--color-text, #f2eee5); font-weight: 400; text-align: left; }
+.planner-app .drawer-levels .level-table .level-bonus { white-space: normal; }
+.planner-app .level-bonus > span { display: block; }
+.planner-app .level-badges { font-weight: 800; }
+.planner-app .level-resources, .planner-app .level-time { color: var(--color-muted, #b4b1a8); font-size: 0.72rem; }
+.planner-app .level-resources .resource-amount { display: flex; }
+.planner-app .level-mobile-resources { display: none; }
+.planner-app .node-list-metrics { grid-template-columns: 1fr; gap: 8px; }
 .planner-app .node-list-metrics .resource-amounts { display: grid; }
-.planner-app .node-list-metrics .resource-amount { display: flex; }
+.planner-app .tree-node--no-badges .tree-node-grid { grid-template-columns: max-content minmax(0, 1fr); }
+.planner-app .tree-node--no-badges .node-remaining-stat strong { white-space: nowrap; }
+.planner-app .planner-speed { flex: 0 1 14rem; min-width: 0; position: relative; }
+.planner-app .planner-speed-label label { margin: 0; font: inherit; }
+.planner-app .planner-speed-tip { margin: 0; padding: 0; border: 0; background: none; }
+.planner-app .planner-speed-tip summary { margin: 0; padding: 0; }
+.planner-app .planner-speed-tip summary::before, .planner-app .planner-speed-tip summary::after { display: none; }
+.planner-app .planner-speed-label { display: flex; gap: 6px; align-items: center; margin-bottom: 4px; font-size: 0.75rem; color: var(--color-muted, #b4b1a8); }
+.planner-app .planner-speed input { box-sizing: border-box; width: 100%; min-height: 34px; padding: 6px 10px; background: var(--surface-page, #171918); color: var(--color-text, #f2eee5); border: 1px solid var(--border-subtle, #424740); border-radius: 4px; font: inherit; }
+.planner-app .planner-speed-tip summary { cursor: pointer; list-style: none; }
+.planner-app .planner-speed-tip p { position: absolute; z-index: 5; inset-inline: 0; top: 100%; margin: 4px 0; padding: 12px; background: var(--surface-panel, #252823); border: 1px solid var(--border-subtle, #424740); color: var(--color-text, #f2eee5); font-size: 0.85rem; }
+.planner-app #research-speed-error { margin: 4px 0 0; font-size: 0.8rem; color: #ffb4ab; }
+.planner-app .planner-speed-prompt { display: inline-flex; align-items: center; gap: 4px; border: 0; padding: 0; background: none; color: var(--color-muted, #b4b1a8); font: inherit; font-size: 0.75rem; text-align: left; text-decoration: underline; cursor: pointer; }
+.planner-app .branch-overview-grid > .planner-speed-prompt { grid-column: 1 / -1; }
+@media (max-width: 980px) {
+    .planner-app .planner-speed { margin-top: 8px; max-width: 22rem; }
+}
 @media (max-width: 640px) {
     .planner-app .branch-summary-metrics { flex-basis: 100%; gap: 8px; }
-    .planner-app .branch-summary-metrics > .branch-summary-metric {
-        display: grid;
-        grid-template-columns: 76px minmax(0, 1fr) auto;
-        width: 100%;
-    }
+    .planner-app .branch-summary-metrics > .branch-summary-metric { display: grid; grid-template-columns: 76px minmax(0, 1fr) auto; width: 100%; }
     .planner-app .branch-summary-metrics > .branch-summary-metric > strong { width: 100%; }
-}
-
-.planner-app .resource-amounts--line { display: flex; flex-wrap: wrap; gap: 12px; }
-@media (min-width: 641px) {
-    .planner-app .branch-summary-metric .resource-amounts { display: flex; flex-wrap: wrap; gap: 8px 18px; }
-}
-
-.planner-app .tree-node--no-badges .tree-node-grid {
-    grid-template-columns: max-content minmax(0, 1fr);
-}
-.planner-app .tree-node--no-badges .node-remaining-stat strong {
-    white-space: normal;
-    overflow-wrap: normal;
+    .planner-app .branch-summary-metric > strong, .planner-app .branch-summary-metric .resource-amounts { display: contents; }
+    .planner-app .branch-summary-metric .resource-line { grid-column: 1 / -1; gap: 3px 8px; }
+    .planner-app .branch-summary-metric .planner-badge-amount { grid-column: 2; font-size: 1.1rem; }
+    .planner-app .summary-clear-target { grid-column: 3; grid-row: 1; }
+    .planner-app .drawer-levels .level-resources, .planner-app .drawer-levels .level-time { display: none; }
+    .planner-app .level-mobile-resources { display: table-row; }
+    .planner-app .drawer-levels .level-mobile-resources td { padding-top: 0; text-align: left; }
+    .planner-app .level-mobile-resources .resource-line { justify-content: flex-end; font-size: 0.7rem; gap: 4px 10px; }
+    .planner-app .tree-node .planner-resource-icon { width: 10px; height: 10px; flex-basis: 10px; }
 }
