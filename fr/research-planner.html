@@ -24,7 +24,7 @@
     <link rel="alternate" href="https://lastzguides.com/research-planner.html" hreflang="x-default">
 <link rel="stylesheet" href="/style.css?v=272919dfbf95">
     <link rel="stylesheet" href="/search.css?v=ccdcb30b94ef">
-    <link rel="stylesheet" href="/research-planner.css?v=9473011323f6">
+    <link rel="stylesheet" href="/research-planner.css?v=e1cfc091b426">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -207,42 +207,15 @@
                 <div class="branch-picker-menu" data-branch-menu hidden></div>
             </div>
             <button type="button" class="planner-button planner-button--muted" data-show-overview aria-expanded="false" aria-controls="branch-overview" hidden>Toutes les branches</button>
-            </div>
-
-
-            <div class="planner-dashboard" aria-label="Totaux du planificateur">
-                <div class="planner-total-card planner-total-card--scope">
-                    <span data-total-label>Total</span>
-                    <strong data-total-badges>0</strong>
-                    <small>toutes branches</small>
-                </div>
-                <div class="planner-total-card">
-                    <span data-completed-label>Dépensé</span>
-                    <strong data-completed-badges>0</strong>
-                    <small data-completed-levels>Niveaux terminés : 0</small>
-                </div>
-                <div class="planner-total-card">
-                    <span data-planned-label>Cible</span>
-                    <strong data-planned-badges>0</strong>
-                    <small data-planned-levels>Niveaux supplémentaires visés : 0</small>
-                </div>
-                <div class="planner-total-card">
-                    <span data-remaining-label>Restant</span>
-                    <strong data-remaining-badges>0</strong>
-                    <small data-remaining-note>après déduction des badges dépensés</small>
-                </div>
+            <button type="button" class="planner-button" data-copy-share>Partager</button>
+            <button type="button" class="planner-button planner-button--muted planner-more" data-planner-more aria-label="Commandes du planificateur" aria-haspopup="dialog">…</button>
             </div>
 
             <div class="planner-actions" aria-label="Commandes du planificateur">
-                <button type="button" class="planner-button" data-copy-share>Partager</button>
                 <button type="button" class="planner-button planner-button--muted" data-clear-targets>Effacer les cibles</button>
                 <button type="button" class="planner-button planner-button--danger" data-reset-planner>Réinitialiser</button>
-                <label class="planner-toggle">
-                    <input type="checkbox" data-auto-parents>
-                    <span>Compléter les prérequis</span>
-                </label>
-                <span class="planner-status" data-share-status aria-live="polite"></span>
             </div>
+            <span class="planner-status" data-share-status aria-live="polite"></span>
             </div>
             </div>
         </section>
@@ -266,29 +239,10 @@
         </section>
 
         <section class="planner-layout">
-            <aside class="planner-sidebar" aria-label="Branches de recherche">
-                <div class="planner-sidebar-head">
-                    <h2>Branches</h2>
-                    <p>Choisissez une branche pour mettre à jour les niveaux et les cibles.</p>
-                </div>
-                <div class="branch-list" data-branch-list></div>
-            </aside>
 
-            <section class="planner-workspace" aria-live="polite">
+            <section class="planner-workspace">
                 <div class="branch-summary" data-branch-summary></div>
-                <div class="planner-toolbar" aria-label="Affichage de la branche">
-                    <div class="planner-tabs" role="tablist" aria-label="Vue du planificateur">
-                        <button type="button" class="planner-tab" data-view="tree">Arbre</button>
-                        <button type="button" class="planner-tab planner-tool-button" data-view="table"><span class="tool-icon" aria-hidden="true">☰</span><span>Tableau</span></button>
-                    </div>
-                    <div class="planner-toolbar-actions">
-                        <label class="planner-toggle planner-toggle--toolbar">
-                            <input type="checkbox" data-auto-parents>
-                            <span>Prérequis</span>
-                        </label>
-                        <button type="button" class="icon-button planner-tool-button" data-toggle-stats aria-expanded="false"><span class="tool-icon" aria-hidden="true">▥</span><span>Statistiques</span></button>
-                    </div>
-                </div>
+
                 <div class="warning-panel" data-warning-panel hidden></div>
                 <div class="stat-panel" data-stat-panel hidden></div>
                 <div class="planner-view" data-planner-view></div>
@@ -351,7 +305,7 @@
         </div>
     </footer>
     <script src="/research-planner-data.js?v=9c1b349ae3e5"></script>
-    <script src="/research-planner.js?v=8b317a6f7728" defer></script>
+    <script src="/research-planner.js?v=a367f018c86c" defer></script>
     <script src="/analytics.js" defer></script>
     <script src="/search-loader.js?v=53bb75f2dc5f" defer></script>
 </body>

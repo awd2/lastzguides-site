@@ -4,28 +4,31 @@
     var SPEED_STORAGE_KEY = "lastz.researchPlanner.speed";
     var researchSpeed = null;
     var STORAGE_KEY = "lastz.researchPlanner.v3";
+    var BACKUP_STORAGE_KEY = STORAGE_KEY + ".backup";
+    var sharedBackup = null;
+    var beforeComplete = new Map();
     var LEGACY_STORAGE_KEY = "lastz.researchPlanner.v2";
     var LEGACY_NODE_STORAGE_KEY = "lastz.researchPlanner.v1";
     var PLANNER_EVENT_NAME = "planner_use";
     var entryMode = "new";
     var meaningfulUseTracked = false;
     var plannerModalReturnFocus = null;
+    var plannerModalReturnSnapshot = null;
     var data = window.LastZResearchPlannerData;
     var plannerLocale = detectPlannerLocale();
     var plannerStrings = {
         "en": {
             "level": "Level",
-            "levelShort": "Lv.",
             "remaining": "Remaining",
             "spent": "Spent",
             "done": "Done",
             "target": "Target",
-            "goal": "Goal",
             "targetCost": "Target cost",
             "map": "Map",
             "table": "Table",
             "stats": "Stats",
             "prereqs": "Prereqs",
+            "autoPrereqs": "Automatically fill prerequisites",
             "node": "Node",
             "actions": "Actions",
             "badges": "Badges",
@@ -37,40 +40,32 @@
             "setTarget": "Set target",
             "clearDone": "Clear done",
             "markDone": "Mark done",
-            "branchTotal": "Branch total",
-            "total": "Total",
-            "selectedBranchNote": "in selected branch",
-            "afterSpent": "after spent",
             "selectBranch": "Select branch",
-            "openBranch": "Open branch",
             "branchControls": "Branch view controls",
             "clearGoal": "Clear target goal",
             "branchStats": "Branch stats",
             "statScale": "current / target / max",
             "prerequisiteWarnings": "Prerequisite warnings",
+            "decreaseLevel": "Decrease completed level for {node}",
+            "increaseLevel": "Increase completed level for {node}",
             "completedControls": "Completed level controls",
             "targetsCleared": "Targets cleared.",
             "plannerReset": "Planner reset.",
             "sharedLoaded": "Shared plan loaded.",
+            "restorePlan": "Restore my plan",
+            "dismissSharedPlan": "Dismiss shared plan notice",
+            "restoreLevel": "Restore level {level} for {node}",
             "sharedLoadFailed": "Could not load shared plan.",
             "shareCopied": "Share link copied.",
             "sharePrompt": "Copy share link:",
             "shareReady": "Share link ready.",
             "statsDescription": "Current / target / max bonuses for this branch.",
-            "completedLevels": "{done} of {total} levels",
-            "targetLevels": "{count} target levels",
-            "levelProgress": "{done}/{total} levels",
-            "nodeCount": "{count} nodes",
             "branchSummary": "{nodes} nodes / {levels} levels",
-            "spentAmount": "{amount} spent",
-            "targetAmount": "{amount} target",
-            "leftAmount": "{amount} left",
-            "doneAmount": "{amount} done",
             "unlockRequirement": "Unlock: {requirements}",
             "labLevel": "Lab Level {level}",
             "t10Unlock": "Final node unlocks T10",
             "numberedLabLevel": "Laboratory {number} Level {level}",
-            "clearNodeTarget": "Clear target for {node}",
+            "clearNodeTarget": "Clear targets for this branch",
             "setNodeMaxTarget": "Set max target for {node}",
             "clearNodeDone": "Clear completed levels for {node}",
             "completeNode": "Complete {node}",
@@ -79,7 +74,7 @@
             "nodeLevel": "Lv. {done}/{max}",
             "nodeTarget": "target {level}",
             "clearNode": "Clear {node}",
-            "targetLevelCost": "Target Lv {level} · {amount}",
+            "targetLevelCost": "Target Lv {level}",
             "setTargetLevel": "Set target level {level}",
             "branchTableTitle": "{branch} Table",
             "branchStatsTitle": "{branch} Stats",
@@ -112,17 +107,16 @@
         },
         "es": {
             "level": "Nivel",
-            "levelShort": "Niv.",
             "remaining": "Restante",
             "spent": "Gastado",
             "done": "Completado",
             "target": "Objetivo",
-            "goal": "Objetivo",
             "targetCost": "Coste del objetivo",
             "map": "Árbol",
             "table": "Tabla",
             "stats": "Estadísticas",
             "prereqs": "Requisitos",
+            "autoPrereqs": "Completar automáticamente los requisitos",
             "node": "Tecnología",
             "actions": "Acciones",
             "badges": "Insignias",
@@ -134,40 +128,32 @@
             "setTarget": "Fijar objetivo",
             "clearDone": "Borrar progreso",
             "markDone": "Marcar como completado",
-            "branchTotal": "Total de la rama",
-            "total": "Total",
-            "selectedBranchNote": "en la rama seleccionada",
-            "afterSpent": "tras descontar lo gastado",
             "selectBranch": "Seleccionar rama",
-            "openBranch": "Rama sin requisitos de desbloqueo",
             "branchControls": "Vista de la rama",
             "clearGoal": "Borrar los objetivos de esta rama",
             "branchStats": "Estadísticas de la rama",
             "statScale": "actual / objetivo / máximo",
             "prerequisiteWarnings": "Avisos de requisitos",
+            "decreaseLevel": "Reducir el nivel completado de {node}",
+            "increaseLevel": "Aumentar el nivel completado de {node}",
             "completedControls": "Controles del nivel completado",
             "targetsCleared": "Objetivos borrados.",
             "plannerReset": "Planificador restablecido.",
             "sharedLoaded": "Plan compartido cargado.",
+            "restorePlan": "Restaurar mi plan",
+            "dismissSharedPlan": "Cerrar el aviso del plan compartido",
+            "restoreLevel": "Restaurar el nivel {level} de {node}",
             "sharedLoadFailed": "No se ha podido cargar el plan compartido.",
             "shareCopied": "Enlace para compartir copiado.",
             "sharePrompt": "Copia el enlace para compartir:",
             "shareReady": "Enlace para compartir listo.",
             "statsDescription": "Bonificaciones actuales, objetivo y máximas de esta rama.",
-            "completedLevels": "Niveles completados: {done}/{total}",
-            "targetLevels": "Niveles adicionales previstos: {count}",
-            "levelProgress": "Niveles: {done}/{total}",
-            "nodeCount": "Tecnologías: {count}",
             "branchSummary": "Tecnologías: {nodes} / niveles: {levels}",
-            "spentAmount": "Gastado: {amount}",
-            "targetAmount": "Objetivo: {amount}",
-            "leftAmount": "Restante: {amount}",
-            "doneAmount": "Completado: {amount}",
             "unlockRequirement": "Desbloqueo: {requirements}",
             "labLevel": "Laboratorio de nivel {level}",
             "t10Unlock": "El último nodo desbloquea T10",
             "numberedLabLevel": "Laboratorio n.º {number} de nivel {level}",
-            "clearNodeTarget": "Borrar el objetivo de {node}",
+            "clearNodeTarget": "Borrar los objetivos de esta rama",
             "setNodeMaxTarget": "Fijar el nivel máximo como objetivo de {node}",
             "clearNodeDone": "Borrar los niveles completados de {node}",
             "completeNode": "Completar {node}",
@@ -176,7 +162,7 @@
             "nodeLevel": "Niv. {done}/{max}",
             "nodeTarget": "objetivo {level}",
             "clearNode": "Borrar el progreso de {node}",
-            "targetLevelCost": "Objetivo niv. {level} · {amount}",
+            "targetLevelCost": "Objetivo niv. {level}",
             "setTargetLevel": "Fijar el nivel {level} como objetivo",
             "branchTableTitle": "Tabla — {branch}",
             "branchStatsTitle": "Estadísticas — {branch}",
@@ -209,17 +195,16 @@
         },
         "fr": {
             "level": "Niveau",
-            "levelShort": "Niv.",
             "remaining": "Restant",
             "spent": "Dépensé",
             "done": "Terminé",
             "target": "Cible",
-            "goal": "Objectif",
             "targetCost": "Coût de la cible",
             "map": "Arbre",
             "table": "Tableau",
             "stats": "Statistiques",
             "prereqs": "Prérequis",
+            "autoPrereqs": "Compléter automatiquement les prérequis",
             "node": "Technologie",
             "actions": "Actions",
             "badges": "Badges",
@@ -231,40 +216,32 @@
             "setTarget": "Définir la cible",
             "clearDone": "Effacer la progression",
             "markDone": "Marquer comme terminé",
-            "branchTotal": "Total de la branche",
-            "total": "Total",
-            "selectedBranchNote": "dans la branche sélectionnée",
-            "afterSpent": "après déduction des badges dépensés",
             "selectBranch": "Choisir une branche",
-            "openBranch": "Branche sans prérequis de déblocage",
             "branchControls": "Affichage de la branche",
             "clearGoal": "Effacer les cibles de cette branche",
             "branchStats": "Statistiques de la branche",
             "statScale": "actuel / cible / maximum",
             "prerequisiteWarnings": "Avertissements sur les prérequis",
+            "decreaseLevel": "Réduire le niveau terminé de {node}",
+            "increaseLevel": "Augmenter le niveau terminé de {node}",
             "completedControls": "Réglage du niveau terminé",
             "targetsCleared": "Cibles effacées.",
             "plannerReset": "Planificateur réinitialisé.",
             "sharedLoaded": "Plan partagé chargé.",
+            "restorePlan": "Restaurer mon plan",
+            "dismissSharedPlan": "Fermer le message du plan partagé",
+            "restoreLevel": "Rétablir le niveau {level} de {node}",
             "sharedLoadFailed": "Impossible de charger le plan partagé.",
             "shareCopied": "Lien de partage copié.",
             "sharePrompt": "Copiez le lien de partage :",
             "shareReady": "Lien de partage prêt.",
             "statsDescription": "Bonus actuels, visés et maximaux de cette branche.",
-            "completedLevels": "Niveaux terminés : {done}/{total}",
-            "targetLevels": "Niveaux supplémentaires visés : {count}",
-            "levelProgress": "Niveaux : {done}/{total}",
-            "nodeCount": "Technologies : {count}",
             "branchSummary": "Technologies : {nodes} / niveaux : {levels}",
-            "spentAmount": "Dépensé : {amount}",
-            "targetAmount": "Cible : {amount}",
-            "leftAmount": "Restant : {amount}",
-            "doneAmount": "Terminé : {amount}",
             "unlockRequirement": "Déblocage : {requirements}",
             "labLevel": "Laboratoire de niveau {level}",
             "t10Unlock": "Le dernier nœud débloque T10",
             "numberedLabLevel": "Laboratoire n° {number}, niveau {level}",
-            "clearNodeTarget": "Effacer la cible de {node}",
+            "clearNodeTarget": "Effacer les cibles de cette branche",
             "setNodeMaxTarget": "Définir le niveau maximal comme cible pour {node}",
             "clearNodeDone": "Effacer les niveaux terminés de {node}",
             "completeNode": "Terminer {node}",
@@ -273,7 +250,7 @@
             "nodeLevel": "Niv. {done}/{max}",
             "nodeTarget": "cible {level}",
             "clearNode": "Effacer la progression de {node}",
-            "targetLevelCost": "Cible niv. {level} · {amount}",
+            "targetLevelCost": "Cible niv. {level}",
             "setTargetLevel": "Définir le niveau {level} comme cible",
             "branchTableTitle": "Tableau — {branch}",
             "branchStatsTitle": "Statistiques — {branch}",
@@ -513,6 +490,12 @@
     var branchById = new Map(branches.map(function (branch) {
         return [branch.id, branch];
     }));
+    // Presentation order only: storage and share codecs keep the source IDs/order.
+    var displayBranchIds = ["hero-training", "military-strategies", "siege-to-seize", "peace-shield", "field", "army-building", "alliance-recognition", "fully-armed-alliance", "unit-special-training", "rider-training", "assaulter-training", "shooter-training", "steel-age", "tactical-master", "leaders-will", "new-home", "shelter-building", "elite-troops", "hq-management", "rapid-growth", "army-expansion"];
+    var orderedBranches = displayBranchIds.map(function (id) { return branchById.get(id); }).filter(Boolean).concat(branches.filter(function (branch) {
+        return displayBranchIds.indexOf(branch.id) === -1;
+    }));
+    var displayBranches = orderedBranches.filter(function (branch) { return branch.totalBadges > 0; }).concat(orderedBranches.filter(function (branch) { return !branch.totalBadges; }));
     var nodeByKey = new Map();
     var branchMaps = new Map();
 
@@ -537,13 +520,6 @@
     };
 
     var refs = {
-        totalBadges: document.querySelector("[data-total-badges]"),
-        completedBadges: document.querySelector("[data-completed-badges]"),
-        completedLevels: document.querySelector("[data-completed-levels]"),
-        plannedBadges: document.querySelector("[data-planned-badges]"),
-        plannedLevels: document.querySelector("[data-planned-levels]"),
-        remainingBadges: document.querySelector("[data-remaining-badges]"),
-        branchList: document.querySelector("[data-branch-list]"),
         branchSummary: document.querySelector("[data-branch-summary]"),
         overviewPanel: document.querySelector("#branch-overview"),
         overviewButton: document.querySelector("[data-show-overview]"),
@@ -559,18 +535,10 @@
         branchSelect: document.querySelector("[data-branch-select]"),
         branchMenuButton: document.querySelector("[data-branch-menu-button]"),
         branchMenu: document.querySelector("[data-branch-menu]"),
-        totalLabel: document.querySelector("[data-total-label]"),
-        completedLabel: document.querySelector("[data-completed-label]"),
-        plannedLabel: document.querySelector("[data-planned-label]"),
-        remainingLabel: document.querySelector("[data-remaining-label]"),
-        remainingNote: document.querySelector("[data-remaining-note]"),
         copyShare: document.querySelector("[data-copy-share]"),
         clearTargets: document.querySelector("[data-clear-targets]"),
         resetPlanner: document.querySelector("[data-reset-planner]"),
-        autoParentControls: Array.prototype.slice.call(document.querySelectorAll("[data-auto-parents]")),
         shareStatus: document.querySelector("[data-share-status]"),
-        tabs: Array.prototype.slice.call(document.querySelectorAll("[data-view]")),
-        statToggle: document.querySelector("[data-toggle-stats]"),
         drawer: document.querySelector("[data-node-drawer]"),
         drawerContent: document.querySelector("[data-drawer-content]"),
         mobileSheet: document.querySelector("[data-mobile-sheet]"),
@@ -581,6 +549,9 @@
 
     function init() {
         var hadSavedProgress = loadState();
+        sharedBackup = readJsonStorage(BACKUP_STORAGE_KEY);
+        if (!sharedBackup || sharedBackup.v !== 3) sharedBackup = null;
+        renderShareStatus();
         var loadedSharedPlan = importShareState();
         var requestedBranch = new URLSearchParams(window.location.search).get("branch");
         if (!loadedSharedPlan && branchById.has(requestedBranch)) {
@@ -594,7 +565,7 @@
 
     // Same accepted notation and per-level rounding as the HQ calculator.
     function parseResearchSpeed(value) {
-        var raw = value.trim().replace(/%$/, "").trim();
+        var raw = value.trim().replace(/%$/, "").trim().replace(",", ".");
         if (!/^\d+(?:\.\d+)?$/.test(raw)) return null;
         var speed = Number(raw);
         return Number.isFinite(speed) && speed >= 0 && speed <= 1000 ? speed : null;
@@ -609,7 +580,7 @@
             '<div class="planner-speed"><div class="planner-speed-label"><label for="research-speed">', escapeHtml(plannerText("researchSpeed")), '</label>',
             '<details class="planner-speed-tip"><summary aria-label="', escapeAttr(plannerText("speedHelp")), '">ⓘ</summary><p>', escapeHtml(plannerText("speedTip")), '</p></details></div>',
             '<input id="research-speed" type="text" inputmode="decimal" autocomplete="off" placeholder="', escapeAttr(plannerText("speedPlaceholder")), '" aria-describedby="research-speed-error">',
-            '<p id="research-speed-error" role="status" hidden>', escapeHtml(plannerText("speedError")), '</p></div>'
+            '<p id="research-speed-error" hidden>', escapeHtml(plannerText("speedError")), '</p></div>'
         ].join(""));
         refs.speedInput = document.querySelector("#research-speed");
         refs.speedError = document.querySelector("#research-speed-error");
@@ -618,7 +589,13 @@
             if (saved !== null && parseResearchSpeed(saved) !== null) refs.speedInput.value = saved;
         } catch (error) { /* Storage is optional. */ }
         researchSpeed = parseResearchSpeed(refs.speedInput.value);
-        refs.speedInput.addEventListener("input", updateResearchSpeed);
+        refs.speedInput.addEventListener("input", function () {
+            window.clearTimeout(updateResearchSpeed.timer);
+            // A trailing decimal separator is still being typed; retain valid times.
+            if (/^\d+[.,]$/.test(refs.speedInput.value.trim())) return;
+            updateResearchSpeed.timer = window.setTimeout(updateResearchSpeed, 500);
+        });
+        refs.speedInput.addEventListener("blur", updateResearchSpeed);
         document.addEventListener("click", function (event) {
             if (!event.target.closest('[data-add-speed]')) return;
             if (state.selectedKey) closeDrawer();
@@ -628,8 +605,9 @@
     }
 
     function updateResearchSpeed() {
+        window.clearTimeout(updateResearchSpeed.timer);
         var raw = refs.speedInput.value;
-        researchSpeed = parseResearchSpeed(raw);
+        researchSpeed = parseResearchSpeed(raw.replace(/[.,]$/, ""));
         var invalid = raw.trim() !== "" && researchSpeed === null;
         refs.speedError.hidden = !invalid;
         refs.speedInput.setAttribute("aria-invalid", String(invalid));
@@ -671,16 +649,27 @@
                 setOverviewVisible(false);
             }
         });
+        refs.shareStatus.addEventListener("click", function (event) {
+            if (event.target.closest("[data-restore-plan]")) restoreSharedBackup();
+            if (event.target.closest("[data-dismiss-share]")) {
+                discardSharedBackup();
+                refs.copyShare.focus();
+            }
+        });
+        document.querySelector("[data-planner-more]").addEventListener("click", function (event) { openMobileSheet("actions", event.currentTarget); });
         refs.copyShare.addEventListener("click", function () {
             copyShareLink();
         });
         refs.clearTargets.addEventListener("click", function () {
+            discardSharedBackup();
             state.targets = {};
             saveState();
             render();
             setStatus(plannerText("targetsCleared"));
         });
         refs.resetPlanner.addEventListener("click", function () {
+            discardSharedBackup();
+            beforeComplete.clear();
             state.levels = {};
             state.targets = {};
             state.selectedKey = null;
@@ -688,11 +677,6 @@
             render();
             closeDrawer();
             setStatus(plannerText("plannerReset"));
-        });
-        refs.autoParentControls.forEach(function (control) {
-            control.addEventListener("change", function () {
-                setAutoParents(control.checked);
-            });
         });
         refs.branchSelect.addEventListener("change", function () {
             state.activeBranchId = refs.branchSelect.value;
@@ -728,28 +712,6 @@
             refs.branchMenu.hidden = true;
             refs.branchMenuButton.setAttribute("aria-expanded", "false");
         });
-        refs.statToggle.addEventListener("click", function (event) {
-            event.stopPropagation();
-            openStatsControl();
-        });
-        refs.tabs.forEach(function (button) {
-            button.addEventListener("click", function (event) {
-                event.stopPropagation();
-                openViewControl(button);
-            });
-        });
-        refs.branchList.addEventListener("click", function (event) {
-            var button = event.target.closest("[data-branch-id]");
-            if (!button) {
-                return;
-            }
-            state.activeBranchId = button.getAttribute("data-branch-id");
-            setOverviewVisible(false, false);
-            state.selectedKey = null;
-            saveState();
-            closeDrawer();
-            render();
-        });
         if (refs.branchOverview) {
             refs.branchOverview.addEventListener("click", function (event) {
                 var button = event.target.closest("[data-branch-card]");
@@ -770,7 +732,7 @@
         refs.branchSummary.addEventListener("change", function (event) {
             var control = event.target.closest("[data-auto-parents]");
             if (control) {
-                setAutoParents(control.checked);
+                setAutoParents(control.checked, control);
                 return;
             }
             handlePlannerChange(event);
@@ -845,21 +807,16 @@
         });
     }
 
-    function setAutoParents(enabled) {
+    function setAutoParents(enabled, control) {
         state.autoParents = !!enabled;
         saveState();
-        render();
+        render(control);
     }
 
     function loadState() {
         var saved = readJsonStorage(STORAGE_KEY);
         if (saved && saved.v === 3) {
-            state.activeBranchId = branchById.has(saved.activeBranchId) ? saved.activeBranchId : state.activeBranchId;
-            state.view = saved.view === "table" ? "table" : "tree";
-            state.autoParents = saved.autoParents !== false;
-            state.statsOpen = false;
-            state.levels = cleanLevelMap(saved.levels);
-            state.targets = cleanLevelMap(saved.targets);
+            applySavedState(saved);
             return hasPlannerProgress();
         }
 
@@ -881,6 +838,35 @@
         return hasPlannerProgress();
     }
 
+    function applySavedState(saved) {
+        state.activeBranchId = branchById.has(saved.activeBranchId) ? saved.activeBranchId : state.activeBranchId;
+        state.view = saved.view === "table" ? "table" : "tree";
+        state.autoParents = saved.autoParents !== false;
+        state.statsOpen = false;
+        state.levels = cleanLevelMap(saved.levels);
+        state.targets = cleanLevelMap(saved.targets);
+    }
+
+    function discardSharedBackup() {
+        if (!sharedBackup) return;
+        sharedBackup = null;
+        try { localStorage.removeItem(BACKUP_STORAGE_KEY); } catch (error) { /* Storage is optional. */ }
+        renderShareStatus();
+    }
+
+    function restoreSharedBackup() {
+        if (!sharedBackup) return;
+        applySavedState(sharedBackup);
+        sharedBackup = null;
+        beforeComplete.clear();
+        if (saveState()) {
+            try { localStorage.removeItem(BACKUP_STORAGE_KEY); } catch (error) { /* Storage is optional. */ }
+        }
+        render();
+        renderShareStatus();
+        focusActiveBranch();
+    }
+
     function importShareState() {
         var params = new URLSearchParams(window.location.search);
         var payload = params.get("p");
@@ -889,6 +875,14 @@
         }
         try {
             var decoded = JSON.parse(base64UrlDecode(payload));
+            if (decoded.v !== 1 && decoded.v !== 2) return false;
+            var saved = readJsonStorage(STORAGE_KEY);
+            if (!sharedBackup && saved && saved.v === 3 && (Object.keys(cleanLevelMap(saved.levels)).length || Object.keys(cleanLevelMap(saved.targets)).length)) {
+                try {
+                    localStorage.setItem(BACKUP_STORAGE_KEY, JSON.stringify(saved));
+                    sharedBackup = saved;
+                } catch (error) { /* Storage is optional. */ }
+            }
             if (decoded.v === 2) {
                 state.activeBranchId = branchById.has(decoded.b) ? decoded.b : state.activeBranchId;
                 state.view = decoded.view === "table" ? "table" : "tree";
@@ -896,19 +890,21 @@
                 state.statsOpen = false;
                 state.levels = arrayToLevelMap(decoded.l);
                 state.targets = arrayToLevelMap(decoded.t);
-                saveState();
-                setStatus(plannerText("sharedLoaded"));
-                return true;
+
             } else if (decoded.v === 1) {
                 state.activeBranchId = branchById.has(decoded.b) ? decoded.b : state.activeBranchId;
                 state.levels = {};
                 state.targets = {};
                 migrateLegacyMap(arrayToBooleanMap(decoded.c), "levels");
                 migrateLegacyMap(arrayToBooleanMap(decoded.p), "targets");
-                saveState();
-                setStatus(plannerText("sharedLoaded"));
-                return true;
+
             }
+            saveState();
+            var url = new URL(window.location.href);
+            url.searchParams.delete("p");
+            window.history.replaceState(window.history.state, "", url.toString());
+            renderShareStatus();
+            return true;
         } catch (error) {
             setStatus(plannerText("sharedLoadFailed"));
         }
@@ -933,52 +929,52 @@
         }
     }
 
-    function render() {
+    function render(control) {
+        var focus = plannerFocus(control || document.activeElement);
         var changedTargets = normalizeTargetPrerequisites();
         if (changedTargets) {
             saveState();
         }
-        refs.autoParentControls.forEach(function (control) {
-            control.checked = state.autoParents;
-        });
-        refs.tabs.forEach(function (button) {
-            var isActive = isSmallScreen() ? button.getAttribute("data-view") === "tree" : button.getAttribute("data-view") === state.view;
-            button.classList.toggle("is-active", isActive);
-            button.setAttribute("aria-selected", String(isActive));
-        });
-        refs.statToggle.classList.toggle("is-active", state.statsOpen);
-        refs.statToggle.setAttribute("aria-expanded", String(state.statsOpen));
-        renderTotals();
         renderBranchSelect();
-        renderBranchList();
         renderBranchOverview();
         renderBranchWorkspace();
         renderDrawer();
         renderMobileSheet();
+        restorePlannerFocus(focus);
     }
 
-    function renderTotals() {
-        var activeBranch = branchById.get(state.activeBranchId);
-        var branchScoped = isSmallScreen() && activeBranch;
-        var totals = branchScoped ? calculateTotals([activeBranch]) : calculateTotals(branches);
-        var scopeTotal = branchScoped ? activeBranch.totalBadges : data.totalBadges;
-        refs.totalBadges.innerHTML = branchScoped && !activeBranch.totalBadges ? "—" : badgeAmount(scopeTotal);
-        refs.completedBadges.innerHTML = branchScoped && !activeBranch.totalBadges ? "—" : badgeAmount(totals.completedBadges);
-        refs.completedLevels.textContent = plannerText("completedLevels", { done: totals.completedLevels, total: totals.totalLevels });
-        refs.plannedBadges.innerHTML = branchScoped && !activeBranch.totalBadges ? "—" : badgeAmount(totals.plannedBadges);
-        refs.plannedLevels.textContent = plannerText("targetLevels", { count: totals.targetLevels });
-        refs.remainingBadges.innerHTML = branchScoped && !activeBranch.totalBadges ? "—" : badgeAmount(scopeTotal - totals.completedBadges);
-        if (refs.totalLabel) {
-            refs.totalLabel.textContent = plannerText(branchScoped ? "branchTotal" : "total");
+    function plannerFocus(control) {
+        if (!control || !control.getAttribute || !control.closest) return null;
+        var scope = control.closest("[data-drawer-content], [data-mobile-sheet-content], [data-branch-summary], [data-planner-view]");
+        if (!scope) return null;
+        var attributes = ["data-action", "data-key", "data-level", "data-level-select", "data-auto-parents", "data-toggle-stats", "data-view"];
+        var values = attributes.map(function (name) { return control.getAttribute(name); });
+        if (values.every(function (value) { return value === null; })) return null;
+        // A tree flag or view toggle changes its action while retaining its role.
+        var corner = control.classList.contains("node-corner--left");
+        return {scope: scope, attributes: attributes, values: values, corner: corner, control: control};
+    }
+
+    function restorePlannerFocus(focus) {
+        if (!focus) return;
+        if (focus.control.isConnected) return;
+        var replacement = Array.from(focus.scope.querySelectorAll("button, select, input")).find(function (control) {
+            return focus.attributes.every(function (name, index) {
+                if (focus.corner && name === "data-action") return control.classList.contains("node-corner--left");
+                if (name === "data-view" && focus.values[index] !== null) return control.hasAttribute(name);
+                return control.getAttribute(name) === focus.values[index];
+            });
+        });
+        if (replacement && replacement.disabled) {
+            replacement = focus.scope.querySelector('.drawer-stepper button:not(:disabled)');
         }
-        if (refs.remainingNote) {
-            refs.remainingNote.textContent = plannerText(branchScoped ? "selectedBranchNote" : "afterSpent");
-        }
+        if (replacement) replacement.focus({preventScroll: true});
+        else focusActiveBranch();
     }
 
     function renderBranchSelect() {
         refs.branchSelect.innerHTML = [true, false].map(function (badges) {
-            return '<optgroup label="' + escapeAttr(plannerText(badges ? "badgeResearch" : "noBadgeResearch")) + '">' + branches.filter(function (branch) {
+            return '<optgroup label="' + escapeAttr(plannerText(badges ? "badgeResearch" : "noBadgeResearch")) + '">' + displayBranches.filter(function (branch) {
                 return Boolean(branch.totalBadges) === badges;
             }).map(function (branch) {
                 return '<option value="' + escapeAttr(branch.id) + '"' + (branch.id === state.activeBranchId ? " selected" : "") + ">" + escapeHtml(branch.name) + "</option>";
@@ -987,9 +983,9 @@
         refs.branchSelect.value = state.activeBranchId;
         var activeBranch = branchById.get(state.activeBranchId);
         refs.branchMenuButton.textContent = activeBranch ? activeBranch.name : plannerText("selectBranch");
-        refs.branchMenu.innerHTML = branches.map(function (branch, index) {
+        refs.branchMenu.innerHTML = displayBranches.map(function (branch, index) {
             return [
-                index === 0 || Boolean(branch.totalBadges) !== Boolean(branches[index - 1].totalBadges) ? '<div class="branch-group-label">' + escapeHtml(plannerText(branch.totalBadges ? "badgeResearch" : "noBadgeResearch")) + '</div>' : "",
+                index === 0 || Boolean(branch.totalBadges) !== Boolean(displayBranches[index - 1].totalBadges) ? '<div class="branch-group-label">' + escapeHtml(plannerText(branch.totalBadges ? "badgeResearch" : "noBadgeResearch")) + '</div>' : "",
                 '<button type="button" class="branch-picker-option',
                 branch.id === state.activeBranchId ? " is-active" : "",
                 '" data-branch-choice="', escapeAttr(branch.id), '">',
@@ -998,33 +994,6 @@
                 "</button>"
             ].join("");
         }).join("");
-    }
-
-    function renderBranchList() {
-        refs.branchList.innerHTML = "";
-        branches.forEach(function (branch) {
-            var summary = calculateTotals([branch]);
-            var button = document.createElement("button");
-            button.type = "button";
-            button.className = "branch-button" + (branch.id === state.activeBranchId ? " is-active" : "");
-            button.setAttribute("data-branch-id", branch.id);
-            button.innerHTML = [
-                '<span class="branch-button-title"><span>',
-                escapeHtml(branch.name),
-                '</span><span>',
-                summary.completedLevels,
-                "/",
-                summary.totalLevels,
-                "</span></span>",
-                '<span class="branch-progress" aria-hidden="true"><span style="width:',
-                branch.totalBadges ? Math.round(summary.completedBadges / branch.totalBadges * 100) : 0,
-                '%"></span></span>',
-                '<span class="branch-button-meta">',
-                branch.totalBadges ? badgeMetric("strong", "spentAmount", summary.completedBadges) + badgeMetric("strong", "targetAmount", summary.plannedBadges) + badgeMetric("strong", "leftAmount", summary.remainingBadges) : resourceAmounts(summary.remainingResources, false, true),
-                "</span>"
-            ].join("");
-            refs.branchList.appendChild(button);
-        });
     }
 
     function setOverviewVisible(visible, moveFocus) {
@@ -1081,10 +1050,10 @@
         if (!refs.branchOverview) return;
         // Keep the existing node and its experiment listeners across grid rebuilds.
         if (refs.promo && refs.promoHome) refs.promoHome.before(refs.promo);
-        refs.branchOverview.innerHTML = speedPrompt() + branches.map(function (branch, index) {
+        refs.branchOverview.innerHTML = speedPrompt() + displayBranches.map(function (branch, index) {
             var summary = calculateTotals([branch]);
             return [
-                index === 0 || Boolean(branch.totalBadges) !== Boolean(branches[index - 1].totalBadges) ? '<h3 class="branch-group-label">' + escapeHtml(plannerText(branch.totalBadges ? "badgeResearch" : "noBadgeResearch")) + '</h3>' : "",
+                index === 0 || Boolean(branch.totalBadges) !== Boolean(displayBranches[index - 1].totalBadges) ? '<h3 class="branch-group-label">' + escapeHtml(plannerText(branch.totalBadges ? "badgeResearch" : "noBadgeResearch")) + '</h3>' : "",
                 '<button type="button" class="branch-card',
                 branch.id === state.activeBranchId ? " is-active" : "",
                 '" data-branch-card="', escapeAttr(branch.id), '">',
@@ -1092,7 +1061,7 @@
                 branch.totalBadges ? '<span class="branch-card-costs">' : '',
                 branch.totalBadges ? '<span class="branch-card-total"><span>' + escapeHtml(plannerText("fullBranchCost")) + '</span>' + badgeAmount(branch.totalBadges) + '</span>' : '',
                 branch.totalBadges ? '<span class="branch-card-total branch-card-remaining"><span>' + escapeHtml(plannerText("finishBranchCost")) + '</span>' + badgeAmount(summary.remainingBadges) + '</span></span>' : '',
-                resourceAmounts(branchResources(branch), false, true, false, Boolean(branch.totalBadges)),
+                resourceAmounts(summary.remainingResources, false, true, false, Boolean(branch.totalBadges)),
                 '<span class="branch-card-progress-pair">',
                 overviewProgress("levelsCompleted", summary.completedLevels, summary.totalLevels, true),
                 branch.totalBadges ? overviewProgress("badgesSpent", summary.completedBadges, branch.totalBadges, false) : "",
@@ -1143,7 +1112,7 @@
         var mobileControls = [
             '<div class="branch-summary-controls" aria-label="' + escapeAttr(plannerText("branchControls")) + '">',
             '<button type="button" class="planner-tab planner-tool-button" data-view="', viewButtonTarget, '"><span class="tool-icon" aria-hidden="true">', viewButtonIcon, '</span><span>', viewButtonLabel, '</span></button>',
-            '<label class="planner-toggle planner-toggle--toolbar"><input type="checkbox" data-auto-parents', state.autoParents ? " checked" : "", '><span>' + escapeHtml(plannerText("prereqs")) + '</span></label>',
+            '<label class="planner-toggle planner-toggle--toolbar"><input type="checkbox" aria-label="' + escapeAttr(plannerText("autoPrereqs")) + '" data-auto-parents', state.autoParents ? " checked" : "", '><span>' + escapeHtml(plannerText("prereqs")) + '</span></label>',
             '<button type="button" class="icon-button planner-tool-button', statsClass, '" data-toggle-stats aria-expanded="', state.statsOpen && !isSmallScreen() ? "true" : "false", '"><span class="tool-icon" aria-hidden="true">▥</span><span>' + escapeHtml(plannerText("stats")) + '</span></button>',
             "</div>"
         ].join("");
@@ -1153,12 +1122,11 @@
             "<h2>", escapeHtml(branch.name), "</h2>",
             "</div>",
             '<div class="branch-summary-metrics">',
-            '<span class="branch-summary-metric"><span>' + escapeHtml(plannerText("spent")) + '</span><strong>', resourceAmounts(summary.completedResources, branch.totalBadges > 0, true), '</strong></span>',
+            (summary.completedResources.badgeCost || summary.completedResources.electricityCost || summary.completedResources.zentCost) ? '<span class="branch-summary-metric branch-summary-spent"><span>' + escapeHtml(plannerText("spent")) + '</span><strong>' + resourceAmounts(summary.completedResources, branch.totalBadges > 0, true, false, false, true) + '</strong></span>' : "",
             '<span class="branch-summary-metric"><span>' + escapeHtml(plannerText("remaining")) + '</span><strong>', resourceAmounts(summary.remainingResources, branch.totalBadges > 0, true, true), '</strong></span>',
-            targetActive ? '<span class="branch-summary-metric branch-summary-goal"><span>' + escapeHtml(plannerText("goal")) + '</span><strong>' + resourceAmounts(summary.plannedResources, branch.totalBadges > 0, true) + '</strong><button type="button" class="summary-clear-target" data-action="clear-branch-targets" data-branch-id="' + escapeAttr(branch.id) + '" aria-label="' + escapeAttr(plannerText("clearGoal")) + '">x</button></span>' : "",
+            targetActive ? '<span class="branch-summary-metric branch-summary-goal"><span>' + escapeHtml(plannerText("target")) + '</span><strong>' + resourceAmounts(summary.plannedResources, branch.totalBadges > 0, true) + '</strong><button type="button" class="summary-clear-target" data-action="clear-branch-targets" data-branch-id="' + escapeAttr(branch.id) + '" aria-label="' + escapeAttr(plannerText("clearGoal")) + '">x</button></span>' : "",
             "</div>",
             mobileControls,
-            '<button type="button" class="planner-button planner-button--muted" data-action="clear-branch" data-branch-id="', escapeAttr(branch.id), '">' + escapeHtml(plannerText("clear")) + '</button>',
             "</div>",
             '<div class="summary-progress"><span style="width:', pct, '%"></span></div>',
             '<p class="branch-summary-meta">',
@@ -1326,7 +1294,7 @@
         return [
             '<article class="', classes, '" style="left:', point.x, 'px;top:', point.y, 'px;">',
             '<button type="button" class="node-corner node-corner--left', target > done ? " is-selected" : "", '" data-action="', target > done ? "clear-target" : "plan-max", '" data-key="', escapeAttr(key), '" aria-label="', escapeAttr(plannerText(target > done ? "clearNodeTarget" : "setNodeMaxTarget", { node: node.name })), '" title="', escapeAttr(plannerText(target > done ? "clearTarget" : "setTarget")), '">⚑</button>',
-            '<button type="button" class="node-corner node-corner--right', done >= node.maxLevel ? " is-selected" : "", '" data-action="', done >= node.maxLevel ? "clear" : "max", '" data-key="', escapeAttr(key), '" aria-label="', escapeAttr(plannerText(done >= node.maxLevel ? "clearNodeDone" : "completeNode", { node: node.name })), '" title="', escapeAttr(plannerText(done >= node.maxLevel ? "clearDone" : "markDone")), '">✓</button>',
+            '<button type="button" class="node-corner node-corner--right', done >= node.maxLevel ? " is-selected" : "", '" data-action="', "toggle-complete", '" data-key="', escapeAttr(key), '" aria-label="', escapeAttr(plannerText(done >= node.maxLevel ? beforeComplete.has(key) ? "restoreLevel" : "clearNodeDone" : "completeNode", { node: node.name, level: beforeComplete.get(key) })), '" title="', escapeAttr(plannerText(done >= node.maxLevel ? beforeComplete.has(key) ? "restoreLevel" : "clearDone" : "markDone", {node: node.name, level: beforeComplete.get(key)})), '">✓</button>',
             '<button type="button" class="tree-node-open" data-action="open-node" data-key="', escapeAttr(key), '" aria-label="', escapeAttr(plannerText(branch.totalBadges ? (planned ? "openNodeTarget" : "openNodeRemaining") : "openNodeDetails", { node: node.name, amount: formatNumber(planned || remaining) })), '">',
             '<span class="node-hex">', escapeHtml(initials(node.name)), "</span>",
             '<span class="tree-node-title">', escapeHtml(node.name), "</span>",
@@ -1355,8 +1323,8 @@
                 var key = nodeKey(branch.id, node.id);
                 var done = getLevel(key);
                 var target = getTarget(key);
-                var spent = costToLevel(node, done);
-                var planned = target > done ? rangeCost(node, done, target) : 0;
+
+
                 var parents = node.parents && node.parents.length ? node.parents.map(function (parentId) {
                     return findNodeName(branch, parentId);
                 }).join(", ") : "-";
@@ -1365,7 +1333,7 @@
                     '<td><button type="button" class="table-node-name" data-action="open-node" data-key="', escapeAttr(key), '">', escapeHtml(node.name), "</button></td>",
                     '<td>', levelSelect("completed", key, done, node.maxLevel), "</td>",
                     '<td>', levelSelect("target", key, target, node.maxLevel), "</td>",
-                    "<td>", resourceAmounts(nodeResources(node, 0, done), branch.totalBadges > 0), "</td>",
+                    "<td>", resourceAmounts(nodeResources(node, 0, done), branch.totalBadges > 0, true, false, false, true), "</td>",
                     "<td>", resourceAmounts(nodeResources(node, done, target), branch.totalBadges > 0), "</td>",
                     "<td>", resourceAmounts(nodeResources(node, done, node.maxLevel), branch.totalBadges > 0), "</td>",
                     "<td>", escapeHtml(parents), "</td>",
@@ -1394,21 +1362,21 @@
                 var key = nodeKey(branch.id, node.id);
                 var done = getLevel(key);
                 var target = getTarget(key);
-                var spent = costToLevel(node, done);
-                var planned = target > done ? rangeCost(node, done, target) : 0;
-                var remaining = node.totalBadges - spent;
+
+
+
                 return [
                     '<article class="node-list-card', done >= node.maxLevel ? " is-complete" : "", target > done ? " has-target" : "", '">',
                     '<button type="button" class="node-list-title" data-action="open-node" data-key="', escapeAttr(key), '">',
                     '<span class="node-icon">', escapeHtml(initials(node.name)), "</span>",
-                    '<span><strong>', escapeHtml(node.name), '</strong><small>', escapeHtml(plannerText("nodeLevel", { done: done, max: node.maxLevel })), target > done ? " -> " + target : "", "</small></span>",
+                    '<span><strong>', escapeHtml(node.name), '</strong><small>', escapeHtml(plannerText("nodeLevel", { done: done, max: node.maxLevel })), target > done ? " → " + target : "", "</small></span>",
                     "</button>",
                     '<div class="node-list-controls">',
                     '<label>', escapeHtml(plannerText("done")), ' ', levelSelect("completed", key, done, node.maxLevel), "</label>",
                     '<label>', escapeHtml(plannerText("target")), ' ', levelSelect("target", key, target, node.maxLevel), "</label>",
                     "</div>",
                     '<div class="node-list-metrics">',
-                    '<span>' + escapeHtml(plannerText("spent")) + resourceAmounts(nodeResources(node, 0, done), branch.totalBadges > 0) + '</span>',
+                    '<span>' + escapeHtml(plannerText("spent")) + resourceAmounts(nodeResources(node, 0, done), branch.totalBadges > 0, true, false, false, true) + '</span>',
                     '<span>' + escapeHtml(plannerText("target")) + resourceAmounts(nodeResources(node, done, target), branch.totalBadges > 0) + '</span>',
                     '<span>' + escapeHtml(plannerText("remaining")) + resourceAmounts(nodeResources(node, done, node.maxLevel), branch.totalBadges > 0) + '</span>',
                     "</div>",
@@ -1436,9 +1404,9 @@
         var node = item.node;
         var done = getLevel(state.selectedKey);
         var target = getTarget(state.selectedKey);
-        var spent = costToLevel(node, done);
-        var planned = target > done ? rangeCost(node, done, target) : 0;
-        var remaining = node.totalBadges - spent;
+
+
+
         var pct = node.maxLevel ? Math.round(done / node.maxLevel * 100) : 0;
         refs.drawer.hidden = false;
         refs.drawerContent.innerHTML = [
@@ -1455,13 +1423,13 @@
             '<div class="drawer-quick">',
             '<button type="button" class="drawer-trash" data-action="clear" data-key="', escapeAttr(state.selectedKey), '" aria-label="', escapeAttr(plannerText("clearNode", { node: node.name })), '">⌫</button>',
             '<div class="drawer-stepper" aria-label="' + escapeAttr(plannerText("completedControls")) + '">',
-            miniButton("dec", state.selectedKey, "-"),
+            miniButton("dec", state.selectedKey, "-", plannerText("decreaseLevel", {node: node.name}), done === 0),
             '<strong>', done, "</strong>",
-            miniButton("inc", state.selectedKey, "+"),
+            miniButton("inc", state.selectedKey, "+", plannerText("increaseLevel", {node: node.name}), done === node.maxLevel),
             "</div>",
             '<div class="drawer-target-control">',
             '<button type="button" class="mini-button" data-action="plan-max" data-key="', escapeAttr(state.selectedKey), '">' + escapeHtml(plannerText("targetMax")) + '</button>',
-            target > done ? '<span class="drawer-target-cost">' + escapeHtml(plannerText("targetLevelCost", { level: target, amount: "" })) + resourceAmounts(nodeResources(node, done, target), branch.totalBadges > 0) + "</span>" : "",
+            target > done ? '<span class="drawer-target-cost">' + escapeHtml(plannerText("targetLevelCost", { level: target })) + resourceAmounts(nodeResources(node, done, target), branch.totalBadges > 0) + "</span>" : "",
             "</div>",
             "</div>",
             renderLevelTable(node, state.selectedKey, done, target, branch.totalBadges > 0)
@@ -1477,7 +1445,7 @@
             var time = showTime ? resourceAmount("time", researchSeconds(node.researchTime[index], researchSpeed)) : "";
             return [
                 '<tr class="', level <= done ? "is-done" : "", level === target && target > done ? " is-target" : "", '">',
-                '<td><input type="checkbox" aria-label="', escapeAttr(plannerText("level") + " " + level), '" data-action="toggle-level" data-key="', escapeAttr(key), '" data-level="', level, '" ', level <= done ? "checked" : "", "></td>",
+                '<td class="level-check"><label><input type="checkbox" aria-label="', escapeAttr(plannerText("level") + " " + level), '" data-action="toggle-level" data-key="', escapeAttr(key), '" data-level="', level, '" ', level <= done ? "checked" : "", "></label></td>",
                 "<td>", level, "</td>",
                 '<td class="level-bonus">', levelBonus(node, index), '</td>',
                 showBadges ? '<td class="level-badges">' + badgeAmount(cost) + '</td>' : "",
@@ -1499,10 +1467,11 @@
         ].join("");
     }
 
-    function openMobileSheet(type) {
+    function openMobileSheet(type, control) {
         var wasOpen = isPlannerModalOpen();
         if (!wasOpen) {
-            plannerModalReturnFocus = document.activeElement;
+            plannerModalReturnFocus = control || document.activeElement;
+            plannerModalReturnSnapshot = plannerFocus(plannerModalReturnFocus);
         }
         state.mobileSheet = type;
         renderMobileSheet();
@@ -1521,7 +1490,7 @@
         if (!refs.mobileSheet || !refs.mobileSheetContent) {
             return;
         }
-        if (!state.mobileSheet || !isSmallScreen()) {
+        if (!state.mobileSheet || !(state.mobileSheet === "actions" ? isTabletScreen() : isSmallScreen())) {
             refs.mobileSheet.hidden = true;
             refs.mobileSheetContent.innerHTML = "";
             syncPlannerModalState();
@@ -1535,7 +1504,11 @@
             return;
         }
         refs.mobileSheet.hidden = false;
-        if (state.mobileSheet === "table") {
+        if (state.mobileSheet === "actions") {
+            refs.mobileSheetContent.innerHTML = '<div class="planner-sheet-head"><h2 id="planner-sheet-title">' + escapeHtml(plannerText("actions")) + '</h2></div>' +
+                '<div class="planner-sheet-actions"><button type="button" class="planner-button planner-button--muted" data-clear-all-targets>' + escapeHtml(refs.clearTargets.textContent) + '</button>' +
+                '<button type="button" class="planner-button planner-button--danger" data-reset-all>' + escapeHtml(refs.resetPlanner.textContent) + '</button></div>';
+        } else if (state.mobileSheet === "table") {
             refs.mobileSheetContent.innerHTML = [
                 '<div class="planner-sheet-head">',
                 '<h2 id="planner-sheet-title">', escapeHtml(plannerText("branchTableTitle", { branch: branch.name })), "</h2>",
@@ -1556,9 +1529,15 @@
     }
 
     function handlePlannerClick(event) {
+        if (event.target.closest("[data-clear-all-targets], [data-reset-all]")) {
+            var reset = event.target.closest("[data-reset-all]");
+            closeMobileSheet();
+            (reset ? refs.resetPlanner : refs.clearTargets).click();
+            return;
+        }
         var statToggle = event.target.closest("[data-toggle-stats]");
         if (statToggle) {
-            openStatsControl();
+            openStatsControl(event.target.closest("[data-toggle-stats]"));
             return;
         }
         var viewButton = event.target.closest("[data-view]");
@@ -1580,6 +1559,7 @@
             var wasDrawerOpen = !refs.drawer.hidden;
             if (!isPlannerModalOpen()) {
                 plannerModalReturnFocus = actionEl;
+                plannerModalReturnSnapshot = plannerFocus(actionEl);
             }
             state.selectedKey = key;
             renderDrawer();
@@ -1591,13 +1571,7 @@
         if (action === "clear-branch-targets" && branchId) {
             clearBranchTargets(branchId);
             saveState();
-            render();
-            return;
-        }
-        if (action === "clear-branch" && branchId) {
-            clearBranch(branchId);
-            saveState();
-            render();
+            render(actionEl);
             return;
         }
         if (key && nodeByKey.has(key)) {
@@ -1606,30 +1580,29 @@
                 return;
             }
             var persisted = saveState();
-            render();
-            actionEl.blur();
+            render(actionEl);
             if (persisted) trackMeaningfulUse(state.view === "table" ? "table_node" : "tree_node");
         }
     }
 
-    function openStatsControl() {
+    function openStatsControl(control) {
         if (isSmallScreen()) {
-            openMobileSheet("stats");
+            openMobileSheet("stats", control);
             return;
         }
         state.statsOpen = !state.statsOpen;
         saveState();
-        render();
+        render(control);
     }
 
     function openViewControl(button) {
         if (isSmallScreen() && button.getAttribute("data-view") === "table") {
-            openMobileSheet("table");
+            openMobileSheet("table", button);
             return;
         }
         state.view = button.getAttribute("data-view") === "table" ? "table" : "tree";
         saveState();
-        render();
+        render(button);
     }
 
     function handlePlannerChange(event) {
@@ -1653,7 +1626,7 @@
             return;
         }
         var persisted = saveState();
-        render();
+        render(select);
         if (persisted) trackMeaningfulUse(mode === "completed" ? "level_select" : "target_select");
     }
 
@@ -1680,7 +1653,16 @@
     function applyNodeAction(action, key, level, element) {
         var item = nodeByKey.get(key);
         var done = getLevel(key);
-        if (action === "toggle-level") {
+        if (action === "toggle-complete") {
+            if (done < item.node.maxLevel) {
+                var previous = done;
+                var changed = setCompletedLevel(key, item.node.maxLevel);
+                beforeComplete.set(key, previous);
+                return changed;
+            }
+            var restore = beforeComplete.has(key) ? beforeComplete.get(key) : 0;
+            return setCompletedLevel(key, restore);
+        } else if (action === "toggle-level") {
             return setCompletedLevel(key, element.checked ? level : level - 1);
         } else if (action === "target-level") {
             return setTargetLevel(key, getTarget(key) === level ? 0 : level);
@@ -1692,6 +1674,7 @@
             return setCompletedLevel(key, item.node.maxLevel);
         } else if (action === "clear") {
             var targetRemoved = done < item.node.maxLevel && getTarget(key) > 0;
+            if (targetRemoved) discardSharedBackup();
             setCompletedLevel(key, 0);
             delete state.targets[key];
             return done > 0 || targetRemoved;
@@ -1716,6 +1699,8 @@
         if (previous === next) {
             return false;
         }
+        discardSharedBackup();
+        beforeComplete.delete(key);
         if (next > 0) {
             state.levels[key] = next;
         } else {
@@ -1741,6 +1726,7 @@
             return false;
         }
         if (next > getLevel(key)) {
+            discardSharedBackup();
             clearBranchTargets(item.branch.id);
             state.targets[key] = next;
             targetAncestors(item.branch, item.node, next);
@@ -1772,9 +1758,11 @@
         walkRequiredAncestors(branch, node, level || node.maxLevel, function (parent, requiredLevel) {
             var key = nodeKey(branch.id, parent.id);
             if (getLevel(key) < requiredLevel) {
+                discardSharedBackup();
                 state.levels[key] = requiredLevel;
             }
             if (getTarget(key) <= requiredLevel) {
+                if (getTarget(key) > 0) discardSharedBackup();
                 delete state.targets[key];
             }
         });
@@ -1819,39 +1807,6 @@
         visit(node, clampLevel(level, node.maxLevel));
     }
 
-    function walkAncestors(branch, node, callback) {
-        var nodeMap = branchMaps.get(branch.id);
-        var seen = new Set();
-        function visit(current) {
-            (current.parents || []).forEach(function (parentId) {
-                if (seen.has(parentId) || !nodeMap.has(parentId)) {
-                    return;
-                }
-                seen.add(parentId);
-                var parent = nodeMap.get(parentId);
-                callback(parent);
-                visit(parent);
-            });
-        }
-        visit(node);
-    }
-
-    function clearBranch(branchId) {
-        var branch = branchById.get(branchId);
-        if (!branch) {
-            return;
-        }
-        branch.nodes.forEach(function (node) {
-            var key = nodeKey(branch.id, node.id);
-            delete state.levels[key];
-            delete state.targets[key];
-        });
-        if (state.selectedKey && state.selectedKey.indexOf(branch.id + ":") === 0) {
-            state.selectedKey = null;
-            closeDrawer();
-        }
-    }
-
     function clearBranchTargets(branchId) {
         var branch = branchById.get(branchId);
         var changed = false;
@@ -1865,6 +1820,7 @@
                 changed = true;
             }
         });
+        if (changed) discardSharedBackup();
         return changed;
     }
 
@@ -2067,21 +2023,11 @@
         for (var level = 0; level <= maxLevel; level += 1) {
             options.push('<option value="' + level + '"' + (level === value ? " selected" : "") + ">" + level + "</option>");
         }
-        return '<select data-level-select="' + mode + '" data-key="' + escapeAttr(key) + '">' + options.join("") + "</select>";
+        return '<select aria-label="' + escapeAttr(plannerText(mode === "completed" ? "done" : "target") + " – " + nodeByKey.get(key).node.name) + '" data-level-select="' + mode + '" data-key="' + escapeAttr(key) + '">' + options.join("") + "</select>";
     }
 
-    function miniButton(action, key, label) {
-        return '<button type="button" class="mini-button" data-action="' + action + '" data-key="' + escapeAttr(key) + '">' + escapeHtml(label) + "</button>";
-    }
-
-    function branchStat(label, value, note) {
-        return [
-            '<div class="branch-stat">',
-            "<span>", escapeHtml(label), "</span>",
-            "<strong>", escapeHtml(value), "</strong>",
-            "<small>", escapeHtml(note), "</small>",
-            "</div>"
-        ].join("");
+    function miniButton(action, key, label, accessibleLabel, disabled) {
+        return '<button type="button" class="mini-button" data-action="' + action + '" data-key="' + escapeAttr(key) + '"' + (accessibleLabel ? ' aria-label="' + escapeAttr(accessibleLabel) + '"' : '') + (disabled ? ' disabled' : '') + '>' + escapeHtml(label) + "</button>";
     }
 
     function nodeStats(node) {
@@ -2148,11 +2094,6 @@
         return costs;
     }
 
-    function branchResources(branch) {
-        return {badgeCost: branch.totalBadges, electricityCost: branch.totalElectricity,
-            zentCost: branch.totalZent, researchTime: branch.nodes.reduce(function (sum, node) { return sum + rangeCost(node, 0, node.maxLevel, "researchTime"); }, 0)};
-    }
-
     function formatTime(seconds) {
         var units = [[86400, "day"], [3600, "hour"], [60, "minute"], [1, "second"]];
         var largest = units.findIndex(function (unit) { return seconds >= unit[0]; });
@@ -2173,18 +2114,28 @@
         return '<img class="planner-resource-icon" src="/assets/items/' + kind + '.webp" width="18" height="18" alt="" role="presentation" aria-hidden="true" decoding="async">';
     }
 
+    function formatCompactNumber(amount) {
+        var units = [[1e9, "G"], [1e6, "M"], [1e3, "K"]];
+        var unit = units.find(function (entry) { return amount >= entry[0]; });
+        if (!unit) return formatNumber(amount);
+        var rounded = Math.round(amount / unit[0] * 10) / 10;
+        // Carry rounding across a suffix boundary (999.99K -> 1M).
+        if (rounded >= 1000 && unit[0] < 1e9) { unit = units[units.indexOf(unit) - 1]; rounded = 1; }
+        return rounded.toLocaleString(plannerLocale.numberLocale, {maximumFractionDigits: 1, useGrouping: false}) + unit[1];
+    }
+
     function resourceAmount(kind, amount, compact) {
-        var value = kind === "time" ? formatTime(amount) : compact !== false ? Number(amount).toLocaleString(plannerLocale.numberLocale, {notation: "compact", maximumFractionDigits: 1}) : formatNumber(amount);
+        var value = kind === "time" ? formatTime(amount) : compact !== false ? formatCompactNumber(amount) : formatNumber(amount);
         var exact = kind === "time" ? value : formatNumber(amount);
         return '<span class="resource-amount" role="group" title="' + escapeAttr(exact) + '" aria-label="' + escapeAttr(plannerText(kind) + ": " + exact) + '">' + resourceIcon(kind) + '<span>' + escapeHtml(value) + '</span></span>';
     }
 
-    function resourceAmounts(costs, showBadges, compact, prompt, secondary) {
-        var resources = resourceAmount("electricity", costs.electricityCost, compact) + resourceAmount("zent", costs.zentCost, compact);
-        if (researchSpeed !== null) resources += resourceAmount("time", costs.researchTime);
+    function resourceAmounts(costs, showBadges, compact, prompt, secondary, spent) {
+        var resources = costs.electricityCost || costs.zentCost ? resourceAmount("electricity", costs.electricityCost, compact) + resourceAmount("zent", costs.zentCost, compact) : "";
+        if (!spent && researchSpeed !== null && costs.researchTime) resources += resourceAmount("time", costs.researchTime);
         if (prompt) resources += speedPrompt();
         return '<span class="resource-amounts' + (showBadges ? ' resource-amounts--badges' : '') + '">' +
-            (showBadges ? badgeAmount(costs.badgeCost) : "") +
+            (showBadges ? costs.badgeCost ? badgeAmount(costs.badgeCost) : "0" : "") +
             '<span class="resource-line' + (showBadges || secondary ? ' resource-line--secondary' : '') + '">' + resources + '</span></span>';
     }
 
@@ -2274,11 +2225,16 @@
             return;
         }
         var target = plannerModalReturnFocus;
-        plannerModalReturnFocus = null;
+        var snapshot = plannerModalReturnSnapshot;
+        plannerModalReturnFocus = plannerModalReturnSnapshot = null;
         if ((!target || !target.isConnected) && nodeKeyToRestore) {
             target = Array.prototype.slice.call(document.querySelectorAll('[data-action="open-node"]')).find(function (element) {
                 return element.getAttribute("data-key") === nodeKeyToRestore;
             });
+        }
+        if (target && !target.isConnected) {
+            restorePlannerFocus(snapshot);
+            return;
         }
         if (target && target.isConnected && typeof target.focus === "function") {
             target.focus({ preventScroll: true });
@@ -2328,7 +2284,7 @@
         try {
             return JSON.parse(localStorage.getItem(key) || "null");
         } catch (error) {
-            localStorage.removeItem(key);
+            try { localStorage.removeItem(key); } catch (storageError) { /* Storage is optional. */ }
             return null;
         }
     }
@@ -2425,16 +2381,6 @@
         return window.matchMedia && window.matchMedia("(max-width: 980px)").matches;
     }
 
-    function getDeviceMode() {
-        if (isSmallScreen()) {
-            return "mobile";
-        }
-        if (isTabletScreen()) {
-            return "tablet";
-        }
-        return "desktop";
-    }
-
     function hasPlannerProgress() {
         return Object.keys(state.levels).length > 0 || Object.keys(state.targets).length > 0;
     }
@@ -2473,12 +2419,6 @@
             (announceUnit === false ? "" : '<span class="planner-badge-unit"> ' + escapeHtml(plannerText("badges")) + '</span>') + '</span>';
     }
 
-    function badgeMetric(tag, key, amount) {
-        var marker = "{amount}";
-        var parts = plannerText(key, { amount: marker }).split(marker);
-        return "<span>" + escapeHtml(parts[0]) + "<" + tag + ">" + badgeAmount(amount) + "</" + tag + ">" + escapeHtml(parts[1]) + "</span>";
-    }
-
     function formatNumber(value) {
         return Number(value || 0).toLocaleString(plannerLocale.numberLocale);
     }
@@ -2494,23 +2434,22 @@
     function detectPlannerLocale() {
         var localeMap = {
             "fr": { code: "fr", numberLocale: "fr-FR" },
-            "de": { code: "de", numberLocale: "de-DE" },
-            "es": { code: "es", numberLocale: "es-ES" },
-            "id": { code: "id", numberLocale: "id-ID" },
-            "pt-br": { code: "pt-BR", numberLocale: "pt-BR" },
-            "vi": { code: "vi", numberLocale: "vi-VN" },
-            "ar": { code: "ar", numberLocale: "ar" }
+            "es": { code: "es", numberLocale: "es-ES" }
         };
         var firstSegment = window.location.pathname.split("/").filter(Boolean)[0] || "";
         return localeMap[firstSegment.toLowerCase()] || { code: "en", numberLocale: "en-US" };
     }
 
+    function renderShareStatus(message) {
+        refs.shareStatus.innerHTML = (sharedBackup ? escapeHtml(plannerText("sharedLoaded")) +
+            ' <button type="button" class="planner-restore" data-restore-plan>' + escapeHtml(plannerText("restorePlan")) + '</button>' +
+            ' <button type="button" class="planner-dismiss" data-dismiss-share aria-label="' + escapeAttr(plannerText("dismissSharedPlan")) + '">×</button> ' : "") + escapeHtml(message || "");
+    }
+
     function setStatus(message) {
-        refs.shareStatus.textContent = message;
+        renderShareStatus(message);
         window.clearTimeout(setStatus.timer);
-        setStatus.timer = window.setTimeout(function () {
-            refs.shareStatus.textContent = "";
-        }, 3000);
+        setStatus.timer = window.setTimeout(function () { renderShareStatus(); }, 3000);
     }
 
     function base64UrlEncode(value) {

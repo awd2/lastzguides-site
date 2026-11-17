@@ -24,7 +24,7 @@
     <link rel="alternate" href="https://lastzguides.com/research-planner.html" hreflang="x-default">
 <link rel="stylesheet" href="/style.css?v=272919dfbf95">
     <link rel="stylesheet" href="/search.css?v=ccdcb30b94ef">
-    <link rel="stylesheet" href="/research-planner.css?v=9473011323f6">
+    <link rel="stylesheet" href="/research-planner.css?v=e1cfc091b426">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -207,42 +207,15 @@
                 <div class="branch-picker-menu" data-branch-menu hidden></div>
             </div>
             <button type="button" class="planner-button planner-button--muted" data-show-overview aria-expanded="false" aria-controls="branch-overview" hidden>Todas las ramas</button>
-            </div>
-
-
-            <div class="planner-dashboard" aria-label="Totales del planificador">
-                <div class="planner-total-card planner-total-card--scope">
-                    <span data-total-label>Total</span>
-                    <strong data-total-badges>0</strong>
-                    <small>todas las ramas</small>
-                </div>
-                <div class="planner-total-card">
-                    <span data-completed-label>Gastado</span>
-                    <strong data-completed-badges>0</strong>
-                    <small data-completed-levels>Niveles completados: 0</small>
-                </div>
-                <div class="planner-total-card">
-                    <span data-planned-label>Objetivo</span>
-                    <strong data-planned-badges>0</strong>
-                    <small data-planned-levels>Niveles adicionales previstos: 0</small>
-                </div>
-                <div class="planner-total-card">
-                    <span data-remaining-label>Restante</span>
-                    <strong data-remaining-badges>0</strong>
-                    <small data-remaining-note>tras descontar lo gastado</small>
-                </div>
+            <button type="button" class="planner-button" data-copy-share>Compartir</button>
+            <button type="button" class="planner-button planner-button--muted planner-more" data-planner-more aria-label="Controles del planificador" aria-haspopup="dialog">…</button>
             </div>
 
             <div class="planner-actions" aria-label="Controles del planificador">
-                <button type="button" class="planner-button" data-copy-share>Compartir</button>
                 <button type="button" class="planner-button planner-button--muted" data-clear-targets>Borrar objetivos</button>
                 <button type="button" class="planner-button planner-button--danger" data-reset-planner>Restablecer</button>
-                <label class="planner-toggle">
-                    <input type="checkbox" data-auto-parents>
-                    <span>Completar requisitos previos</span>
-                </label>
-                <span class="planner-status" data-share-status aria-live="polite"></span>
             </div>
+            <span class="planner-status" data-share-status aria-live="polite"></span>
             </div>
             </div>
         </section>
@@ -266,29 +239,10 @@
         </section>
 
         <section class="planner-layout">
-            <aside class="planner-sidebar" aria-label="Ramas de investigación">
-                <div class="planner-sidebar-head">
-                    <h2>Ramas</h2>
-                    <p>Elige una rama para actualizar los niveles y los objetivos.</p>
-                </div>
-                <div class="branch-list" data-branch-list></div>
-            </aside>
 
-            <section class="planner-workspace" aria-live="polite">
+            <section class="planner-workspace">
                 <div class="branch-summary" data-branch-summary></div>
-                <div class="planner-toolbar" aria-label="Vista de la rama">
-                    <div class="planner-tabs" role="tablist" aria-label="Vista del planificador">
-                        <button type="button" class="planner-tab" data-view="tree">Árbol</button>
-                        <button type="button" class="planner-tab planner-tool-button" data-view="table"><span class="tool-icon" aria-hidden="true">☰</span><span>Tabla</span></button>
-                    </div>
-                    <div class="planner-toolbar-actions">
-                        <label class="planner-toggle planner-toggle--toolbar">
-                            <input type="checkbox" data-auto-parents>
-                            <span>Requisitos</span>
-                        </label>
-                        <button type="button" class="icon-button planner-tool-button" data-toggle-stats aria-expanded="false"><span class="tool-icon" aria-hidden="true">▥</span><span>Estadísticas</span></button>
-                    </div>
-                </div>
+
                 <div class="warning-panel" data-warning-panel hidden></div>
                 <div class="stat-panel" data-stat-panel hidden></div>
                 <div class="planner-view" data-planner-view></div>
@@ -351,7 +305,7 @@
         </div>
     </footer>
     <script src="/research-planner-data.js?v=9c1b349ae3e5"></script>
-    <script src="/research-planner.js?v=8b317a6f7728" defer></script>
+    <script src="/research-planner.js?v=a367f018c86c" defer></script>
     <script src="/analytics.js" defer></script>
     <script src="/search-loader.js?v=53bb75f2dc5f" defer></script>
 </body>
