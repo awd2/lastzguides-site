@@ -1,0 +1,28 @@
+.content-placement {
+    margin-block: 28px;
+    width: 100%;
+}
+
+.content-placement > .content-placement__label {
+    margin: 0 0 var(--lz-space-2, 8px);
+    color: var(--color-muted, #888);
+    font: 600 0.75rem/1.4 var(--lz-type-system, system-ui, sans-serif);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.content-placement > ins.adsbygoogle {
+    min-height: 280px;
+}
+
+ins.adsbygoogle[data-ad-status="unfilled"] {
+    display: none !important;
+}
+
+.content-placement.is-empty {
+    display: none;
+}
+
+.content-placement:has(ins[data-ad-status="unfilled"]) {
+    display: none;
+}
