@@ -1469,13 +1469,18 @@ body > .home-nav.site-nav {
     word-break: break-word;
 }
 
-.ldshop-promo__flow-note {
-    display: block;
-    color: #d2d5df;
-    font-size: 0.75rem;
-    line-height: 1.4;
-    font-weight: 400;
-    overflow-wrap: anywhere;
+/* Match the live control's stacked grid before the runtime copy swap. */
+@media (600px < width <= 640px) {
+    .ldshop-promo:not(.ldshop-promo--offer) {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+        padding: 12px;
+    }
+
+    /* The vertical picture is square before its lazy image finishes loading. */
+    .ldshop-promo__logo img {
+        aspect-ratio: 1;
+    }
 }
 
 .ldshop-promo__text strong {

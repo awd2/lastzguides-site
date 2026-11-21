@@ -433,8 +433,7 @@
         return primary || offers.find(offer => offer.offer_id === state.order[0]) || null;
     }
 
-    function renderLdshopOffer(link, offer, preserveFlowNote = true) {
-        const flowNote = preserveFlowNote && link.querySelector('.ldshop-promo__flow-note');
+    function renderLdshopOffer(link, offer) {
         if (offer) {
             const template = document.createElement('template');
             const locale = ldshopLocale();
@@ -455,7 +454,6 @@
             const details = document.createElement('span'); details.className = 'ldshop-promo__details';
             link.replaceChildren(copy, details, link.querySelector('.ldshop-promo__side'));
         }
-        if (flowNote) link.querySelector('.ldshop-promo__copy').appendChild(flowNote);
         link.classList.add('ldshop-promo--offer');
         return true;
     }
@@ -578,49 +576,29 @@
                     track('ldshop_carousel_view', params());
                 }
             }
-            function render(target, offer) {
-                target.classList.add('ldshop-promo--carousel');
-                const maximum = ldshopCarouselMaximum(ldshopCarouselOffers(catalog));
-                if (offer) {
-                    if (!renderLdshopOffer(target, offer, false)) return false;
-                    const deal = original.querySelector('.ldshop-promo__deal').cloneNode(true);
-                    deal.querySelector('.ldshop-promo__deal-big').textContent = offer.discount_percent + '%';
-                    deal.querySelector('.ldshop-promo__deal-small').textContent = '';
-                    const body = target.querySelector('.ldshop-promo__copy');
-                    const terms = target.querySelector('.ldshop-promo__terms');
-                    if (terms) body.appendChild(terms);
-                    target.replaceChildren(deal, body, target.querySelector('.ldshop-promo__side'));
-                } else {
-                    target.classList.remove('ldshop-promo--offer');
-                    target.replaceChildren(...Array.from(original.childNodes, node => node.cloneNode(true)));
-                    target.querySelector('.ldshop-promo__title').textContent = copy.title;
-                    target.querySelector('.ldshop-promo__text').innerHTML = maximum
-                        ? (maximum.ordinary_pack ? copy.control.replace('21', String(maximum.discount_percent))
-                            : copy.gold_control.replace('{percent}', String(maximum.discount_percent))) : copy.fallback;
-                    const deal = target.querySelector('.ldshop-promo__deal');
-                    deal.hidden = !maximum;
-                    if (maximum) deal.querySelector('.ldshop-promo__deal-big').textContent = maximum.discount_percent + '%';
-                }
-                return true;
-            }
             function sizeBlock() {
-                // Preserve the existing control height; product rendering is only an inert sizing probe.
+                // Reserve the initial control at its current width, including after a Planner reparent.
                 const probe = original.cloneNode(true);
                 probe.removeAttribute('id'); probe.setAttribute('aria-hidden', 'true'); probe.inert = true;
                 Object.assign(probe.style, {position: 'absolute', visibility: 'hidden', pointerEvents: 'none',
-                    width: link.getBoundingClientRect().width + 'px', minHeight: '0', height: 'auto', left: '0', top: '0'});
+                    width: link.getBoundingClientRect().width + 'px', height: 'auto', left: '0', top: '0'});
                 link.parentNode.appendChild(probe);
-                let height = probe.getBoundingClientRect().height;
-                for (const offer of [null, ...ldshopCarouselOffers(catalog)]) {
-                    render(probe, offer);
-                    height = Math.max(height, probe.getBoundingClientRect().height);
-                }
+                const height = probe.getBoundingClientRect().height;
                 probe.remove();
                 link.style.minHeight = height + 'px';
             }
             function show() {
                 context.maximum = ldshopCarouselMaximum(ldshopCarouselOffers(catalog));
-                render(link, null);
+                link.classList.add('ldshop-promo--carousel');
+                link.classList.remove('ldshop-promo--offer');
+                link.replaceChildren(...Array.from(original.childNodes, node => node.cloneNode(true)));
+                link.querySelector('.ldshop-promo__title').textContent = copy.title;
+                link.querySelector('.ldshop-promo__text').innerHTML = context.maximum
+                    ? (context.maximum.ordinary_pack ? copy.control.replace('21', String(context.maximum.discount_percent))
+                        : copy.gold_control.replace('{percent}', String(context.maximum.discount_percent))) : copy.fallback;
+                const deal = link.querySelector('.ldshop-promo__deal');
+                deal.hidden = !context.maximum;
+                if (context.maximum) deal.querySelector('.ldshop-promo__deal-big').textContent = context.maximum.discount_percent + '%';
                 link.dataset.ldshopExperimentId = LDSHOP_CAROUSEL.id;
                 link.dataset.ldshopExperimentGroup = state.group;
                 link.dataset.ldshopCreativeId = params().creative_id;
