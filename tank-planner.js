@@ -186,6 +186,7 @@
         if (!persisted || meaningfulUseTracked || !hasUsefulState()) return;
         meaningfulUseTracked = true;
         track("meaningful_use");
+        document.dispatchEvent(new Event("lastz:support-result"));
     }
 
     function costThrough(index, sublevel) {

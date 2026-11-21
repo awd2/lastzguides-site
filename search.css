@@ -1469,12 +1469,12 @@ body.ui-foundation .search-cancel:hover {
 /* Shared channel chrome; static grid slots also reserve the existing rose runtime. */
 .site-header.site-header--has-channels,
 .site-header.site-header--has-channels.site-header--has-language {
-    grid-template-columns: minmax(140px, 1fr) auto 110px auto 88px 0px;
+    grid-template-columns: minmax(140px, 1fr) auto 110px auto max-content 0px;
     grid-template-areas: "logo primary rose search channels language";
     gap: 10px;
 }
 .site-header.site-header--has-channels.site-header--has-language {
-    grid-template-columns: minmax(140px, 1fr) auto 110px auto 88px 40px;
+    grid-template-columns: minmax(140px, 1fr) auto 110px auto max-content 40px;
 }
 .site-header--has-channels .language-switcher__button {
     width: 40px;
@@ -1505,7 +1505,7 @@ body.ui-foundation .search-cancel:hover {
 }
 .site-channels__bell { display: none; }
 .site-channels__bell:hover,
-.site-channels__icons a:hover {
+.site-channels__icons a:not([data-support-placement]):hover {
     border-color: #696a60;
     background: var(--surface-panel, #20211d);
     color: var(--color-text-strong, #f2eee5);
@@ -1605,4 +1605,27 @@ body.ui-foundation .search-cancel:hover {
 /* Preserve the existing crowded intermediate header exactly; footer links remain. */
 @media (min-width: 601px) and (max-width: 767px) {
     .site-channels { display: none; }
+}
+
+.site-channels__icons [data-support-placement] {
+    width: auto;
+    gap: 6px;
+    padding: 0 8px;
+    color: var(--nav-text, #c7c7c7);
+    font-size: .875rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+@media (min-width: 1280px) and (max-width: 1339px) {
+    :is(html[lang="fr"], html[lang="es"]) .site-channels__icons [data-support-placement] {
+        width: 40px;
+        padding: 0;
+    }
+    :is(html[lang="fr"], html[lang="es"]) .site-channels__icons [data-support-placement] span { display: none; }
+}
+@media (hover: hover) {
+    .site-channels__icons [data-support-placement]:hover {
+        background: var(--surface-panel-hover, #2a2a2a);
+        color: var(--color-text-strong, #fff);
+    }
 }

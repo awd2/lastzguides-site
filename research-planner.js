@@ -780,6 +780,7 @@
         if (meaningfulUseTracked || !hasPlannerProgress()) return;
         meaningfulUseTracked = true;
         trackPlannerUse("meaningful_use", sourceControl);
+        document.dispatchEvent(new Event("lastz:support-result"));
     }
 
     function trackPlannerNavigation(action) {
@@ -1219,6 +1220,7 @@
         refs.plannerView.style.setProperty("--planner-tree-available-width", availableWidth + "px");
         refs.plannerView.style.setProperty("--planner-tree-columns", Math.max.apply(Math, Array.from(rowCounts.values())));
         var warningKeys = dependencyWarnings(branch).keys;
+        var previousStage = refs.plannerView.querySelector(".tree-stage");
         refs.plannerView.innerHTML = [
             '<div class="tree-scroll"><div class="tree-stage"><div class="tree-canvas-inner">',
             branch.nodes.map(function (node) {
@@ -1226,6 +1228,8 @@
             }).join(""),
             "</div></div></div>"
         ].join("");
+        // Preserve the scroll range while the replacement nodes are measured.
+        if (previousStage) refs.plannerView.querySelector(".tree-stage").style.height = previousStage.style.height;
         // CSS owns card sizing. Measure natural content before placing nodes and edges.
         var cards = Array.from(refs.plannerView.querySelectorAll(".tree-node"));
         var size = {

@@ -405,7 +405,7 @@
                 var restore = !menu.hidden;
                 close(false);
                 if (restore) {
-                    var icon = container.querySelector('.site-channels__icons a');
+                    var icon = container.querySelector('.site-channels__icons [data-channel-platform]');
                     var target = icon.getClientRects().length ? icon : document.querySelector('.search-trigger');
                     if (target) target.focus({ preventScroll: true });
                 }

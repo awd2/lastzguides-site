@@ -848,6 +848,13 @@
     // Expose a small API for search.js to call.
     window.analytics = window.analytics || {};
     window.analytics.trackEvent = track;
+    document.addEventListener('click', event => {
+        const link = event.target.closest('a[data-support-placement]');
+        if (link) {
+            const placement = link.dataset.supportPlacement;
+            window.analytics.trackEvent('support_click', { placement });
+        }
+    });
     window.analytics.trackSearch = function(type, payload) {
         track(type, Object.assign({
             guide_slug: slugFromUrl(getPath()),

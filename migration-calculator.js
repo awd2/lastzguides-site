@@ -144,6 +144,7 @@
     ];
     if (isExtrapolation(values)) messages.push({ text: text('extrapolation') });
     showResult(messages);
+    document.dispatchEvent(new Event("lastz:support-result"));
   });
   form.addEventListener('reset', () => {
     inputs.forEach((input, index) => {
