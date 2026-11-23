@@ -1315,6 +1315,7 @@ body > .home-nav.site-nav {
 
 /* LDShop promo block */
 .ldshop-promo-wrap {
+    container: ldshop-banner / inline-size;
     width: 100%;
     max-width: 1000px;
     min-width: 0;
@@ -1445,6 +1446,35 @@ body > .home-nav.site-nav {
     min-width: 0;
 }
 
+.ldshop-promo__heading {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.ldshop-promo__status {
+    padding: 2px 6px;
+    border-radius: 999px;
+    background: #1e7f46;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.ldshop-promo__hint {
+    display: block;
+    margin-top: 2px;
+    color: #d2d5df;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
 .ldshop-promo__title {
     display: block;
     min-width: 0;
@@ -1480,6 +1510,52 @@ body > .home-nav.site-nav {
     /* The vertical picture is square before its lazy image finishes loading. */
     .ldshop-promo__logo img {
         aspect-ratio: 1;
+    }
+}
+
+/* The two outer columns, gaps and padding need 385px; reserve the rest for the localized title row. */
+@media (width > 640px) {
+    @container ldshop-banner (width < 690px) {
+        .ldshop-promo:not(.ldshop-promo--offer) {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 10px;
+            padding: 12px;
+
+            .ldshop-promo__deal {
+                width: 100%;
+                min-height: 46px;
+                padding: 8px 10px;
+                grid-template-columns: auto auto auto;
+                justify-content: center;
+                gap: 6px;
+            }
+
+            .ldshop-promo__deal-small,
+            .ldshop-promo__deal-label {
+                font-size: 0.58rem;
+            }
+
+            .ldshop-promo__deal-big {
+                font-size: 1.55rem;
+            }
+
+            .ldshop-promo__side {
+                grid-template-columns: auto minmax(0, 1fr);
+                align-items: center;
+                justify-items: stretch;
+                gap: 10px;
+            }
+
+            .ldshop-promo__logo,
+            .ldshop-promo__logo img {
+                height: 38px;
+                width: auto;
+            }
+
+            .ldshop-promo__cta {
+                min-height: 42px;
+            }
+        }
     }
 }
 
@@ -3474,7 +3550,7 @@ details p {
     }
 
     .ldshop-promo__title {
-        font-size: 1rem;
+        font-size: clamp(13.5px, 4.3vw, 16px);
         line-height: 1.16;
     }
 
