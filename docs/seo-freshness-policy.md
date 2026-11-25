@@ -31,6 +31,8 @@ Meaningful updates include:
 - outdated claims were corrected after in-game verification
 - a new section with unique factual value was added
 
+When a guide has a dated byline, its visible date follows JSON-LD `dateModified`. A meaningful update changes both together in the page’s language.
+
 Cosmetic updates are not meaningful updates.
 
 Do not update freshness fields for:
